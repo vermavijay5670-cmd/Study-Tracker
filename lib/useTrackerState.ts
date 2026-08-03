@@ -1,11 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CHAPTERS } from "./data";
 import { addDays, daysBetween, dateKey, parseKey, todayKey } from "./date-utils";
+import { createSupabaseBrowserClient } from "./supabase/client";
+import type { User } from "@supabase/supabase-js";
 import type { ChapterState, Difficulty, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 const STORAGE_KEY = "neet_tracker_v1";
+const TABLE = "user_state";
+const SYNC_DEBOUNCE_MS = 1500;
 
 const DEFAULT_TIMER_MS = 25 * 60_000;
 
@@ -25,6 +29,7 @@ function defaultState(): TrackerState {
     timerDurationMs: DEFAULT_TIMER_MS,
     timerRemainingMs: DEFAULT_TIMER_MS,
     timerEndAt: null,
+    lastModified: 0,
   };
 }
 
@@ -47,15 +52,66 @@ function loadState(): TrackerState {
 }
 
 export function useTrackerState() {
-  const [state, setState] = useState<TrackerState>(defaultState);
+  const [state, setStateRaw] = useState<TrackerState>(defaultState);
   const [hydrated, setHydrated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const supabaseRef = useRef(createSupabaseBrowserClient());
+  const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const skipNextPushRef = useRef(false); // true right after we adopt cloud data, so we don't immediately echo it back
 
-  // Hydrate from localStorage on mount (avoids SSR/client mismatch).
-  useEffect(() => {
-    setState(loadState());
-    setHydrated(true);
+  // Every mutator function below calls setState(updater) — wrapping the raw setter here
+  // means all of them automatically stamp lastModified, without editing each one individually.
+  const setState = useCallback((updater: (s: TrackerState) => TrackerState) => {
+    setStateRaw((s) => ({ ...updater(s), lastModified: Date.now() }));
   }, []);
 
+  // 1) Load the local cache instantly (fast, synchronous-feeling), then reconcile with
+  //    the cloud once the user + their cloud row are known. Whichever side has the more
+  //    recent lastModified wins, and we push the winner to the other side to converge.
+  useEffect(() => {
+    const local = loadState();
+    setStateRaw(local);
+
+    const supabase = supabaseRef.current;
+    (async () => {
+      const { data: userData } = await supabase.auth.getUser();
+      const currentUser = userData.user ?? null;
+      setUser(currentUser);
+
+      if (!currentUser) {
+        setHydrated(true);
+        return;
+      }
+
+      const { data: row } = await supabase.from(TABLE).select("state").eq("user_id", currentUser.id).maybeSingle();
+      const cloud = row?.state as Partial<TrackerState> | undefined;
+
+      if (cloud && (cloud.lastModified ?? 0) > local.lastModified) {
+        const merged: TrackerState = {
+          ...defaultState(),
+          ...cloud,
+          log: cloud.log ?? {},
+          planner: cloud.planner ?? {},
+          subtopics: cloud.subtopics ?? {},
+        };
+        skipNextPushRef.current = true;
+        setStateRaw(merged);
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+        } catch {
+          /* ignore */
+        }
+      } else {
+        // local is newer (or cloud had nothing) — push it up so the cloud row exists/matches
+        await supabase.from(TABLE).upsert({ user_id: currentUser.id, state: local });
+      }
+
+      setHydrated(true);
+    })();
+  }, []);
+
+  // 2) Whenever state changes: always mirror to the local cache immediately (fast, resilient),
+  //    and debounce a push to Supabase so we're not writing on every keystroke.
   useEffect(() => {
     if (!hydrated) return;
     try {
@@ -63,19 +119,43 @@ export function useTrackerState() {
     } catch {
       /* storage may be unavailable — fail silently */
     }
-  }, [state, hydrated]);
+
+    if (skipNextPushRef.current) {
+      skipNextPushRef.current = false;
+      return;
+    }
+    if (!user) return;
+
+    if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
+    syncTimerRef.current = setTimeout(() => {
+      supabaseRef.current.from(TABLE).upsert({ user_id: user.id, state }).then(() => {});
+    }, SYNC_DEBOUNCE_MS);
+
+    return () => {
+      if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
+    };
+  }, [state, hydrated, user]);
+
+  const signOut = useCallback(async () => {
+    if (syncTimerRef.current) clearTimeout(syncTimerRef.current);
+    // flush any pending change before signing out
+    if (user) {
+      await supabaseRef.current.from(TABLE).upsert({ user_id: user.id, state });
+    }
+    await supabaseRef.current.auth.signOut();
+  }, [user, state]);
 
   const setDailyGoalHours = useCallback((hours: number) => {
     setState((s) => ({ ...s, dailyGoalHours: Number.isFinite(hours) ? hours : 0 }));
-  }, []);
+  }, [setState]);
 
   const setExamDate = useCallback((v: string) => {
     setState((s) => ({ ...s, examDate: v }));
-  }, []);
+  }, [setState]);
 
   const setProfile = useCallback((name: string, exam: string) => {
     setState((s) => ({ ...s, studentName: name.trim(), targetExam: exam.trim() }));
-  }, []);
+  }, [setState]);
 
   const setLogEntry = useCallback((key: string, hours: number | null) => {
     setState((s) => {
@@ -88,7 +168,7 @@ export function useTrackerState() {
       const startDate = key < s.startDate ? key : s.startDate;
       return { ...s, log, startDate };
     });
-  }, []);
+  }, [setState]);
 
   const addLogHours = useCallback((key: string, hoursDelta: number) => {
     setState((s) => {
@@ -96,7 +176,7 @@ export function useTrackerState() {
       log[key] = Math.round(((log[key] ?? 0) + hoursDelta) * 1000) / 1000;
       return { ...s, log };
     });
-  }, []);
+  }, [setState]);
 
   const getChapterState = useCallback(
     (subj: Subject, cls: 11 | 12, i: number): ChapterState => {
@@ -110,7 +190,7 @@ export function useTrackerState() {
       const key = `${subj}_${cls}_${i}`;
       return { ...s, planner: { ...s.planner, [key]: { ...s.planner[key], ...patch } } };
     });
-  }, []);
+  }, [setState]);
 
   const toggleDone = useCallback(
     (subj: Subject, cls: 11 | 12, i: number) => {
@@ -158,7 +238,7 @@ export function useTrackerState() {
       const subtopics = { ...s.subtopics, [key]: !s.subtopics[key] };
       return { ...s, subtopics };
     });
-  }, []);
+  }, [setState]);
 
   // ---- Stopwatch: persisted so it survives navigating to another page ----
   // stopwatchRunningSince anchors the *display* (time since Start) and is only ever
@@ -170,7 +250,7 @@ export function useTrackerState() {
       const now = Date.now();
       return { ...s, stopwatchRunningSince: now, stopwatchLastFlushAt: now, stopwatchSessions: s.stopwatchSessions + 1 };
     });
-  }, []);
+  }, [setState]);
 
   const pauseStopwatch = useCallback(() => {
     setState((s) => {
@@ -183,7 +263,7 @@ export function useTrackerState() {
       log[key] = Math.round(((log[key] ?? 0) + elapsedHours) * 1000) / 1000;
       return { ...s, log, stopwatchRunningSince: null, stopwatchLastFlushAt: null };
     });
-  }, []);
+  }, [setState]);
 
   const resetStopwatchSessions = useCallback(() => {
     setState((s) => {
@@ -199,7 +279,7 @@ export function useTrackerState() {
       }
       return { ...next, stopwatchSessions: 0 };
     });
-  }, []);
+  }, [setState]);
 
   // Periodic safety checkpoint while running (called every ~30s AND once on mount) —
   // commits elapsed time into today's log. Deliberately does NOT touch stopwatchRunningSince,
@@ -216,7 +296,7 @@ export function useTrackerState() {
       log[key] = Math.round(((log[key] ?? 0) + elapsedHours) * 1000) / 1000;
       return { ...s, log, stopwatchLastFlushAt: now };
     });
-  }, []);
+  }, [setState]);
 
   // Last-resort direct localStorage flush for the moment a page unmounts (navigation away).
   // Bypasses React state entirely so it can't be clobbered by a stale in-flight render.
@@ -235,6 +315,7 @@ export function useTrackerState() {
         parsed.log = parsed.log ?? {};
         parsed.log[key] = Math.round(((parsed.log[key] ?? 0) + elapsedHours) * 1000) / 1000;
         parsed.stopwatchLastFlushAt = now;
+        parsed.lastModified = now;
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
       }
     } catch {
@@ -249,7 +330,7 @@ export function useTrackerState() {
       if (s.timerRemainingMs <= 0) return s;
       return { ...s, timerEndAt: Date.now() + s.timerRemainingMs };
     });
-  }, []);
+  }, [setState]);
 
   const pauseTimer = useCallback(() => {
     setState((s) => {
@@ -257,19 +338,19 @@ export function useTrackerState() {
       const remaining = Math.max(0, s.timerEndAt - Date.now());
       return { ...s, timerEndAt: null, timerRemainingMs: remaining };
     });
-  }, []);
+  }, [setState]);
 
   const resetTimer = useCallback(() => {
     setState((s) => ({ ...s, timerEndAt: null, timerRemainingMs: s.timerDurationMs }));
-  }, []);
+  }, [setState]);
 
   const setTimerDuration = useCallback((ms: number) => {
     setState((s) => (s.timerEndAt != null ? s : { ...s, timerDurationMs: ms, timerRemainingMs: ms }));
-  }, []);
+  }, [setState]);
 
   const completeTimer = useCallback(() => {
     setState((s) => (s.timerEndAt == null ? s : { ...s, timerEndAt: null, timerRemainingMs: 0 }));
-  }, []);
+  }, [setState]);
 
   const streaks: Streaks = useMemo(() => {
     const studied = new Set(Object.keys(state.log).filter((k) => state.log[k] > 0));
@@ -366,6 +447,8 @@ export function useTrackerState() {
   return {
     state,
     hydrated,
+    user,
+    signOut,
     setDailyGoalHours,
     setExamDate,
     setProfile,

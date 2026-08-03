@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Clock, LayoutDashboard, NotebookPen, BookOpenCheck, ListChecks } from "lucide-react";
+import { Clock, LayoutDashboard, NotebookPen, BookOpenCheck, ListChecks, LogOut } from "lucide-react";
 import { ProfileChip } from "./ProfileChip";
 import { useTrackerState } from "@/lib/useTrackerState";
 
@@ -17,7 +17,14 @@ const NAV = [
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { state, hydrated } = useTrackerState();
+  const router = useRouter();
+  const { state, hydrated, user, signOut } = useTrackerState();
+
+  async function handleSignOut() {
+    await signOut();
+    router.push("/login");
+    router.refresh();
+  }
 
   return (
     <div className="mx-auto max-w-[1120px] px-4 py-6 sm:px-6 sm:py-10 md:px-12 md:py-[48px]">
@@ -28,7 +35,19 @@ export function PageShell({ children }: { children: React.ReactNode }) {
             <h1 className="mt-1 text-[20px] font-medium text-white sm:text-[22px]">Study Tracker</h1>
           </Link>
 
-          {hydrated && <ProfileChip studentName={state.studentName} targetExam={state.targetExam} />}
+          <div className="flex items-center gap-2">
+            {hydrated && <ProfileChip studentName={state.studentName} targetExam={state.targetExam} />}
+            {hydrated && user && (
+              <button
+                onClick={handleSignOut}
+                aria-label="Sign out"
+                title="Sign out"
+                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/40 transition-colors hover:text-white/80"
+              >
+                <LogOut size={15} strokeWidth={1.75} />
+              </button>
+            )}
+          </div>
         </div>
 
         <nav className="-mx-4 flex gap-1.5 overflow-x-auto rounded-full border border-white/[0.06] bg-white/[0.03] p-1.5 px-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:px-1.5 [&::-webkit-scrollbar]:hidden">

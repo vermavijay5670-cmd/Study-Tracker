@@ -23,6 +23,7 @@ export interface TrackerState {
   timerDurationMs: number;
   timerRemainingMs: number; // valid when timerEndAt is null (paused/reset)
   timerEndAt: number | null; // epoch ms when it should complete; null = not running
+  lastModified: number; // epoch ms — used to resolve local-vs-cloud sync conflicts (newer wins)
 }
 
 export interface SubjectStats {
