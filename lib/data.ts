@@ -126,9 +126,9 @@ export const ACCENT_HEX: Record<Accent, string> = {
 // Once each subject's question-practice site is ready, replace `null` with its URL.
 // The page automatically switches that subject's card from "Coming soon" to a live link.
 export const QUESTION_PRACTICE_LINKS: Record<Subject, string | null> = {
-  phy: null,
-  chem: null,
-  bio: "https://question-practice.lovable.app/",
+  phy: "https://question-practice-six.vercel.app/#/physics",
+  chem: "https://question-practice-six.vercel.app/#/chemistry",
+  bio: "https://question-practice-six.vercel.app/#/biology",
 };
 
 // Subtopic breakdowns per chapter — index-aligned with CHAPTERS[subject][cls].
