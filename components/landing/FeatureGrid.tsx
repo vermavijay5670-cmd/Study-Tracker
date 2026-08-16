@@ -15,31 +15,31 @@ const FEATURES: Feature[] = [
     icon: Clock,
     title: "Today",
     description: "A live countdown to exam day, a stopwatch that logs your hours as you go, and a focus timer with custom durations.",
-    hex: "#8B5CF6",
+    hex: "#0D9488",
   },
   {
     icon: NotebookPen,
     title: "Study Log",
     description: "Every day shows up — even the ones you didn't study. Hours by date, a heatmap, streaks, and daily goals.",
-    hex: "#FFD64D",
+    hex: "#D97706",
   },
   {
     icon: BookOpenCheck,
     title: "Planner",
     description: "All the NCERT chapters across Physics, Chemistry, and Biology, with revision counts, difficulty tags, and subtopics.",
-    hex: "#46FFE8",
+    hex: "#0284C7",
   },
   {
     icon: LayoutDashboard,
     title: "Dashboard",
     description: "Study hours, chapter progress, and revision streaks — pulled into one view so you know exactly where you stand.",
-    hex: "#41FF72",
+    hex: "#16A34A",
   },
   {
     icon: ListChecks,
     title: "Question Practice",
     description: "Dedicated per-subject practice sites, linked in once each one is ready.",
-    hex: "#C7F12D",
+    hex: "#7C3AED",
   },
 ];
 
@@ -53,8 +53,8 @@ export function FeatureGrid() {
         transition={{ duration: 0.5 }}
         className="mb-12 max-w-[560px]"
       >
-        <h2 className="text-[28px] font-semibold text-[#F6F4FF] sm:text-[34px]">Everything in one place</h2>
-        <p className="mt-3 text-[15px] leading-relaxed text-white/50">
+        <h2 className="text-[28px] font-semibold text-slate-900 sm:text-[34px]">Everything in one place</h2>
+        <p className="mt-3 text-[15px] leading-relaxed text-slate-500">
           No more juggling a countdown app, a notes app, and a separate revision tracker.
         </p>
       </motion.div>
@@ -68,14 +68,14 @@ export function FeatureGrid() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.4, delay: i * 0.06 }}
             whileHover={{ y: -4 }}
-            className="rounded-[24px] border border-white/[0.08] bg-white/[0.04] p-6"
-            style={{ boxShadow: `0 20px 45px ${f.hex}14` }}
+            className="rounded-[24px] border border-slate-200/80 bg-white p-6"
+            style={{ boxShadow: "0 16px 36px rgba(15,23,42,0.06)" }}
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl" style={{ background: `${f.hex}1f` }}>
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl" style={{ background: `${f.hex}17` }}>
               <f.icon size={20} strokeWidth={1.75} style={{ color: f.hex }} />
             </span>
-            <h3 className="mt-4 text-[17px] font-medium text-white">{f.title}</h3>
-            <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/50">{f.description}</p>
+            <h3 className="mt-4 text-[17px] font-medium text-slate-900">{f.title}</h3>
+            <p className="mt-1.5 text-[13.5px] leading-relaxed text-slate-500">{f.description}</p>
           </motion.div>
         ))}
       </div>
