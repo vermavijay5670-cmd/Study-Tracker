@@ -29,20 +29,23 @@ export function AuthForm({ mode }: AuthFormProps) {
     const supabase = createSupabaseBrowserClient();
 
     if (mode === "signup") {
-      const { data, error: signUpError } = await supabase.auth.signUp({ email, password });
+      // Email-first signup: no password yet. This sends a confirmation link;
+      // clicking it logs the person in and sends them to /auth/set-password
+      // where they create their password.
+      const { error: otpError } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          shouldCreateUser: true,
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent("/auth/set-password")}`,
+        },
+      });
       setLoading(false);
-      if (signUpError) {
-        setError(signUpError.message);
+      if (otpError) {
+        setError(otpError.message);
         return;
       }
-      // Supabase's default settings require email confirmation before a session exists.
-      if (!data.session) {
-        setCheckEmail(true);
-        return;
-      }
-      await migrateLocalDataToAccount(supabase);
-      router.push(next);
-      router.refresh();
+      setCheckEmail(true);
+      return;
     } else {
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
       setLoading(false);
@@ -64,7 +67,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           <h1 className="text-[22px] font-semibold text-[#F6F4FF]">Check your inbox</h1>
           <p className="mt-2 text-[13.5px] text-white/50">
             We&apos;ve sent a confirmation link to <span className="text-white/80">{email}</span>. Click it to
-            activate your account, then come back and log in.
+            confirm your email — you&apos;ll be asked to create a password right after.
           </p>
           <Link href="/login" className="mt-6 inline-block text-[13px] text-[#D8B4FE] hover:underline">
             Back to log in
@@ -78,7 +81,9 @@ export function AuthForm({ mode }: AuthFormProps) {
     <AuthShell>
       <h1 className="text-[24px] font-semibold text-[#F6F4FF]">{mode === "signup" ? "Create your account" : "Welcome back"}</h1>
       <p className="mt-1.5 text-[13.5px] text-white/50">
-        {mode === "signup" ? "Your study data will follow you across every device." : "Log in to pick up where you left off."}
+        {mode === "signup"
+          ? "Enter your email — we'll send a confirmation link, then you'll set a password."
+          : "Log in to pick up where you left off."}
       </p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -98,22 +103,24 @@ export function AuthForm({ mode }: AuthFormProps) {
           </div>
         </label>
 
-        <label className="block">
-          <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Password</span>
-          <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
-            <Lock size={15} strokeWidth={1.75} className="text-white/30" />
-            <input
-              type="password"
-              required
-              minLength={6}
-              autoComplete={mode === "signup" ? "new-password" : "current-password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="At least 6 characters"
-              className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
-            />
-          </div>
-        </label>
+        {mode === "login" && (
+          <label className="block">
+            <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Password</span>
+            <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
+              <Lock size={15} strokeWidth={1.75} className="text-white/30" />
+              <input
+                type="password"
+                required
+                minLength={6}
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="At least 6 characters"
+                className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
+              />
+            </div>
+          </label>
+        )}
 
         {error && (
           <div className="flex items-start gap-2 rounded-xl border border-red-400/25 bg-red-500/10 px-3.5 py-2.5 text-[12.5px] text-red-300">
@@ -127,7 +134,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           disabled={loading}
           className="flex w-full items-center justify-center gap-2 rounded-full bg-[#F6F4FF] px-6 py-3.5 text-[15px] font-medium text-black transition-transform hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100"
         >
-          {loading ? "Please wait…" : mode === "signup" ? "Create account" : "Log in"}
+          {loading ? "Please wait…" : mode === "signup" ? "Send confirmation link" : "Log in"}
           {!loading && <ArrowRight size={16} strokeWidth={2} />}
         </button>
       </form>
@@ -153,7 +160,7 @@ export function AuthForm({ mode }: AuthFormProps) {
   );
 }
 
-function AuthShell({ children }: { children: React.ReactNode }) {
+export function AuthShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-16">
       <motion.div
