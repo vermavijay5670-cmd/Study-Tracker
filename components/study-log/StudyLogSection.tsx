@@ -22,7 +22,7 @@ export function StudyLogSection() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-5">
-        <StatCard label="Current streak" value={streaks.current} suffix="d" sub={`best: ${streaks.best}d`} icon={Flame} accent="lime" delay={0} />
+        <StatCard label="Current streak" value={streaks.current} suffix="d" sub={`best: ${streaks.best}d`} icon={Flame} accent="lime" delay={0} variant="tilt" />
         <StatCard
           label="Total logged"
           value={totalHoursLogged}
@@ -32,6 +32,7 @@ export function StudyLogSection() {
           icon={Trophy}
           accent="gold"
           delay={0.05}
+          variant="tilt"
         />
         <StatCard
           label="Days studied"
@@ -41,6 +42,7 @@ export function StudyLogSection() {
           icon={CalendarCheck}
           accent="purple"
           delay={0.1}
+          variant="tilt"
         />
         <StatCard
           label="Avg / studied day"
@@ -51,10 +53,11 @@ export function StudyLogSection() {
           icon={Timer}
           accent="cyan"
           delay={0.15}
+          variant="tilt"
         />
       </div>
 
-      <GlowCard accent="gold" delay={0.2}>
+      <GlowCard accent="gold" delay={0.2} variant="tilt">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-[15px] font-medium text-white">Activity</h2>
@@ -82,7 +85,7 @@ export function StudyLogSection() {
         <HoursBarChart log={state.log} dailyGoalHours={state.dailyGoalHours} />
       </GlowCard>
 
-      <GlowCard delay={0.25}>
+      <GlowCard delay={0.25} variant="tilt">
         <h2 className="mb-4 text-[15px] font-medium text-white">Daily ledger</h2>
         <Ledger log={state.log} startDate={state.startDate} dailyGoalHours={state.dailyGoalHours} onChange={setLogEntry} />
       </GlowCard>

@@ -15,14 +15,25 @@ interface StatCardProps {
   icon: LucideIcon;
   accent: Accent;
   delay?: number;
+  variant?: "glow" | "tilt";
 }
 
-export function StatCard({ label, value, suffix = "", decimals = 0, sub, icon: Icon, accent, delay = 0 }: StatCardProps) {
+export function StatCard({
+  label,
+  value,
+  suffix = "",
+  decimals = 0,
+  sub,
+  icon: Icon,
+  accent,
+  delay = 0,
+  variant = "glow",
+}: StatCardProps) {
   const animated = useCountUp(value);
   const display = decimals > 0 ? animated.toFixed(decimals) : Math.round(animated).toString();
 
   return (
-    <GlowCard accent={accent} delay={delay} className="min-w-[140px] flex-1">
+    <GlowCard accent={accent} delay={delay} variant={variant} className="min-w-[140px] flex-1">
       <div className="flex items-start justify-between">
         <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#a3a3a3]">{label}</span>
         <Icon size={16} strokeWidth={1.75} style={{ color: ACCENT_HEX[accent] }} className="opacity-80" />
