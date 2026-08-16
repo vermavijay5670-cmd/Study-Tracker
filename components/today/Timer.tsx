@@ -152,7 +152,7 @@ export function Timer({
 
   return (
     <div className={`rounded-[30px] p-[2px] ${running ? "timer-border-frame" : ""}`}>
-      <LiquidGlassCard delay={0.16}>
+      <LiquidGlassCard delay={0.16} variant="tilt">
         <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
           <TimerReset size={11} strokeWidth={1.75} /> focus timer
         </span>
@@ -184,7 +184,7 @@ export function Timer({
                   className="font-tabular text-[28px] font-bold leading-none"
                   style={{
                     color: completed ? "#86EFAC" : "#F6F4FF",
-                    textShadow: completed ? "0 0 24px rgba(74,222,128,0.5)" : "0 0 24px rgba(192,132,252,0.5)",
+                    textShadow: "0 2px 10px rgba(0,0,0,0.35)",
                   }}
                 >
                   {b.v}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 
 export type LiquidGlow = "purple" | "green" | "red" | "yellow" | "cyan" | "orange";
 
@@ -70,13 +70,29 @@ interface LiquidGlassCardProps {
   className?: string;
   delay?: number;
   glow?: LiquidGlow;
+  /**
+   * "glow" (default) — colored pulsing glow + cursor spotlight, used on Dashboard.
+   * "tilt" — no colored glow; a subtle natural hover lift with cursor-tracked
+   * parallax tilt instead. Used on the Today cards.
+   */
+  variant?: "glow" | "tilt";
 }
 
-export function LiquidGlassCard({ children, className = "", delay = 0, glow = "purple" }: LiquidGlassCardProps) {
+export function LiquidGlassCard({
+  children,
+  className = "",
+  delay = 0,
+  glow = "purple",
+  variant = "glow",
+}: LiquidGlassCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(50);
   const my = useMotionValue(35);
   const tokens = GLOW_MAP[glow];
+
+  // Smoothed rotation for the tilt variant — springs back to flat on leave.
+  const rotateX = useSpring(useTransform(my, [0, 100], [7, -7]), { stiffness: 200, damping: 20, mass: 0.4 });
+  const rotateY = useSpring(useTransform(mx, [0, 100], [-7, 7]), { stiffness: 200, damping: 20, mass: 0.4 });
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = ref.current?.getBoundingClientRect();
@@ -86,12 +102,17 @@ export function LiquidGlassCard({ children, className = "", delay = 0, glow = "p
   }
   function handleMouseLeave() {
     mx.set(50);
-    my.set(35);
+    my.set(50);
   }
 
   const glowBackground = useTransform([mx, my], ([x, y]) =>
     `radial-gradient(circle at ${x}% ${y}%, ${tokens.spot} 0%, transparent 55%)`
   );
+  const sheenBackground = useTransform([mx, my], ([x, y]) =>
+    `radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.10) 0%, transparent 60%)`
+  );
+
+  const isTilt = variant === "tilt";
 
   return (
     <motion.div
@@ -100,6 +121,7 @@ export function LiquidGlassCard({ children, className = "", delay = 0, glow = "p
       onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, y: 24, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
+      whileHover={isTilt ? { scale: 1.015 } : undefined}
       transition={{ type: "spring", stiffness: 260, damping: 24, delay }}
       className={`liquid-card relative overflow-hidden rounded-[28px] border border-white/[0.15] p-5 sm:p-6 ${className}`}
       style={
@@ -107,8 +129,13 @@ export function LiquidGlassCard({ children, className = "", delay = 0, glow = "p
           background: "rgba(255,255,255,0.08)",
           backdropFilter: "blur(30px) saturate(160%)",
           WebkitBackdropFilter: "blur(30px) saturate(160%)",
-          boxShadow: `0 10px 50px ${tokens.a1}, 0 0 30px ${tokens.a2}, inset 0 1px 1px rgba(255,255,255,0.30)`,
-          animation: "liquidCardPulse 7s ease-in-out infinite",
+          boxShadow: isTilt
+            ? "0 18px 40px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.30)"
+            : `0 10px 50px ${tokens.a1}, 0 0 30px ${tokens.a2}, inset 0 1px 1px rgba(255,255,255,0.30)`,
+          animation: isTilt ? undefined : "liquidCardPulse 7s ease-in-out infinite",
+          transformPerspective: isTilt ? 900 : undefined,
+          rotateX: isTilt ? rotateX : undefined,
+          rotateY: isTilt ? rotateY : undefined,
           "--glow-a1": tokens.a1,
           "--glow-a2": tokens.a2,
           "--glow-b1": tokens.b1,
@@ -122,15 +149,22 @@ export function LiquidGlassCard({ children, className = "", delay = 0, glow = "p
         className="pointer-events-none absolute inset-0 rounded-[inherit]"
         style={{ background: "linear-gradient(165deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.03) 30%, transparent 55%)" }}
       />
-      {/* bottom edge glow */}
-      <div
+      {!isTilt && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-0 left-[6%] right-[6%] h-px"
+          style={{ background: `linear-gradient(90deg, transparent, ${tokens.edge}, transparent)` }}
+        />
+      )}
+      {/* cursor spotlight: colored glow for "glow" variant, plain white sheen for "tilt" */}
+      <motion.div
         aria-hidden
-        className="pointer-events-none absolute bottom-0 left-[6%] right-[6%] h-px"
-        style={{ background: `linear-gradient(90deg, transparent, ${tokens.edge}, transparent)` }}
+        className="pointer-events-none absolute inset-0"
+        style={{ background: isTilt ? sheenBackground : glowBackground }}
       />
-      {/* cursor spotlight */}
-      <motion.div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: glowBackground }} />
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10" style={isTilt ? { transform: "translateZ(30px)" } : undefined}>
+        {children}
+      </div>
     </motion.div>
   );
 }

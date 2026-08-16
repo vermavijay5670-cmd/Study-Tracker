@@ -20,7 +20,7 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
     return () => clearInterval(id);
   }, []);
 
-  if (!now) return <LiquidGlassCard delay={0} className="min-h-[280px]"><span /></LiquidGlassCard>;
+  if (!now) return <LiquidGlassCard delay={0} variant="tilt" className="min-h-[280px]"><span /></LiquidGlassCard>;
 
   let days = "—";
   let hh = "00";
@@ -51,7 +51,7 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
   }
 
   return (
-    <LiquidGlassCard delay={0}>
+    <LiquidGlassCard delay={0} variant="tilt">
       <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
         <CalendarClock size={11} strokeWidth={1.75} /> target exam
       </span>
@@ -68,7 +68,7 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
 
       <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-      <div className="font-tabular text-[60px] font-bold leading-none text-[#F6F4FF]" style={{ textShadow: "0 0 34px rgba(192,132,252,0.55)" }}>
+      <div className="font-tabular text-[60px] font-bold leading-none text-[#F6F4FF]" style={{ textShadow: "0 2px 12px rgba(0,0,0,0.35)" }}>
         {days}
       </div>
       <div className="mb-4 text-[9px] uppercase tracking-[0.25em] text-white/40">{label}</div>
