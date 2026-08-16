@@ -65,6 +65,13 @@ const GLOW_MAP: Record<LiquidGlow, GlowTokens> = {
   },
 };
 
+// Fine grain texture (static) — tinted per-card via mix-blend-mode.
+const GRAIN_SVG =
+  "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+// Coarser, higher-contrast noise pattern that's animated to flicker like film grain.
+const NOISE_SVG =
+  "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+
 interface LiquidGlassCardProps {
   children: React.ReactNode;
   className?: string;
@@ -76,6 +83,12 @@ interface LiquidGlassCardProps {
    * parallax tilt instead. Used on the Today cards.
    */
   variant?: "glow" | "tilt";
+  /**
+   * Only applies with variant="tilt". Adds a fixed accent tint plus a
+   * layered grain + animated noise texture for a vibrant, tactile material
+   * feel instead of a glow. Used on Dashboard.
+   */
+  texture?: boolean;
 }
 
 export function LiquidGlassCard({
@@ -84,6 +97,7 @@ export function LiquidGlassCard({
   delay = 0,
   glow = "purple",
   variant = "glow",
+  texture = false,
 }: LiquidGlassCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(50);
@@ -113,6 +127,7 @@ export function LiquidGlassCard({
   );
 
   const isTilt = variant === "tilt";
+  const hasTexture = isTilt && texture;
 
   return (
     <motion.div
@@ -155,6 +170,28 @@ export function LiquidGlassCard({
           className="pointer-events-none absolute bottom-0 left-[6%] right-[6%] h-px"
           style={{ background: `linear-gradient(90deg, transparent, ${tokens.edge}, transparent)` }}
         />
+      )}
+      {hasTexture && (
+        <>
+          {/* fixed accent tint — gives the card body color instead of a moving glow */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{ background: `radial-gradient(130% 100% at 12% 0%, ${tokens.a2} 0%, transparent 58%)` }}
+          />
+          {/* static fine grain */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.11] mix-blend-overlay"
+            style={{ backgroundImage: `url("${GRAIN_SVG}")` }}
+          />
+          {/* animated flickering noise, layered on top for a lively, filmic texture */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-full opacity-[0.07] mix-blend-soft-light"
+            style={{ backgroundImage: `url("${NOISE_SVG}")`, animation: "grainNoise 0.6s steps(6) infinite" }}
+          />
+        </>
       )}
       {/* cursor spotlight: colored glow for "glow" variant, plain white sheen for "tilt" */}
       <motion.div

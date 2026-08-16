@@ -17,7 +17,7 @@ const INITIAL: Record<Subject, string> = { phy: "P", chem: "C", bio: "B" };
 
 export function StreakPromoCard({ currentStreak, bestStreak, totalDone }: StreakPromoCardProps) {
   return (
-    <LiquidGlassCard delay={0.1} glow="orange" className="flex h-full flex-col justify-between">
+    <LiquidGlassCard delay={0.1} glow="orange" variant="tilt" texture className="flex h-full flex-col justify-between">
       <div>
         <span className="mb-3 inline-flex items-center justify-center rounded-full bg-[#A855F7]/20 p-2">
           <Flame size={16} strokeWidth={1.75} className="text-[#D8B4FE]" />

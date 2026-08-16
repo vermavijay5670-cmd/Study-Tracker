@@ -23,7 +23,7 @@ export function SubjectCardsPanel({ perSubject }: SubjectCardsPanelProps) {
   const pct = front.total > 0 ? Math.round((front.done / front.total) * 100) : 0;
 
   return (
-    <LiquidGlassCard delay={0.05} glow="green">
+    <LiquidGlassCard delay={0.05} glow="green" variant="tilt" texture>
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-[15px] font-medium text-[#F6F4FF]">Subjects</h2>
         <Link href="/planner" className="text-[11px] text-white/40 hover:text-white/70">

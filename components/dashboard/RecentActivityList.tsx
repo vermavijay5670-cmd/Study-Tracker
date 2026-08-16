@@ -13,7 +13,7 @@ type Activity =
 
 export function RecentActivityList({ activity }: { activity: Activity[] }) {
   return (
-    <LiquidGlassCard delay={0.15} glow="yellow">
+    <LiquidGlassCard delay={0.15} glow="yellow" variant="tilt" texture>
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-[15px] font-medium text-[#F6F4FF]">Recent activity</h2>
         <Link href="/study-log" className="text-[11px] text-white/40 hover:text-white/70">

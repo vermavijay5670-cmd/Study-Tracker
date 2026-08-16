@@ -69,7 +69,7 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
   const avgPerDay = totalDays > 0 ? totalHoursLogged / totalDays : 0;
 
   return (
-    <LiquidGlassCard glow="cyan">
+    <LiquidGlassCard glow="cyan" variant="tilt" texture>
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2 className="text-[14px] font-medium text-white/60">Total study hours</h2>

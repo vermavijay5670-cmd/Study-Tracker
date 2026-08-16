@@ -53,7 +53,7 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
   const totalThisPeriod = data[data.length - 1]?.count ?? 0;
 
   return (
-    <LiquidGlassCard delay={0.12} glow="red">
+    <LiquidGlassCard delay={0.12} glow="red" variant="tilt" texture>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-[14px] font-medium text-white/60">Revision activity</h2>
