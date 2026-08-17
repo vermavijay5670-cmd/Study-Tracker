@@ -11,6 +11,6 @@ export const config = {
      * Match all paths except static files, images, and the manifest/service worker,
      * so we don't run auth checks on assets.
      */
-    "/((?!_next/static|_next/image|favicon.ico|icons|manifest.json|sw.js).*)",
+    "/((?!_next/static|_next/image|favicon.ico|icons|images|manifest.json|sw.js).*)",
   ],
 };
