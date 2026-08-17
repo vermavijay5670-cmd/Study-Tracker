@@ -208,7 +208,7 @@ const MovingGrid: React.FC<MovingGridProps> = ({
         hidden: { scale: 0.01, opacity: 0, rotateZ: 45 },
         visible: {
             scale: 1,
-            opacity: 1,
+            opacity: 3,
             rotateZ: 0,
             transition: { duration: 1.8, ease: [0.16, 1, 0.3, 1] },
         },
