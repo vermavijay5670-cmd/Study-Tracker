@@ -1,6 +1,6 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { StudyLogSection } from "@/components/study-log/StudyLogSection";
-import { MovingGrid from } "@/components/ui/hyper-grid";
+import  MovingGrid from  "@/components/ui/hyper-grid";
 
 export default function StudyLogPage() {
   return (
