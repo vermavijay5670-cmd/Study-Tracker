@@ -1,14 +1,13 @@
 import { Suspense } from "react";
-import { LiquidBackdrop } from "@/components/ui/LiquidBackdrop";
+import KineticGrid from "@/components/ui/kinetic-grid";
 import { AuthForm } from "@/components/auth/AuthForm";
 
 export default function LoginPage() {
   return (
-    <>
-      <LiquidBackdrop variant="today" />
+    <KineticGrid>
       <Suspense>
         <AuthForm mode="login" />
       </Suspense>
-    </>
+    </KineticGrid>
   );
 }
