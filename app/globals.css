@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* ---- Custom animations (Tailwind v4 CSS-first) ---- */
+  --animate-pulse-slow: pulse-slow 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s infinite;
+
   /* ---- Primary background layers ---- */
   --color-bg-0: #0a0a0a;
   --color-bg-1: #111111;
@@ -80,6 +84,24 @@ body {
   50% {
     opacity: 0.85;
     filter: blur(90px);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
   }
 }
 

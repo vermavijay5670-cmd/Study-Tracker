@@ -244,8 +244,11 @@ const MovingGrid: React.FC<MovingGridProps> = ({
                 }}
                 aria-hidden="true"
             >
-                <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-blue-900/30 rounded-full blur-[150px] animate-pulse-slow" />
-                <div className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] bg-indigo-900/20 rounded-full blur-[150px] animate-pulse-slow animation-delay-2000" />
+                <div className="absolute top-[-10%] left-[-5%] w-[65%] h-[65%] bg-blue-600/45 rounded-full blur-[130px] animate-pulse-slow" />
+                <div
+                    className="absolute bottom-[-10%] right-[-5%] w-[65%] h-[65%] bg-violet-600/35 rounded-full blur-[130px] animate-pulse-slow"
+                    style={{ animationDelay: "2s" }}
+                />
             </motion.div>
 
             {/* --- 3D Grid System --- */}

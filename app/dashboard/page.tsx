@@ -10,6 +10,12 @@ export default function DashboardPage() {
           <></>
         </MovingGrid>
       </div>
+      {/* cool emerald/teal tint so Dashboard reads distinctly from Study Log's warm tint */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-[9]"
+        style={{ background: "radial-gradient(circle at 15% 85%, rgba(52,211,153,0.10) 0%, transparent 45%)" }}
+      />
       <PageShell>
         <DashboardSection />
       </PageShell>
