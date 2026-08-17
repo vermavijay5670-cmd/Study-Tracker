@@ -221,7 +221,11 @@ const MovingGrid: React.FC<MovingGridProps> = ({
             initial="hidden"
             animate={isMounted ? "visible" : "hidden"}
             variants={containerVariants}
-            className={`relative w-full h-screen overflow-hidden bg-[#050505] flex flex-col items-center justify-center perspective-distant font-sans ${className}`}
+            className={`relative w-full h-screen overflow-hidden flex flex-col items-center justify-center perspective-distant font-sans ${className}`}
+            style={{
+                background:
+                    "radial-gradient(circle at 20% 15%, #1a2547 0%, transparent 55%), radial-gradient(circle at 82% 85%, #2a1a47 0%, transparent 55%), #08090d",
+            }}
         >
             {/* --- Background Noise --- */}
             <div
