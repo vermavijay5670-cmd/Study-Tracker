@@ -225,7 +225,7 @@ const MovingGrid: React.FC<MovingGridProps> = ({
         >
             {/* --- Background Noise --- */}
             <div
-                className="absolute inset-0 opacity-[0.15] pointer-events-none z-0 mix-blend-overlay"
+                className="absolute inset-0 opacity-[0.28] pointer-events-none z-0 mix-blend-overlay"
                 style={{
                     backgroundImage: `url("${NOISE_Texture}")`,
                     backgroundRepeat: "repeat",
@@ -234,7 +234,7 @@ const MovingGrid: React.FC<MovingGridProps> = ({
 
             {/* --- Ambient Orbs --- */}
             <motion.div
-                className="absolute inset-0 opacity-50 transition-colors duration-700 pointer-events-none"
+                className="absolute inset-0 opacity-80 transition-colors duration-700 pointer-events-none"
                 style={{
                     filter: useMotionTemplate`hue-rotate(${useTransform(
                         warpSignal,
@@ -244,9 +244,9 @@ const MovingGrid: React.FC<MovingGridProps> = ({
                 }}
                 aria-hidden="true"
             >
-                <div className="absolute top-[-10%] left-[-5%] w-[65%] h-[65%] bg-blue-600/45 rounded-full blur-[130px] animate-pulse-slow" />
+                <div className="absolute top-[0%] left-[0%] w-[75%] h-[75%] bg-blue-500/60 rounded-full blur-[100px] animate-pulse-slow" />
                 <div
-                    className="absolute bottom-[-10%] right-[-5%] w-[65%] h-[65%] bg-violet-600/35 rounded-full blur-[130px] animate-pulse-slow"
+                    className="absolute bottom-[0%] right-[0%] w-[75%] h-[75%] bg-violet-500/50 rounded-full blur-[100px] animate-pulse-slow"
                     style={{ animationDelay: "2s" }}
                 />
             </motion.div>
@@ -269,7 +269,7 @@ const MovingGrid: React.FC<MovingGridProps> = ({
                     gridSize={animatedGridSize}
                     x={gridX}
                     y={gridY}
-                    strokeColor="rgba(255,255,255,0.03)"
+                    strokeColor="rgba(255,255,255,0.08)"
                 />
 
                 {/* Masked Highlight Layer */}
@@ -281,7 +281,7 @@ const MovingGrid: React.FC<MovingGridProps> = ({
                         gridSize={animatedGridSize}
                         x={gridX}
                         y={gridY}
-                        strokeColor="rgba(255,255,255,0.2)"
+                        strokeColor="rgba(255,255,255,0.32)"
                         strokeWidth={1}
                     />
                     <motion.div style={{ opacity: warpSignal }}>
