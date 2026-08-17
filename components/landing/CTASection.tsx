@@ -12,18 +12,22 @@ export function CTASection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5 }}
-        className="relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-10 text-center sm:p-16"
-        style={{ boxShadow: "0 24px 60px rgba(15,23,42,0.08), 0 4px 16px rgba(15,23,42,0.05)" }}
+        className="relative overflow-hidden rounded-[28px] border border-white/[0.12] p-10 text-center sm:p-16"
+        style={{
+          background: "rgba(255,255,255,0.045)",
+          backdropFilter: "blur(20px) saturate(140%)",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.06)",
+        }}
       >
-        <h2 className="text-[26px] font-semibold text-slate-900 sm:text-[32px]">
+        <h2 className="text-[26px] font-semibold text-white sm:text-[32px]">
           Ready to actually stick with a study plan?
         </h2>
-        <p className="mx-auto mt-3 max-w-[420px] text-[14.5px] text-slate-500">
+        <p className="mx-auto mt-3 max-w-[420px] text-[14.5px] text-white/45">
           It&apos;s free, it works offline, and there&apos;s nothing to sign up for.
         </p>
         <Link
           href="/today"
-          className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#0D9488] px-7 py-3.5 text-[15px] font-medium text-white shadow-[0_12px_30px_rgba(13,148,136,0.28)] transition-transform hover:scale-[1.03]"
+          className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#3B82F6] px-7 py-3.5 text-[15px] font-medium text-white shadow-[0_12px_30px_rgba(59,130,246,0.3)] transition-transform hover:scale-[1.03]"
         >
           Open Study Tracker
           <ArrowRight size={16} strokeWidth={2} />

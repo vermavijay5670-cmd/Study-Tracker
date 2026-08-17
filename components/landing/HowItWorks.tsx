@@ -28,7 +28,7 @@ export function HowItWorks() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5 }}
-        className="mb-12 text-[28px] font-semibold text-slate-900 sm:text-[34px]"
+        className="mb-12 text-[28px] font-semibold text-white sm:text-[34px]"
       >
         How it works
       </motion.h2>
@@ -42,9 +42,9 @@ export function HowItWorks() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
           >
-            <span className="font-mono text-[13px] font-medium text-[#0D9488]/70">{s.n}</span>
-            <h3 className="mt-2 text-[18px] font-medium text-slate-900">{s.title}</h3>
-            <p className="mt-2 text-[14px] leading-relaxed text-slate-500">{s.description}</p>
+            <span className="font-mono text-[13px] font-medium text-[#60A5FA]/70">{s.n}</span>
+            <h3 className="mt-2 text-[18px] font-medium text-white">{s.title}</h3>
+            <p className="mt-2 text-[14px] leading-relaxed text-white/45">{s.description}</p>
           </motion.div>
         ))}
       </div>

@@ -34,44 +34,48 @@ export function ProfileForm() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5 }}
-        className="relative mx-auto max-w-[520px] overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-8 sm:p-10"
-        style={{ boxShadow: "0 24px 60px rgba(15,23,42,0.08), 0 4px 16px rgba(15,23,42,0.05)" }}
+        className="relative mx-auto max-w-[520px] overflow-hidden rounded-[28px] border border-white/[0.12] p-8 sm:p-10"
+        style={{
+          background: "rgba(255,255,255,0.045)",
+          backdropFilter: "blur(20px) saturate(140%)",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.4), inset 0 1px 1px rgba(255,255,255,0.06)",
+        }}
       >
-        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-[#0D9488]/25 bg-[#0D9488]/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#0F766E]">
+        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-[#60A5FA]/25 bg-[#3B82F6]/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#93C5FD]">
           <UserRound size={11} strokeWidth={1.75} /> Set up your profile
         </span>
-        <h2 className="text-[24px] font-semibold text-slate-900 sm:text-[28px]">Tell us who&apos;s studying</h2>
-        <p className="mt-2 text-[13.5px] text-slate-500">
+        <h2 className="text-[24px] font-semibold text-white sm:text-[28px]">Tell us who&apos;s studying</h2>
+        <p className="mt-2 text-[13.5px] text-white/45">
           Just so the app can greet you properly — nothing here is sent anywhere, it stays on your device.
         </p>
 
         <div className="mt-6 space-y-4">
           <label className="block">
-            <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-slate-400">Your name</span>
+            <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/35">Your name</span>
             <input
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Vijay"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-[15px] text-slate-900 outline-none placeholder:text-slate-400 focus:border-[#0D9488]/50"
+              className="w-full rounded-xl border border-white/12 bg-black/25 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/25 focus:border-[#60A5FA]/50"
             />
           </label>
           <label className="block">
-            <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-slate-400">Target exam</span>
+            <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/35">Target exam</span>
             <input
               type="text"
               value={exam}
               onChange={(e) => setExam(e.target.value)}
               placeholder="e.g. NEET UG 2027"
-              className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-[15px] text-slate-900 outline-none placeholder:text-slate-400 focus:border-[#0D9488]/50"
+              className="w-full rounded-xl border border-white/12 bg-black/25 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/25 focus:border-[#60A5FA]/50"
             />
           </label>
         </div>
 
         <button
           type="submit"
-          className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-[#0D9488] px-6 py-3.5 text-[15px] font-medium text-white shadow-[0_12px_30px_rgba(13,148,136,0.28)] transition-transform hover:scale-[1.02]"
+          className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 py-3.5 text-[15px] font-medium text-white shadow-[0_12px_30px_rgba(59,130,246,0.3)] transition-transform hover:scale-[1.02]"
         >
           Start Studying
           <ArrowRight size={16} strokeWidth={2} />

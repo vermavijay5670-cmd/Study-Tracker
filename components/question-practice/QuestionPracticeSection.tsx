@@ -25,7 +25,7 @@ export function QuestionPracticeSection() {
         const ready = Boolean(href);
 
         return (
-          <GlowCard key={subject} accent={accent} delay={i * 0.05} className="flex flex-col justify-between">
+          <GlowCard key={subject} accent={accent} delay={i * 0.05} variant="tilt" className="flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between">
                 <span
