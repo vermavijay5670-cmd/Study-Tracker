@@ -105,8 +105,8 @@ export function LiquidGlassCard({
   const tokens = GLOW_MAP[glow];
 
   // Smoothed rotation for the tilt variant — springs back to flat on leave.
-  const rotateX = useSpring(useTransform(my, [0, 100], [7, -7]), { stiffness: 200, damping: 20, mass: 0.4 });
-  const rotateY = useSpring(useTransform(mx, [0, 100], [-7, 7]), { stiffness: 200, damping: 20, mass: 0.4 });
+  const rotateX = useSpring(useTransform(my, [0, 100], [4, -4]), { stiffness: 200, damping: 20, mass: 0.4 });
+  const rotateY = useSpring(useTransform(mx, [0, 100], [-4, 4]), { stiffness: 200, damping: 20, mass: 0.4 });
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = ref.current?.getBoundingClientRect();

@@ -1,4 +1,4 @@
-const CACHE_NAME = "neet-tracker-cache-v1";
+const CACHE_NAME = "neet-tracker-cache-v2";
 const PRECACHE_URLS = ["/today", "/manifest.json", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (event) => {

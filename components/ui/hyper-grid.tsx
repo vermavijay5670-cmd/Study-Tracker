@@ -221,11 +221,15 @@ const MovingGrid: React.FC<MovingGridProps> = ({
             initial="hidden"
             animate={isMounted ? "visible" : "hidden"}
             variants={containerVariants}
-            className={`relative w-full h-screen overflow-hidden bg-[#050505] flex flex-col items-center justify-center perspective-distant font-sans ${className}`}
+            className={`relative w-full h-screen overflow-hidden flex flex-col items-center justify-center perspective-distant font-sans ${className}`}
+            style={{
+                background:
+                    "radial-gradient(circle at 20% 15%, #1a2547 0%, transparent 55%), radial-gradient(circle at 82% 85%, #2a1a47 0%, transparent 55%), #08090d",
+            }}
         >
             {/* --- Background Noise --- */}
             <div
-                className="absolute inset-0 opacity-[0.15] pointer-events-none z-0 mix-blend-overlay"
+                className="absolute inset-0 opacity-[0.28] pointer-events-none z-0 mix-blend-overlay"
                 style={{
                     backgroundImage: `url("${NOISE_Texture}")`,
                     backgroundRepeat: "repeat",
@@ -234,7 +238,7 @@ const MovingGrid: React.FC<MovingGridProps> = ({
 
             {/* --- Ambient Orbs --- */}
             <motion.div
-                className="absolute inset-0 opacity-50 transition-colors duration-700 pointer-events-none"
+                className="absolute inset-0 opacity-80 transition-colors duration-700 pointer-events-none"
                 style={{
                     filter: useMotionTemplate`hue-rotate(${useTransform(
                         warpSignal,
@@ -244,8 +248,11 @@ const MovingGrid: React.FC<MovingGridProps> = ({
                 }}
                 aria-hidden="true"
             >
-                <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-blue-900/30 rounded-full blur-[150px] animate-pulse-slow" />
-                <div className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] bg-indigo-900/20 rounded-full blur-[150px] animate-pulse-slow animation-delay-2000" />
+                <div className="absolute top-[0%] left-[0%] w-[75%] h-[75%] bg-blue-500/60 rounded-full blur-[100px] animate-pulse-slow" />
+                <div
+                    className="absolute bottom-[0%] right-[0%] w-[75%] h-[75%] bg-violet-500/50 rounded-full blur-[100px] animate-pulse-slow"
+                    style={{ animationDelay: "2s" }}
+                />
             </motion.div>
 
             {/* --- 3D Grid System --- */}
@@ -266,7 +273,7 @@ const MovingGrid: React.FC<MovingGridProps> = ({
                     gridSize={animatedGridSize}
                     x={gridX}
                     y={gridY}
-                    strokeColor="rgba(255,255,255,0.03)"
+                    strokeColor="rgba(255,255,255,0.08)"
                 />
 
                 {/* Masked Highlight Layer */}
@@ -278,7 +285,7 @@ const MovingGrid: React.FC<MovingGridProps> = ({
                         gridSize={animatedGridSize}
                         x={gridX}
                         y={gridY}
-                        strokeColor="rgba(255,255,255,0.2)"
+                        strokeColor="rgba(255,255,255,0.32)"
                         strokeWidth={1}
                     />
                     <motion.div style={{ opacity: warpSignal }}>
@@ -341,13 +348,27 @@ const DefaultContent: React.FC<{
     clickCount: number;
 }> = ({ itemVariants, handleWarpClick, clickCount }) => (
     <>
-       
+        <motion.div variants={itemVariants} className="flex flex-col items-center">
+            <div className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
+                <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                </span>
+                <span className="text-xs font-semibold text-blue-100 tracking-wider uppercase">
+                    System Online
+                </span>
+            </div>
+
+            <h1 className="text-7xl md:text-9xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-600 drop-shadow-2xl pb-2">
+                HyperGrid.
+            </h1>
+        </motion.div>
 
         <motion.p
             variants={itemVariants}
             className="text-lg md:text-2xl text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
         >
-            
+            Next-generation interface dynamics with warp-speed interactions and fluid spatial awareness.
         </motion.p>
 
         <motion.div variants={itemVariants} className="pt-12">
@@ -356,7 +377,29 @@ const DefaultContent: React.FC<{
                 className="group relative inline-flex items-center justify-center"
             >
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 scale-110" />
-                
+                <motion.div
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="relative px-10 py-5 bg-neutral-950/70 border border-white/20 rounded-full backdrop-blur-xl overflow-hidden flex items-center gap-3 shadow-2xl"
+                >
+                    <span className="relative z-10 text-white font-semibold text-xl tracking-tight">
+                        Engage Warp Drive
+                    </span>
+                    <svg
+                        className="w-6 h-6 text-blue-300 group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                    </svg>
+                    <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/25 to-transparent z-0" />
+                </motion.div>
             </button>
 
             <motion.p
