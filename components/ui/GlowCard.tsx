@@ -41,8 +41,8 @@ export function GlowCard({ accent, children, className = "", delay = 0, variant 
 
   const isTilt = variant === "tilt";
 
-  const rotateX = useSpring(useTransform(my, [0, 1], [2, -2]), { stiffness: 200, damping: 20, mass: 0.4 });
-  const rotateY = useSpring(useTransform(mx, [0, 1], [-2, 2]), { stiffness: 200, damping: 20, mass: 0.4 });
+  const rotateX = useSpring(useTransform(my, [0, 1], [4, -4]), { stiffness: 200, damping: 20, mass: 0.4 });
+  const rotateY = useSpring(useTransform(mx, [0, 1], [-4, 4]), { stiffness: 200, damping: 20, mass: 0.4 });
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = ref.current?.getBoundingClientRect();
