@@ -1,7 +1,7 @@
 "use client";
 
 import { RadialBar, RadialBarChart, PolarAngleAxis } from "recharts";
-
+import { GlowCard } from "@/components/ui/GlowCard";
 import { ChapterRowBet } from "./ChapterRowBet";
 import { ChapterRowMinimal } from "./ChapterRowMinimal";
 import { ChapterRowLeaderboard } from "./ChapterRowLeaderboard";
