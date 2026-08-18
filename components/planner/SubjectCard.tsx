@@ -1,7 +1,7 @@
 "use client";
 
 import { RadialBar, RadialBarChart, PolarAngleAxis } from "recharts";
-import { GlowCard } from "@/components/ui/GlowCard";
+
 import { ChapterRowBet } from "./ChapterRowBet";
 import { ChapterRowMinimal } from "./ChapterRowMinimal";
 import { ChapterRowLeaderboard } from "./ChapterRowLeaderboard";
@@ -39,7 +39,7 @@ export function SubjectCard({ subject }: SubjectCardProps) {
   }
 
   return (
-    <GlowCard accent={accent} variant="tilt">
+    <GlowCard accent={accent} variant="none">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <span className="text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: accentHex }}>
