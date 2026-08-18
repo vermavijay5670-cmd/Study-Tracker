@@ -1,14 +1,12 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { PlannerSection } from "@/components/planner/PlannerSection";
-import MovingGrid from "@/components/ui/hyper-grid";
+import ConstellationGrid from "@/components/ui/constellation-grid";
 
 export default function PlannerPage() {
   return (
     <>
       <div className="fixed inset-0 -z-10 overflow-hidden">
-        <MovingGrid>
-          <></>
-        </MovingGrid>
+        <ConstellationGrid showTitle={false} forceDark />
       </div>
       <PageShell>
         <PlannerSection />
