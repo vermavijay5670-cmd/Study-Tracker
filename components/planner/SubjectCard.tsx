@@ -39,7 +39,7 @@ export function SubjectCard({ subject }: SubjectCardProps) {
   }
 
   return (
-    <GlowCard accent={accent}>
+    <GlowCard accent={accent} variant="tilt">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <span className="text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: accentHex }}>

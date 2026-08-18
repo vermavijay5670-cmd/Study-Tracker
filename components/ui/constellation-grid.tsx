@@ -256,7 +256,7 @@ export default function ConstellationGrid({ showTitle = true, forceDark = false 
     }, [isDarkMode]);
 
     return (
-        <div className="relative w-full h-screen overflow-hidden select-none bg-slate-950 dark:bg-slate-950 light:bg-slate-50">
+        <div className="relative w-full h-screen overflow-hidden select-none bg-slate-950">
             <canvas ref={canvasRef} className="absolute inset-0 block cursor-crosshair" />
 
             {/* Seamless overlay title */}
