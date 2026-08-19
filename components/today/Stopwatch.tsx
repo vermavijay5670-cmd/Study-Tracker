@@ -10,7 +10,9 @@ interface StopwatchProps {
   todayHours: number;
   dailyGoalHours: number;
   stopwatchRunningSince: number | null;
+  stopwatchLastFlushAt: number | null;
   stopwatchSessions: number;
+  stopwatchSessionMs: number;
   onStart: () => void;
   onPause: () => void;
   onReset: () => void;
@@ -23,7 +25,9 @@ export function Stopwatch({
   todayHours,
   dailyGoalHours,
   stopwatchRunningSince,
+  stopwatchLastFlushAt,
   stopwatchSessions,
+  stopwatchSessionMs,
   onStart,
   onPause,
   onReset,
@@ -69,15 +73,24 @@ export function Stopwatch({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const liveElapsedMs = running ? Date.now() - stopwatchRunningSince! : 0;
-  const liveHours = todayHours + liveElapsedMs / 3_600_000;
+  // Big HH:MM:SS digits: total elapsed for this session (spans pause/resume,
+  // only cleared by Reset) — frozen at its accumulated value while paused,
+  // instead of dropping to 0.
+  const sessionElapsedMs = stopwatchSessionMs + (running ? Date.now() - stopwatchRunningSince! : 0);
+
+  // "today" total + goal progress: today's already-committed hours (from the log,
+  // which periodic checkpoints keep up to date) plus only the slice elapsed since
+  // the *last checkpoint* — using session-since-start here would double-count
+  // every chunk a checkpoint already flushed into the log.
+  const liveSinceCheckpointMs = running ? Date.now() - (stopwatchLastFlushAt ?? stopwatchRunningSince!) : 0;
+  const liveHours = todayHours + liveSinceCheckpointMs / 3_600_000;
   const goalPct = dailyGoalHours > 0 ? Math.min(100, (liveHours / dailyGoalHours) * 100) : 0;
 
-  const totalSecs = Math.floor(liveElapsedMs / 1000);
+  const totalSecs = Math.floor(sessionElapsedMs / 1000);
   const hh = pad(Math.floor(totalSecs / 3600));
   const mm = pad(Math.floor((totalSecs % 3600) / 60));
   const ss = pad(totalSecs % 60);
-  const centis = pad(Math.floor((liveElapsedMs % 1000) / 10));
+  const centis = pad(Math.floor((sessionElapsedMs % 1000) / 10));
 
   return (
     <LiquidGlassCard delay={0.08} variant="tilt">

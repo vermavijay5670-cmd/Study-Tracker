@@ -26,6 +26,8 @@ function defaultState(): TrackerState {
     stopwatchRunningSince: null,
     stopwatchLastFlushAt: null,
     stopwatchSessions: 0,
+    stopwatchSessionMs: 0,
+    stopwatchSessionsDate: todayKey(),
     timerDurationMs: DEFAULT_TIMER_MS,
     timerRemainingMs: DEFAULT_TIMER_MS,
     timerEndAt: null,
@@ -39,13 +41,21 @@ function loadState(): TrackerState {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultState();
     const parsed = JSON.parse(raw);
-    return {
+    const merged: TrackerState = {
       ...defaultState(),
       ...parsed,
       log: parsed.log ?? {},
       planner: parsed.planner ?? {},
       subtopics: parsed.subtopics ?? {},
     };
+    // Stopwatch session count/timer are per-day — start fresh if this is a new day
+    // (including for users whose stored data predates this field entirely).
+    if (merged.stopwatchSessionsDate !== todayKey()) {
+      merged.stopwatchSessions = 0;
+      merged.stopwatchSessionMs = 0;
+      merged.stopwatchSessionsDate = todayKey();
+    }
+    return merged;
   } catch {
     return defaultState();
   }
@@ -248,7 +258,15 @@ export function useTrackerState() {
   const startStopwatch = useCallback(() => {
     setState((s) => {
       const now = Date.now();
-      return { ...s, stopwatchRunningSince: now, stopwatchLastFlushAt: now, stopwatchSessions: s.stopwatchSessions + 1 };
+      const isNewDay = s.stopwatchSessionsDate !== todayKey();
+      return {
+        ...s,
+        stopwatchRunningSince: now,
+        stopwatchLastFlushAt: now,
+        stopwatchSessions: (isNewDay ? 0 : s.stopwatchSessions) + 1,
+        stopwatchSessionMs: isNewDay ? 0 : s.stopwatchSessionMs,
+        stopwatchSessionsDate: todayKey(),
+      };
     });
   }, [setState]);
 
@@ -261,7 +279,10 @@ export function useTrackerState() {
       const key = todayKey();
       const log = { ...s.log };
       log[key] = Math.round(((log[key] ?? 0) + elapsedHours) * 1000) / 1000;
-      return { ...s, log, stopwatchRunningSince: null, stopwatchLastFlushAt: null };
+      // Freeze the on-screen session timer at its accumulated value instead of
+      // letting it drop back to zero the instant the stopwatch is paused.
+      const sessionMs = (s.stopwatchSessionMs ?? 0) + (now - s.stopwatchRunningSince);
+      return { ...s, log, stopwatchRunningSince: null, stopwatchLastFlushAt: null, stopwatchSessionMs: sessionMs };
     });
   }, [setState]);
 
@@ -277,7 +298,7 @@ export function useTrackerState() {
         log[key] = Math.round(((log[key] ?? 0) + elapsedHours) * 1000) / 1000;
         next = { ...s, log, stopwatchRunningSince: null, stopwatchLastFlushAt: null };
       }
-      return { ...next, stopwatchSessions: 0 };
+      return { ...next, stopwatchSessions: 0, stopwatchSessionMs: 0, stopwatchSessionsDate: todayKey() };
     });
   }, [setState]);
 

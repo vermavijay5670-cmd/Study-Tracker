@@ -20,6 +20,8 @@ export interface TrackerState {
   stopwatchRunningSince: number | null; // epoch ms when the current session started; drives the display, never touched by checkpoints
   stopwatchLastFlushAt: number | null; // epoch ms of the last committed checkpoint; bookkeeping only
   stopwatchSessions: number;
+  stopwatchSessionMs: number; // accumulated elapsed ms for the current (possibly paused) session, since the last Reset
+  stopwatchSessionsDate: string; // date key stopwatchSessions/stopwatchSessionMs belong to, so they reset at the start of a new day
   timerDurationMs: number;
   timerRemainingMs: number; // valid when timerEndAt is null (paused/reset)
   timerEndAt: number | null; // epoch ms when it should complete; null = not running

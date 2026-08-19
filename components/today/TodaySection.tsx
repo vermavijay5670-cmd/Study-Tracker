@@ -38,7 +38,9 @@ export function TodaySection() {
         todayHours={todayHours}
         dailyGoalHours={state.dailyGoalHours}
         stopwatchRunningSince={state.stopwatchRunningSince}
+        stopwatchLastFlushAt={state.stopwatchLastFlushAt}
         stopwatchSessions={state.stopwatchSessions}
+        stopwatchSessionMs={state.stopwatchSessionMs}
         onStart={startStopwatch}
         onPause={pauseStopwatch}
         onReset={resetStopwatchSessions}
