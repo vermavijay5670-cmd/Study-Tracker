@@ -8,6 +8,12 @@ export interface ChapterState {
   diff?: Difficulty;
 }
 
+export interface Goal {
+  id: string;
+  text: string;
+  done: boolean;
+}
+
 export interface TrackerState {
   startDate: string; // YYYY-MM-DD
   examDate: string; // YYYY-MM-DD or ""
@@ -17,6 +23,8 @@ export interface TrackerState {
   log: Record<string, number>; // date -> hours
   planner: Record<string, ChapterState>; // "phy_11_0" -> state
   subtopics: Record<string, boolean>; // "phy_11_0_2" -> done
+  dailyGoals: Record<string, Goal[]>; // date -> that day's goal checklist
+  customThoughts: string[]; // user-added positive thoughts, added to the daily rotation pool
   stopwatchRunningSince: number | null; // epoch ms when the current session started; drives the display, never touched by checkpoints
   stopwatchLastFlushAt: number | null; // epoch ms of the last committed checkpoint; bookkeeping only
   stopwatchSessions: number;

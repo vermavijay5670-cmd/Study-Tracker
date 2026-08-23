@@ -5,7 +5,7 @@ import { CHAPTERS } from "./data";
 import { addDays, daysBetween, dateKey, parseKey, todayKey } from "./date-utils";
 import { createSupabaseBrowserClient } from "./supabase/client";
 import type { User } from "@supabase/supabase-js";
-import type { ChapterState, Difficulty, Subject, SubjectStats, Streaks, TrackerState } from "./types";
+import type { ChapterState, Difficulty, Goal, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 const STORAGE_KEY = "neet_tracker_v1";
 const TABLE = "user_state";
@@ -23,6 +23,8 @@ function defaultState(): TrackerState {
     log: {},
     planner: {},
     subtopics: {},
+    dailyGoals: {},
+    customThoughts: [],
     stopwatchRunningSince: null,
     stopwatchLastFlushAt: null,
     stopwatchSessions: 0,
@@ -47,6 +49,8 @@ function loadState(): TrackerState {
       log: parsed.log ?? {},
       planner: parsed.planner ?? {},
       subtopics: parsed.subtopics ?? {},
+      dailyGoals: parsed.dailyGoals ?? {},
+      customThoughts: parsed.customThoughts ?? [],
     };
     // Stopwatch session count/timer are per-day — start fresh if this is a new day
     // (including for users whose stored data predates this field entirely).
@@ -302,8 +306,55 @@ export function useTrackerState() {
     });
   }, [setState]);
 
-  // Periodic safety checkpoint while running (called every ~30s AND once on mount) —
-  // commits elapsed time into today's log. Deliberately does NOT touch stopwatchRunningSince,
+  // ---- Daily Goals: a fresh checklist per calendar day, keyed like `log` ----
+  const addGoal = useCallback(
+    (text: string) => {
+      const trimmed = text.trim();
+      if (!trimmed) return;
+      setState((s) => {
+        const key = todayKey();
+        const todays = s.dailyGoals[key] ?? [];
+        const goal: Goal = { id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, text: trimmed, done: false };
+        return { ...s, dailyGoals: { ...s.dailyGoals, [key]: [...todays, goal] } };
+      });
+    },
+    [setState]
+  );
+
+  const toggleGoal = useCallback(
+    (id: string) => {
+      setState((s) => {
+        const key = todayKey();
+        const todays = s.dailyGoals[key] ?? [];
+        const updated = todays.map((g) => (g.id === id ? { ...g, done: !g.done } : g));
+        return { ...s, dailyGoals: { ...s.dailyGoals, [key]: updated } };
+      });
+    },
+    [setState]
+  );
+
+  const deleteGoal = useCallback(
+    (id: string) => {
+      setState((s) => {
+        const key = todayKey();
+        const todays = s.dailyGoals[key] ?? [];
+        return { ...s, dailyGoals: { ...s.dailyGoals, [key]: todays.filter((g) => g.id !== id) } };
+      });
+    },
+    [setState]
+  );
+
+  // ---- Positive thoughts: user-added thoughts join the daily rotation pool ----
+  const addCustomThought = useCallback(
+    (text: string) => {
+      const trimmed = text.trim();
+      if (!trimmed) return;
+      setState((s) => ({ ...s, customThoughts: [...s.customThoughts, trimmed] }));
+    },
+    [setState]
+  );
+
+
   // so the on-screen timer keeps counting up smoothly instead of jumping back on every checkpoint.
   const checkpointStopwatch = useCallback(() => {
     setState((s) => {
@@ -498,5 +549,9 @@ export function useTrackerState() {
     resetTimer,
     setTimerDuration,
     completeTimer,
+    addGoal,
+    toggleGoal,
+    deleteGoal,
+    addCustomThought,
   };
 }
