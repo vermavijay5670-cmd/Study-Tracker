@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Quote, Shuffle, Plus } from "lucide-react";
 import { todayKey } from "@/lib/date-utils";
 import { getThoughtOfTheDay, getRandomThought } from "@/lib/thoughts";
+import { HighlightedText } from "./HighlightedText";
 
 const GRAIN_SVG =
   "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
@@ -87,27 +88,30 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
         className="relative mt-4 text-[19px] italic leading-relaxed text-[#4A3728] sm:text-[21px]"
         style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
       >
-        “{shown}”
+        “<HighlightedText text={shown} />”
       </p>
 
       <div className="relative mt-6 border-t border-[#8A6D3B]/15 pt-3">
         {showAdd ? (
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <input
-              autoFocus
-              type="text"
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              onBlur={() => !draft && setShowAdd(false)}
-              placeholder="Write a thought that keeps you going…"
-              className="w-full rounded-lg border border-[#8A6D3B]/25 bg-white/40 px-3 py-2 text-[13.5px] text-[#4A3728] outline-none placeholder:text-[#8A6D3B]/45 focus:border-[#8A6D3B]/50"
-            />
-            <button
-              type="submit"
-              className="flex-shrink-0 rounded-lg bg-[#8A6D3B] px-3 py-2 text-[12.5px] font-medium text-[#F6ECD6] transition-transform hover:scale-105"
-            >
-              Save
-            </button>
+          <form onSubmit={handleSubmit} className="space-y-1.5">
+            <div className="flex gap-2">
+              <input
+                autoFocus
+                type="text"
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+                onBlur={() => !draft && setShowAdd(false)}
+                placeholder="Write a thought that keeps you going…"
+                className="w-full rounded-lg border border-[#8A6D3B]/25 bg-white/40 px-3 py-2 text-[13.5px] text-[#4A3728] outline-none placeholder:text-[#8A6D3B]/45 focus:border-[#8A6D3B]/50"
+              />
+              <button
+                type="submit"
+                className="flex-shrink-0 rounded-lg bg-[#8A6D3B] px-3 py-2 text-[12.5px] font-medium text-[#F6ECD6] transition-transform hover:scale-105"
+              >
+                Save
+              </button>
+            </div>
+            <p className="text-[10.5px] text-[#8A6D3B]/55">Tip: wrap a word in **asterisks** to highlight it.</p>
           </form>
         ) : (
           <button
