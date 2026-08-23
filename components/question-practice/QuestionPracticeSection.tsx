@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, ChevronRight, Atom, Dna, FlaskConical, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, Atom, Dna, FlaskConical, BookOpen, ListChecks, GraduationCap } from "lucide-react";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { CHAPTERS, SUBJECT_NAME, SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
-import { getChapterQuestions } from "@/lib/questionBank";
+import { getChapterQuestions, hasChapterQuestions, type Question } from "@/lib/questionBank";
+import { QuizRunner } from "./QuizRunner";
+import { ReadOnlyList } from "./ReadOnlyList";
 import type { Subject } from "@/lib/types";
 
 const SUBJECTS: Subject[] = ["phy", "chem", "bio"];
@@ -296,6 +298,14 @@ function ChapterFlowchart({
                 {idx + 1}
               </span>
               <span className="flex-1 text-[14px] text-white/85">{title}</span>
+              {hasChapterQuestions(subject, cls, idx) && (
+                <span
+                  className="rounded-full px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide"
+                  style={{ background: `${accentHex}1a`, color: accentHex }}
+                >
+                  ready
+                </span>
+              )}
               <ChevronRight size={16} strokeWidth={1.75} className="flex-shrink-0 text-white/25" />
             </motion.button>
           ))}
@@ -321,41 +331,77 @@ function QuestionBankView({
   const accent = SUBJECT_ACCENT[subject];
   const accentHex = ACCENT_HEX[accent];
   const title = CHAPTERS[subject][cls][chapterIndex];
-  const questions = getChapterQuestions(subject, cls, chapterIndex);
+
+  const [loading, setLoading] = useState(true);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [mode, setMode] = useState<"quiz" | "read">("quiz");
+
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    getChapterQuestions(subject, cls, chapterIndex).then((qs) => {
+      if (!cancelled) {
+        setQuestions(qs);
+        setLoading(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [subject, cls, chapterIndex]);
 
   return (
     <div>
-      <BackBar label={title} sub={`${SUBJECT_NAME[subject]} — Class ${cls}`} accentHex={accentHex} onBack={onBack} />
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <BackBar label={title} sub={`${SUBJECT_NAME[subject]} — Class ${cls}`} accentHex={accentHex} onBack={onBack} />
 
-      {questions.length === 0 ? (
+        {!loading && questions.length > 0 && (
+          <div className="flex rounded-full border border-white/10 bg-white/[0.03] p-1">
+            <ModeButton active={mode === "quiz"} onClick={() => setMode("quiz")} icon={GraduationCap} label="Quiz" accentHex={accentHex} />
+            <ModeButton active={mode === "read"} onClick={() => setMode("read")} icon={ListChecks} label="Read-only" accentHex={accentHex} />
+          </div>
+        )}
+      </div>
+
+      {loading ? (
+        <div className="mt-10 flex items-center justify-center py-16 text-[13px] text-white/35">Loading questions…</div>
+      ) : questions.length === 0 ? (
         <div className="mt-8 flex flex-col items-center rounded-3xl border border-dashed border-white/12 bg-white/[0.02] px-6 py-16 text-center">
           <BookOpen size={26} strokeWidth={1.5} className="text-white/20" />
           <p className="mt-4 max-w-sm text-[14px] leading-relaxed text-white/45">
             The question bank for <span className="text-white/75">{title}</span> hasn&apos;t been added yet.
           </p>
         </div>
+      ) : mode === "quiz" ? (
+        <QuizRunner key={`${subject}-${cls}-${chapterIndex}`} questions={questions} accentHex={accentHex} />
       ) : (
-        <div className="mt-8 space-y-3">
-          {questions.map((q, i) => (
-            <div key={i} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-[14px] text-white/85">
-                {i + 1}. {q.question}
-              </p>
-              <ul className="mt-2 space-y-1.5">
-                {q.options.map((opt, oi) => (
-                  <li
-                    key={oi}
-                    className="rounded-lg border border-white/8 px-3 py-1.5 text-[13px] text-white/60"
-                    style={oi === q.answer ? { borderColor: `${accentHex}55`, color: accentHex } : undefined}
-                  >
-                    {opt}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <ReadOnlyList questions={questions} accentHex={accentHex} />
       )}
     </div>
+  );
+}
+
+function ModeButton({
+  active,
+  onClick,
+  icon: Icon,
+  label,
+  accentHex,
+}: {
+  active: boolean;
+  onClick: () => void;
+  icon: typeof GraduationCap;
+  label: string;
+  accentHex: string;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition-colors"
+      style={active ? { background: `${accentHex}1f`, color: accentHex } : { color: "rgba(255,255,255,0.4)" }}
+    >
+      <Icon size={13} strokeWidth={1.75} />
+      {label}
+    </button>
   );
 }
