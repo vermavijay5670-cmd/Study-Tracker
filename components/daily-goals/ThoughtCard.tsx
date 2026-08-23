@@ -7,6 +7,9 @@ import { getThoughtOfTheDay, getRandomThought } from "@/lib/thoughts";
 
 const GRAIN_SVG =
   "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+// Coarser, lower-frequency turbulence layered underneath for a mottled, fibrous paper look.
+const FIBER_SVG =
+  "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.35' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E";
 
 interface ThoughtCardProps {
   customThoughts: string[];
@@ -33,16 +36,22 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
 
   return (
     <div
-      className="relative mx-auto max-w-[560px] -rotate-1 rounded-[4px] p-7 sm:p-8"
+      className="relative h-full -rotate-1 rounded-[4px] p-7 sm:p-8"
       style={{
         background: "linear-gradient(165deg, #F6ECD6 0%, #EDE0C2 100%)",
         boxShadow: "0 22px 40px rgba(0,0,0,0.45), 0 2px 0 rgba(255,255,255,0.4) inset, 0 -6px 14px rgba(0,0,0,0.06) inset",
       }}
     >
-      {/* paper grain */}
+      {/* fibrous paper mottle, coarse layer */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[0.18] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[0.22] mix-blend-multiply"
+        style={{ backgroundImage: `url("${FIBER_SVG}")` }}
+      />
+      {/* fine grain, on top */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[0.25] mix-blend-multiply"
         style={{ backgroundImage: `url("${GRAIN_SVG}")` }}
       />
       {/* washi tape */}

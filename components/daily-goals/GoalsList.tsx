@@ -1,26 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, X, Target } from "lucide-react";
+import { Plus, X, Target, AlertTriangle } from "lucide-react";
 import { GlowCard } from "@/components/ui/GlowCard";
 import type { Goal } from "@/lib/types";
 
 interface GoalsListProps {
   goals: Goal[];
-  onAdd: (text: string) => void;
+  onAdd: (text: string, mandatory: boolean) => void;
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
+  onToggleMandatory: (id: string) => void;
 }
 
-export function GoalsList({ goals, onAdd, onToggle, onDelete }: GoalsListProps) {
+export function GoalsList({ goals, onAdd, onToggle, onDelete, onToggleMandatory }: GoalsListProps) {
   const [draft, setDraft] = useState("");
+  const [draftMandatory, setDraftMandatory] = useState(false);
   const doneCount = goals.filter((g) => g.done).length;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!draft.trim()) return;
-    onAdd(draft);
+    onAdd(draft, draftMandatory);
     setDraft("");
+    setDraftMandatory(false);
   }
 
   return (
@@ -36,7 +39,7 @@ export function GoalsList({ goals, onAdd, onToggle, onDelete }: GoalsListProps) 
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className="mb-4 flex gap-2">
+      <form onSubmit={handleSubmit} className="mb-2 flex gap-2">
         <input
           type="text"
           value={draft}
@@ -53,6 +56,20 @@ export function GoalsList({ goals, onAdd, onToggle, onDelete }: GoalsListProps) 
         </button>
       </form>
 
+      <button
+        type="button"
+        onClick={() => setDraftMandatory((v) => !v)}
+        className="mb-4 flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors"
+        style={{
+          borderColor: draftMandatory ? "#EF4444" : "rgba(255,255,255,0.15)",
+          background: draftMandatory ? "rgba(239,68,68,0.12)" : "transparent",
+          color: draftMandatory ? "#F87171" : "rgba(255,255,255,0.45)",
+        }}
+      >
+        <AlertTriangle size={12} strokeWidth={2} />
+        Mandatory
+      </button>
+
       {goals.length === 0 ? (
         <p className="py-6 text-center text-[13px] text-white/35">No goals yet — add what you want to get done today.</p>
       ) : (
@@ -60,7 +77,8 @@ export function GoalsList({ goals, onAdd, onToggle, onDelete }: GoalsListProps) 
           {goals.map((g) => (
             <li
               key={g.id}
-              className="group flex items-center gap-3 rounded-xl border border-white/8 bg-white/[0.03] px-3.5 py-2.5"
+              className="group flex items-center gap-3 rounded-xl border bg-white/[0.03] px-3.5 py-2.5 transition-colors"
+              style={{ borderColor: g.mandatory ? "#EF4444" : "rgba(255,255,255,0.08)" }}
             >
               <button
                 onClick={() => onToggle(g.id)}
@@ -78,6 +96,15 @@ export function GoalsList({ goals, onAdd, onToggle, onDelete }: GoalsListProps) 
               >
                 {g.text}
               </span>
+              <button
+                onClick={() => onToggleMandatory(g.id)}
+                aria-label={g.mandatory ? "Unmark as mandatory" : "Mark as mandatory"}
+                title={g.mandatory ? "Mandatory" : "Mark as mandatory"}
+                className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full transition-colors"
+                style={{ color: g.mandatory ? "#EF4444" : "rgba(255,255,255,0.2)" }}
+              >
+                <AlertTriangle size={13} strokeWidth={2} />
+              </button>
               <button
                 onClick={() => onDelete(g.id)}
                 aria-label="Delete goal"

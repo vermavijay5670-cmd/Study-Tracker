@@ -12,6 +12,7 @@ export interface Goal {
   id: string;
   text: string;
   done: boolean;
+  mandatory?: boolean;
 }
 
 export interface TrackerState {

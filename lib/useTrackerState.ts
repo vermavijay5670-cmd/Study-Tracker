@@ -308,13 +308,18 @@ export function useTrackerState() {
 
   // ---- Daily Goals: a fresh checklist per calendar day, keyed like `log` ----
   const addGoal = useCallback(
-    (text: string) => {
+    (text: string, mandatory: boolean = false) => {
       const trimmed = text.trim();
       if (!trimmed) return;
       setState((s) => {
         const key = todayKey();
         const todays = s.dailyGoals[key] ?? [];
-        const goal: Goal = { id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, text: trimmed, done: false };
+        const goal: Goal = {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          text: trimmed,
+          done: false,
+          mandatory,
+        };
         return { ...s, dailyGoals: { ...s.dailyGoals, [key]: [...todays, goal] } };
       });
     },
@@ -339,6 +344,18 @@ export function useTrackerState() {
         const key = todayKey();
         const todays = s.dailyGoals[key] ?? [];
         return { ...s, dailyGoals: { ...s.dailyGoals, [key]: todays.filter((g) => g.id !== id) } };
+      });
+    },
+    [setState]
+  );
+
+  const toggleGoalMandatory = useCallback(
+    (id: string) => {
+      setState((s) => {
+        const key = todayKey();
+        const todays = s.dailyGoals[key] ?? [];
+        const updated = todays.map((g) => (g.id === id ? { ...g, mandatory: !g.mandatory } : g));
+        return { ...s, dailyGoals: { ...s.dailyGoals, [key]: updated } };
       });
     },
     [setState]
@@ -464,6 +481,68 @@ export function useTrackerState() {
     [state.log]
   );
 
+  const goalStats = useMemo(() => {
+    const days = Object.keys(state.dailyGoals).filter((k) => (state.dailyGoals[k]?.length ?? 0) > 0);
+    const isPerfect = (k: string) => {
+      const list = state.dailyGoals[k] ?? [];
+      return list.length > 0 && list.every((g) => g.done);
+    };
+    const perfectDays = new Set(days.filter(isPerfect));
+
+    let current = 0;
+    let cursor = new Date();
+    if (!perfectDays.has(dateKey(cursor))) cursor = addDays(cursor, -1);
+    while (perfectDays.has(dateKey(cursor))) {
+      current++;
+      cursor = addDays(cursor, -1);
+    }
+
+    let best = 0;
+    let run = 0;
+    let iter = parseKey(state.startDate);
+    const end = new Date();
+    while (iter <= end) {
+      if (perfectDays.has(dateKey(iter))) {
+        run++;
+        best = Math.max(best, run);
+      } else {
+        run = 0;
+      }
+      iter = addDays(iter, 1);
+    }
+
+    const todaysGoals = state.dailyGoals[todayKey()] ?? [];
+    const todayDone = todaysGoals.filter((g) => g.done).length;
+    const todayTotal = todaysGoals.length;
+
+    let totalCompleted = 0;
+    let totalGoals = 0;
+    let mandatoryTotal = 0;
+    let mandatoryDone = 0;
+    Object.values(state.dailyGoals).forEach((list) => {
+      list.forEach((g) => {
+        totalGoals++;
+        if (g.done) totalCompleted++;
+        if (g.mandatory) {
+          mandatoryTotal++;
+          if (g.done) mandatoryDone++;
+        }
+      });
+    });
+
+    return {
+      currentStreak: current,
+      bestStreak: best,
+      perfectDayCount: perfectDays.size,
+      todayDone,
+      todayTotal,
+      totalCompleted,
+      totalGoals,
+      mandatoryTotal,
+      mandatoryDone,
+    };
+  }, [state.dailyGoals, state.startDate]);
+
   const getSubjectStats = useCallback(
     (subj: Subject): SubjectStats => {
       let done = 0;
@@ -552,6 +631,8 @@ export function useTrackerState() {
     addGoal,
     toggleGoal,
     deleteGoal,
+    toggleGoalMandatory,
+    goalStats,
     addCustomThought,
   };
 }
