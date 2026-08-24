@@ -17,6 +17,7 @@ export interface Question {
 // Add each chapter's file under ./question-data and register it here — loaded lazily so
 // unopened chapters never add to the bundle other tabs have to download.
 const REGISTRY: Record<string, () => Promise<Question[]>> = {
+  bio_11_1: () => import("./question-data/bio-11-biological-classification").then((m) => m.default),
   chem_11_0: () => import("./question-data/chem-11-some-basic-concepts").then((m) => m.default),
   chem_11_1: () => import("./question-data/chem-11-structure-of-atom").then((m) => m.default),
   chem_11_4: () => import("./question-data/chem-11-thermodynamics").then((m) => m.default),

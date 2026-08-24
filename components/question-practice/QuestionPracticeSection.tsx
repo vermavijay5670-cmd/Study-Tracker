@@ -407,7 +407,7 @@ function QuestionBankView({
   const accentHex = ACCENT_HEX[accent];
   const title = CHAPTERS[subject][cls][chapterIndex];
 
-  const { hydrated } = useTrackerState();
+  const { state, hydrated, saveQuizProgress, clearQuizProgress } = useTrackerState();
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [mode, setMode] = useState<"quiz" | "read">("quiz");
@@ -454,6 +454,9 @@ function QuestionBankView({
           questions={questions}
           accentHex={accentHex}
           progressKey={`${subject}_${cls}_${chapterIndex}`}
+          savedProgress={state.quizProgress[`${subject}_${cls}_${chapterIndex}`]}
+          onSaveProgress={saveQuizProgress}
+          onClearProgress={clearQuizProgress}
         />
       ) : (
         <ReadOnlyList questions={questions} accentHex={accentHex} />

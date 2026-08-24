@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight, RotateCcw, Check, X, History } from "lucide-react";
 import type { Question } from "@/lib/questionBank";
-import { useTrackerState } from "@/lib/useTrackerState";
+import type { QuizProgress } from "@/lib/types";
 
 const DIFFICULTY_COLOR: Record<Question["difficulty"], string> = {
   easy: "#41FF72",
@@ -26,41 +26,49 @@ interface QuizRunnerProps {
   questions: Question[];
   accentHex: string;
   progressKey: string;
+  savedProgress: QuizProgress | undefined;
+  onSaveProgress: (key: string, progress: QuizProgress) => void;
+  onClearProgress: (key: string) => void;
 }
 
-export function QuizRunner({ questions, accentHex, progressKey }: QuizRunnerProps) {
-  const { state, saveQuizProgress, clearQuizProgress } = useTrackerState();
-  const saved = state.quizProgress[progressKey];
-  const hasSavedProgress = !!saved && (saved.index > 0 || Object.keys(saved.selections).length > 0);
+export function QuizRunner({
+  questions,
+  accentHex,
+  progressKey,
+  savedProgress,
+  onSaveProgress,
+  onClearProgress,
+}: QuizRunnerProps) {
+  // savedProgress is guaranteed to reflect real persisted data by the time this
+  // component mounts — the parent only renders it after its own hydration completes —
+  // so it's safe to read directly into these initializers with no race condition.
+  const hasSavedProgress =
+    !!savedProgress && (savedProgress.index > 0 || Object.keys(savedProgress.selections).length > 0);
 
-  // Undecided until the person picks resume/restart (only asked when there's something to resume).
   const [resolved, setResolved] = useState(!hasSavedProgress);
-  const [index, setIndex] = useState(saved?.index ?? 0);
-  const [selections, setSelections] = useState<Record<string, number>>(saved?.selections ?? {});
+  const [index, setIndex] = useState(savedProgress?.index ?? 0);
+  const [selections, setSelections] = useState<Record<string, number>>(savedProgress?.selections ?? {});
   const [finished, setFinished] = useState(false);
 
-  // Persist as progress changes — skipped while the resume/restart choice hasn't been made yet.
-  useEffect(() => {
-    if (!resolved || finished) return;
-    saveQuizProgress(progressKey, { index, selections });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, selections, resolved, finished, progressKey]);
+  function persist(nextIndex: number, nextSelections: Record<string, number>) {
+    onSaveProgress(progressKey, { index: nextIndex, selections: nextSelections });
+  }
 
   if (!resolved) {
-    const resumeIndex = Math.min(saved!.index, questions.length - 1);
+    const resumeIndex = Math.min(savedProgress!.index, questions.length - 1);
     return (
       <div className={`mt-8 flex flex-col items-center rounded-3xl border px-6 py-14 text-center ${GLASS}`}>
         <History size={26} strokeWidth={1.5} style={{ color: accentHex }} />
         <h3 className="mt-4 text-[16px] font-medium text-white">Pick up where you left off?</h3>
         <p className="mt-1.5 max-w-sm text-[13px] leading-relaxed text-white/45">
-          You were on Question {resumeIndex + 1} of {questions.length}, with {Object.keys(saved!.selections).length}{" "}
-          answered so far.
+          You were on Question {resumeIndex + 1} of {questions.length}, with{" "}
+          {Object.keys(savedProgress!.selections).length} answered so far.
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <button
             onClick={() => {
               setIndex(resumeIndex);
-              setSelections(saved!.selections);
+              setSelections(savedProgress!.selections);
               setResolved(true);
             }}
             className="rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:scale-105"
@@ -70,7 +78,7 @@ export function QuizRunner({ questions, accentHex, progressKey }: QuizRunnerProp
           </button>
           <button
             onClick={() => {
-              clearQuizProgress(progressKey);
+              onClearProgress(progressKey);
               setIndex(0);
               setSelections({});
               setResolved(true);
@@ -93,23 +101,33 @@ export function QuizRunner({ questions, accentHex, progressKey }: QuizRunnerProp
 
   function choose(optionIndex: number) {
     if (revealed) return;
-    setSelections((s) => ({ ...s, [q.id]: optionIndex }));
+    const next = { ...selections, [q.id]: optionIndex };
+    setSelections(next);
+    persist(index, next);
   }
 
   function goNext() {
     if (isLast) {
       setFinished(true);
-      clearQuizProgress(progressKey);
+      onClearProgress(progressKey);
     } else {
-      setIndex((i) => i + 1);
+      const nextIndex = index + 1;
+      setIndex(nextIndex);
+      persist(nextIndex, selections);
     }
+  }
+
+  function goPrev() {
+    const prevIndex = Math.max(0, index - 1);
+    setIndex(prevIndex);
+    persist(prevIndex, selections);
   }
 
   function restart() {
     setSelections({});
     setIndex(0);
     setFinished(false);
-    clearQuizProgress(progressKey);
+    onClearProgress(progressKey);
   }
 
   if (finished) {
@@ -209,7 +227,7 @@ export function QuizRunner({ questions, accentHex, progressKey }: QuizRunnerProp
 
       <div className="mt-5 flex items-center justify-between">
         <button
-          onClick={() => setIndex((i) => Math.max(0, i - 1))}
+          onClick={goPrev}
           disabled={index === 0}
           className="flex items-center gap-1 rounded-full border border-white/10 px-4 py-2 text-[13px] text-white/50 transition-colors hover:text-white disabled:opacity-30"
         >
