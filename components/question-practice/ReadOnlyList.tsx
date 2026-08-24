@@ -18,6 +18,8 @@ const TYPE_LABEL: Record<Question["type"], string> = {
 };
 
 const PAGE_SIZE = 20;
+// Shared frosted-glass treatment so question text stays readable over the animated grid.
+const GLASS = "backdrop-blur-md bg-white/[0.06] border-white/12 shadow-[0_8px_30px_rgba(0,0,0,0.3)]";
 
 interface ReadOnlyListProps {
   questions: Question[];
@@ -33,7 +35,7 @@ export function ReadOnlyList({ questions, accentHex }: ReadOnlyListProps) {
     <div className="mt-6">
       <div className="space-y-3">
         {shown.map((q, i) => (
-          <div key={q.id} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+          <div key={q.id} className={`rounded-2xl border p-4 sm:p-5 ${GLASS}`}>
             <div className="mb-2.5 flex flex-wrap items-center gap-2">
               <span className="text-[11px] text-white/30">{page * PAGE_SIZE + i + 1}.</span>
               <span

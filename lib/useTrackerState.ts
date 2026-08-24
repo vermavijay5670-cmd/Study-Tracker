@@ -5,7 +5,7 @@ import { CHAPTERS } from "./data";
 import { addDays, daysBetween, dateKey, parseKey, todayKey } from "./date-utils";
 import { createSupabaseBrowserClient } from "./supabase/client";
 import type { User } from "@supabase/supabase-js";
-import type { ChapterState, Difficulty, Goal, Subject, SubjectStats, Streaks, TrackerState } from "./types";
+import type { ChapterState, Difficulty, Goal, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 const STORAGE_KEY = "neet_tracker_v1";
 const TABLE = "user_state";
@@ -25,6 +25,7 @@ function defaultState(): TrackerState {
     subtopics: {},
     dailyGoals: {},
     customThoughts: [],
+    quizProgress: {},
     stopwatchRunningSince: null,
     stopwatchLastFlushAt: null,
     stopwatchSessions: 0,
@@ -51,6 +52,7 @@ function loadState(): TrackerState {
       subtopics: parsed.subtopics ?? {},
       dailyGoals: parsed.dailyGoals ?? {},
       customThoughts: parsed.customThoughts ?? [],
+      quizProgress: parsed.quizProgress ?? {},
     };
     // Stopwatch session count/timer are per-day — start fresh if this is a new day
     // (including for users whose stored data predates this field entirely).
@@ -371,6 +373,26 @@ export function useTrackerState() {
     [setState]
   );
 
+  // ---- Quiz progress: resume a chapter's quiz where you left off ----
+  const saveQuizProgress = useCallback(
+    (key: string, progress: QuizProgress) => {
+      setState((s) => ({ ...s, quizProgress: { ...s.quizProgress, [key]: progress } }));
+    },
+    [setState]
+  );
+
+  const clearQuizProgress = useCallback(
+    (key: string) => {
+      setState((s) => {
+        if (!(key in s.quizProgress)) return s;
+        const next = { ...s.quizProgress };
+        delete next[key];
+        return { ...s, quizProgress: next };
+      });
+    },
+    [setState]
+  );
+
 
   // so the on-screen timer keeps counting up smoothly instead of jumping back on every checkpoint.
   const checkpointStopwatch = useCallback(() => {
@@ -634,5 +656,7 @@ export function useTrackerState() {
     toggleGoalMandatory,
     goalStats,
     addCustomThought,
+    saveQuizProgress,
+    clearQuizProgress,
   };
 }

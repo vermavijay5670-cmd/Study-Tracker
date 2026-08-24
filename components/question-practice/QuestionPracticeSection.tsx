@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, ChevronRight, Atom, Dna, FlaskConical, BookOpen, ListChecks, GraduationCap } from "lucide-react";
+import { ArrowLeft, ChevronRight, Atom, Dna, FlaskConical, BookOpen, ListChecks, GraduationCap } from "lucide-react";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { CHAPTERS, SUBJECT_NAME, SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import { getChapterQuestions, hasChapterQuestions, type Question } from "@/lib/questionBank";
+import { useTrackerState } from "@/lib/useTrackerState";
 import { QuizRunner } from "./QuizRunner";
 import { ReadOnlyList } from "./ReadOnlyList";
 import type { Subject } from "@/lib/types";
@@ -84,12 +85,14 @@ export function QuestionPracticeSection() {
         )}
 
         {view.step === "questions" && (
+          // Deliberately a different transition than the other steps — a zoom-in
+          // "opening" feel, rather than the slide-up used to move through the flowchart.
           <motion.div
             key="questions"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.36, ease: EASE }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.04 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <QuestionBankView
               subject={view.subject}
@@ -153,7 +156,7 @@ function SubjectGrid({ lifting, onSelect }: { lifting: Subject | null; onSelect:
                 className="mt-6 flex items-center justify-center gap-1.5 rounded-full py-2.5 text-sm font-medium transition-colors"
                 style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
               >
-                Browse chapters <ArrowRight size={14} strokeWidth={1.75} />
+                Browse chapters
               </span>
             </GlowCard>
           </motion.div>
@@ -197,7 +200,19 @@ function BackBar({
   );
 }
 
-// ---- Step 2: class flowchart (subject -> two branches -> Class 11 / Class 12) ----
+// A rough, hand-drawn stroke — SVG turbulence + displacement jitters the path
+// edges, echoing the marker/pen look of the reference sketch instead of a
+// clean vector line.
+function RoughFilter({ id }: { id: string }) {
+  return (
+    <filter id={id} x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.09" numOctaves="2" seed="4" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4.5" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  );
+}
+
+// ---- Step 2: class flowchart (subject -> one forking branch -> Class 11 / Class 12) ----
 
 function ClassFlowchart({
   subject,
@@ -211,6 +226,9 @@ function ClassFlowchart({
   const accent = SUBJECT_ACCENT[subject];
   const accentHex = ACCENT_HEX[accent];
   const Icon = SUBJECT_ICON[subject];
+  const rawId = useId().replace(/[^a-zA-Z0-9]/g, "");
+  const filterId = `rough-${rawId}`;
+  const arrowId = `arrow-${rawId}`;
 
   return (
     <div>
@@ -228,13 +246,23 @@ function ClassFlowchart({
           <span className="text-[13px] font-medium text-white">{SUBJECT_NAME[subject]}</span>
         </motion.div>
 
-        {/* branching connector */}
-        <svg width="220" height="56" viewBox="0 0 220 56" fill="none" className="mt-1">
-          <path d="M110 0 V16 M110 16 C110 30 30 22 30 40" stroke={`${accentHex}66`} strokeWidth="1.5" fill="none" />
-          <path d="M110 16 C110 30 190 22 190 40" stroke={`${accentHex}66`} strokeWidth="1.5" fill="none" />
-          <path d="M25 34 L30 40 L35 34" stroke={`${accentHex}66`} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M185 34 L190 40 L195 34" stroke={`${accentHex}66`} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        {/* forking branch connector, hand-drawn style */}
+        <motion.svg
+          width="260" height="64" viewBox="0 0 260 64" fill="none" className="mt-1"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.15 }}
+        >
+          <defs>
+            <RoughFilter id={filterId} />
+            <marker id={arrowId} viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 Z" fill={accentHex} />
+            </marker>
+          </defs>
+          <g stroke={accentHex} strokeWidth="2" strokeLinecap="round" fill="none" filter={`url(#${filterId})`}>
+            <path d="M130,0 L130,18" />
+            <path d="M130,18 C130,36 55,30 34,50" markerEnd={`url(#${arrowId})`} />
+            <path d="M130,18 C130,36 205,30 226,50" markerEnd={`url(#${arrowId})`} />
+          </g>
+        </motion.svg>
 
         <div className="grid w-full grid-cols-2 gap-5">
           {([11, 12] as const).map((cls, i) => (
@@ -243,7 +271,7 @@ function ClassFlowchart({
               onClick={() => onSelectClass(cls)}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: EASE, delay: 0.1 + i * 0.06 }}
+              transition={{ duration: 0.3, ease: EASE, delay: 0.35 + i * 0.08 }}
               whileHover={{ y: -3 }}
               className="flex flex-col items-center gap-1.5 rounded-2xl border bg-white/[0.03] px-4 py-6 text-center transition-colors hover:bg-white/[0.06]"
               style={{ borderColor: `${accentHex}40` }}
@@ -258,7 +286,7 @@ function ClassFlowchart({
   );
 }
 
-// ---- Step 3: chapter flowchart (vertical) ----
+// ---- Step 3: chapter flowchart — vertical spine with a rightward branch arrow into each chapter ----
 
 function ChapterFlowchart({
   subject,
@@ -274,14 +302,35 @@ function ChapterFlowchart({
   const accent = SUBJECT_ACCENT[subject];
   const accentHex = ACCENT_HEX[accent];
   const chapters = CHAPTERS[subject][cls];
+  const rawId = useId().replace(/[^a-zA-Z0-9]/g, "");
+  const spineFilterId = `spine-${rawId}`;
+  const branchFilterId = `branch-${rawId}`;
 
   return (
     <div>
       <BackBar label={`${SUBJECT_NAME[subject]} — Class ${cls}`} sub={`${chapters.length} chapters`} accentHex={accentHex} onBack={onBack} />
 
       <div className="relative mx-auto mt-8 max-w-xl">
-        <div className="absolute left-[19px] top-5 bottom-5 w-px" style={{ background: `${accentHex}30` }} />
-        <div className="space-y-2.5">
+        {/* hand-drawn vertical spine */}
+        <svg
+          className="pointer-events-none absolute left-0 top-1 h-[calc(100%-8px)] w-6"
+          viewBox="0 0 24 100"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <RoughFilter id={spineFilterId} />
+          </defs>
+          <path
+            d="M12,0 L12,100"
+            stroke={`${accentHex}80`}
+            strokeWidth="2"
+            fill="none"
+            vectorEffect="non-scaling-stroke"
+            filter={`url(#${spineFilterId})`}
+          />
+        </svg>
+
+        <div className="space-y-2.5 pl-9">
           {chapters.map((title, idx) => (
             <motion.button
               key={title}
@@ -289,14 +338,40 @@ function ChapterFlowchart({
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.28, ease: EASE, delay: idx * 0.025 }}
-              className="relative flex w-full items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-left transition-colors hover:border-white/20 hover:bg-white/[0.06]"
+              className="relative flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-left transition-colors hover:border-white/20 hover:bg-white/[0.06]"
             >
-              <span
-                className="relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-[13px] font-semibold"
-                style={{ background: `${accentHex}1f`, color: accentHex }}
+              {/* branch arrow reaching from the spine into this row */}
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute -left-9 top-1/2 -translate-y-1/2"
+                width="34"
+                height="16"
+                viewBox="0 0 34 16"
               >
-                {idx + 1}
-              </span>
+                <defs>
+                  <RoughFilter id={`${branchFilterId}-${idx}`} />
+                  <marker
+                    id={`${branchFilterId}-arrow-${idx}`}
+                    viewBox="0 0 10 10"
+                    refX="7"
+                    refY="5"
+                    markerWidth="6"
+                    markerHeight="6"
+                    orient="auto-start-reverse"
+                  >
+                    <path d="M0,0 L10,5 L0,10 Z" fill={`${accentHex}cc`} />
+                  </marker>
+                </defs>
+                <path
+                  d="M3,8 L28,8"
+                  stroke={`${accentHex}80`}
+                  strokeWidth="1.75"
+                  fill="none"
+                  filter={`url(#${branchFilterId}-${idx})`}
+                  markerEnd={`url(#${branchFilterId}-arrow-${idx})`}
+                />
+              </svg>
+
               <span className="flex-1 text-[14px] text-white/85">{title}</span>
               {hasChapterQuestions(subject, cls, idx) && (
                 <span
@@ -315,7 +390,7 @@ function ChapterFlowchart({
   );
 }
 
-// ---- Step 4: question bank (placeholder until real question data is supplied) ----
+// ---- Step 4: question bank ----
 
 function QuestionBankView({
   subject,
@@ -332,6 +407,7 @@ function QuestionBankView({
   const accentHex = ACCENT_HEX[accent];
   const title = CHAPTERS[subject][cls][chapterIndex];
 
+  const { hydrated } = useTrackerState();
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [mode, setMode] = useState<"quiz" | "read">("quiz");
@@ -363,7 +439,7 @@ function QuestionBankView({
         )}
       </div>
 
-      {loading ? (
+      {loading || !hydrated ? (
         <div className="mt-10 flex items-center justify-center py-16 text-[13px] text-white/35">Loading questions…</div>
       ) : questions.length === 0 ? (
         <div className="mt-8 flex flex-col items-center rounded-3xl border border-dashed border-white/12 bg-white/[0.02] px-6 py-16 text-center">
@@ -373,7 +449,12 @@ function QuestionBankView({
           </p>
         </div>
       ) : mode === "quiz" ? (
-        <QuizRunner key={`${subject}-${cls}-${chapterIndex}`} questions={questions} accentHex={accentHex} />
+        <QuizRunner
+          key={`${subject}-${cls}-${chapterIndex}`}
+          questions={questions}
+          accentHex={accentHex}
+          progressKey={`${subject}_${cls}_${chapterIndex}`}
+        />
       ) : (
         <ReadOnlyList questions={questions} accentHex={accentHex} />
       )}

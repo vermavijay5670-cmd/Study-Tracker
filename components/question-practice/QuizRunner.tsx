@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, RotateCcw, Check, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, RotateCcw, Check, X, History } from "lucide-react";
 import type { Question } from "@/lib/questionBank";
+import { useTrackerState } from "@/lib/useTrackerState";
 
 const DIFFICULTY_COLOR: Record<Question["difficulty"], string> = {
   easy: "#41FF72",
@@ -17,15 +18,71 @@ const TYPE_LABEL: Record<Question["type"], string> = {
   "how-many": "How Many",
 };
 
+// Shared frosted-glass treatment so question text stays readable over the
+// animated grid background — blurs whatever's behind the card, not the text.
+const GLASS = "backdrop-blur-md bg-white/[0.06] border-white/12 shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
+
 interface QuizRunnerProps {
   questions: Question[];
   accentHex: string;
+  progressKey: string;
 }
 
-export function QuizRunner({ questions, accentHex }: QuizRunnerProps) {
-  const [index, setIndex] = useState(0);
-  const [selections, setSelections] = useState<Record<string, number>>({});
+export function QuizRunner({ questions, accentHex, progressKey }: QuizRunnerProps) {
+  const { state, saveQuizProgress, clearQuizProgress } = useTrackerState();
+  const saved = state.quizProgress[progressKey];
+  const hasSavedProgress = !!saved && (saved.index > 0 || Object.keys(saved.selections).length > 0);
+
+  // Undecided until the person picks resume/restart (only asked when there's something to resume).
+  const [resolved, setResolved] = useState(!hasSavedProgress);
+  const [index, setIndex] = useState(saved?.index ?? 0);
+  const [selections, setSelections] = useState<Record<string, number>>(saved?.selections ?? {});
   const [finished, setFinished] = useState(false);
+
+  // Persist as progress changes — skipped while the resume/restart choice hasn't been made yet.
+  useEffect(() => {
+    if (!resolved || finished) return;
+    saveQuizProgress(progressKey, { index, selections });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, selections, resolved, finished, progressKey]);
+
+  if (!resolved) {
+    const resumeIndex = Math.min(saved!.index, questions.length - 1);
+    return (
+      <div className={`mt-8 flex flex-col items-center rounded-3xl border px-6 py-14 text-center ${GLASS}`}>
+        <History size={26} strokeWidth={1.5} style={{ color: accentHex }} />
+        <h3 className="mt-4 text-[16px] font-medium text-white">Pick up where you left off?</h3>
+        <p className="mt-1.5 max-w-sm text-[13px] leading-relaxed text-white/45">
+          You were on Question {resumeIndex + 1} of {questions.length}, with {Object.keys(saved!.selections).length}{" "}
+          answered so far.
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <button
+            onClick={() => {
+              setIndex(resumeIndex);
+              setSelections(saved!.selections);
+              setResolved(true);
+            }}
+            className="rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:scale-105"
+            style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
+          >
+            Continue
+          </button>
+          <button
+            onClick={() => {
+              clearQuizProgress(progressKey);
+              setIndex(0);
+              setSelections({});
+              setResolved(true);
+            }}
+            className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white/60 transition-colors hover:text-white"
+          >
+            Start from beginning
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const q = questions[index];
   const selected = selections[q.id];
@@ -42,6 +99,7 @@ export function QuizRunner({ questions, accentHex }: QuizRunnerProps) {
   function goNext() {
     if (isLast) {
       setFinished(true);
+      clearQuizProgress(progressKey);
     } else {
       setIndex((i) => i + 1);
     }
@@ -51,12 +109,13 @@ export function QuizRunner({ questions, accentHex }: QuizRunnerProps) {
     setSelections({});
     setIndex(0);
     setFinished(false);
+    clearQuizProgress(progressKey);
   }
 
   if (finished) {
     const pct = Math.round((score / questions.length) * 100);
     return (
-      <div className="mt-8 flex flex-col items-center rounded-3xl border border-white/10 bg-white/[0.03] px-6 py-14 text-center">
+      <div className={`mt-8 flex flex-col items-center rounded-3xl px-6 py-14 text-center ${GLASS}`}>
         <span
           className="flex h-20 w-20 items-center justify-center rounded-full text-[24px] font-bold"
           style={{ background: `${accentHex}1f`, color: accentHex }}
@@ -98,7 +157,7 @@ export function QuizRunner({ questions, accentHex }: QuizRunnerProps) {
         />
       </div>
 
-      <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6">
+      <div className={`rounded-2xl border p-5 sm:p-6 ${GLASS}`}>
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <span
             className="rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide"
@@ -120,7 +179,7 @@ export function QuizRunner({ questions, accentHex }: QuizRunnerProps) {
           {q.options.map((opt, oi) => {
             const isCorrect = oi === q.correctIndex;
             const isChosen = oi === selected;
-            let style: React.CSSProperties = { borderColor: "rgba(255,255,255,0.1)" };
+            let style: React.CSSProperties = { borderColor: "rgba(255,255,255,0.12)" };
             if (revealed) {
               if (isCorrect) style = { borderColor: "#41FF7266", background: "#41FF7214", color: "#8CFFA8" };
               else if (isChosen) style = { borderColor: "#FF6B6B66", background: "#FF6B6B14", color: "#FF9E9E" };
@@ -130,7 +189,7 @@ export function QuizRunner({ questions, accentHex }: QuizRunnerProps) {
                 key={oi}
                 onClick={() => choose(oi)}
                 disabled={revealed}
-                className="flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-2.5 text-left text-[13.5px] text-white/75 transition-colors disabled:cursor-default"
+                className="flex w-full items-center justify-between gap-3 rounded-xl border bg-black/15 px-4 py-2.5 text-left text-[13.5px] text-white/75 transition-colors disabled:cursor-default"
                 style={style}
               >
                 {opt}
@@ -142,7 +201,7 @@ export function QuizRunner({ questions, accentHex }: QuizRunnerProps) {
         </div>
 
         {revealed && (
-          <div className="mt-4 rounded-xl border border-white/8 bg-black/20 p-3.5 text-[12.5px] leading-relaxed text-white/55">
+          <div className="mt-4 rounded-xl border border-white/8 bg-black/25 p-3.5 text-[12.5px] leading-relaxed text-white/55">
             {q.explanation}
           </div>
         )}
