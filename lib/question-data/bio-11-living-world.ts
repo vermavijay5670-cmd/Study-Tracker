@@ -12,7 +12,7 @@ const questions: Question[] = [
       "Consciousness"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Metabolism — the sum of all chemical reactions occurring in an organism's body — is universal to every living organism, including unicellular ones, and is considered the defining property of life, unlike reproduction or consciousness which are not shown by every living individual.",
     "difficulty": "medium"
   },
   {
@@ -26,7 +26,7 @@ const questions: Question[] = [
       "All metabolic reactions require a nucleus"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "When metabolic reactions are carried out in a test tube outside the cell (a cell-free, in vitro system), the isolated reactions are chemically 'alive' but the reaction mixture itself is not a living system — showing that metabolism alone, when isolated from a cell, does not make something 'living'.",
     "difficulty": "hard"
   },
   {
@@ -40,7 +40,7 @@ const questions: Question[] = [
       "Formation of new species"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In living organisms, growth is intrinsic, resulting from an increase in the number of cells (via cell division) or an increase in the mass of cells, unlike non-living objects, which if anything, grow only by accumulation of material on their surface.",
     "difficulty": "easy"
   },
   {
@@ -54,7 +54,7 @@ const questions: Question[] = [
       "Reproduction"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Non-living objects such as mountains and boulders can only increase in size by accumulation of material on their surface (extrinsic growth), unlike living organisms, which grow intrinsically from within through cell division and increase in cell mass.",
     "difficulty": "medium"
   },
   {
@@ -68,7 +68,7 @@ const questions: Question[] = [
       "Response to stimuli"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Reproduction is not shown by every living individual — sterile worker bees and mules are alive, carry out metabolism, and respond to stimuli, but cannot reproduce — so unlike metabolism, reproduction is not a strictly universal characteristic of life.",
     "difficulty": "medium"
   },
   {
@@ -82,7 +82,7 @@ const questions: Question[] = [
       "It cannot sense its environment"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A mule, being a hybrid of a horse and a donkey, is sterile and cannot reproduce, even though it grows, carries out metabolism, and responds to stimuli like any other living organism — illustrating that reproduction is not a strictly universal feature of life.",
     "difficulty": "medium"
   },
   {
@@ -96,7 +96,7 @@ const questions: Question[] = [
       "Only organisms with a nervous system"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The ability to sense the environment and respond to stimuli (consciousness in the biological sense) is shown by both unicellular organisms, such as an amoeba withdrawing from a harmful stimulus, and multicellular organisms, making it a widespread feature of life.",
     "difficulty": "medium"
   },
   {
@@ -110,7 +110,7 @@ const questions: Question[] = [
       "Only prokaryotes"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Self-consciousness, in the strict sense of self-awareness, is generally attributed only to human beings, distinguishing it from the broader biological consciousness (responsiveness to stimuli) seen throughout the living world.",
     "difficulty": "hard"
   },
   {
@@ -124,7 +124,7 @@ const questions: Question[] = [
       "Organisms with a defined life span"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "NCERT defines living organisms as self-replicating, evolving, and self-regulating interactive systems capable of responding to external stimuli — a comprehensive definition that captures life as an integrated system rather than just a checklist of individual traits.",
     "difficulty": "hard"
   },
   {
@@ -138,7 +138,7 @@ const questions: Question[] = [
       "Metabolism"
     ],
     "correctIndex": 3,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Metabolism is considered the best diagnostic feature of life because it is shown by every living organism without exception, unlike reproduction (absent in mules, sterile worker bees) or growth (which can plateau in mature multicellular organisms).",
     "difficulty": "medium"
   },
   {
@@ -152,7 +152,7 @@ const questions: Question[] = [
       "50,000"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Biodiversity \u2014 no detailed explanation provided in the source data.",
+    "explanation": "According to NCERT, about 1.7 million species of plants, animals, and microorganisms have been described so far, though the actual number present on Earth is estimated to be considerably higher.",
     "difficulty": "easy"
   },
   {
@@ -166,7 +166,7 @@ const questions: Question[] = [
       "Nomenclature"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Biodiversity \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Biodiversity refers to the wide range and variety of living organisms found on Earth — the term used to describe this diversity across all forms and levels of life.",
     "difficulty": "easy"
   },
   {
@@ -180,7 +180,7 @@ const questions: Question[] = [
       "All large mammals have already been catalogued"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Biodiversity \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A large number of species, particularly among microorganisms and insects, remain unidentified and undescribed, especially in unexplored, biodiversity-rich habitats — this is why the actual number of species on Earth is estimated to be far higher than the ~1.7 million already catalogued.",
     "difficulty": "medium"
   },
   {
@@ -194,7 +194,7 @@ const questions: Question[] = [
       "Anatomy"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Biodiversity \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Taxonomy is the branch of biology dealing with the identification, nomenclature (naming), and classification of organisms — these three activities together form the core of taxonomic study.",
     "difficulty": "easy"
   },
   {
@@ -208,7 +208,7 @@ const questions: Question[] = [
       "Photographed"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Biodiversity \u2014 no detailed explanation provided in the source data.",
+    "explanation": "For any scientific study of an organism, it is essential that the organism first be correctly identified and given a proper name, so that observations and findings can be unambiguously linked to that specific organism.",
     "difficulty": "easy"
   },
   {
@@ -222,7 +222,7 @@ const questions: Question[] = [
       "Ernst Mayr"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The system of binomial nomenclature, in which every organism is given a two-part scientific name (genus + specific epithet), was proposed by Carolus Linnaeus.",
     "difficulty": "easy"
   },
   {
@@ -236,7 +236,7 @@ const questions: Question[] = [
       "Order"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In the scientific name Mangifera indica, 'Mangifera' is the genus name (first word) and 'indica' is the specific epithet (second word) — together they form the binomial name of mango.",
     "difficulty": "easy"
   },
   {
@@ -250,7 +250,7 @@ const questions: Question[] = [
       "Greek"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "As per the universal rules of nomenclature, biological/scientific names are written in Latin (or latinised forms), regardless of the language of the country where the study is conducted, ensuring names are universally understood.",
     "difficulty": "easy"
   },
   {
@@ -264,7 +264,7 @@ const questions: Question[] = [
       "Class"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In a binomial scientific name, the first word represents the genus and the second word represents the specific epithet, which together uniquely identify the species.",
     "difficulty": "easy"
   },
   {
@@ -278,7 +278,7 @@ const questions: Question[] = [
       "Enclosed in brackets"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "When printed, biological/scientific names must be written in italics to distinguish them typographically from ordinary text, as per the universal rules of nomenclature.",
     "difficulty": "easy"
   },
   {
@@ -292,7 +292,7 @@ const questions: Question[] = [
       "Written in italics"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "When a biological name is handwritten, since italics cannot be produced by hand, the genus name and specific epithet are separately underlined to indicate that they should be set in italics when printed.",
     "difficulty": "medium"
   },
   {
@@ -306,7 +306,7 @@ const questions: Question[] = [
       "Neither"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In Mangifera indica, the genus name 'Mangifera' begins with a capital letter, while the specific epithet 'indica' begins with a small (lower-case) letter, as per the rules of nomenclature.",
     "difficulty": "medium"
   },
   {
@@ -320,7 +320,7 @@ const questions: Question[] = [
       "Symbol"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The first word of a scientific name, denoting the genus, always begins with a capital letter, while the second word (specific epithet) begins with a small letter.",
     "difficulty": "easy"
   },
   {
@@ -334,7 +334,7 @@ const questions: Question[] = [
       "They are cultured in the lab"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Nomenclature, or the naming of an organism, is only possible after the organism has been properly identified, since a name must correspond to a correctly recognised and characterised organism.",
     "difficulty": "medium"
   },
   {
@@ -348,7 +348,7 @@ const questions: Question[] = [
       "ICMR"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The naming of plants is governed by universal rules laid down in the International Code of Botanical Nomenclature (ICBN), now known as the International Code of Nomenclature for algae, fungi, and plants (ICN).",
     "difficulty": "medium"
   },
   {
@@ -362,7 +362,7 @@ const questions: Question[] = [
       "CITES"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The naming of animals is governed by universal rules laid down in the International Code of Zoological Nomenclature (ICZN), which is distinct from the code governing plant names.",
     "difficulty": "medium"
   },
   {
@@ -376,7 +376,7 @@ const questions: Question[] = [
       "Apis indica"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The scientific (binomial) name of the common housefly is Musca domestica, where Musca is the genus and domestica is the specific epithet.",
     "difficulty": "easy"
   },
   {
@@ -390,7 +390,7 @@ const questions: Question[] = [
       "Cytology"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomy & Systematics \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Taxonomy specifically deals with the identification, nomenclature, and classification of organisms, forming the foundation of biological systematics.",
     "difficulty": "easy"
   },
   {
@@ -404,7 +404,7 @@ const questions: Question[] = [
       "Speciation"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomy & Systematics \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The term 'Systematics' is derived from the Latin word 'Systema', referring to the systematic arrangement of organisms — a concept reflected in the title of Linnaeus's work, Systema Naturae.",
     "difficulty": "medium"
   },
   {
@@ -418,7 +418,7 @@ const questions: Question[] = [
       "Only the habitat of the organism"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomy & Systematics \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Unlike classical taxonomy, which focuses mainly on identification, naming, and classification based on similarities and differences, systematics additionally takes into account the evolutionary relationships between organisms (phylogeny).",
     "difficulty": "hard"
   },
   {
@@ -432,7 +432,7 @@ const questions: Question[] = [
       "Only study of genetics"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomy & Systematics \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Taxonomy broadly encompasses characterisation, identification, classification, and nomenclature of organisms — together forming the complete scope of taxonomic study, not just naming alone.",
     "difficulty": "medium"
   },
   {
@@ -446,7 +446,7 @@ const questions: Question[] = [
       "Habitat"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Each unit or category used in classification, representing a particular rank such as species, genus, or family, is called a taxon; the plural form is 'taxa'.",
     "difficulty": "easy"
   },
   {
@@ -454,13 +454,13 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following represents the correct sequence of taxonomic categories from lower to higher rank?",
     "options": [
-      "Kingdom \u2192 Phylum \u2192 Class \u2192 Order \u2192 Family \u2192 Genus \u2192 Species",
-      "Species \u2192 Genus \u2192 Family \u2192 Order \u2192 Class \u2192 Phylum \u2192 Kingdom",
-      "Genus \u2192 Species \u2192 Family \u2192 Class \u2192 Order \u2192 Phylum \u2192 Kingdom",
-      "Species \u2192 Family \u2192 Genus \u2192 Order \u2192 Class \u2192 Phylum \u2192 Kingdom"
+      "Kingdom → Phylum → Class → Order → Family → Genus → Species",
+      "Species → Genus → Family → Order → Class → Phylum → Kingdom",
+      "Genus → Species → Family → Class → Order → Phylum → Kingdom",
+      "Species → Family → Genus → Order → Class → Phylum → Kingdom"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The taxonomic hierarchy, arranged from the lowest to the highest rank, follows the sequence: Species → Genus → Family → Order → Class → Phylum (or Division in plants) → Kingdom.",
     "difficulty": "easy"
   },
   {
@@ -474,7 +474,7 @@ const questions: Question[] = [
       "Order"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Species is the basic and lowest unit of taxonomic classification, representing a group of actually or potentially interbreeding natural populations.",
     "difficulty": "easy"
   },
   {
@@ -488,7 +488,7 @@ const questions: Question[] = [
       "Class"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A species is defined as a group of individual organisms with fundamental similarities that are capable of interbreeding to produce fertile offspring under natural conditions.",
     "difficulty": "medium"
   },
   {
@@ -502,7 +502,7 @@ const questions: Question[] = [
       "Classes"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A genus comprises a group of closely related species that share more characteristics with one another than with species belonging to other genera.",
     "difficulty": "easy"
   },
   {
@@ -516,7 +516,7 @@ const questions: Question[] = [
       "Belong to the same species"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Lion (Panthera leo), leopard (Panthera pardus), and tiger (Panthera tigris) are placed in the same genus, Panthera, because they share more characters in common with each other than with species of other genera, even though they remain distinct species.",
     "difficulty": "medium"
   },
   {
@@ -530,7 +530,7 @@ const questions: Question[] = [
       "Phylum"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Family is a taxonomic category comprising one or more related genera that share fewer similarities among themselves compared to the closer similarities shared within a genus or species.",
     "difficulty": "medium"
   },
   {
@@ -544,7 +544,7 @@ const questions: Question[] = [
       "Habitat only"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In flowering plants, families are characterised on the basis of the aggregate of both vegetative and reproductive features of the member plants, not on reproductive features alone.",
     "difficulty": "medium"
   },
   {
@@ -558,7 +558,7 @@ const questions: Question[] = [
       "Diptera"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Although Solanaceae and Convolvulaceae are different families, they share certain common floral and vegetative features and are grouped together under the order Polemoniales, illustrating how order is a broader category than family.",
     "difficulty": "hard"
   },
   {
@@ -572,7 +572,7 @@ const questions: Question[] = [
       "Chiroptera"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The families Felidae (cats) and Canidae (dogs) are grouped together under the order Carnivora because members of both families share the common characteristic of being flesh-eating (carnivorous) mammals.",
     "difficulty": "medium"
   },
   {
@@ -586,7 +586,7 @@ const questions: Question[] = [
       "Live in water"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Orders Primata and Carnivora, though containing quite dissimilar animals, are grouped together in class Mammalia because members of both orders possess milk-producing (mammary) glands, a defining feature of mammals.",
     "difficulty": "medium"
   },
   {
@@ -600,7 +600,7 @@ const questions: Question[] = [
       "Kingdom only"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In the taxonomic hierarchy of animals, the category ranked directly above class is Phylum, which groups together classes sharing a fundamental body plan.",
     "difficulty": "easy"
   },
   {
@@ -614,7 +614,7 @@ const questions: Question[] = [
       "Genus"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In plant classification, the taxonomic category equivalent to phylum in animals is called Division.",
     "difficulty": "easy"
   },
   {
@@ -628,7 +628,7 @@ const questions: Question[] = [
       "Cellulose cell wall"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Animals belonging to phylum Chordata share the presence of a notochord (a supportive rod along the back) at some stage of their life, which is the defining feature of this phylum.",
     "difficulty": "medium"
   },
   {
@@ -642,7 +642,7 @@ const questions: Question[] = [
       "Family"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Kingdom is the highest and most inclusive taxonomic category, encompassing all the phyla or divisions that share certain broad common features.",
     "difficulty": "easy"
   },
   {
@@ -656,7 +656,7 @@ const questions: Question[] = [
       "Muscidae, Musca, Diptera"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In the taxonomic hierarchy of the housefly, the genus is Musca, the family is Muscidae, and the order is Diptera — moving from the more specific (genus) to the broader (order) category.",
     "difficulty": "hard"
   },
   {
@@ -670,7 +670,7 @@ const questions: Question[] = [
       "Solanaceae"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Homo sapiens (modern human) belongs to the family Hominidae within the taxonomic hierarchy of primates.",
     "difficulty": "medium"
   },
   {
@@ -684,13 +684,13 @@ const questions: Question[] = [
       "Genus"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Classes Mammalia, Aves, and Reptilia are all grouped together under the phylum Chordata, since members of all three classes possess a notochord at some stage of development, despite being quite different from one another otherwise.",
     "difficulty": "medium"
   },
   {
     "id": "livingworld-50",
     "type": "mcq",
-    "question": "Wheat and mango, though belonging to different families, are grouped in the same taxonomic category:",
+    "question": "Mango and guava, though belonging to different families, are grouped in the same taxonomic category:",
     "options": [
       "Order",
       "Class - Dicotyledonae",
@@ -698,7 +698,7 @@ const questions: Question[] = [
       "Species"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Categories \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Mango and guava belong to different plant families (Anacardiaceae and Myrtaceae respectively), yet both are dicotyledonous flowering plants and are therefore grouped together in the broader taxonomic category of class — Dicotyledonae — which sits above family in the hierarchy.",
     "difficulty": "hard"
   },
   {
@@ -712,7 +712,7 @@ const questions: Question[] = [
       "Robert Whittaker"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Species Concept \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The concept of species as a group of actually or potentially interbreeding natural populations, reproductively isolated from other such groups, was proposed by Ernst Mayr and is known as the biological species concept.",
     "difficulty": "hard"
   },
   {
@@ -726,7 +726,7 @@ const questions: Question[] = [
       "Any other kingdom"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Species Concept \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Organisms belonging to the same species show more similarities among themselves than when compared with organisms of other species or genera, which is a defining basis of the species category.",
     "difficulty": "medium"
   },
   {
@@ -740,7 +740,7 @@ const questions: Question[] = [
       "Have different sizes only"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Species Concept \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Tiger and lion, despite belonging to the same genus Panthera, are considered separate species primarily because they cannot interbreed under natural conditions to produce fertile offspring, satisfying the biological species concept.",
     "difficulty": "medium"
   },
   {
@@ -754,7 +754,7 @@ const questions: Question[] = [
       "Species"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Species Concept \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A genus is defined as a group of related species that resemble one another and share more characteristics with each other than with species belonging to a different genus.",
     "difficulty": "medium"
   },
   {
@@ -768,7 +768,7 @@ const questions: Question[] = [
       "Zoological park"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A herbarium is a storehouse of collected plant specimens that have been dried, pressed, and preserved on sheets, arranged systematically according to an accepted classification system, serving as a reference for taxonomic study.",
     "difficulty": "easy"
   },
   {
@@ -782,7 +782,7 @@ const questions: Question[] = [
       "Market price of the plant"
     ],
     "correctIndex": 3,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A herbarium sheet label typically provides the date and place of collection, the collector's name, and the family of the plant, but does not include commercial information such as market price.",
     "difficulty": "medium"
   },
   {
@@ -796,7 +796,7 @@ const questions: Question[] = [
       "They can replace botanical gardens"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Herbarium specimens serve as authentic voucher or reference material that taxonomists can consult and verify against in future studies, which is what makes herbaria a quick and reliable referral system.",
     "difficulty": "hard"
   },
   {
@@ -810,7 +810,7 @@ const questions: Question[] = [
       "Museums"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Botanical gardens are places where living plants are cultivated for reference and identification purposes, with specimens labelled to indicate their scientific names and families.",
     "difficulty": "easy"
   },
   {
@@ -824,7 +824,7 @@ const questions: Question[] = [
       "Bengaluru"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The Indian Botanical Garden, one of the largest botanical gardens of its kind, is located at Howrah, near Kolkata.",
     "difficulty": "medium"
   },
   {
@@ -838,7 +838,7 @@ const questions: Question[] = [
       "Colour of flowers only"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "In addition to being grown for study and reference, plants in botanical gardens are labelled with their scientific (botanical) and family names, which aids identification.",
     "difficulty": "easy"
   },
   {
@@ -852,7 +852,7 @@ const questions: Question[] = [
       "Manual"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A museum houses plant and animal specimens preserved in preservative solutions, such as formalin, for study and reference by researchers and students.",
     "difficulty": "easy"
   },
   {
@@ -866,7 +866,7 @@ const questions: Question[] = [
       "Taxidermy"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Since insects are generally small, they are commonly preserved in museums by pinning them in specially designed insect boxes, which allows their features to be examined without decay.",
     "difficulty": "medium"
   },
   {
@@ -880,7 +880,7 @@ const questions: Question[] = [
       "Slides"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Larger animals such as birds and mammals are typically preserved in museums as stuffed specimens using the technique of taxidermy, which maintains their external form for display and study.",
     "difficulty": "medium"
   },
   {
@@ -894,7 +894,7 @@ const questions: Question[] = [
       "Stained slides only"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Animal skeletons in museums are generally preserved and displayed as dry specimens, distinct from soft-tissue specimens which require preservative solutions.",
     "difficulty": "medium"
   },
   {
@@ -908,7 +908,7 @@ const questions: Question[] = [
       "Museums"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Zoological parks (zoos) are places where wild animals are kept in protected, captive environments, allowing study of their food habits and behaviour.",
     "difficulty": "easy"
   },
   {
@@ -922,7 +922,7 @@ const questions: Question[] = [
       "Catalogue"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A taxonomic key is an aid used for the identification of plants and animals, constructed on the basis of similarities and dissimilarities among organisms.",
     "difficulty": "easy"
   },
   {
@@ -936,7 +936,7 @@ const questions: Question[] = [
       "Only molecular data"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Taxonomic keys are generally based on a series of contrasting characters, usually arranged in pairs called couplets, that guide identification of an organism step by step.",
     "difficulty": "medium"
   },
   {
@@ -950,7 +950,7 @@ const questions: Question[] = [
       "Clade"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Each statement within a couplet of a taxonomic key is called a lead; every couplet has two contrasting leads, of which only one applies to the organism being identified.",
     "difficulty": "hard"
   },
   {
@@ -964,7 +964,7 @@ const questions: Question[] = [
       "Catalogue"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A key having two contrasting alternatives at each step, of which only one applies at a time, leading through successive couplets until identification is achieved, is called a dichotomous key.",
     "difficulty": "medium"
   },
   {
@@ -978,7 +978,7 @@ const questions: Question[] = [
       "Season"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Separate taxonomic keys are needed for each distinct taxonomic category — such as family, genus, or species — since the diagnostic characters used to distinguish members differ between ranks.",
     "difficulty": "medium"
   },
   {
@@ -992,7 +992,7 @@ const questions: Question[] = [
       "Herbarium"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A Flora is a publication that provides the actual account of the habitat and distribution of plants found in a particular geographical area.",
     "difficulty": "medium"
   },
   {
@@ -1006,7 +1006,7 @@ const questions: Question[] = [
       "Flora"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A Manual is a publication useful for identifying the names of species present in a particular area, serving as a practical field reference guide.",
     "difficulty": "medium"
   },
   {
@@ -1020,7 +1020,7 @@ const questions: Question[] = [
       "Key"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A Monograph is a publication that provides comprehensive, detailed information on any one particular taxon.",
     "difficulty": "medium"
   },
   {
@@ -1034,7 +1034,7 @@ const questions: Question[] = [
       "Monograph"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "A Catalogue is a record that provides detailed information, such as the date and place of collection, for specimens held in a collection.",
     "difficulty": "medium"
   },
   {
@@ -1048,7 +1048,7 @@ const questions: Question[] = [
       "Museum"
     ],
     "correctIndex": 2,
-    "explanation": "Topic: Taxonomic Aids \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Herbarium, botanical garden, and museum are all recognised taxonomic aids used in the identification and study of organisms, whereas the periodic table is a chemistry tool unrelated to taxonomy.",
     "difficulty": "easy"
   },
   {
@@ -1062,7 +1062,7 @@ const questions: Question[] = [
       "Assertion is true but reason is unrelated"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Characteristics of Life \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The assertion is false because reproduction is not shown by every living organism — sterile worker bees and mules do not reproduce despite being fully alive — so reproduction cannot be treated as the sole or universal criterion defining life.",
     "difficulty": "hard"
   },
   {
@@ -1076,7 +1076,7 @@ const questions: Question[] = [
       "Both are false"
     ],
     "correctIndex": 0,
-    "explanation": "Topic: Species Concept \u2014 no detailed explanation provided in the source data.",
+    "explanation": "Both statements are true, and the reason correctly explains the assertion: species is the basic unit of classification precisely because its members can interbreed freely under natural conditions to produce fertile offspring, which is the defining criterion of a species.",
     "difficulty": "hard"
   },
   {
@@ -1090,7 +1090,7 @@ const questions: Question[] = [
       "Nomenclature is governed by universal rules"
     ],
     "correctIndex": 1,
-    "explanation": "Topic: Nomenclature \u2014 no detailed explanation provided in the source data.",
+    "explanation": "The specific epithet in a scientific name always begins with a small (lower-case) letter, never a capital — so the statement claiming it 'can be written with a capital first letter' is the incorrect one, making it the correct answer to this INCORRECT-statement question.",
     "difficulty": "hard"
   }
 ];

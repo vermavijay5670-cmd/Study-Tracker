@@ -17,7 +17,12 @@ export interface Question {
 // Add each chapter's file under ./question-data and register it here — loaded lazily so
 // unopened chapters never add to the bundle other tabs have to download.
 const REGISTRY: Record<string, () => Promise<Question[]>> = {
+  phy_11_0: () => import("./question-data/phy-11-units-and-measurements").then((m) => m.default),
+  phy_11_1: () => import("./question-data/phy-11-motion-in-a-straight-line").then((m) => m.default),
+  phy_11_2: () => import("./question-data/phy-11-motion-in-a-plane").then((m) => m.default),
+  bio_11_0: () => import("./question-data/bio-11-living-world").then((m) => m.default),
   bio_11_1: () => import("./question-data/bio-11-biological-classification").then((m) => m.default),
+  bio_11_2: () => import("./question-data/bio-11-plant-kingdom").then((m) => m.default),
   chem_11_0: () => import("./question-data/chem-11-some-basic-concepts").then((m) => m.default),
   chem_11_1: () => import("./question-data/chem-11-structure-of-atom").then((m) => m.default),
   chem_11_4: () => import("./question-data/chem-11-thermodynamics").then((m) => m.default),
