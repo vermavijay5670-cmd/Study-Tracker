@@ -32,6 +32,7 @@ export interface TrackerState {
   dailyGoals: Record<string, Goal[]>; // date -> that day's goal checklist
   customThoughts: string[]; // user-added positive thoughts, added to the daily rotation pool
   quizProgress: Record<string, QuizProgress>; // key: `${subject}_${cls}_${chapterIndex}` -> in-progress quiz state
+  challenge45Progress: Record<string, boolean>; // key: `${day}-phy` | `${day}-chem` | `${day}-bio` -> completed
   stopwatchRunningSince: number | null; // epoch ms when the current session started; drives the display, never touched by checkpoints
   stopwatchLastFlushAt: number | null; // epoch ms of the last committed checkpoint; bookkeeping only
   stopwatchSessions: number;

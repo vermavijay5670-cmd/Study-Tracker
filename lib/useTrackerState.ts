@@ -26,6 +26,7 @@ function defaultState(): TrackerState {
     dailyGoals: {},
     customThoughts: [],
     quizProgress: {},
+    challenge45Progress: {},
     stopwatchRunningSince: null,
     stopwatchLastFlushAt: null,
     stopwatchSessions: 0,
@@ -53,6 +54,7 @@ function loadState(): TrackerState {
       dailyGoals: parsed.dailyGoals ?? {},
       customThoughts: parsed.customThoughts ?? [],
       quizProgress: parsed.quizProgress ?? {},
+      challenge45Progress: parsed.challenge45Progress ?? {},
     };
     // Stopwatch session count/timer are per-day — start fresh if this is a new day
     // (including for users whose stored data predates this field entirely).
@@ -393,6 +395,16 @@ export function useTrackerState() {
     [setState]
   );
 
+  const toggleChallenge45Item = useCallback(
+    (itemKey: string) => {
+      setState((s) => ({
+        ...s,
+        challenge45Progress: { ...s.challenge45Progress, [itemKey]: !s.challenge45Progress[itemKey] },
+      }));
+    },
+    [setState]
+  );
+
 
   // so the on-screen timer keeps counting up smoothly instead of jumping back on every checkpoint.
   const checkpointStopwatch = useCallback(() => {
@@ -658,5 +670,6 @@ export function useTrackerState() {
     addCustomThought,
     saveQuizProgress,
     clearQuizProgress,
+    toggleChallenge45Item,
   };
 }
