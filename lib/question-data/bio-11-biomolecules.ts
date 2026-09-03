@@ -4,7 +4,7 @@ import type { Question } from "@/lib/questionBank";
 // Chapter: Biomolecules
 // 78 MCQs covering all sub-topics with mixed difficulty (easy/medium/hard)
 
-export const BIOMOLECULES = [
+const questions: Question[] = [
   {
     id: 'biomolecules-1',
     type: 'mcq',
