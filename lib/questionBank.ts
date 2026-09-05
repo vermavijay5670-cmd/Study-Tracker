@@ -30,6 +30,8 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   bio_11_5: () => import("./question-data/bio-11-anatomy-of-flowering-plants").then((m) => m.default),
   bio_11_6: () => import("./question-data/bio-11-structural-organisation-in-animals").then((m) => m.default),
   bio_11_7: () => import("./question-data/bio-11-cell-the-unit-of-life").then((m) => m.default),
+  bio_11_8: () => import("./question-data/bio-11-biomolecules").then((m) => m.default),
+  bio_11_9: () => import("./question-data/bio-11-cell-cycle-and-division").then((m) => m.default),
   bio_11_13: () => import("./question-data/bio-11-breathing-and-exchange-of-gases").then((m) => m.default),
   bio_11_14: () => import("./question-data/bio-11-body-fluids-and-circulation").then((m) => m.default),
   bio_11_15: () => import("./question-data/bio-11-excretory-products").then((m) => m.default),
@@ -52,12 +54,16 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   bio_12_0: () => import("./question-data/bio-12-sexual-reproduction-plants").then((m) => m.default),
   bio_12_1: () => import("./question-data/bio-12-human-reproduction").then((m) => m.default),
   bio_12_2: () => import("./question-data/bio-12-reproductive-health").then((m) => m.default),
+<<<<<<< HEAD
   bio_12_5: () => import("./question-data/bio-12-evolution").then((m) => m.default),
   bio_12_6: () => import("./question-data/bio-12-human-health-and-disease").then((m) => m.default),
   bio_12_8: () => import("./question-data/bio-12-biotechnology-principles-and-processes").then((m) => m.default),
   bio_12_9: () => import("./question-data/bio-12-biotechnology-and-its-applications").then((m) => m.default),
   bio_12_11: () => import("./question-data/bio-12-ecosystem").then((m) => m.default),
   bio_12_12: () => import("./question-data/bio-12-biodiversity-and-conservation").then((m) => m.default),
+=======
+  
+>>>>>>> f85baa0e7edda9da6939402041b748755b7a9a20
 };
 
 export async function getChapterQuestions(subject: Subject, cls: 11 | 12, chapterIndex: number): Promise<Question[]> {
