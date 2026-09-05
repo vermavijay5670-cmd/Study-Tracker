@@ -32,6 +32,7 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   bio_11_7: () => import("./question-data/bio-11-cell-the-unit-of-life").then((m) => m.default),
   bio_11_8: () => import("./question-data/bio-11-biomolecules").then((m) => m.default),
   bio_11_9: () => import("./question-data/bio-11-cell-cycle-and-division").then((m) => m.default),
+  bio_11_10: () => import("./question-data/bio-11-photosynthesis-in-higher-plants").then((m) => m.default),
   bio_11_13: () => import("./question-data/bio-11-breathing-and-exchange-of-gases").then((m) => m.default),
   bio_11_14: () => import("./question-data/bio-11-body-fluids-and-circulation").then((m) => m.default),
   bio_11_15: () => import("./question-data/bio-11-excretory-products").then((m) => m.default),
