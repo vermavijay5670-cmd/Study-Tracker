@@ -52,6 +52,12 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   bio_12_0: () => import("./question-data/bio-12-sexual-reproduction-plants").then((m) => m.default),
   bio_12_1: () => import("./question-data/bio-12-human-reproduction").then((m) => m.default),
   bio_12_2: () => import("./question-data/bio-12-reproductive-health").then((m) => m.default),
+  bio_12_5: () => import("./question-data/bio-12-evolution").then((m) => m.default),
+  bio_12_6: () => import("./question-data/bio-12-human-health-and-disease").then((m) => m.default),
+  bio_12_8: () => import("./question-data/bio-12-biotechnology-principles-and-processes").then((m) => m.default),
+  bio_12_9: () => import("./question-data/bio-12-biotechnology-and-its-applications").then((m) => m.default),
+  bio_12_11: () => import("./question-data/bio-12-ecosystem").then((m) => m.default),
+  bio_12_12: () => import("./question-data/bio-12-biodiversity-and-conservation").then((m) => m.default),
 };
 
 export async function getChapterQuestions(subject: Subject, cls: 11 | 12, chapterIndex: number): Promise<Question[]> {
