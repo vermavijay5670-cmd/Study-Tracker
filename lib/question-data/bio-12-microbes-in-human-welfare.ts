@@ -1,4 +1,4 @@
-import type { Question } from "@/lib/questionbank";
+import type { Question } from "@/lib/questionBank";
 
 // NEET Biology Question Bank
 // Chapter: Microbes in Human Welfare
