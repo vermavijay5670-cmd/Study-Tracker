@@ -68,7 +68,7 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   bio_12_7: () => import("./question-data/bio-12-microbes-in-human-welfare").then((m) => m.default),
   bio_12_8: () => import("./question-data/bio-12-biotechnology-principles-and-processes").then((m) => m.default),
   bio_12_9: () => import("./question-data/bio-12-biotechnology-and-its-applications").then((m) => m.default),
-  bio_12_10:() => import( "./qustion-data/bio-12-organism-and-population").then ((m) => m.default),
+  bio_12_10:() => import( "./question-data/bio-12-organism-and-population").then ((m) => m.default),
   bio_12_11: () => import("./question-data/bio-12-ecosystem").then((m) => m.default),
   bio_12_12: () => import("./question-data/bio-12-biodiversity-and-conservation").then((m) => m.default),
 
