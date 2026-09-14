@@ -26,7 +26,7 @@ function defaultState(): TrackerState {
     dailyGoals: {},
     customThoughts: [],
     quizProgress: {},
-    challenge45Progress: {},
+    dayMarks: {},
     stopwatchRunningSince: null,
     stopwatchLastFlushAt: null,
     stopwatchSessions: 0,
@@ -54,7 +54,7 @@ function loadState(): TrackerState {
       dailyGoals: parsed.dailyGoals ?? {},
       customThoughts: parsed.customThoughts ?? [],
       quizProgress: parsed.quizProgress ?? {},
-      challenge45Progress: parsed.challenge45Progress ?? {},
+      dayMarks: parsed.dayMarks ?? {},
     };
     // Stopwatch session count/timer are per-day — start fresh if this is a new day
     // (including for users whose stored data predates this field entirely).
@@ -395,12 +395,21 @@ export function useTrackerState() {
     [setState]
   );
 
-  const toggleChallenge45Item = useCallback(
-    (itemKey: string) => {
-      setState((s) => ({
-        ...s,
-        challenge45Progress: { ...s.challenge45Progress, [itemKey]: !s.challenge45Progress[itemKey] },
-      }));
+  const setDayMark = useCallback(
+    (dateKey: string, mark: "tick" | "cross") => {
+      setState((s) => ({ ...s, dayMarks: { ...s.dayMarks, [dateKey]: mark } }));
+    },
+    [setState]
+  );
+
+  const clearDayMark = useCallback(
+    (dateKey: string) => {
+      setState((s) => {
+        if (!(dateKey in s.dayMarks)) return s;
+        const next = { ...s.dayMarks };
+        delete next[dateKey];
+        return { ...s, dayMarks: next };
+      });
     },
     [setState]
   );
@@ -670,6 +679,7 @@ export function useTrackerState() {
     addCustomThought,
     saveQuizProgress,
     clearQuizProgress,
-    toggleChallenge45Item,
+    setDayMark,
+    clearDayMark,
   };
 }

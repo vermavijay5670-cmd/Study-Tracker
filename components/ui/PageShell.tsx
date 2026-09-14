@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Clock, LayoutDashboard, NotebookPen, BookOpenCheck, ListChecks, Target, Flame, LogOut } from "lucide-react";
+import { Clock, LayoutDashboard, NotebookPen, BookOpenCheck, ListChecks, Target, CalendarCheck, LogOut } from "lucide-react";
 import { ProfileChip } from "./ProfileChip";
 import { useTrackerState } from "@/lib/useTrackerState";
 
@@ -14,7 +14,7 @@ const NAV = [
   { href: "/question-practice", label: "Question Practice", icon: ListChecks },
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/daily-goals", label: "Daily Goals", icon: Target },
-  { href: "/45-day-challenge", label: "45 Days Challenge", icon: Flame },
+  { href: "/mark-your-days", label: "Mark Your Days", icon: CalendarCheck },
 ];
 
 export function PageShell({ children }: { children: React.ReactNode }) {

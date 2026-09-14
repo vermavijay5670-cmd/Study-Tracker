@@ -30,14 +30,11 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   bio_11_5: () => import("./question-data/bio-11-anatomy-of-flowering-plants").then((m) => m.default),
   bio_11_6: () => import("./question-data/bio-11-structural-organisation-in-animals").then((m) => m.default),
   bio_11_7: () => import("./question-data/bio-11-cell-the-unit-of-life").then((m) => m.default),
-<<<<<<< HEAD
-=======
   bio_11_8: () => import("./question-data/bio-11-biomolecules").then((m) => m.default),
   bio_11_9: () => import("./question-data/bio-11-cell-cycle-and-division").then((m) => m.default),
   bio_11_10: () => import("./question-data/bio-11-photosynthesis-in-higher-plants").then((m) => m.default),
   bio_11_11: () => import("./question-data/bio-11-respiration-in-plants").then ((m) => m.default),
   bio_11_12: () => import("./question-data/bio-11-plant-growth-and-development").then ((m) => m.default),
->>>>>>> 58ea63abff5d11c7ca097ebc1fb39f57c767fa0f
   bio_11_13: () => import("./question-data/bio-11-breathing-and-exchange-of-gases").then((m) => m.default),
   bio_11_14: () => import("./question-data/bio-11-body-fluids-and-circulation").then((m) => m.default),
   bio_11_15: () => import("./question-data/bio-11-excretory-products").then((m) => m.default),
@@ -49,10 +46,14 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   chem_11_2: () => import("./question-data/chem-11-classification-of-elements").then((m) => m.default),
   chem_11_3: () => import("./question-data/chem-11-chemical-bonding").then((m) => m.default),
   chem_11_4: () => import("./question-data/chem-11-thermodynamics").then((m) => m.default),
+  chem_11_5: () => import("./question-data/chem-11-equilibrium").then ((m) => m.default),
+  chem_11_6: () => import("./question-data/chem-11-redox-reaction").then((m) => m.default),
   chem_12_0: () => import("./question-data/chem-12-solutions").then((m) => m.default),
   chem_12_1: () => import("./question-data/chem-12-electrochemistry").then((m) => m.default),
   chem_12_2: () => import("./question-data/chem-12-chemical-kinetics").then((m) => m.default),
   chem_12_3: () => import("./question-data/chem-12-d-and-f-block").then((m) => m.default),
+  chem_12_4: () => import("./question-data/chem-12-coordination-compounds").then((m) => m.default),
+  chem_12_5: () => import("./question-data/chem-12-haloalkanes-and-haloarenes").then((m) => m.default),
   phy_12_0: () => import("./question-data/phy-12-electric-charges-fields").then((m) => m.default),
   phy_12_1: () => import("./question-data/phy-12-electrostatic-potential-capacitance").then((m) => m.default),
   phy_12_2: () => import("./question-data/phy-12-current-electricity").then((m) => m.default),
@@ -60,22 +61,17 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   bio_12_0: () => import("./question-data/bio-12-sexual-reproduction-plants").then((m) => m.default),
   bio_12_1: () => import("./question-data/bio-12-human-reproduction").then((m) => m.default),
   bio_12_2: () => import("./question-data/bio-12-reproductive-health").then((m) => m.default),
-<<<<<<< HEAD
   bio_12_3: () => import("./question-data/bio-12-principles-of-inheritance-and-variation").then((m) => m.default),
   bio_12_4: () => import("./question-data/bio-12-molecular-basis-of-inheritance").then((m) => m.default),
-=======
->>>>>>> 58ea63abff5d11c7ca097ebc1fb39f57c767fa0f
   bio_12_5: () => import("./question-data/bio-12-evolution").then((m) => m.default),
   bio_12_6: () => import("./question-data/bio-12-human-health-and-disease").then((m) => m.default),
   bio_12_7: () => import("./question-data/bio-12-microbes-in-human-welfare").then((m) => m.default),
   bio_12_8: () => import("./question-data/bio-12-biotechnology-principles-and-processes").then((m) => m.default),
   bio_12_9: () => import("./question-data/bio-12-biotechnology-and-its-applications").then((m) => m.default),
+  bio_12_10:() => import( "./question-data/bio-12-organism-and-population").then ((m) => m.default),
   bio_12_11: () => import("./question-data/bio-12-ecosystem").then((m) => m.default),
   bio_12_12: () => import("./question-data/bio-12-biodiversity-and-conservation").then((m) => m.default),
-<<<<<<< HEAD
-=======
 
->>>>>>> 58ea63abff5d11c7ca097ebc1fb39f57c767fa0f
 };
 
 export async function getChapterQuestions(subject: Subject, cls: 11 | 12, chapterIndex: number): Promise<Question[]> {
