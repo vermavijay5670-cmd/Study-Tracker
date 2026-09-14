@@ -19,7 +19,7 @@ function dayNumberFor(date: Date, start: Date): number {
 }
 
 export function Challenge45Section() {
-  const { state, hydrated, toggleChallenge45Item } = useTrackerState();
+  const { state, hydrated, } = useTrackerState();
   const { start, end } = getChallengeDateRange();
 
   const today = new Date();
