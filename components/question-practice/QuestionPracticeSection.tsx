@@ -3,7 +3,7 @@
 import { useState, useEffect, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ChevronRight, Atom, Dna, FlaskConical, BookOpen, ListChecks, GraduationCap } from "lucide-react";
-import { GlowCard } from "@/components/ui/GlowCard";
+import { PaperTextureCard } from "@/components/ui/PaperTextureCard";
 import { CHAPTERS, SUBJECT_NAME, SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import { getChapterQuestions, hasChapterQuestions, type Question } from "@/lib/questionBank";
 import { useTrackerState } from "@/lib/useTrackerState";
@@ -111,7 +111,7 @@ export function QuestionPracticeSection() {
 
 function SubjectGrid({ lifting, onSelect }: { lifting: Subject | null; onSelect: (s: Subject) => void }) {
   return (
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+    <div className="grid grid-cols-1 gap-5">
       {SUBJECTS.map((subject, i) => {
         const accent = SUBJECT_ACCENT[subject];
         const accentHex = ACCENT_HEX[accent];
@@ -129,36 +129,37 @@ function SubjectGrid({ lifting, onSelect }: { lifting: Subject | null; onSelect:
             transition={{ duration: 0.26, ease: EASE }}
             className="cursor-pointer"
           >
-            <GlowCard accent={accent} delay={i * 0.05} variant="tilt" className="flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between">
-                  <span
-                    className="flex h-11 w-11 items-center justify-center rounded-2xl"
-                    style={{ background: `${accentHex}1a` }}
-                  >
-                    <Icon size={20} strokeWidth={1.75} style={{ color: accentHex }} />
-                  </span>
-                  <span
-                    className="rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide"
-                    style={{ background: `${accentHex}1a`, color: accentHex }}
-                  >
-                    {chapterCount} chapters
-                  </span>
+            <PaperTextureCard delay={i * 0.05} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+              <div className="flex items-center gap-4">
+                <span
+                  className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl"
+                  style={{ background: `${accentHex}1a` }}
+                >
+                  <Icon size={20} strokeWidth={1.75} style={{ color: accentHex }} />
+                </span>
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <h2 className="text-[17px] font-medium text-white">{SUBJECT_NAME[subject]}</h2>
+                    <span
+                      className="rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide"
+                      style={{ background: `${accentHex}1a`, color: accentHex }}
+                    >
+                      {chapterCount} chapters
+                    </span>
+                  </div>
+                  <p className="mt-1 text-[12px] leading-relaxed text-[#a3a3a3]">
+                    Browse Class 11 and 12 chapters, then open a chapter&apos;s question bank.
+                  </p>
                 </div>
-
-                <h2 className="mt-4 text-[17px] font-medium text-white">{SUBJECT_NAME[subject]}</h2>
-                <p className="mt-1.5 text-[12px] leading-relaxed text-[#a3a3a3]">
-                  Browse Class 11 and 12 chapters, then open a chapter&apos;s question bank.
-                </p>
               </div>
 
               <span
-                className="mt-6 flex items-center justify-center gap-1.5 rounded-full py-2.5 text-sm font-medium transition-colors"
+                className="flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium transition-colors sm:flex-shrink-0"
                 style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
               >
                 Browse chapters
               </span>
-            </GlowCard>
+            </PaperTextureCard>
           </motion.div>
         );
       })}
