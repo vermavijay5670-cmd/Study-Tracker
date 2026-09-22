@@ -24,7 +24,7 @@ export function PaperCard({ children, className = "", delay = 0 }: PaperCardProp
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 260, damping: 26, delay }}
-      className={`relative overflow-hidden rounded-[28px] border border-white/[0.09] bg-[#0a0908] p-5 shadow-[0_16px_36px_rgba(0,0,0,0.5)] sm:p-6 ${className}`}
+      className={`relative overflow-hidden rounded-[28px] border border-white/[0.07] bg-[#060605] p-5 shadow-[0_16px_36px_rgba(0,0,0,0.6)] sm:p-6 ${className}`}
     >
       <svg className="pointer-events-none absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
         <filter id={filterId} x="-20%" y="-20%" width="140%" height="140%">
@@ -34,15 +34,15 @@ export function PaperCard({ children, className = "", delay = 0 }: PaperCardProp
           <feTurbulence type="fractalNoise" baseFrequency="0.18 0.22" numOctaves="3" seed="31" result="fiber" />
           <feComposite in="bigFolds" in2="fiber" operator="arithmetic" k1="0" k2="0.8" k3="0.25" k4="0" result="surface" />
           {/* warm off-white light, matching the Today backdrop's tone */}
-          <feDiffuseLighting in="surface" lighting-color="#d6d0bf" surfaceScale="4.2" diffuseConstant="0.95" result="lit">
+          <feDiffuseLighting in="surface" lighting-color="#c4bda9" surfaceScale="4" diffuseConstant="0.72" result="lit">
             <feDistantLight azimuth="235" elevation="50" />
           </feDiffuseLighting>
           <feColorMatrix
             in="lit"
             type="matrix"
-            values="0.18 0.18 0.18 0 0
-                    0.18 0.18 0.18 0 0
-                    0.18 0.18 0.18 0 0
+            values="0.13 0.13 0.13 0 0
+                    0.13 0.13 0.13 0 0
+                    0.13 0.13 0.13 0 0
                     0    0    0    1 0"
           />
         </filter>
@@ -50,7 +50,7 @@ export function PaperCard({ children, className = "", delay = 0 }: PaperCardProp
       </svg>
 
       {/* keep it dark enough for the text on top to stay highly readable */}
-      <div className="pointer-events-none absolute inset-0 bg-black/45" />
+      <div className="pointer-events-none absolute inset-0 bg-black/[0.58]" />
 
       <div className="relative z-10">{children}</div>
     </motion.div>

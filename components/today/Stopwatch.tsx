@@ -94,17 +94,17 @@ export function Stopwatch({
 
   return (
     <PaperCard delay={0.08}>
-      <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
+      <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#FFD64D]/30 bg-[#FFD64D]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#FFD64D]">
         <Gauge size={11} strokeWidth={1.75} /> study session
       </span>
-      <h2 className="text-[16px] font-medium text-[#F6F4FF]">Stopwatch</h2>
+      <h2 className="text-[16px] font-medium text-[#F7F2E7]">Stopwatch</h2>
 
       <div className="mb-4 mt-1 flex items-center gap-1.5 text-[9px] uppercase tracking-wide text-white/40">
         <span
           className="h-1.5 w-1.5 rounded-full"
           style={{
-            background: running ? "#C084FC" : "rgba(192,132,252,0.25)",
-            boxShadow: running ? "0 0 8px rgba(192,132,252,0.85)" : "none",
+            background: running ? "#FFC93D" : "rgba(255,201,61,0.25)",
+            boxShadow: running ? "0 0 8px rgba(255,201,61,0.85)" : "none",
             animation: running ? "pulse 1.1s ease-in-out infinite" : "none",
           }}
         />
@@ -122,17 +122,17 @@ export function Stopwatch({
           <div key={b.u} className="flex items-end">
             <div className="flex min-w-[58px] flex-col items-center">
               <span
-                className="font-tabular text-[34px] font-bold leading-none text-[#F6F4FF]"
+                className="font-tabular text-[34px] font-bold leading-none text-[#F7F2E7]"
                 style={{ textShadow: "0 2px 10px rgba(0,0,0,0.35)" }}
               >
                 {b.v}
               </span>
               <span className="mt-1 text-[8px] uppercase tracking-wide text-white/40">{b.u}</span>
             </div>
-            {i < 2 && <span className="pb-3.5 text-2xl text-[#A855F7]/50">:</span>}
+            {i < 2 && <span className="pb-3.5 text-2xl text-[#FFD64D]/50">:</span>}
           </div>
         ))}
-        <span className="pb-1.5 pl-1 font-tabular text-[16px] font-medium text-[#C084FC]/60">.{centis}</span>
+        <span className="pb-1.5 pl-1 font-tabular text-[16px] font-medium text-[#FFC93D]/60">.{centis}</span>
       </div>
 
       <div className="mb-3 mt-2 flex justify-between text-[10px] uppercase tracking-wide text-white/40">
@@ -141,7 +141,7 @@ export function Stopwatch({
       </div>
 
       <div className="mb-4 flex gap-2">
-        <CapsuleButton onClick={running ? onPause : onStart} accent="purple" variant="solid" className="flex-1 rounded-full">
+        <CapsuleButton onClick={running ? onPause : onStart} accent="gold" variant="solid" className="flex-1 rounded-full">
           {running ? (
             <>
               <Pause size={14} strokeWidth={1.75} /> Pause
@@ -159,14 +159,14 @@ export function Stopwatch({
 
       <div className="flex items-center justify-between text-[9px] uppercase tracking-wide text-white/40">
         <span>daily goal</span>
-        <span className="flex items-center gap-1 font-tabular text-[#D8B4FE]">
+        <span className="flex items-center gap-1 font-tabular text-[#FFD64D]">
           <input
             type="number"
             step="0.5"
             min="0"
             value={dailyGoalHours}
             onChange={(e) => onSetGoal(parseFloat(e.target.value))}
-            className="w-10 border-0 border-b border-dashed border-[#D8B4FE]/45 bg-transparent text-right outline-none"
+            className="w-10 border-0 border-b border-dashed border-[#FFD64D]/45 bg-transparent text-right outline-none"
           />
           h
         </span>
@@ -174,7 +174,7 @@ export function Stopwatch({
       <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full border border-white/10 bg-black/25">
         <div
           className="h-full rounded-full transition-[width] duration-500"
-          style={{ width: `${goalPct}%`, background: "linear-gradient(90deg,#6d28d9,#E879F9)" }}
+          style={{ width: `${goalPct}%`, background: "linear-gradient(90deg,#7A4E0A,#FFE38A)" }}
         />
       </div>
     </PaperCard>

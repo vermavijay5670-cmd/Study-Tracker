@@ -1,3 +1,8 @@
+const GRAIN_SVG =
+  "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+const NOISE_SVG =
+  "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+
 export function CrumpledPaperBackdrop() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0908]" aria-hidden>
@@ -34,6 +39,19 @@ export function CrumpledPaperBackdrop() {
         }}
       />
       <div className="absolute inset-0 bg-black/35" />
+
+      {/* static fine grain, sitting on top of the fold texture — screen blend so specks
+          actually read as light grain against the near-black surface, instead of
+          vanishing the way overlay/multiply would on such a dark base */}
+      <div
+        className="absolute inset-0 opacity-[0.16] mix-blend-screen"
+        style={{ backgroundImage: `url("${GRAIN_SVG}")` }}
+      />
+      {/* slow flickering noise on top, for a lively, filmic grain that's still subtle */}
+      <div
+        className="absolute -inset-full opacity-[0.09] mix-blend-screen"
+        style={{ backgroundImage: `url("${NOISE_SVG}")`, animation: "grainNoise 0.7s steps(6) infinite" }}
+      />
     </div>
   );
 }

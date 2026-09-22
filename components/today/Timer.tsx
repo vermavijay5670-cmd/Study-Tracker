@@ -152,17 +152,17 @@ export function Timer({
 
   return (
     <PaperCard delay={0.16}>
-      <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
+      <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#FFD64D]/30 bg-[#FFD64D]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#FFD64D]">
         <TimerReset size={11} strokeWidth={1.75} /> focus timer
       </span>
-        <h2 className="text-[16px] font-medium text-[#F6F4FF]">Timer</h2>
+        <h2 className="text-[16px] font-medium text-[#F7F2E7]">Timer</h2>
 
         <div className="mb-4 mt-1 flex items-center gap-1.5 text-[9px] uppercase tracking-wide text-white/40">
           <span
             className="h-1.5 w-1.5 rounded-full"
             style={{
-              background: completed ? "#4ADE80" : running ? "#C084FC" : "rgba(192,132,252,0.25)",
-              boxShadow: completed ? "0 0 8px rgba(74,222,128,0.85)" : running ? "0 0 8px rgba(192,132,252,0.85)" : "none",
+              background: completed ? "#4ADE80" : running ? "#FFC93D" : "rgba(255,201,61,0.25)",
+              boxShadow: completed ? "0 0 8px rgba(74,222,128,0.85)" : running ? "0 0 8px rgba(255,201,61,0.85)" : "none",
               animation: running ? "pulse 1.1s ease-in-out infinite" : "none",
             }}
           />
@@ -182,7 +182,7 @@ export function Timer({
                 <span
                   className="font-tabular text-[28px] font-bold leading-none"
                   style={{
-                    color: completed ? "#86EFAC" : "#F6F4FF",
+                    color: completed ? "#86EFAC" : "#F7F2E7",
                     textShadow: "0 2px 10px rgba(0,0,0,0.35)",
                   }}
                 >
@@ -190,7 +190,7 @@ export function Timer({
                 </span>
                 <span className="mt-1 text-[8px] uppercase tracking-wide text-white/40">{b.u}</span>
               </div>
-              {i < 2 && <span className="pb-3 text-xl text-[#A855F7]/50">:</span>}
+              {i < 2 && <span className="pb-3 text-xl text-[#FFD64D]/50">:</span>}
             </div>
           ))}
         </div>
@@ -200,7 +200,7 @@ export function Timer({
             className="h-full rounded-full transition-[width] duration-300"
             style={{
               width: `${pct}%`,
-              background: completed ? "linear-gradient(90deg,#15803d,#4ADE80)" : "linear-gradient(90deg,#6d28d9,#D8B4FE)",
+              background: completed ? "linear-gradient(90deg,#15803d,#4ADE80)" : "linear-gradient(90deg,#7A4E0A,#FFD64D)",
             }}
           />
         </div>
@@ -214,7 +214,7 @@ export function Timer({
               className="rounded-full border px-2.5 py-1 text-[10px] font-medium transition-colors disabled:opacity-40"
               style={
                 timerDurationMs === min * 60_000
-                  ? { borderColor: "rgba(216,180,254,0.5)", background: "rgba(168,85,247,0.22)", color: "#F6F4FF" }
+                  ? { borderColor: "rgba(255,214,77,0.5)", background: "rgba(255,214,77,0.22)", color: "#F7F2E7" }
                   : { borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)" }
               }
             >
@@ -227,7 +227,7 @@ export function Timer({
             className="rounded-full border px-2.5 py-1 text-[10px] font-medium transition-colors disabled:opacity-40"
             style={
               showCustom
-                ? { borderColor: "rgba(216,180,254,0.5)", background: "rgba(168,85,247,0.22)", color: "#F6F4FF" }
+                ? { borderColor: "rgba(255,214,77,0.5)", background: "rgba(255,214,77,0.22)", color: "#F7F2E7" }
                 : { borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)" }
             }
           >
@@ -246,7 +246,7 @@ export function Timer({
                 placeholder="0"
                 value={customHrs}
                 onChange={(e) => setCustomHrs(e.target.value)}
-                className="w-14 rounded-lg border border-white/10 bg-black/25 px-2 py-1.5 text-center font-tabular text-[13px] text-white/85 outline-none focus:border-[#D8B4FE]/50"
+                className="w-14 rounded-lg border border-white/10 bg-black/25 px-2 py-1.5 text-center font-tabular text-[13px] text-white/85 outline-none focus:border-[#FFD64D]/50"
               />
             </label>
             <label className="flex flex-col gap-1">
@@ -258,7 +258,7 @@ export function Timer({
                 placeholder="0"
                 value={customMin}
                 onChange={(e) => setCustomMin(e.target.value)}
-                className="w-14 rounded-lg border border-white/10 bg-black/25 px-2 py-1.5 text-center font-tabular text-[13px] text-white/85 outline-none focus:border-[#D8B4FE]/50"
+                className="w-14 rounded-lg border border-white/10 bg-black/25 px-2 py-1.5 text-center font-tabular text-[13px] text-white/85 outline-none focus:border-[#FFD64D]/50"
               />
             </label>
             <CapsuleButton onClick={applyCustom} className="!px-4 !py-2">
@@ -272,13 +272,13 @@ export function Timer({
             <CapsuleButton onClick={handleReset} className="flex-1 rounded-full">
               <RotateCcw size={14} strokeWidth={1.75} /> Restart
             </CapsuleButton>
-            <CapsuleButton onClick={logSession} accent="purple" variant="solid" className="flex-1 rounded-full" disabled={logged}>
+            <CapsuleButton onClick={logSession} accent="gold" variant="solid" className="flex-1 rounded-full" disabled={logged}>
               <Plus size={14} strokeWidth={1.75} /> {logged ? "Logged" : `Log ${fmtDurationLabel(timerDurationMs)}`}
             </CapsuleButton>
           </div>
         ) : (
           <div className="flex gap-2">
-            <CapsuleButton onClick={running ? onPause : handleStart} accent="purple" variant="solid" className="flex-1 rounded-full">
+            <CapsuleButton onClick={running ? onPause : handleStart} accent="gold" variant="solid" className="flex-1 rounded-full">
               {running ? (
                 <>
                   <Pause size={14} strokeWidth={1.75} /> Pause
