@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Plus, X, Target, AlertTriangle } from "lucide-react";
-import { GlowCard } from "@/components/ui/GlowCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import type { Goal } from "@/lib/types";
 
 interface GoalsListProps {
@@ -27,7 +27,7 @@ export function GoalsList({ goals, onAdd, onToggle, onDelete, onToggleMandatory 
   }
 
   return (
-    <GlowCard accent="gold" variant="tilt">
+    <PaperTiltCard>
       <div className="mb-4 flex items-center justify-between">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-[#FFD64D]/30 bg-[#FFD64D]/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#FFD64D]">
           <Target size={11} strokeWidth={1.75} /> today&apos;s goals
@@ -116,7 +116,7 @@ export function GoalsList({ goals, onAdd, onToggle, onDelete, onToggleMandatory 
           ))}
         </ul>
       )}
-    </GlowCard>
+    </PaperTiltCard>
   );
 }
 

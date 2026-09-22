@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Check, X, CalendarCheck } from "lucide-react";
-import { GlowCard } from "@/components/ui/GlowCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { dateKey, todayKey } from "@/lib/date-utils";
 
 interface DayMarkCalendarProps {
@@ -54,7 +54,7 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
 
   return (
     <>
-      <GlowCard accent="cyan" variant="tilt">
+      <PaperTiltCard>
         <div className="mb-4 flex items-center justify-between">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-[#46FFE8]/30 bg-[#46FFE8]/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#46FFE8]">
             <CalendarCheck size={11} strokeWidth={1.75} /> mark your days
@@ -118,9 +118,9 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
             );
           })}
         </div>
-      </GlowCard>
+      </PaperTiltCard>
 
-      {/* Rendered as a sibling, not nested inside GlowCard — its tilt transform would
+      {/* Rendered as a sibling, not nested inside PaperTiltCard — its tilt transform would
           otherwise turn this fixed overlay into a clipped, mis-positioned element. */}
       <AnimatePresence>
         {openDay && openDate && (

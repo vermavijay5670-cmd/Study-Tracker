@@ -1,7 +1,7 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { GlowCard } from "./GlowCard";
+import { PaperTiltCard } from "./PaperTiltCard";
 import type { Accent } from "@/lib/data";
 import { ACCENT_HEX } from "@/lib/data";
 import { useCountUp } from "@/lib/useCountUp";
@@ -27,13 +27,12 @@ export function StatCard({
   icon: Icon,
   accent,
   delay = 0,
-  variant = "glow",
 }: StatCardProps) {
   const animated = useCountUp(value);
   const display = decimals > 0 ? animated.toFixed(decimals) : Math.round(animated).toString();
 
   return (
-    <GlowCard accent={accent} delay={delay} variant={variant} className="min-w-[140px] flex-1">
+    <PaperTiltCard delay={delay} className="min-w-[140px] flex-1">
       <div className="flex items-start justify-between">
         <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-[#a3a3a3]">{label}</span>
         <Icon size={16} strokeWidth={1.75} style={{ color: ACCENT_HEX[accent] }} className="opacity-80" />
@@ -43,6 +42,6 @@ export function StatCard({
         {suffix}
       </div>
       {sub && <div className="mt-1 text-[11px] text-[#a3a3a3]">{sub}</div>}
-    </GlowCard>
+    </PaperTiltCard>
   );
 }

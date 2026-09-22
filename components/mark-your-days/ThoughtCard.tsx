@@ -39,59 +39,59 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
     <div
       className="relative h-full -rotate-1 rounded-[4px] p-7 sm:p-8"
       style={{
-        background: "linear-gradient(165deg, #F6ECD6 0%, #EDE0C2 100%)",
-        boxShadow: "0 22px 40px rgba(0,0,0,0.45), 0 2px 0 rgba(255,255,255,0.4) inset, 0 -6px 14px rgba(0,0,0,0.06) inset",
+        background: "linear-gradient(165deg, #3E3220 0%, #251D12 100%)",
+        boxShadow: "0 22px 40px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.06) inset, 0 -6px 14px rgba(0,0,0,0.35) inset",
       }}
     >
-      {/* fibrous paper mottle, coarse layer */}
+      {/* fibrous paper mottle, coarse layer — overlay blend so it reads on a dark surface */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[0.22] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[0.16] mix-blend-overlay"
         style={{ backgroundImage: `url("${FIBER_SVG}")` }}
       />
       {/* fine grain, on top */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[0.25] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[0.14] mix-blend-overlay"
         style={{ backgroundImage: `url("${GRAIN_SVG}")` }}
       />
       {/* washi tape */}
       <div
         aria-hidden
         className="absolute -top-3 left-8 h-6 w-16 rotate-[-4deg] rounded-[2px]"
-        style={{ background: "rgba(217,142,58,0.55)", boxShadow: "0 2px 4px rgba(0,0,0,0.2)" }}
+        style={{ background: "rgba(217,142,58,0.62)", boxShadow: "0 2px 4px rgba(0,0,0,0.35)" }}
       />
-      {/* folded corner */}
+      {/* folded corner — a lighter catch-light on dark paper, instead of a dark shadow */}
       <div
         aria-hidden
         className="absolute bottom-0 right-0 h-7 w-7 rounded-bl-[4px]"
         style={{
-          background: "linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.12) 50%)",
+          background: "linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.07) 50%)",
         }}
       />
 
       <div className="relative flex items-start justify-between gap-3">
-        <span className="inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-[#8A6D3B]">
+        <span className="inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-[#E4C98C]">
           <Quote size={12} strokeWidth={2} /> thought of the day
         </span>
         <button
           onClick={shuffle}
           aria-label="Show another thought"
           title="Show another thought"
-          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-[#8A6D3B]/60 transition-colors hover:bg-black/5 hover:text-[#8A6D3B]"
+          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-[#E4C98C]/70 transition-colors hover:bg-white/10 hover:text-[#E4C98C]"
         >
           <Shuffle size={14} strokeWidth={1.75} />
         </button>
       </div>
 
       <p
-        className="relative mt-4 text-[19px] italic leading-relaxed text-[#4A3728] sm:text-[21px]"
+        className="relative mt-4 text-[19px] italic leading-relaxed text-[#F3E7CC] sm:text-[21px]"
         style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
       >
         “<HighlightedText text={shown} />”
       </p>
 
-      <div className="relative mt-6 border-t border-[#8A6D3B]/15 pt-3">
+      <div className="relative mt-6 border-t border-[#E4C98C]/20 pt-3">
         {showAdd ? (
           <form onSubmit={handleSubmit} className="space-y-1.5">
             <div className="flex gap-2">
@@ -102,21 +102,21 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
                 onChange={(e) => setDraft(e.target.value)}
                 onBlur={() => !draft && setShowAdd(false)}
                 placeholder="Write a thought that keeps you going…"
-                className="w-full rounded-lg border border-[#8A6D3B]/25 bg-white/40 px-3 py-2 text-[13.5px] text-[#4A3728] outline-none placeholder:text-[#8A6D3B]/45 focus:border-[#8A6D3B]/50"
+                className="w-full rounded-lg border border-[#E4C98C]/25 bg-black/25 px-3 py-2 text-[13.5px] text-[#F3E7CC] outline-none placeholder:text-[#E4C98C]/45 focus:border-[#E4C98C]/55"
               />
               <button
                 type="submit"
-                className="flex-shrink-0 rounded-lg bg-[#8A6D3B] px-3 py-2 text-[12.5px] font-medium text-[#F6ECD6] transition-transform hover:scale-105"
+                className="flex-shrink-0 rounded-lg bg-[#E4C98C] px-3 py-2 text-[12.5px] font-medium text-[#251D12] transition-transform hover:scale-105"
               >
                 Save
               </button>
             </div>
-            <p className="text-[10.5px] text-[#8A6D3B]/55">Tip: wrap a word in **asterisks** to highlight it.</p>
+            <p className="text-[10.5px] text-[#E4C98C]/60">Tip: wrap a word in **asterisks** to highlight it.</p>
           </form>
         ) : (
           <button
             onClick={() => setShowAdd(true)}
-            className="flex items-center gap-1.5 text-[12px] font-medium text-[#8A6D3B]/70 transition-colors hover:text-[#8A6D3B]"
+            className="flex items-center gap-1.5 text-[12px] font-medium text-[#E4C98C]/75 transition-colors hover:text-[#E4C98C]"
           >
             <Plus size={13} strokeWidth={2} /> Add your own thought
           </button>

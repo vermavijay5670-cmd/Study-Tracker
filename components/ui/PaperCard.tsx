@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { motion } from "framer-motion";
 
 interface PaperCardProps {
@@ -8,39 +9,49 @@ interface PaperCardProps {
   delay?: number;
 }
 
-// Fine grain + coarser flickering noise, matching the crumpled-paper backdrop's
-// fiber texture — gives the card body a tactile matte surface instead of a flat fill.
-const GRAIN_SVG =
-  "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
-const NOISE_SVG =
-  "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
-
 /**
  * Flat, matte card used on the Today section. No backdrop blur, no cursor
- * spotlight, no colored ambient glow and no pulse animation — just a
- * translucent dark panel with a faint edge and a layered paper-grain texture,
- * so the crumpled paper backdrop and the card surface read as one material.
+ * spotlight, no colored ambient glow, no tilt — just a static card whose own
+ * body is rendered as a crumpled-paper surface (fold structure + fiber noise,
+ * embossed with a raking light), matching the section's paper backdrop.
  */
 export function PaperCard({ children, className = "", delay = 0 }: PaperCardProps) {
+  const rawId = useId().replace(/[^a-zA-Z0-9]/g, "");
+  const filterId = `todaypaper-${rawId}`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 260, damping: 26, delay }}
-      className={`relative overflow-hidden rounded-[28px] border border-white/[0.09] bg-black/40 p-5 shadow-[0_16px_36px_rgba(0,0,0,0.5)] sm:p-6 ${className}`}
+      className={`relative overflow-hidden rounded-[28px] border border-white/[0.09] bg-[#0a0908] p-5 shadow-[0_16px_36px_rgba(0,0,0,0.5)] sm:p-6 ${className}`}
     >
-      {/* static fine grain */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.09] mix-blend-overlay"
-        style={{ backgroundImage: `url("${GRAIN_SVG}")` }}
-      />
-      {/* animated flickering noise, layered on top for a lively, filmic paper feel */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-full opacity-[0.05] mix-blend-soft-light"
-        style={{ backgroundImage: `url("${NOISE_SVG}")`, animation: "grainNoise 0.6s steps(6) infinite" }}
-      />
+      <svg className="pointer-events-none absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
+        <filter id={filterId} x="-20%" y="-20%" width="140%" height="140%">
+          {/* big fold structure, scaled for a card-sized surface */}
+          <feTurbulence type="fractalNoise" baseFrequency="0.022 0.03" numOctaves="2" seed="13" result="bigFolds" />
+          {/* fine fiber / wrinkle grain */}
+          <feTurbulence type="fractalNoise" baseFrequency="0.18 0.22" numOctaves="3" seed="31" result="fiber" />
+          <feComposite in="bigFolds" in2="fiber" operator="arithmetic" k1="0" k2="0.8" k3="0.25" k4="0" result="surface" />
+          {/* warm off-white light, matching the Today backdrop's tone */}
+          <feDiffuseLighting in="surface" lighting-color="#d6d0bf" surfaceScale="4.2" diffuseConstant="0.95" result="lit">
+            <feDistantLight azimuth="235" elevation="50" />
+          </feDiffuseLighting>
+          <feColorMatrix
+            in="lit"
+            type="matrix"
+            values="0.18 0.18 0.18 0 0
+                    0.18 0.18 0.18 0 0
+                    0.18 0.18 0.18 0 0
+                    0    0    0    1 0"
+          />
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#${filterId})`} />
+      </svg>
+
+      {/* keep it dark enough for the text on top to stay highly readable */}
+      <div className="pointer-events-none absolute inset-0 bg-black/45" />
+
       <div className="relative z-10">{children}</div>
     </motion.div>
   );

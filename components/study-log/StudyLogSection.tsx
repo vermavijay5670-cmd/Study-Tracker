@@ -1,7 +1,7 @@
 "use client";
 
 import { Flame, Trophy, CalendarCheck, Timer } from "lucide-react";
-import { GlowCard } from "@/components/ui/GlowCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { StatCard } from "@/components/ui/StatCard";
 import { Heatmap } from "./Heatmap";
 import { HoursBarChart } from "./HoursBarChart";
@@ -57,7 +57,7 @@ export function StudyLogSection() {
         />
       </div>
 
-      <GlowCard accent="gold" delay={0.2} variant="tilt">
+      <PaperTiltCard delay={0.2}>
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-[15px] font-medium text-white">Activity</h2>
@@ -83,12 +83,12 @@ export function StudyLogSection() {
 
         <h3 className="mb-2 text-[11px] font-medium uppercase tracking-[0.1em] text-[#a3a3a3]">Last 14 days</h3>
         <HoursBarChart log={state.log} dailyGoalHours={state.dailyGoalHours} />
-      </GlowCard>
+      </PaperTiltCard>
 
-      <GlowCard delay={0.25} variant="tilt">
+      <PaperTiltCard delay={0.25}>
         <h2 className="mb-4 text-[15px] font-medium text-white">Daily ledger</h2>
         <Ledger log={state.log} startDate={state.startDate} dailyGoalHours={state.dailyGoalHours} onChange={setLogEntry} />
-      </GlowCard>
+      </PaperTiltCard>
     </div>
   );
 }

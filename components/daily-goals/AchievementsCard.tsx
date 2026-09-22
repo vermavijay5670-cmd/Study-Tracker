@@ -1,7 +1,7 @@
 "use client";
 
 import { Trophy, Flame, CheckCircle2 } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 
 interface AchievementsCardProps {
   currentStreak: number;
@@ -29,7 +29,7 @@ export function AchievementsCard({
   const todayPct = todayTotal > 0 ? Math.round((todayDone / todayTotal) * 100) : 0;
 
   return (
-    <LiquidGlassCard glow="yellow" variant="tilt" texture className="flex-1">
+    <PaperTiltCard className="flex-1">
       <span className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-[#FFD64D]/30 bg-[#FFD64D]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#FFD64D]">
         <Trophy size={11} strokeWidth={1.75} /> goal achievements
       </span>
@@ -45,7 +45,7 @@ export function AchievementsCard({
           sub={mandatoryTotal > 0 ? `mandatory: ${mandatoryDone}/${mandatoryTotal}` : "goals completed"}
         />
       </div>
-    </LiquidGlassCard>
+    </PaperTiltCard>
   );
 }
 
