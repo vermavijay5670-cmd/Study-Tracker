@@ -1,13 +1,14 @@
-import KineticGrid from "@/components/ui/kinetic-grid";
+import { CrumpledPaperBackdrop } from "@/components/ui/CrumpledPaperBackdrop";
 import { PageShell } from "@/components/ui/PageShell";
 import { TodaySection } from "@/components/today/TodaySection";
 
 export default function TodayPage() {
   return (
-    <KineticGrid>
+    <>
+      <CrumpledPaperBackdrop />
       <PageShell>
         <TodaySection />
       </PageShell>
-    </KineticGrid>
+    </>
   );
 }

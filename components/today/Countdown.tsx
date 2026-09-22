@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CalendarClock } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperCard } from "@/components/ui/PaperCard";
 import { parseKey, pad } from "@/lib/date-utils";
 
 interface CountdownProps {
@@ -20,7 +20,7 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
     return () => clearInterval(id);
   }, []);
 
-  if (!now) return <LiquidGlassCard delay={0} variant="tilt" className="min-h-[280px]"><span /></LiquidGlassCard>;
+  if (!now) return <PaperCard delay={0} className="min-h-[220px]"><span /></PaperCard>;
 
   let days = "—";
   let hh = "00";
@@ -51,50 +51,61 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
   }
 
   return (
-    <LiquidGlassCard delay={0} variant="tilt">
-      <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
-        <CalendarClock size={11} strokeWidth={1.75} /> target exam
-      </span>
-      <h2 className="text-[16px] font-medium text-[#F6F4FF]">NEET UG Countdown</h2>
-      <label className="mt-1 flex items-center gap-2 text-[10px] uppercase tracking-wide text-white/40">
-        exam date
-        <input
-          type="date"
-          value={examDate}
-          onChange={(e) => onSetExamDate(e.target.value)}
-          className="rounded border-0 border-b border-dashed border-white/30 bg-transparent px-1 py-0.5 text-[11px] text-white/70 outline-none focus:border-[#D8B4FE]"
-        />
-      </label>
+    <PaperCard delay={0}>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+        {/* left: label + big day count */}
+        <div className="min-w-0">
+          <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
+            <CalendarClock size={11} strokeWidth={1.75} /> target exam
+          </span>
+          <h2 className="text-[16px] font-medium text-[#F6F4FF]">NEET UG Countdown</h2>
+          <label className="mt-1 flex items-center gap-2 text-[10px] uppercase tracking-wide text-white/40">
+            exam date
+            <input
+              type="date"
+              value={examDate}
+              onChange={(e) => onSetExamDate(e.target.value)}
+              className="rounded border-0 border-b border-dashed border-white/30 bg-transparent px-1 py-0.5 text-[11px] text-white/70 outline-none focus:border-[#D8B4FE]"
+            />
+          </label>
 
-      <div className="my-4 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-
-      <div className="font-tabular text-[60px] font-bold leading-none text-[#F6F4FF]" style={{ textShadow: "0 2px 12px rgba(0,0,0,0.35)" }}>
-        {days}
-      </div>
-      <div className="mb-4 text-[9px] uppercase tracking-[0.25em] text-white/40">{label}</div>
-
-      <div className="mb-4 flex items-center gap-0">
-        {[
-          { v: hh, u: "hrs" },
-          { v: mm, u: "min" },
-          { v: ss, u: "sec" },
-        ].map((b, i) => (
-          <div key={b.u} className="flex items-center">
-            <div className="flex min-w-[52px] flex-col items-center">
-              <span className="font-tabular text-[22px] font-bold text-[#D8B4FE]">{b.v}</span>
-              <span className="mt-0.5 text-[8px] uppercase tracking-wide text-white/40">{b.u}</span>
-            </div>
-            {i < 2 && <span className="pb-2.5 text-lg text-[#A855F7]/50">:</span>}
+          <div className="mt-4 flex items-end gap-3">
+            <span
+              className="font-tabular text-[64px] font-bold leading-none text-[#F6F4FF] sm:text-[76px]"
+              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
+            >
+              {days}
+            </span>
+            <span className="mb-2 text-[10px] uppercase tracking-[0.25em] text-white/40">{label}</span>
           </div>
-        ))}
-      </div>
+        </div>
 
-      <div className="h-1 w-full overflow-hidden rounded-full border border-white/10 bg-black/25">
-        <div
-          className="h-full rounded-full transition-[width] duration-500"
-          style={{ width: `${pct}%`, background: "linear-gradient(90deg,#6d28d9,#D8B4FE)" }}
-        />
+        {/* right: hh:mm:ss + progress */}
+        <div className="flex flex-col gap-4 sm:min-w-[260px]">
+          <div className="flex items-center justify-center gap-0 sm:justify-end">
+            {[
+              { v: hh, u: "hrs" },
+              { v: mm, u: "min" },
+              { v: ss, u: "sec" },
+            ].map((b, i) => (
+              <div key={b.u} className="flex items-center">
+                <div className="flex min-w-[58px] flex-col items-center">
+                  <span className="font-tabular text-[26px] font-bold text-[#D8B4FE]">{b.v}</span>
+                  <span className="mt-0.5 text-[8px] uppercase tracking-wide text-white/40">{b.u}</span>
+                </div>
+                {i < 2 && <span className="pb-3 text-lg text-[#A855F7]/50">:</span>}
+              </div>
+            ))}
+          </div>
+
+          <div className="h-1 w-full overflow-hidden rounded-full border border-white/10 bg-black/25">
+            <div
+              className="h-full rounded-full transition-[width] duration-500"
+              style={{ width: `${pct}%`, background: "linear-gradient(90deg,#6d28d9,#D8B4FE)" }}
+            />
+          </div>
+        </div>
       </div>
-    </LiquidGlassCard>
+    </PaperCard>
   );
 }

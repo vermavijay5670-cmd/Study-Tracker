@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause, RotateCcw, TimerReset, Plus, Check } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperCard } from "@/components/ui/PaperCard";
 import { CapsuleButton } from "@/components/ui/CapsuleButton";
 import { pad, todayKey } from "@/lib/date-utils";
 
@@ -151,11 +151,10 @@ export function Timer({
   const pct = timerDurationMs > 0 ? 100 - (remainingMs / timerDurationMs) * 100 : 0;
 
   return (
-    <div className={`rounded-[30px] p-[2px] ${running ? "timer-border-frame" : ""}`}>
-      <LiquidGlassCard delay={0.16} variant="tilt">
-        <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
-          <TimerReset size={11} strokeWidth={1.75} /> focus timer
-        </span>
+    <PaperCard delay={0.16}>
+      <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
+        <TimerReset size={11} strokeWidth={1.75} /> focus timer
+      </span>
         <h2 className="text-[16px] font-medium text-[#F6F4FF]">Timer</h2>
 
         <div className="mb-4 mt-1 flex items-center gap-1.5 text-[9px] uppercase tracking-wide text-white/40">
@@ -295,7 +294,6 @@ export function Timer({
             </CapsuleButton>
           </div>
         )}
-      </LiquidGlassCard>
-    </div>
+    </PaperCard>
   );
 }

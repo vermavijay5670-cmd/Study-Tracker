@@ -32,23 +32,24 @@ export function TodaySection() {
   const todayHours = state.log[todayKey()] ?? 0;
 
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-5">
       <Countdown examDate={state.examDate} startDate={state.startDate} onSetExamDate={setExamDate} />
-      <Stopwatch
-        todayHours={todayHours}
-        dailyGoalHours={state.dailyGoalHours}
-        stopwatchRunningSince={state.stopwatchRunningSince}
-        stopwatchLastFlushAt={state.stopwatchLastFlushAt}
-        stopwatchSessions={state.stopwatchSessions}
-        stopwatchSessionMs={state.stopwatchSessionMs}
-        onStart={startStopwatch}
-        onPause={pauseStopwatch}
-        onReset={resetStopwatchSessions}
-        onCheckpoint={checkpointStopwatch}
-        onFlushOnUnmount={flushStopwatchOnUnmount}
-        onSetGoal={setDailyGoalHours}
-      />
-      <div className="sm:col-span-2 lg:col-span-1">
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Stopwatch
+          todayHours={todayHours}
+          dailyGoalHours={state.dailyGoalHours}
+          stopwatchRunningSince={state.stopwatchRunningSince}
+          stopwatchLastFlushAt={state.stopwatchLastFlushAt}
+          stopwatchSessions={state.stopwatchSessions}
+          stopwatchSessionMs={state.stopwatchSessionMs}
+          onStart={startStopwatch}
+          onPause={pauseStopwatch}
+          onReset={resetStopwatchSessions}
+          onCheckpoint={checkpointStopwatch}
+          onFlushOnUnmount={flushStopwatchOnUnmount}
+          onSetGoal={setDailyGoalHours}
+        />
         <Timer
           timerDurationMs={state.timerDurationMs}
           timerRemainingMs={state.timerRemainingMs}

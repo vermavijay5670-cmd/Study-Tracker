@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause, RotateCcw, Gauge } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperCard } from "@/components/ui/PaperCard";
 import { CapsuleButton } from "@/components/ui/CapsuleButton";
 import { fmtHrs, pad } from "@/lib/date-utils";
 
@@ -93,7 +93,7 @@ export function Stopwatch({
   const centis = pad(Math.floor((sessionElapsedMs % 1000) / 10));
 
   return (
-    <LiquidGlassCard delay={0.08} variant="tilt">
+    <PaperCard delay={0.08}>
       <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#D8B4FE]/30 bg-[#A855F7]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#D8B4FE]">
         <Gauge size={11} strokeWidth={1.75} /> study session
       </span>
@@ -177,6 +177,6 @@ export function Stopwatch({
           style={{ width: `${goalPct}%`, background: "linear-gradient(90deg,#6d28d9,#E879F9)" }}
         />
       </div>
-    </LiquidGlassCard>
+    </PaperCard>
   );
 }
