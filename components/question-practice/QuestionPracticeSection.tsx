@@ -129,17 +129,17 @@ function SubjectGrid({ lifting, onSelect }: { lifting: Subject | null; onSelect:
             transition={{ duration: 0.26, ease: EASE }}
             className="cursor-pointer"
           >
-            <PaperTextureCard delay={i * 0.05} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+            <PaperTextureCard delay={i * 0.05} className="flex min-h-[176px] flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
               <div className="flex items-center gap-4">
                 <span
-                  className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl"
+                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl"
                   style={{ background: `${accentHex}1a` }}
                 >
-                  <Icon size={20} strokeWidth={1.75} style={{ color: accentHex }} />
+                  <Icon size={22} strokeWidth={1.75} style={{ color: accentHex }} />
                 </span>
                 <div>
                   <div className="flex items-center gap-2.5">
-                    <h2 className="text-[17px] font-medium text-white">{SUBJECT_NAME[subject]}</h2>
+                    <h2 className="text-[18px] font-medium text-white">{SUBJECT_NAME[subject]}</h2>
                     <span
                       className="rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide"
                       style={{ background: `${accentHex}1a`, color: accentHex }}
@@ -147,7 +147,7 @@ function SubjectGrid({ lifting, onSelect }: { lifting: Subject | null; onSelect:
                       {chapterCount} chapters
                     </span>
                   </div>
-                  <p className="mt-1 text-[12px] leading-relaxed text-[#a3a3a3]">
+                  <p className="mt-1 text-[12.5px] leading-relaxed text-white/65">
                     Browse Class 11 and 12 chapters, then open a chapter&apos;s question bank.
                   </p>
                 </div>

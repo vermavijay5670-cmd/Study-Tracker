@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { addDays, dateKey, parseKey } from "@/lib/date-utils";
 
 interface BalanceChartProps {
@@ -69,7 +69,7 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
   const avgPerDay = totalDays > 0 ? totalHoursLogged / totalDays : 0;
 
   return (
-    <LiquidGlassCard glow="cyan" variant="tilt" texture>
+    <PaperTiltCard>
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h2 className="text-[14px] font-medium text-white/60">Total study hours</h2>
@@ -149,6 +149,6 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
           <span className="h-2 w-2 rounded-sm bg-[#C084FC]" /> Cumulative hours logged
         </span>
       </div>
-    </LiquidGlassCard>
+    </PaperTiltCard>
   );
 }

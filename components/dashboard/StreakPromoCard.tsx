@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Flame } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject } from "@/lib/types";
 
@@ -17,7 +17,7 @@ const INITIAL: Record<Subject, string> = { phy: "P", chem: "C", bio: "B" };
 
 export function StreakPromoCard({ currentStreak, bestStreak, totalDone }: StreakPromoCardProps) {
   return (
-    <LiquidGlassCard delay={0.1} glow="orange" variant="tilt" texture className="flex h-full flex-col justify-between">
+    <PaperTiltCard delay={0.1} className="flex h-full flex-col justify-between">
       <div>
         <span className="mb-3 inline-flex items-center justify-center rounded-full bg-[#A855F7]/20 p-2">
           <Flame size={16} strokeWidth={1.75} className="text-[#D8B4FE]" />
@@ -58,6 +58,6 @@ export function StreakPromoCard({ currentStreak, bestStreak, totalDone }: Streak
           Open planner
         </Link>
       </div>
-    </LiquidGlassCard>
+    </PaperTiltCard>
   );
 }

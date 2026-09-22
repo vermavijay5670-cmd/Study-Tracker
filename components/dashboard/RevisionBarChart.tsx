@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { addDays, dateKey, parseKey } from "@/lib/date-utils";
 import type { ChapterState, Subject } from "@/lib/types";
 import { CHAPTERS } from "@/lib/data";
@@ -53,7 +53,7 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
   const totalThisPeriod = data[data.length - 1]?.count ?? 0;
 
   return (
-    <LiquidGlassCard delay={0.12} glow="red" variant="tilt" texture>
+    <PaperTiltCard delay={0.12}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-[14px] font-medium text-white/60">Revision activity</h2>
@@ -100,6 +100,6 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
           </BarChart>
         </ResponsiveContainer>
       </div>
-    </LiquidGlassCard>
+    </PaperTiltCard>
   );
 }

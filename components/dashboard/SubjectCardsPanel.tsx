@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDownLeft, ArrowUpRight, GraduationCap } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { SUBJECT_NAME, SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject, SubjectStats } from "@/lib/types";
 
@@ -23,7 +23,7 @@ export function SubjectCardsPanel({ perSubject }: SubjectCardsPanelProps) {
   const pct = front.total > 0 ? Math.round((front.done / front.total) * 100) : 0;
 
   return (
-    <LiquidGlassCard delay={0.05} glow="green" variant="tilt" texture>
+    <PaperTiltCard delay={0.05}>
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-[15px] font-medium text-[#F6F4FF]">Subjects</h2>
         <Link href="/planner" className="text-[11px] text-white/40 hover:text-white/70">
@@ -111,6 +111,6 @@ export function SubjectCardsPanel({ perSubject }: SubjectCardsPanelProps) {
           <ArrowUpRight size={14} strokeWidth={1.75} /> Revise
         </Link>
       </div>
-    </LiquidGlassCard>
+    </PaperTiltCard>
   );
 }

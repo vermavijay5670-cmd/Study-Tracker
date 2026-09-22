@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Clock3, RefreshCw } from "lucide-react";
-import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject } from "@/lib/types";
 import { relDays } from "@/lib/date-utils";
@@ -13,7 +13,7 @@ type Activity =
 
 export function RecentActivityList({ activity }: { activity: Activity[] }) {
   return (
-    <LiquidGlassCard delay={0.15} glow="yellow" variant="tilt" texture>
+    <PaperTiltCard delay={0.15}>
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-[15px] font-medium text-[#F6F4FF]">Recent activity</h2>
         <Link href="/study-log" className="text-[11px] text-white/40 hover:text-white/70">
@@ -63,6 +63,6 @@ export function RecentActivityList({ activity }: { activity: Activity[] }) {
           })}
         </div>
       )}
-    </LiquidGlassCard>
+    </PaperTiltCard>
   );
 }

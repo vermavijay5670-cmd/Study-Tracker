@@ -33,15 +33,15 @@ export function PaperTextureCard({ children, className = "", delay = 0 }: PaperT
           {/* fine fiber / wrinkle grain */}
           <feTurbulence type="fractalNoise" baseFrequency="0.18 0.22" numOctaves="3" seed="17" result="fiber" />
           <feComposite in="bigFolds" in2="fiber" operator="arithmetic" k1="0" k2="0.8" k3="0.25" k4="0" result="surface" />
-          <feDiffuseLighting in="surface" lighting-color="#d6d0c0" surfaceScale="4.5" diffuseConstant="1" result="lit">
+          <feDiffuseLighting in="surface" lighting-color="#c9c3b2" surfaceScale="4.2" diffuseConstant="0.82" result="lit">
             <feDistantLight azimuth="235" elevation="50" />
           </feDiffuseLighting>
           <feColorMatrix
             in="lit"
             type="matrix"
-            values="0.19 0.19 0.19 0 0
-                    0.19 0.19 0.19 0 0
-                    0.19 0.19 0.19 0 0
+            values="0.15 0.15 0.15 0 0
+                    0.15 0.15 0.15 0 0
+                    0.15 0.15 0.15 0 0
                     0    0    0    1 0"
           />
         </filter>
@@ -49,7 +49,7 @@ export function PaperTextureCard({ children, className = "", delay = 0 }: PaperT
       </svg>
 
       {/* keep it dark enough for the text on top to stay highly readable */}
-      <div className="pointer-events-none absolute inset-0 bg-black/40" />
+      <div className="pointer-events-none absolute inset-0 bg-black/50" />
 
       <div className="relative z-10">{children}</div>
     </motion.div>
