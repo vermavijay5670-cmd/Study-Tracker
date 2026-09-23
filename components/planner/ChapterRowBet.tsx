@@ -33,7 +33,7 @@ const AVATAR_GRADIENTS = [
 ];
 
 const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
-  easy: "#4ADE80",
+  easy: "#6FB37A",
   medium: "#FACC15",
   hard: "#F87171",
 };
@@ -184,11 +184,11 @@ export function ChapterRowBet({
           aria-label={state.done ? "Mark chapter not done" : "Mark chapter done"}
           className="relative z-10 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border transition-colors"
           style={{
-            borderColor: state.done ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.12)",
-            background: state.done ? "rgba(74,222,128,0.18)" : "transparent",
+            borderColor: state.done ? "rgba(111,179,122,0.5)" : "rgba(255,255,255,0.12)",
+            background: state.done ? "rgba(111,179,122,0.18)" : "transparent",
           }}
         >
-          {state.done ? <Check size={13} strokeWidth={2.5} className="text-[#4ADE80]" /> : <Dna size={12} strokeWidth={1.75} className="text-white/25" />}
+          {state.done ? <Check size={13} strokeWidth={2.5} className="text-[#6FB37A]" /> : <Dna size={12} strokeWidth={1.75} className="text-white/25" />}
         </button>
 
         {/* note toggle */}
@@ -238,11 +238,11 @@ export function ChapterRowBet({
                     <span
                       className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border"
                       style={{
-                        borderColor: done ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.15)",
-                        background: done ? "rgba(74,222,128,0.18)" : "transparent",
+                        borderColor: done ? "rgba(111,179,122,0.5)" : "rgba(255,255,255,0.15)",
+                        background: done ? "rgba(111,179,122,0.18)" : "transparent",
                       }}
                     >
-                      {done && <Check size={9} strokeWidth={3} className="text-[#4ADE80]" />}
+                      {done && <Check size={9} strokeWidth={3} className="text-[#6FB37A]" />}
                     </span>
                     <span className={`truncate text-[12px] ${done ? "text-white/40 line-through" : "text-white/70"}`}>
                       {topic}

@@ -30,7 +30,7 @@ const AVATAR_GRADIENTS = [
 ];
 
 const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
-  easy: "#4ADE80",
+  easy: "#6FB37A",
   medium: "#FACC15",
   hard: "#F87171",
 };
@@ -123,7 +123,7 @@ export function ChapterRowLeaderboard({
           onDoubleClick={onResetRevision}
           title="Click to log a revision · double-click to reset"
           className="flex-shrink-0 font-tabular text-[16px] font-bold"
-          style={{ color: revCount > 0 ? "#4ADE80" : isNext ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)" }}
+          style={{ color: revCount > 0 ? "#6FB37A" : isNext ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)" }}
         >
           +{revCount}
         </button>
@@ -141,11 +141,11 @@ export function ChapterRowLeaderboard({
           aria-label={state.done ? "Mark chapter not done" : "Mark chapter done"}
           className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border transition-colors"
           style={{
-            borderColor: state.done ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.15)",
-            background: state.done ? "rgba(74,222,128,0.18)" : "transparent",
+            borderColor: state.done ? "rgba(111,179,122,0.5)" : "rgba(255,255,255,0.15)",
+            background: state.done ? "rgba(111,179,122,0.18)" : "transparent",
           }}
         >
-          {state.done && <Check size={12} strokeWidth={2.5} className="text-[#4ADE80]" />}
+          {state.done && <Check size={12} strokeWidth={2.5} className="text-[#6FB37A]" />}
         </button>
       </motion.div>
 

@@ -161,8 +161,8 @@ export function Timer({
           <span
             className="h-1.5 w-1.5 rounded-full"
             style={{
-              background: completed ? "#4ADE80" : running ? "#FFC93D" : "rgba(255,201,61,0.25)",
-              boxShadow: completed ? "0 0 8px rgba(74,222,128,0.85)" : running ? "0 0 8px rgba(255,201,61,0.85)" : "none",
+              background: completed ? "#6FB37A" : running ? "#FFC93D" : "rgba(255,201,61,0.25)",
+              boxShadow: completed ? "0 0 8px rgba(111,179,122,0.85)" : running ? "0 0 8px rgba(255,201,61,0.85)" : "none",
               animation: running ? "pulse 1.1s ease-in-out infinite" : "none",
             }}
           />
@@ -200,7 +200,7 @@ export function Timer({
             className="h-full rounded-full transition-[width] duration-300"
             style={{
               width: `${pct}%`,
-              background: completed ? "linear-gradient(90deg,#15803d,#4ADE80)" : "linear-gradient(90deg,#7A4E0A,#FFD64D)",
+              background: completed ? "linear-gradient(90deg,#15803d,#6FB37A)" : "linear-gradient(90deg,#7A4E0A,#FFD64D)",
             }}
           />
         </div>

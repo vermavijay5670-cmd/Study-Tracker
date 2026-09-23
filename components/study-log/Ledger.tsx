@@ -72,7 +72,7 @@ export function Ledger({ log, startDate, dailyGoalHours, onChange }: LedgerProps
               <span className="min-w-[26px] flex-shrink-0 text-[10px] uppercase text-[#a3a3a3]">{weekdayShort(d)}</span>
               <span
                 className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                style={{ background: hit ? "#41FF72" : "rgba(255,255,255,0.08)", boxShadow: hit ? "0 0 6px #41FF7288" : "none" }}
+                style={{ background: hit ? "#6FB37A" : "rgba(255,255,255,0.08)", boxShadow: hit ? "0 0 6px #6FB37A88" : "none" }}
               />
               <div className="h-[5px] min-w-[24px] flex-[2] overflow-hidden rounded-full bg-white/[0.05]">
                 <div className="h-full rounded-full bg-[#FFD64D]" style={{ width: `${pct}%` }} />

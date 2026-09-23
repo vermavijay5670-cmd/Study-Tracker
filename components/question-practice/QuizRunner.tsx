@@ -6,9 +6,9 @@ import type { Question } from "@/lib/questionBank";
 import type { QuizProgress } from "@/lib/types";
 
 const DIFFICULTY_COLOR: Record<Question["difficulty"], string> = {
-  easy: "#41FF72",
+  easy: "#6FB37A",
   medium: "#FFD64D",
-  hard: "#FF6B6B",
+  hard: "#E0766B",
 };
 
 const TYPE_LABEL: Record<Question["type"], string> = {
@@ -181,11 +181,11 @@ export function QuizRunner({
                 Not answered
               </span>
             ) : rSelected === rq.correctIndex ? (
-              <span className="rounded-full bg-[#41FF7214] px-2 py-0.5 text-[10px] font-medium text-[#8CFFA8]">
+              <span className="rounded-full bg-[#6FB37A14] px-2 py-0.5 text-[10px] font-medium text-[#A9D8AE]">
                 You got this right
               </span>
             ) : (
-              <span className="rounded-full bg-[#FF6B6B14] px-2 py-0.5 text-[10px] font-medium text-[#FF9E9E]">
+              <span className="rounded-full bg-[#E0766B14] px-2 py-0.5 text-[10px] font-medium text-[#F0AFA6]">
                 You marked this wrong
               </span>
             )}
@@ -198,8 +198,8 @@ export function QuizRunner({
               const isCorrect = oi === rq.correctIndex;
               const isChosen = oi === rSelected;
               let style: React.CSSProperties = { borderColor: "rgba(255,255,255,0.12)" };
-              if (isCorrect) style = { borderColor: "#41FF7266", background: "#41FF7214", color: "#8CFFA8" };
-              else if (isChosen) style = { borderColor: "#FF6B6B66", background: "#FF6B6B14", color: "#FF9E9E" };
+              if (isCorrect) style = { borderColor: "#6FB37A66", background: "#6FB37A14", color: "#A9D8AE" };
+              else if (isChosen) style = { borderColor: "#E0766B66", background: "#E0766B14", color: "#F0AFA6" };
               return (
                 <div
                   key={oi}
@@ -207,8 +207,8 @@ export function QuizRunner({
                   style={style}
                 >
                   {opt}
-                  {isCorrect && <Check size={15} strokeWidth={2} className="flex-shrink-0 text-[#41FF72]" />}
-                  {isChosen && !isCorrect && <X size={15} strokeWidth={2} className="flex-shrink-0 text-[#FF6B6B]" />}
+                  {isCorrect && <Check size={15} strokeWidth={2} className="flex-shrink-0 text-[#6FB37A]" />}
+                  {isChosen && !isCorrect && <X size={15} strokeWidth={2} className="flex-shrink-0 text-[#E0766B]" />}
                 </div>
               );
             })}
@@ -330,8 +330,8 @@ export function QuizRunner({
             const isChosen = oi === selected;
             let style: React.CSSProperties = { borderColor: "rgba(255,255,255,0.12)" };
             if (revealed) {
-              if (isCorrect) style = { borderColor: "#41FF7266", background: "#41FF7214", color: "#8CFFA8" };
-              else if (isChosen) style = { borderColor: "#FF6B6B66", background: "#FF6B6B14", color: "#FF9E9E" };
+              if (isCorrect) style = { borderColor: "#6FB37A66", background: "#6FB37A14", color: "#A9D8AE" };
+              else if (isChosen) style = { borderColor: "#E0766B66", background: "#E0766B14", color: "#F0AFA6" };
             }
             return (
               <button
@@ -342,8 +342,8 @@ export function QuizRunner({
                 style={style}
               >
                 {opt}
-                {revealed && isCorrect && <Check size={15} strokeWidth={2} className="flex-shrink-0 text-[#41FF72]" />}
-                {revealed && isChosen && !isCorrect && <X size={15} strokeWidth={2} className="flex-shrink-0 text-[#FF6B6B]" />}
+                {revealed && isCorrect && <Check size={15} strokeWidth={2} className="flex-shrink-0 text-[#6FB37A]" />}
+                {revealed && isChosen && !isCorrect && <X size={15} strokeWidth={2} className="flex-shrink-0 text-[#E0766B]" />}
               </button>
             );
           })}

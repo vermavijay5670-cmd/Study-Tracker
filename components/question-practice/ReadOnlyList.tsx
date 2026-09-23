@@ -5,9 +5,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Question } from "@/lib/questionBank";
 
 const DIFFICULTY_COLOR: Record<Question["difficulty"], string> = {
-  easy: "#41FF72",
+  easy: "#6FB37A",
   medium: "#FFD64D",
-  hard: "#FF6B6B",
+  hard: "#E0766B",
 };
 
 const TYPE_LABEL: Record<Question["type"], string> = {
@@ -61,7 +61,7 @@ export function ReadOnlyList({ questions, accentHex }: ReadOnlyListProps) {
                   className="rounded-lg border px-3 py-1.5 text-[13px]"
                   style={
                     oi === q.correctIndex
-                      ? { borderColor: "#41FF7255", background: "#41FF7212", color: "#8CFFA8" }
+                      ? { borderColor: "#6FB37A55", background: "#6FB37A12", color: "#A9D8AE" }
                       : { borderColor: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.55)" }
                   }
                 >

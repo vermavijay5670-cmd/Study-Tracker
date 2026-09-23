@@ -73,11 +73,11 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
     <>
       <PaperTiltCard>
         <div className="mb-4 flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#46FFE8]/30 bg-[#46FFE8]/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#46FFE8]">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#6FA8A3]/30 bg-[#6FA8A3]/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#6FA8A3]">
             <CalendarCheck size={11} strokeWidth={1.75} /> mark your days
           </span>
           <span className="text-[10px] text-white/40">
-            <span className="text-[#41FF72]">{tickCount} good</span> · <span className="text-[#FF6B6B]">{crossCount} bad</span>
+            <span className="text-[#6FB37A]">{tickCount} good</span> · <span className="text-[#E0766B]">{crossCount} bad</span>
           </span>
         </div>
 
@@ -119,10 +119,10 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
                 className="relative flex h-9 w-full items-center justify-center rounded-lg border text-[12.5px] font-medium transition-transform hover:scale-105"
                 style={{
                   borderColor:
-                    mark === "tick" ? "#41FF7266" : mark === "cross" ? "#FF6B6B66" : isToday ? "#46FFE855" : "rgba(255,255,255,0.08)",
+                    mark === "tick" ? "#6FB37A66" : mark === "cross" ? "#E0766B66" : isToday ? "#6FA8A355" : "rgba(255,255,255,0.08)",
                   background:
-                    mark === "tick" ? "#41FF7218" : mark === "cross" ? "#FF6B6B18" : isToday ? "#46FFE812" : "rgba(255,255,255,0.02)",
-                  color: mark === "tick" ? "#8CFFA8" : mark === "cross" ? "#FF9E9E" : "rgba(255,255,255,0.75)",
+                    mark === "tick" ? "#6FB37A18" : mark === "cross" ? "#E0766B18" : isToday ? "#6FA8A312" : "rgba(255,255,255,0.02)",
+                  color: mark === "tick" ? "#A9D8AE" : mark === "cross" ? "#F0AFA6" : "rgba(255,255,255,0.75)",
                 }}
               >
                 {mark === "tick" ? (
@@ -181,10 +181,10 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
                 <button
                   onClick={() => onMark(openDay, "tick")}
                   aria-label="Mark as tick"
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#41FF72] transition-transform hover:scale-105"
+                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#6FB37A] transition-transform hover:scale-105"
                   style={{
-                    background: "#41FF7218",
-                    boxShadow: openMark === "tick" ? "0 0 0 2px #41FF72aa" : "none",
+                    background: "#6FB37A18",
+                    boxShadow: openMark === "tick" ? "0 0 0 2px #6FB37Aaa" : "none",
                   }}
                 >
                   <Check size={28} strokeWidth={2.5} />
@@ -192,10 +192,10 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
                 <button
                   onClick={() => onMark(openDay, "cross")}
                   aria-label="Mark as cross"
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#FF6B6B] transition-transform hover:scale-105"
+                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#E0766B] transition-transform hover:scale-105"
                   style={{
-                    background: "#FF6B6B18",
-                    boxShadow: openMark === "cross" ? "0 0 0 2px #FF6B6Baa" : "none",
+                    background: "#E0766B18",
+                    boxShadow: openMark === "cross" ? "0 0 0 2px #E0766Baa" : "none",
                   }}
                 >
                   <X size={28} strokeWidth={2.5} />
@@ -223,7 +223,7 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
                   }}
                   placeholder="What happened today?"
                   rows={3}
-                  className="w-full resize-none rounded-xl border border-white/12 bg-black/30 px-3 py-2 text-[12.5px] leading-relaxed text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-[#46FFE8]/45"
+                  className="w-full resize-none rounded-xl border border-white/12 bg-black/30 px-3 py-2 text-[12.5px] leading-relaxed text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-[#6FA8A3]/45"
                 />
               </div>
             </motion.div>

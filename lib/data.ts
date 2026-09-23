@@ -115,11 +115,14 @@ export const SUBJECT_ACCENT: Record<Subject, Accent> = {
   bio: "emerald",
 };
 
+// Natural, muted "ink on paper" tones — desaturated versions of each hue rather
+// than the earlier neon palette, so accent colors sit comfortably on the app's
+// dark paper texture instead of reading as a bright screen-glow.
 export const ACCENT_HEX: Record<Accent, string> = {
-  lime: "#C7F12D",
-  purple: "#7B4DFF",
-  cyan: "#46FFE8",
-  emerald: "#41FF72",
+  lime: "#B4C17A",
+  purple: "#9B85C4",
+  cyan: "#6FA8A3",
+  emerald: "#6FB37A",
   gold: "#FFD64D",
 };
 

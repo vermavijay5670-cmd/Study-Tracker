@@ -36,7 +36,7 @@ export function RecentActivityList({ activity }: { activity: Activity[] }) {
                     <div className="truncate text-[12.5px] text-white/85">Study session</div>
                     <div className="text-[10px] text-white/35">{relDays(a.date)}</div>
                   </div>
-                  <span className="flex-shrink-0 font-tabular text-[12.5px] font-medium text-[#7CFFA0]">
+                  <span className="flex-shrink-0 font-tabular text-[12.5px] font-medium text-[#8FC998]">
                     +{a.hours.toFixed(1)}h
                   </span>
                 </div>

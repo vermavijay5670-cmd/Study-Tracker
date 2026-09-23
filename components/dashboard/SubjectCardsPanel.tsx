@@ -104,8 +104,8 @@ export function SubjectCardsPanel({ perSubject }: SubjectCardsPanelProps) {
           className="flex flex-1 items-center justify-center gap-1.5 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors"
           style={{
             background: "rgba(34,197,94,0.18)",
-            borderColor: "rgba(74,222,128,0.4)",
-            color: "#4ADE80",
+            borderColor: "rgba(111,179,122,0.4)",
+            color: "#6FB37A",
           }}
         >
           <ArrowUpRight size={14} strokeWidth={1.75} /> Revise

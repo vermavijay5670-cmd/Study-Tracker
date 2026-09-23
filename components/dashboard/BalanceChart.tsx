@@ -79,7 +79,7 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
             </span>
             <span
               className={`flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[11px] font-medium ${
-                up ? "bg-[#41FF72]/15 text-[#7CFFA0]" : "bg-white/10 text-white/50"
+                up ? "bg-[#6FB37A]/15 text-[#8FC998]" : "bg-white/10 text-white/50"
               }`}
             >
               {up ? <ArrowUpRight size={12} strokeWidth={2} /> : <ArrowDownRight size={12} strokeWidth={2} />}
