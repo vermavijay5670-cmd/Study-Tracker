@@ -1,22 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Check, X, CalendarCheck } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check, X, CalendarCheck, StickyNote } from "lucide-react";
 import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { dateKey, todayKey } from "@/lib/date-utils";
 
 interface DayMarkCalendarProps {
   marks: Record<string, "tick" | "cross">;
+  notes: Record<string, string>;
   onMark: (dateKey: string, mark: "tick" | "cross") => void;
   onClear: (dateKey: string) => void;
+  onSaveNote: (dateKey: string, note: string) => void;
 }
 
-export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps) {
+export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: DayMarkCalendarProps) {
   const today = new Date();
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth()); // 0-indexed
   const [openDay, setOpenDay] = useState<string | null>(null);
+  const [noteDraft, setNoteDraft] = useState("");
 
   const firstOfMonth = new Date(viewYear, viewMonth, 1);
   const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
@@ -24,8 +27,21 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
   const monthLabel = firstOfMonth.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   const todaysKey = todayKey();
 
-  function goPrev() {
+  useEffect(() => {
+    setNoteDraft(openDay ? notes[openDay] ?? "" : "");
+    // Only reset the draft when a different day is opened, not on every `notes` update.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openDay]);
+
+  function closeDay() {
+    if (openDay && noteDraft !== (notes[openDay] ?? "")) {
+      onSaveNote(openDay, noteDraft);
+    }
     setOpenDay(null);
+  }
+
+  function goPrev() {
+    closeDay();
     if (viewMonth === 0) {
       setViewMonth(11);
       setViewYear((y) => y - 1);
@@ -34,7 +50,7 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
     }
   }
   function goNext() {
-    setOpenDay(null);
+    closeDay();
     if (viewMonth === 11) {
       setViewMonth(0);
       setViewYear((y) => y + 1);
@@ -51,6 +67,7 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
   const tickCount = Object.values(marks).filter((m) => m === "tick").length;
   const crossCount = Object.values(marks).filter((m) => m === "cross").length;
   const openDate = openDay ? new Date(`${openDay}T00:00:00`) : null;
+  const openMark = openDay ? marks[openDay] : undefined;
 
   return (
     <>
@@ -93,12 +110,13 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
             if (day === null) return <div key={i} />;
             const key = dateKey(new Date(viewYear, viewMonth, day));
             const mark = marks[key];
+            const hasNote = Boolean(notes[key]?.trim());
             const isToday = key === todaysKey;
             return (
               <button
                 key={i}
                 onClick={() => setOpenDay(key)}
-                className="flex h-9 w-full items-center justify-center rounded-lg border text-[12.5px] font-medium transition-transform hover:scale-105"
+                className="relative flex h-9 w-full items-center justify-center rounded-lg border text-[12.5px] font-medium transition-transform hover:scale-105"
                 style={{
                   borderColor:
                     mark === "tick" ? "#41FF7266" : mark === "cross" ? "#FF6B6B66" : isToday ? "#46FFE855" : "rgba(255,255,255,0.08)",
@@ -113,6 +131,13 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
                   <X size={14} strokeWidth={2.5} />
                 ) : (
                   day
+                )}
+                {hasNote && (
+                  <span
+                    aria-hidden
+                    className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full"
+                    style={{ background: "#FFD64D" }}
+                  />
                 )}
               </button>
             );
@@ -130,7 +155,7 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
-            onClick={() => setOpenDay(null)}
+            onClick={closeDay}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.92, y: 10 }}
@@ -138,45 +163,69 @@ export function DayMarkCalendar({ marks, onMark, onClear }: DayMarkCalendarProps
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-[280px] rounded-2xl border border-white/12 bg-[#161618] p-6 text-center shadow-2xl"
+              className="relative w-full max-w-[300px] rounded-2xl border border-white/12 bg-[#161618] p-6 text-center shadow-2xl"
             >
+              <button
+                onClick={closeDay}
+                aria-label="Close"
+                className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full text-white/30 transition-colors hover:bg-white/[0.06] hover:text-white/70"
+              >
+                <X size={14} strokeWidth={2} />
+              </button>
+
               <p className="mb-1 text-[11px] uppercase tracking-wide text-white/40">Mark this day</p>
               <p className="mb-5 text-[16px] font-medium text-white">
                 {openDate.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
               </p>
               <div className="flex items-center justify-center gap-4">
                 <button
-                  onClick={() => {
-                    onMark(openDay, "tick");
-                    setOpenDay(null);
-                  }}
+                  onClick={() => onMark(openDay, "tick")}
                   aria-label="Mark as tick"
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#41FF7218] text-[#41FF72] transition-transform hover:scale-105"
+                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#41FF72] transition-transform hover:scale-105"
+                  style={{
+                    background: "#41FF7218",
+                    boxShadow: openMark === "tick" ? "0 0 0 2px #41FF72aa" : "none",
+                  }}
                 >
                   <Check size={28} strokeWidth={2.5} />
                 </button>
                 <button
-                  onClick={() => {
-                    onMark(openDay, "cross");
-                    setOpenDay(null);
-                  }}
+                  onClick={() => onMark(openDay, "cross")}
                   aria-label="Mark as cross"
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FF6B6B18] text-[#FF6B6B] transition-transform hover:scale-105"
+                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#FF6B6B] transition-transform hover:scale-105"
+                  style={{
+                    background: "#FF6B6B18",
+                    boxShadow: openMark === "cross" ? "0 0 0 2px #FF6B6Baa" : "none",
+                  }}
                 >
                   <X size={28} strokeWidth={2.5} />
                 </button>
               </div>
               {marks[openDay] && (
                 <button
-                  onClick={() => {
-                    onClear(openDay);
-                    setOpenDay(null);
-                  }}
-                  className="mt-4 text-[12px] text-white/30 transition-colors hover:text-white/60"
+                  onClick={() => onClear(openDay)}
+                  className="mt-3 text-[12px] text-white/30 transition-colors hover:text-white/60"
                 >
                   Clear mark
                 </button>
               )}
+
+              <div className="mt-5 border-t border-white/10 pt-4 text-left">
+                <label className="mb-1.5 flex items-center gap-1.5 text-[10px] uppercase tracking-wide text-white/40">
+                  <StickyNote size={11} strokeWidth={1.75} /> note
+                </label>
+                <textarea
+                  autoFocus={false}
+                  value={noteDraft}
+                  onChange={(e) => setNoteDraft(e.target.value)}
+                  onBlur={() => {
+                    if (openDay && noteDraft !== (notes[openDay] ?? "")) onSaveNote(openDay, noteDraft);
+                  }}
+                  placeholder="What happened today?"
+                  rows={3}
+                  className="w-full resize-none rounded-xl border border-white/12 bg-black/30 px-3 py-2 text-[12.5px] leading-relaxed text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-[#46FFE8]/45"
+                />
+              </div>
             </motion.div>
           </motion.div>
         )}

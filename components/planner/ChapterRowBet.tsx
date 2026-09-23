@@ -5,15 +5,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronDown, Dna } from "lucide-react";
 import type { ChapterState, Difficulty } from "@/lib/types";
 import { daysBetween, parseKey, relDays } from "@/lib/date-utils";
+import { ChapterNoteToggle, ChapterNotePanel } from "./ChapterNote";
 
 interface ChapterRowBetProps {
   index: number;
   name: string;
   state: ChapterState;
+  accentHex?: string;
   onToggleDone: () => void;
   onBumpRevision: () => void;
   onResetRevision: () => void;
   onCycleDifficulty: () => void;
+  onSaveNote: (note: string) => void;
   subtopics?: string[];
   isSubtopicDone?: (subIdx: number) => boolean;
   onToggleSubtopic?: (subIdx: number) => void;
@@ -76,15 +79,18 @@ export function ChapterRowBet({
   index,
   name,
   state,
+  accentHex,
   onToggleDone,
   onBumpRevision,
   onResetRevision,
   onCycleDifficulty,
+  onSaveNote,
   subtopics,
   isSubtopicDone,
   onToggleSubtopic,
 }: ChapterRowBetProps) {
   const [expanded, setExpanded] = useState(false);
+  const [noteOpen, setNoteOpen] = useState(false);
   const revCount = state.revCount ?? 0;
   const diff = state.diff ?? null;
   const status = getStatus(state);
@@ -185,6 +191,15 @@ export function ChapterRowBet({
           {state.done ? <Check size={13} strokeWidth={2.5} className="text-[#4ADE80]" /> : <Dna size={12} strokeWidth={1.75} className="text-white/25" />}
         </button>
 
+        {/* note toggle */}
+        <ChapterNoteToggle
+          open={noteOpen}
+          onToggle={() => setNoteOpen((v) => !v)}
+          hasNote={!!state.note}
+          accentHex={accentHex}
+          className="relative z-10"
+        />
+
         {/* expand subtopics */}
         {hasSubtopics && (
           <button
@@ -235,6 +250,22 @@ export function ChapterRowBet({
                   </button>
                 );
               })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence initial={false}>
+        {noteOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-white/[0.05] bg-black/20"
+          >
+            <div className="p-3">
+              <ChapterNotePanel note={state.note} onSave={onSaveNote} accentHex={accentHex} />
             </div>
           </motion.div>
         )}

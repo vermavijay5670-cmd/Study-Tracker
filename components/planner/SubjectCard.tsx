@@ -14,7 +14,7 @@ interface SubjectCardProps {
 }
 
 export function SubjectCard({ subject }: SubjectCardProps) {
-  const { getChapterState, toggleDone, bumpRevision, resetRevision, cycleDifficulty, getSubjectStats, isSubtopicDone, toggleSubtopic } =
+  const { getChapterState, toggleDone, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubjectStats, isSubtopicDone, toggleSubtopic } =
     useTrackerState();
 
   const accent = SUBJECT_ACCENT[subject];
@@ -92,6 +92,7 @@ export function SubjectCard({ subject }: SubjectCardProps) {
                   onBumpRevision: () => bumpRevision(subject, cls, i),
                   onResetRevision: () => resetRevision(subject, cls, i),
                   onCycleDifficulty: () => cycleDifficulty(subject, cls, i),
+                  onSaveNote: (note: string) => setChapterNote(subject, cls, i, note),
                 };
 
                 if (subject === "bio") {
@@ -105,12 +106,13 @@ export function SubjectCard({ subject }: SubjectCardProps) {
                       subtopics={subtopics}
                       isSubtopicDone={subtopics ? (subIdx) => isSubtopicDone(subject, cls, i, subIdx) : undefined}
                       onToggleSubtopic={subtopics ? (subIdx) => toggleSubtopic(subject, cls, i, subIdx) : undefined}
+                      accentHex={accentHex}
                       {...handlers}
                     />
                   );
                 }
                 if (subject === "phy") {
-                  return <ChapterRowMinimal key={i} index={i} name={name} state={chState} {...handlers} />;
+                  return <ChapterRowMinimal key={i} index={i} name={name} state={chState} accentHex={accentHex} {...handlers} />;
                 }
                 return (
                   <ChapterRowLeaderboard
@@ -119,6 +121,7 @@ export function SubjectCard({ subject }: SubjectCardProps) {
                     name={name}
                     state={chState}
                     isNext={nextKey === `${cls}_${i}`}
+                    accentHex={accentHex}
                     {...handlers}
                   />
                 );

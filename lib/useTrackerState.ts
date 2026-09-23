@@ -27,6 +27,7 @@ function defaultState(): TrackerState {
     customThoughts: [],
     quizProgress: {},
     dayMarks: {},
+    dayNotes: {},
     stopwatchRunningSince: null,
     stopwatchLastFlushAt: null,
     stopwatchSessions: 0,
@@ -55,6 +56,7 @@ function loadState(): TrackerState {
       customThoughts: parsed.customThoughts ?? [],
       quizProgress: parsed.quizProgress ?? {},
       dayMarks: parsed.dayMarks ?? {},
+      dayNotes: parsed.dayNotes ?? {},
     };
     // Stopwatch session count/timer are per-day — start fresh if this is a new day
     // (including for users whose stored data predates this field entirely).
@@ -243,6 +245,13 @@ export function useTrackerState() {
     [getChapterState, setChapterState]
   );
 
+  const setChapterNote = useCallback(
+    (subj: Subject, cls: 11 | 12, i: number, note: string) => {
+      setChapterState(subj, cls, i, { note });
+    },
+    [setChapterState]
+  );
+
   const isSubtopicDone = useCallback(
     (subj: Subject, cls: 11 | 12, chapterIdx: number, subIdx: number) => {
       return Boolean(state.subtopics[`${subj}_${cls}_${chapterIdx}_${subIdx}`]);
@@ -409,6 +418,33 @@ export function useTrackerState() {
         const next = { ...s.dayMarks };
         delete next[dateKey];
         return { ...s, dayMarks: next };
+      });
+    },
+    [setState]
+  );
+
+  const setDayNote = useCallback(
+    (dateKey: string, note: string) => {
+      setState((s) => {
+        const next = { ...s.dayNotes };
+        if (note.trim()) {
+          next[dateKey] = note;
+        } else {
+          delete next[dateKey];
+        }
+        return { ...s, dayNotes: next };
+      });
+    },
+    [setState]
+  );
+
+  const clearDayNote = useCallback(
+    (dateKey: string) => {
+      setState((s) => {
+        if (!(dateKey in s.dayNotes)) return s;
+        const next = { ...s.dayNotes };
+        delete next[dateKey];
+        return { ...s, dayNotes: next };
       });
     },
     [setState]
@@ -653,6 +689,7 @@ export function useTrackerState() {
     bumpRevision,
     resetRevision,
     cycleDifficulty,
+    setChapterNote,
     streaks,
     totalDays,
     totalHoursLogged,
@@ -681,5 +718,7 @@ export function useTrackerState() {
     clearQuizProgress,
     setDayMark,
     clearDayMark,
+    setDayNote,
+    clearDayNote,
   };
 }

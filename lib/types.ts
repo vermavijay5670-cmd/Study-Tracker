@@ -6,6 +6,7 @@ export interface ChapterState {
   revCount?: number;
   lastRevised?: string | null; // YYYY-MM-DD
   diff?: Difficulty;
+  note?: string;
 }
 
 export interface Goal {
@@ -33,6 +34,7 @@ export interface TrackerState {
   customThoughts: string[]; // user-added positive thoughts, added to the daily rotation pool
   quizProgress: Record<string, QuizProgress>; // key: `${subject}_${cls}_${chapterIndex}` -> in-progress quiz state
   dayMarks: Record<string, "tick" | "cross">; // key: YYYY-MM-DD -> how that day was marked on the calendar
+  dayNotes: Record<string, string>; // key: YYYY-MM-DD -> note attached to that day
   stopwatchRunningSince: number | null; // epoch ms when the current session started; drives the display, never touched by checkpoints
   stopwatchLastFlushAt: number | null; // epoch ms of the last committed checkpoint; bookkeeping only
   stopwatchSessions: number;
