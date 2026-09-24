@@ -76,7 +76,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="md:flex md:min-h-screen">
       {/* Desktop sidebar */}
-      <aside className="hidden w-[248px] flex-shrink-0 border-r border-white/[0.06] bg-[#0a0a0a] px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col">
+      <aside className="hidden w-[248px] flex-shrink-0 border-r border-white/[0.06] bg-white/[0.02] px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col">
         <Link href="/" className="mb-8 block px-1">
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
           <h1 className="mt-1 text-[19px] font-medium text-white">Study Tracker</h1>
