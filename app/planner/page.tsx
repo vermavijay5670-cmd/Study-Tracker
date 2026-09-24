@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { PlannerSection } from "@/components/planner/PlannerSection";
-import KineticGrid from "@/components/ui/kinetic-grid";
+import { SectionBackground } from "@/components/ui/SectionBackground";
 
 export default function PlannerPage() {
   return (
-    <KineticGrid>
+    <SectionBackground>
       <PageShell>
         <PlannerSection />
       </PageShell>
-    </KineticGrid>
+    </SectionBackground>
   );
 }

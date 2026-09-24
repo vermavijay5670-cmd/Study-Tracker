@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { MarkYourDaysSection } from "@/components/mark-your-days/MarkYourDaysSection";
-import KineticGrid from "@/components/ui/kinetic-grid";
+import { SectionBackground } from "@/components/ui/SectionBackground";
 
 export default function MarkYourDaysPage() {
   return (
-    <KineticGrid>
+    <SectionBackground>
       <PageShell>
         <MarkYourDaysSection />
       </PageShell>
-    </KineticGrid>
+    </SectionBackground>
   );
 }

@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { DailyGoalsSection } from "@/components/daily-goals/DailyGoalsSection";
-import KineticGrid from "@/components/ui/kinetic-grid";
+import { SectionBackground } from "@/components/ui/SectionBackground";
 
 export default function DailyGoalsPage() {
   return (
-    <KineticGrid>
+    <SectionBackground>
       <PageShell>
         <DailyGoalsSection />
       </PageShell>
-    </KineticGrid>
+    </SectionBackground>
   );
 }

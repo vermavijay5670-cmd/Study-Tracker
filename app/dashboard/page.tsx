@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { DashboardSection } from "@/components/dashboard/DashboardSection";
-import KineticGrid from "@/components/ui/kinetic-grid";
+import { SectionBackground } from "@/components/ui/SectionBackground";
 
 export default function DashboardPage() {
   return (
-    <KineticGrid>
+    <SectionBackground>
       <PageShell>
         <DashboardSection />
       </PageShell>
-    </KineticGrid>
+    </SectionBackground>
   );
 }

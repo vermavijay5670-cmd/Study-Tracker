@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { StudyLogSection } from "@/components/study-log/StudyLogSection";
-import KineticGrid from "@/components/ui/kinetic-grid";
+import { SectionBackground } from "@/components/ui/SectionBackground";
 
 export default function StudyLogPage() {
   return (
-    <KineticGrid>
+    <SectionBackground>
       <PageShell>
         <StudyLogSection />
       </PageShell>
-    </KineticGrid>
+    </SectionBackground>
   );
 }
