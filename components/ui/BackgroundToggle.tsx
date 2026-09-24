@@ -5,13 +5,17 @@ import { Grid3x3 } from "lucide-react";
 interface BackgroundToggleProps {
   enabled: boolean;
   onToggle: () => void;
+  className?: string;
 }
 
-export function BackgroundToggle({ enabled, onToggle }: BackgroundToggleProps) {
+/** Inline row (label + switch) used in the sidebar to swap the kinetic-grid background on/off. */
+export function BackgroundToggle({ enabled, onToggle, className = "" }: BackgroundToggleProps) {
   return (
-    <div className="fixed bottom-4 left-4 z-[90] flex items-center gap-2 rounded-full border border-white/10 bg-black/65 px-3 py-2 shadow-[0_8px_20px_rgba(0,0,0,0.5)] backdrop-blur-md md:left-[264px]">
-      <Grid3x3 size={13} strokeWidth={1.75} className={enabled ? "text-[#4A9EFF]" : "text-white/35"} />
-      <span className="hidden text-[11px] text-white/55 sm:inline">Kinetic grid</span>
+    <div className={`flex items-center justify-between gap-2 rounded-xl border border-white/[0.07] bg-white/[0.02] px-3 py-2.5 ${className}`}>
+      <span className="flex items-center gap-2 text-[12.5px] font-medium text-white/65">
+        <Grid3x3 size={14} strokeWidth={1.75} className={enabled ? "text-[#4A9EFF]" : "text-white/35"} />
+        Kinetic grid
+      </span>
       <button
         type="button"
         onClick={onToggle}

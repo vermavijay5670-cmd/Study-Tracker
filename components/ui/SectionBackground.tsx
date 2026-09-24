@@ -3,23 +3,24 @@
 import type { ReactNode } from "react";
 import KineticGrid from "./kinetic-grid";
 import { MatteGrainBackdrop } from "./MatteGrainBackdrop";
-import { BackgroundToggle } from "./BackgroundToggle";
-import { useKineticGridPref } from "@/lib/useKineticGridPref";
+import { useKineticGrid } from "@/lib/KineticGridContext";
 
+/**
+ * Background wrapper for every section page except Today. Which background
+ * renders is driven by the shared KineticGridContext, so it always matches
+ * the toggle in PageShell's sidebar.
+ */
 export function SectionBackground({ children }: { children: ReactNode }) {
-  const [kineticOn, setKineticOn] = useKineticGridPref();
+  const { enabled } = useKineticGrid();
+
+  if (enabled) {
+    return <KineticGrid>{children}</KineticGrid>;
+  }
 
   return (
-    <>
-      {kineticOn ? (
-        <KineticGrid>{children}</KineticGrid>
-      ) : (
-        <div className="relative min-h-screen w-full">
-          <MatteGrainBackdrop />
-          {children}
-        </div>
-      )}
-      <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
-    </>
+    <div className="relative min-h-screen w-full">
+      <MatteGrainBackdrop />
+      {children}
+    </div>
   );
 }

@@ -17,7 +17,9 @@ import {
   X,
 } from "lucide-react";
 import { ProfileChip } from "./ProfileChip";
+import { BackgroundToggle } from "./BackgroundToggle";
 import { useTrackerState } from "@/lib/useTrackerState";
+import { useKineticGrid } from "@/lib/KineticGridContext";
 
 const NAV = [
   { href: "/today", label: "Today", icon: Clock },
@@ -33,7 +35,9 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const { state, hydrated, user, signOut } = useTrackerState();
+  const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const showBackgroundToggle = pathname !== "/today";
 
   // Close the mobile drawer whenever the route changes.
   useEffect(() => {
@@ -80,18 +84,23 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
         {navList()}
 
-        <div className="mt-6 flex items-center gap-2 border-t border-white/[0.06] pt-4">
-          {hydrated && <ProfileChip studentName={state.studentName} targetExam={state.targetExam} />}
-          {hydrated && user && (
-            <button
-              onClick={handleSignOut}
-              aria-label="Sign out"
-              title="Sign out"
-              className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/40 transition-colors hover:text-white/80"
-            >
-              <LogOut size={15} strokeWidth={1.75} />
-            </button>
+        <div className="mt-6 flex flex-col gap-3 border-t border-white/[0.06] pt-4">
+          {showBackgroundToggle && (
+            <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
           )}
+          <div className="flex items-center gap-2">
+            {hydrated && <ProfileChip studentName={state.studentName} targetExam={state.targetExam} />}
+            {hydrated && user && (
+              <button
+                onClick={handleSignOut}
+                aria-label="Sign out"
+                title="Sign out"
+                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/40 transition-colors hover:text-white/80"
+              >
+                <LogOut size={15} strokeWidth={1.75} />
+              </button>
+            )}
+          </div>
         </div>
       </aside>
 
@@ -159,7 +168,10 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
               {navList(() => setMobileOpen(false))}
 
-              <div className="mt-6 border-t border-white/[0.06] pt-4">
+              <div className="mt-6 flex flex-col gap-3 border-t border-white/[0.06] pt-4">
+                {showBackgroundToggle && (
+                  <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
+                )}
                 {hydrated && <ProfileChip studentName={state.studentName} targetExam={state.targetExam} />}
               </div>
             </motion.aside>
