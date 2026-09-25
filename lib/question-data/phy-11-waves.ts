@@ -105,4 +105,4 @@ const questions: Question[] = [
 
 ];
 
-export default queestions;
+export default questions;
