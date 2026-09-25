@@ -1,4 +1,4 @@
-import type { Question } from "@/lib/questionbank";
+import type { Question } from "@/lib/questionBank";
 // NEET Physics Question Bank
 // Chapter: Thermal Properties of Matter
 // 80 PYQ-centric MCQs covering all sub-topics with mixed difficulty (easy/medium/hard)
