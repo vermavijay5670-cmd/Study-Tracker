@@ -63,6 +63,10 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   chem_12_3: () => import("./question-data/chem-12-d-and-f-block").then((m) => m.default),
   chem_12_4: () => import("./question-data/chem-12-coordination-compounds").then((m) => m.default),
   chem_12_5: () => import("./question-data/chem-12-haloalkanes-and-haloarenes").then((m) => m.default),
+  chem_12_6: () => import("./question-data/chem-12-alcohol-phenol-and-ether").then((m) => m.default),
+  chem_12_7: () => import("./question-data/chem-12-aldehyde-ketone-and-carboxylic-acid").then((m) => m.default),
+  chem_12_8: () => import("./question-data/chem-12-amines").then((m) => m.default),
+  
   phy_12_0: () => import("./question-data/phy-12-electric-charges-fields").then((m) => m.default),
   phy_12_1: () => import("./question-data/phy-12-electrostatic-potential-capacitance").then((m) => m.default),
   phy_12_2: () => import("./question-data/phy-12-current-electricity").then((m) => m.default),
