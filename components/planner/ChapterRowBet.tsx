@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronDown, Dna } from "lucide-react";
 import type { ChapterState, Difficulty } from "@/lib/types";
-import { daysBetween, parseKey, relDays } from "@/lib/date-utils";
+import { CHAPTER_STATUS_STYLE, getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { ChapterNoteToggle, ChapterNotePanel } from "./ChapterNote";
 
 interface ChapterRowBetProps {
@@ -38,43 +38,6 @@ const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
   hard: "#F87171",
 };
 
-type Status = "new" | "readyToRevise" | "fresh" | "stale";
-
-function getStatus(state: ChapterState): Status {
-  if (!state.done) return "new";
-  const revCount = state.revCount ?? 0;
-  if (revCount === 0) return "readyToRevise";
-  const staleDays = state.lastRevised ? daysBetween(parseKey(state.lastRevised), new Date()) : Infinity;
-  return staleDays >= 7 ? "stale" : "fresh";
-}
-
-const STATUS_STYLE: Record<Status, { wash: string; text: string; pillBg: string; pillText: string }> = {
-  new: {
-    wash: "linear-gradient(90deg, rgba(255,255,255,0.05), transparent 55%)",
-    text: "rgba(163,163,163,0.8)",
-    pillBg: "rgba(255,255,255,0.06)",
-    pillText: "#a3a3a3",
-  },
-  readyToRevise: {
-    wash: "linear-gradient(90deg, rgba(56,189,248,0.16), transparent 55%)",
-    text: "#7DD3FC",
-    pillBg: "rgba(56,189,248,0.16)",
-    pillText: "#7DD3FC",
-  },
-  fresh: {
-    wash: "linear-gradient(90deg, rgba(45,212,191,0.24), rgba(34,197,94,0.10) 42%, transparent 68%)",
-    text: "#5EEAD4",
-    pillBg: "rgba(45,212,191,0.22)",
-    pillText: "#5EEAD4",
-  },
-  stale: {
-    wash: "linear-gradient(90deg, rgba(251,146,60,0.24), rgba(248,113,113,0.12) 42%, transparent 68%)",
-    text: "#FDBA74",
-    pillBg: "rgba(251,146,60,0.22)",
-    pillText: "#FDBA74",
-  },
-};
-
 export function ChapterRowBet({
   index,
   name,
@@ -93,18 +56,14 @@ export function ChapterRowBet({
   const [noteOpen, setNoteOpen] = useState(false);
   const revCount = state.revCount ?? 0;
   const diff = state.diff ?? null;
-  const status = getStatus(state);
-  const s = STATUS_STYLE[status];
+  const status = getChapterStatus(state);
+  const s = CHAPTER_STATUS_STYLE[status];
   const avatar = AVATAR_GRADIENTS[index % AVATAR_GRADIENTS.length];
 
   const hasSubtopics = Boolean(subtopics && subtopics.length > 0 && isSubtopicDone && onToggleSubtopic);
   const subDoneCount = hasSubtopics ? subtopics!.filter((_, i) => isSubtopicDone!(i)).length : 0;
 
-  let statusLabel: string;
-  if (status === "new") statusLabel = "Not started";
-  else if (status === "readyToRevise") statusLabel = "Ready to revise";
-  else if (status === "fresh") statusLabel = `Revised ${relDays(state.lastRevised) ?? ""}`.trim();
-  else statusLabel = `${relDays(state.lastRevised)} · due`;
+  const statusLabel = getChapterStatusLabel(state);
 
   return (
     <div className="overflow-hidden rounded-2xl border border-white/[0.05] bg-[#141118]">

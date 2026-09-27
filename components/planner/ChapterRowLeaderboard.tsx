@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, FlaskConical } from "lucide-react";
 import type { ChapterState, Difficulty } from "@/lib/types";
+import { CHAPTER_STATUS_STYLE, getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { ChapterNoteToggle, ChapterNotePanel } from "./ChapterNote";
 
 interface ChapterRowLeaderboardProps {
@@ -51,6 +52,9 @@ export function ChapterRowLeaderboard({
   const diff = state.diff ?? null;
   const avatar = AVATAR_GRADIENTS[index % AVATAR_GRADIENTS.length];
   const [noteOpen, setNoteOpen] = useState(false);
+  const status = getChapterStatus(state);
+  const s = CHAPTER_STATUS_STYLE[status];
+  const statusLabel = getChapterStatusLabel(state);
 
   return (
     <motion.div
@@ -60,7 +64,7 @@ export function ChapterRowLeaderboard({
     >
       <motion.div
         whileHover={{ y: -2 }}
-        className="relative flex items-center gap-3 rounded-full py-2 pl-2 pr-4"
+        className="relative flex items-center gap-3 overflow-hidden rounded-full py-2 pl-2 pr-4"
         style={{
           background: isNext
             ? "linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%)"
@@ -72,16 +76,19 @@ export function ChapterRowLeaderboard({
             : "0 6px 14px rgba(0,0,0,0.35)",
         }}
       >
+        {/* status-tinted wash, mirrors the Biology row's revision-state coloring */}
+        {!isNext && <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: s.wash }} />}
+
         {/* avatar chip */}
         <div
-          className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full"
+          className="relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full"
           style={{ background: avatar, opacity: state.done && !isNext ? 0.55 : 1 }}
         >
           <FlaskConical size={18} strokeWidth={1.75} className="text-white/85" />
         </div>
 
         {/* name + subtitle */}
-        <button onClick={onToggleDone} className="min-w-0 flex-1 text-left">
+        <button onClick={onToggleDone} className="relative z-10 min-w-0 flex-1 text-left">
           <div
             className={`truncate text-[15px] font-semibold ${
               state.done && !isNext ? "text-white/40 line-through" : "text-white"
@@ -89,8 +96,11 @@ export function ChapterRowLeaderboard({
           >
             {name}
           </div>
-          <div className="mt-0.5 flex items-center gap-1.5 text-[12px]" style={{ color: isNext ? "rgba(219,234,254,0.8)" : "rgba(255,255,255,0.4)" }}>
+          <div className="mt-0.5 flex flex-wrap items-center gap-1.5 text-[12px]" style={{ color: isNext ? "rgba(219,234,254,0.8)" : "rgba(255,255,255,0.4)" }}>
             Chapter {index + 1}
+            <span className="flex items-center gap-1" style={{ color: isNext ? undefined : s.text }}>
+              · <span className="h-1.5 w-1.5 rounded-full" style={{ background: isNext ? "currentColor" : s.dot }} /> {statusLabel}
+            </span>
             {diff && (
               <span
                 onClick={(e) => {
@@ -111,7 +121,7 @@ export function ChapterRowLeaderboard({
               e.stopPropagation();
               onCycleDifficulty();
             }}
-            className="hidden flex-shrink-0 text-[11px] text-white/30 hover:text-white/60 sm:block"
+            className="relative z-10 hidden flex-shrink-0 text-[11px] text-white/30 hover:text-white/60 sm:block"
           >
             + difficulty
           </button>
@@ -122,7 +132,7 @@ export function ChapterRowLeaderboard({
           onClick={onBumpRevision}
           onDoubleClick={onResetRevision}
           title="Click to log a revision · double-click to reset"
-          className="flex-shrink-0 font-tabular text-[16px] font-bold"
+          className="relative z-10 flex-shrink-0 font-tabular text-[16px] font-bold"
           style={{ color: revCount > 0 ? "#6FB37A" : isNext ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)" }}
         >
           +{revCount}
@@ -133,13 +143,14 @@ export function ChapterRowLeaderboard({
           onToggle={() => setNoteOpen((v) => !v)}
           hasNote={!!state.note}
           accentHex={isNext ? "#FFFFFF" : accentHex}
+          className="relative z-10"
         />
 
         {/* done toggle */}
         <button
           onClick={onToggleDone}
           aria-label={state.done ? "Mark chapter not done" : "Mark chapter done"}
-          className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border transition-colors"
+          className="relative z-10 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border transition-colors"
           style={{
             borderColor: state.done ? "rgba(111,179,122,0.5)" : "rgba(255,255,255,0.15)",
             background: state.done ? "rgba(111,179,122,0.18)" : "transparent",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import type { ChapterState } from "@/lib/types";
+import { CHAPTER_STATUS_STYLE, getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { ChapterNoteToggle, ChapterNotePanel } from "./ChapterNote";
 
 interface ChapterRowMinimalProps {
@@ -32,6 +33,9 @@ export function ChapterRowMinimal({
   const revCount = state.revCount ?? 0;
   const diff = state.diff ?? null;
   const [noteOpen, setNoteOpen] = useState(false);
+  const status = getChapterStatus(state);
+  const s = CHAPTER_STATUS_STYLE[status];
+  const statusLabel = getChapterStatusLabel(state);
 
   return (
     <motion.div
@@ -51,6 +55,8 @@ export function ChapterRowMinimal({
         className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-2xl"
         style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.05), transparent)" }}
       />
+      {/* status-tinted wash, mirrors the Biology row's revision-state coloring */}
+      <div aria-hidden className="pointer-events-none absolute inset-0" style={{ background: s.wash }} />
 
       <div className="relative z-10 flex flex-wrap items-center justify-between gap-3">
         <button onClick={onToggleDone} className="flex min-w-0 flex-1 items-center gap-3 text-left">
@@ -61,7 +67,13 @@ export function ChapterRowMinimal({
             {state.done && <Check size={12} strokeWidth={2.5} className="text-white/70" />}
           </span>
           <span className="min-w-0">
-            <span className="block text-[9px] uppercase tracking-wide text-white/30">Chapter {index + 1}</span>
+            <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-wide text-white/30">
+              Chapter {index + 1}
+              <span className="h-1 w-1 rounded-full" style={{ background: s.dot }} />
+              <span className="normal-case tracking-normal" style={{ color: s.text }}>
+                {statusLabel}
+              </span>
+            </span>
             <span className={`block truncate text-[14px] font-medium ${state.done ? "text-white/40 line-through" : "text-white/85"}`}>
               {name}
             </span>
