@@ -10,8 +10,5 @@ const questions: Question[] = [
         difficulty: 'hard',
     },
 ];
-<<<<<<< HEAD
-=======
 
->>>>>>> 4dacdff35abedda09eb296bff4429f335850b2a1
 export default questions;
