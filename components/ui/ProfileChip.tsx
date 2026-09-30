@@ -6,11 +6,32 @@ import { useTheme } from "@/lib/ThemeContext";
 interface ProfileChipProps {
   studentName: string;
   targetExam: string;
+  /** Leather-sidebar styling used by the light-mode Today desk. */
+  desk?: boolean;
 }
 
-export function ProfileChip({ studentName, targetExam }: ProfileChipProps) {
+export function ProfileChip({ studentName, targetExam, desk = false }: ProfileChipProps) {
   const { theme } = useTheme();
   const isLight = theme === "light";
+
+  if (desk) {
+    const name = studentName.trim();
+    return (
+      <Link href="/#profile-form" className="dk-profile">
+        <span className="dk-avatar">{name ? name.charAt(0).toUpperCase() : "+"}</span>
+        <span className="min-w-0 text-left">
+          <span className="block max-w-[120px] truncate text-[14px] font-semibold" style={{ fontFamily: "var(--dk-font-label)" }}>
+            {name || "Add your name"}
+          </span>
+          {name && targetExam && (
+            <span className="block max-w-[120px] truncate text-[10px] uppercase tracking-wide" style={{ color: "#c9b07a" }}>
+              {targetExam}
+            </span>
+          )}
+        </span>
+      </Link>
+    );
+  }
 
   if (!studentName) {
     return (

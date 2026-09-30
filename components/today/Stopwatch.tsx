@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Play, Pause, RotateCcw, Gauge } from "lucide-react";
+import { Play, Pause, RotateCcw, Gauge, BookOpen } from "lucide-react";
 import { PaperCard } from "@/components/ui/PaperCard";
 import { CapsuleButton } from "@/components/ui/CapsuleButton";
 import { fmtHrs, pad } from "@/lib/date-utils";
+import { useTheme } from "@/lib/ThemeContext";
+import { Journal, Plate, Sticky, PaperClock, DeskButton, Track, Status } from "./desk/DeskUI";
 
 interface StopwatchProps {
   todayHours: number;
@@ -36,6 +38,8 @@ export function Stopwatch({
   onSetGoal,
 }: StopwatchProps) {
   const running = stopwatchRunningSince != null;
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   const [, forceTick] = useState(0);
   const rafRef = useRef<number | null>(null);
   const checkpointIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -91,6 +95,52 @@ export function Stopwatch({
   const mm = pad(Math.floor((totalSecs % 3600) / 60));
   const ss = pad(totalSecs % 60);
   const centis = pad(Math.floor((sessionElapsedMs % 1000) / 10));
+
+  if (isLight) {
+    return (
+      <Journal delay={0.08}>
+        <Plate icon={<BookOpen size={13} strokeWidth={2} />}>Study Session</Plate>
+        <h2 className="dk-h" style={{ fontSize: 28 }}>Stopwatch</h2>
+        <Status state={running ? "live" : "idle"}>{running ? "Session running" : "Ready to start"}</Status>
+
+        <PaperClock hh={hh} mm={mm} ss={ss}>
+          <Sticky className="dk-centis">.{centis}</Sticky>
+        </PaperClock>
+
+        <div className="dk-meta dk-cap">
+          <span>Today: {fmtHrs(liveHours)}</span>
+          <span>Sessions: {stopwatchSessions}</span>
+        </div>
+
+        <div className="dk-actions">
+          <DeskButton tone="brass" onClick={running ? onPause : onStart}>
+            {running ? <Pause size={18} strokeWidth={2} /> : <Play size={18} strokeWidth={2} fill="currentColor" />}
+            {running ? "Pause" : "Start"}
+          </DeskButton>
+          <DeskButton onClick={onReset}>
+            <RotateCcw size={18} strokeWidth={2} /> Reset
+          </DeskButton>
+        </div>
+
+        <div className="dk-goal dk-cap">
+          <span>Daily goal</span>
+          <span className="flex items-center gap-1">
+            <input
+              type="number"
+              step="0.5"
+              min="0"
+              aria-label="Daily goal in hours"
+              value={dailyGoalHours}
+              onChange={(e) => onSetGoal(parseFloat(e.target.value))}
+              className="dk-inline-input w-14 text-right"
+            />
+            h
+          </span>
+        </div>
+        <Track pct={goalPct} label="Daily goal progress" live={running} done={goalPct >= 100} />
+      </Journal>
+    );
+  }
 
   return (
     <PaperCard delay={0.08}>

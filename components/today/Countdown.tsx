@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CalendarClock } from "lucide-react";
+import { CalendarClock, Target } from "lucide-react";
 import { PaperCard } from "@/components/ui/PaperCard";
 import { parseKey, pad } from "@/lib/date-utils";
+import { useTheme } from "@/lib/ThemeContext";
+import { Notebook, Plate, Sticky, FlipClock, Track } from "./desk/DeskUI";
 
 interface CountdownProps {
   examDate: string;
@@ -13,6 +15,8 @@ interface CountdownProps {
 
 export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps) {
   const [now, setNow] = useState<Date | null>(null);
+  const { theme } = useTheme();
+  const isLight = theme === "light";
 
   useEffect(() => {
     setNow(new Date());
@@ -20,7 +24,13 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
     return () => clearInterval(id);
   }, []);
 
-  if (!now) return <PaperCard delay={0} className="min-h-[220px]"><span /></PaperCard>;
+  if (!now) {
+    return isLight ? (
+      <div className="dk-notebook" style={{ minHeight: 240 }} />
+    ) : (
+      <PaperCard delay={0} className="min-h-[220px]"><span /></PaperCard>
+    );
+  }
 
   let days = "—";
   let hh = "00";
@@ -48,6 +58,46 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
       const elapsed = now.getTime() - start.getTime();
       pct = totalSpan > 0 ? Math.min(100, Math.max(0, (elapsed / totalSpan) * 100)) : 0;
     }
+  }
+
+  if (isLight) {
+    return (
+      <Notebook
+        aside={
+          <Sticky className="dk-notebook__sticky">
+            Better
+            <br />
+            Than
+            <br />
+            Yesterday
+          </Sticky>
+        }
+      >
+        <div className="dk-cd">
+          <div className="min-w-0">
+            <Plate icon={<Target size={13} strokeWidth={2} />}>Target Exam</Plate>
+            <h2 className="dk-h dk-cd__title">NEET UG Countdown</h2>
+            <label className="dk-cd__date dk-cap">
+              Exam date
+              <input
+                type="date"
+                value={examDate}
+                onChange={(e) => onSetExamDate(e.target.value)}
+                className="dk-inline-input"
+              />
+            </label>
+            <div className="dk-cd__days">
+              <span className="dk-days">{days}</span>
+              <span className="dk-days-label">{label}</span>
+            </div>
+          </div>
+          <div className="dk-cd__clock">
+            <FlipClock hh={hh} mm={mm} ss={ss} />
+            <Track pct={pct} label="Time elapsed since you started" thin />
+          </div>
+        </div>
+      </Notebook>
+    );
   }
 
   return (
