@@ -15,6 +15,7 @@ import {
   LogOut,
   Menu,
   X,
+  Home,
 } from "lucide-react";
 import { ProfileChip } from "./ProfileChip";
 import { BackgroundToggle } from "./BackgroundToggle";
@@ -30,6 +31,8 @@ const NAV = [
   { href: "/daily-goals", label: "Daily Goals", icon: Target },
   { href: "/mark-your-days", label: "Mark Your Days", icon: CalendarCheck },
 ];
+
+const HOME_URL = "https://neetstudy-tracker.lovable.app/";
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -77,10 +80,15 @@ export function PageShell({ children }: { children: React.ReactNode }) {
     <div className="md:flex md:min-h-screen">
       {/* Desktop sidebar */}
       <aside className="hidden w-[248px] flex-shrink-0 border-r border-white/[0.06] bg-white/[0.02] px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col">
-        <Link href="/" className="mb-8 block px-1">
-          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
-          <h1 className="mt-1 text-[19px] font-medium text-white">Study Tracker</h1>
-        </Link>
+        <a href={HOME_URL} className="mb-8 flex items-center gap-2.5 px-1">
+          <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/70">
+            <Home size={15} strokeWidth={1.75} />
+          </span>
+          <span>
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
+            <h1 className="mt-0.5 text-[19px] font-medium text-white">Study Tracker</h1>
+          </span>
+        </a>
 
         {navList()}
 
@@ -114,10 +122,15 @@ export function PageShell({ children }: { children: React.ReactNode }) {
           <Menu size={17} strokeWidth={1.75} />
         </button>
 
-        <Link href="/" className="text-center">
-          <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
-          <h1 className="text-[16px] font-medium text-white">Study Tracker</h1>
-        </Link>
+        <a href={HOME_URL} className="flex items-center gap-2">
+          <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/70">
+            <Home size={13} strokeWidth={1.75} />
+          </span>
+          <span className="text-left">
+            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
+            <h1 className="text-[16px] font-medium text-white">Study Tracker</h1>
+          </span>
+        </a>
 
         <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center">
           {hydrated && user && (
@@ -153,10 +166,15 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               className="fixed inset-y-0 left-0 z-50 flex w-[268px] flex-col border-r border-white/[0.06] bg-[#0a0a0a] px-4 py-6 md:hidden"
             >
               <div className="mb-8 flex items-center justify-between px-1">
-                <Link href="/" onClick={() => setMobileOpen(false)}>
-                  <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
-                  <h1 className="mt-1 text-[19px] font-medium text-white">Study Tracker</h1>
-                </Link>
+                <a href={HOME_URL} className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/70">
+                    <Home size={15} strokeWidth={1.75} />
+                  </span>
+                  <span>
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
+                    <h1 className="mt-0.5 text-[19px] font-medium text-white">Study Tracker</h1>
+                  </span>
+                </a>
                 <button
                   onClick={() => setMobileOpen(false)}
                   aria-label="Close menu"
