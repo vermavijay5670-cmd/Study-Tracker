@@ -19,8 +19,10 @@ import {
 } from "lucide-react";
 import { ProfileChip } from "./ProfileChip";
 import { BackgroundToggle } from "./BackgroundToggle";
+import { ThemeToggle } from "./ThemeToggle";
 import { useTrackerState } from "@/lib/useTrackerState";
 import { useKineticGrid } from "@/lib/KineticGridContext";
+import { useTheme } from "@/lib/ThemeContext";
 
 const NAV = [
   { href: "/today", label: "Today", icon: Clock },
@@ -39,8 +41,11 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { state, hydrated, user, signOut } = useTrackerState();
   const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   const [mobileOpen, setMobileOpen] = useState(false);
-  const showBackgroundToggle = pathname !== "/today";
+  // Kinetic-grid vs matte is a dark-mode-only visual for now — light mode always uses its own backdrop.
+  const showBackgroundToggle = pathname !== "/today" && !isLight;
 
   // Close the mobile drawer whenever the route changes.
   useEffect(() => {
@@ -62,13 +67,21 @@ export function PageShell({ children }: { children: React.ReactNode }) {
             {active && (
               <motion.span
                 layoutId="side-nav-pill"
-                className="absolute inset-0 rounded-xl bg-white/[0.08]"
+                className="absolute inset-0 rounded-xl"
+                style={{ background: isLight ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.08)" }}
                 transition={{ type: "spring", stiffness: 350, damping: 28 }}
               />
             )}
-            <span className="relative z-10 flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-white/80 transition-colors hover:text-white">
-              <Icon size={17} strokeWidth={1.75} className={active ? "text-white" : "text-white/50"} />
-              <span className={active ? "text-white" : ""}>{label}</span>
+            <span
+              className="relative z-10 flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors"
+              style={{ color: active ? (isLight ? "#171717" : "#ffffff") : isLight ? "#737373" : "rgba(255,255,255,0.8)" }}
+            >
+              <Icon
+                size={17}
+                strokeWidth={1.75}
+                style={{ color: active ? (isLight ? "#171717" : "#ffffff") : isLight ? "#a3a3a3" : "rgba(255,255,255,0.5)" }}
+              />
+              <span>{label}</span>
             </span>
           </Link>
         );
@@ -76,23 +89,48 @@ export function PageShell({ children }: { children: React.ReactNode }) {
     </nav>
   );
 
+  const logoBlock = (size: "sm" | "lg") => (
+    <a href={HOME_URL} className={`flex items-center ${size === "lg" ? "gap-2.5" : "gap-2"}`}>
+      <span
+        className={`flex flex-shrink-0 items-center justify-center rounded-lg border ${size === "lg" ? "h-8 w-8" : "h-7 w-7"}`}
+        style={{
+          borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
+          background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.04)",
+          color: isLight ? "#525252" : "rgba(255,255,255,0.7)",
+        }}
+      >
+        <Home size={size === "lg" ? 15 : 13} strokeWidth={1.75} />
+      </span>
+      <span>
+        <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
+        <h1
+          className={`mt-0.5 font-medium ${size === "lg" ? "text-[19px]" : "text-[16px]"}`}
+          style={{ color: isLight ? "#171717" : "#ffffff" }}
+        >
+          Study Tracker
+        </h1>
+      </span>
+    </a>
+  );
+
   return (
     <div className="md:flex md:min-h-screen">
       {/* Desktop sidebar */}
-      <aside className="hidden w-[248px] flex-shrink-0 border-r border-white/[0.06] bg-white/[0.02] px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col">
-        <a href={HOME_URL} className="mb-8 flex items-center gap-2.5 px-1">
-          <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/70">
-            <Home size={15} strokeWidth={1.75} />
-          </span>
-          <span>
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
-            <h1 className="mt-0.5 text-[19px] font-medium text-white">Study Tracker</h1>
-          </span>
-        </a>
+      <aside
+        className="hidden w-[248px] flex-shrink-0 border-r px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col"
+        style={{
+          borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
+          background: isLight ? "#ffffff" : "rgba(255,255,255,0.02)",
+        }}
+      >
+        <div className="mb-4 flex items-center px-1">
+          <ThemeToggle />
+        </div>
+        <div className="mb-8 px-1">{logoBlock("lg")}</div>
 
         {navList()}
 
-        <div className="mt-6 flex flex-col gap-3 border-t border-white/[0.06] pt-4">
+        <div className="mt-6 flex flex-col gap-3 border-t pt-4" style={{ borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}>
           {showBackgroundToggle && (
             <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
           )}
@@ -103,7 +141,12 @@ export function PageShell({ children }: { children: React.ReactNode }) {
                 onClick={handleSignOut}
                 aria-label="Sign out"
                 title="Sign out"
-                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/40 transition-colors hover:text-white/80"
+                className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border transition-colors"
+                style={{
+                  borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
+                  background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
+                  color: isLight ? "#737373" : "rgba(255,255,255,0.4)",
+                }}
               >
                 <LogOut size={15} strokeWidth={1.75} />
               </button>
@@ -113,31 +156,42 @@ export function PageShell({ children }: { children: React.ReactNode }) {
       </aside>
 
       {/* Mobile top bar */}
-      <header className="flex items-center justify-between border-b border-white/[0.06] bg-[#0a0a0a] px-4 py-4 md:hidden">
-        <button
-          onClick={() => setMobileOpen(true)}
-          aria-label="Open menu"
-          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70"
-        >
-          <Menu size={17} strokeWidth={1.75} />
-        </button>
+      <header
+        className="flex items-center justify-between border-b px-4 py-4 md:hidden"
+        style={{
+          borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
+          background: isLight ? "#ffffff" : "#0a0a0a",
+        }}
+      >
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open menu"
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"
+            style={{
+              borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
+              background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
+              color: isLight ? "#525252" : "rgba(255,255,255,0.7)",
+            }}
+          >
+            <Menu size={17} strokeWidth={1.75} />
+          </button>
+          <ThemeToggle />
+        </div>
 
-        <a href={HOME_URL} className="flex items-center gap-2">
-          <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/70">
-            <Home size={13} strokeWidth={1.75} />
-          </span>
-          <span className="text-left">
-            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
-            <h1 className="text-[16px] font-medium text-white">Study Tracker</h1>
-          </span>
-        </a>
+        {logoBlock("sm")}
 
         <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center">
           {hydrated && user && (
             <button
               onClick={handleSignOut}
               aria-label="Sign out"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/40"
+              className="flex h-9 w-9 items-center justify-center rounded-full border"
+              style={{
+                borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
+                background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
+                color: isLight ? "#737373" : "rgba(255,255,255,0.4)",
+              }}
             >
               <LogOut size={15} strokeWidth={1.75} />
             </button>
@@ -163,30 +217,32 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 320, damping: 32 }}
-              className="fixed inset-y-0 left-0 z-50 flex w-[268px] flex-col border-r border-white/[0.06] bg-[#0a0a0a] px-4 py-6 md:hidden"
+              className="fixed inset-y-0 left-0 z-50 flex w-[268px] flex-col border-r px-4 py-6 md:hidden"
+              style={{
+                borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
+                background: isLight ? "#ffffff" : "#0a0a0a",
+              }}
             >
-              <div className="mb-8 flex items-center justify-between px-1">
-                <a href={HOME_URL} className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/70">
-                    <Home size={15} strokeWidth={1.75} />
-                  </span>
-                  <span>
-                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
-                    <h1 className="mt-0.5 text-[19px] font-medium text-white">Study Tracker</h1>
-                  </span>
-                </a>
+              <div className="mb-4 flex items-center justify-between px-1">
+                <ThemeToggle />
                 <button
                   onClick={() => setMobileOpen(false)}
                   aria-label="Close menu"
-                  className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/60"
+                  className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"
+                  style={{
+                    borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
+                    background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
+                    color: isLight ? "#525252" : "rgba(255,255,255,0.6)",
+                  }}
                 >
                   <X size={16} strokeWidth={1.75} />
                 </button>
               </div>
+              <div className="mb-8 px-1">{logoBlock("lg")}</div>
 
               {navList(() => setMobileOpen(false))}
 
-              <div className="mt-6 flex flex-col gap-3 border-t border-white/[0.06] pt-4">
+              <div className="mt-6 flex flex-col gap-3 border-t pt-4" style={{ borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}>
                 {showBackgroundToggle && (
                   <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
                 )}
