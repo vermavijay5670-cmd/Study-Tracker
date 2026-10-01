@@ -5,11 +5,52 @@ import { motion } from "framer-motion";
 import { SubjectCard } from "./SubjectCard";
 import { SUBJECT_ACCENT, SUBJECT_NAME, ACCENT_HEX } from "@/lib/data";
 import type { Subject } from "@/lib/types";
+import { useTheme } from "@/lib/ThemeContext";
+import { Atom, FlaskConical, Leaf } from "lucide-react";
+
+const SOFT_ICON = { phy: Atom, chem: FlaskConical, bio: Leaf } as const;
 
 const SUBJECTS: Subject[] = ["phy", "chem", "bio"];
 
 export function PlannerSection() {
   const [active, setActive] = useState<Subject>("phy");
+  const { theme } = useTheme();
+
+  if (theme === "light") {
+    return (
+      <div className="space-y-6">
+        <div className="sf-tabs-bar">
+          <div className="flex flex-wrap gap-3" role="tablist" aria-label="Subject">
+            {SUBJECTS.map((s) => {
+              const Icon = SOFT_ICON[s];
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  role="tab"
+                  aria-selected={active === s}
+                  onClick={() => setActive(s)}
+                  className={`sf-tab ${active === s ? "is-on" : ""}`}
+                >
+                  <Icon size={18} strokeWidth={1.9} />
+                  {SUBJECT_NAME[s]}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <SubjectCard subject={active} />
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

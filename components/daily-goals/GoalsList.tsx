@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, X, Target, AlertTriangle } from "lucide-react";
+import { Plus, X, Target, AlertTriangle, Check } from "lucide-react";
+import { useTheme } from "@/lib/ThemeContext";
+import { SoftCard } from "@/components/ui/soft/SoftUI";
 import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import type { Goal } from "@/lib/types";
 
@@ -14,6 +16,7 @@ interface GoalsListProps {
 }
 
 export function GoalsList({ goals, onAdd, onToggle, onDelete, onToggleMandatory }: GoalsListProps) {
+  const { theme } = useTheme();
   const [draft, setDraft] = useState("");
   const [draftMandatory, setDraftMandatory] = useState(false);
   const doneCount = goals.filter((g) => g.done).length;
@@ -24,6 +27,99 @@ export function GoalsList({ goals, onAdd, onToggle, onDelete, onToggleMandatory 
     onAdd(draft, draftMandatory);
     setDraft("");
     setDraftMandatory(false);
+  }
+
+  if (theme === "light") {
+    const pct = goals.length > 0 ? Math.round((doneCount / goals.length) * 100) : 0;
+    return (
+      <SoftCard delay={0.2}>
+        <div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h2 className="sf-title">Today&apos;s goals</h2>
+            <p className="sf-sub mt-1">Add what you want to get done today</p>
+          </div>
+          {goals.length > 0 && (
+            <span className="sf-pill-field" style={{ paddingLeft: 16, paddingRight: 16 }}>
+              {doneCount}/{goals.length} done
+            </span>
+          )}
+        </div>
+
+        {goals.length > 0 && (
+          <div
+            className="sf-track mb-5"
+            role="progressbar"
+            aria-label="Goals completed today"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={pct}
+          >
+            <i style={{ width: `${pct}%` }} />
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="flex flex-wrap items-center gap-3">
+          <input
+            type="text"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            placeholder="Add a goal for today…"
+            aria-label="New goal"
+            className="sf-input sf-input--text min-w-[180px]"
+          />
+          <button type="submit" disabled={!draft.trim()} className="sf-btn">
+            <Plus size={16} strokeWidth={2.4} /> Add goal
+          </button>
+        </form>
+
+        <button
+          type="button"
+          aria-pressed={draftMandatory}
+          onClick={() => setDraftMandatory((v) => !v)}
+          className={`sf-chip mt-4 ${draftMandatory ? "is-danger" : ""}`}
+        >
+          <AlertTriangle size={14} strokeWidth={2.2} />
+          Mandatory
+        </button>
+
+        <div className="mt-5">
+          {goals.length === 0 ? (
+            <p className="sf-empty sf-inset">No goals yet — add what you want to get done today.</p>
+          ) : (
+            <ul className="space-y-3">
+              {goals.map((g) => (
+                <li key={g.id} className="sf-goal" data-done={g.done ? "true" : "false"} data-mandatory={g.mandatory ? "true" : "false"}>
+                  <button
+                    type="button"
+                    onClick={() => onToggle(g.id)}
+                    aria-pressed={g.done}
+                    aria-label={g.done ? "Mark incomplete" : "Mark complete"}
+                    className="sf-check sf-check--sm"
+                    data-kind={g.done ? "done" : "new"}
+                  >
+                    {g.done && <Check size={17} strokeWidth={3} />}
+                  </button>
+                  <span className="sf-goal__txt">{g.text}</span>
+                  <button
+                    type="button"
+                    onClick={() => onToggleMandatory(g.id)}
+                    aria-pressed={g.mandatory}
+                    aria-label={g.mandatory ? "Unmark as mandatory" : "Mark as mandatory"}
+                    title={g.mandatory ? "Mandatory" : "Mark as mandatory"}
+                    className={`sf-icobtn ${g.mandatory ? "is-on" : ""}`}
+                  >
+                    <AlertTriangle size={16} strokeWidth={2} />
+                  </button>
+                  <button type="button" onClick={() => onDelete(g.id)} aria-label="Delete goal" className="sf-icobtn is-del">
+                    <X size={16} strokeWidth={2} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </SoftCard>
+    );
   }
 
   return (

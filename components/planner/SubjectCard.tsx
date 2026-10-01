@@ -7,6 +7,9 @@ import { ChapterRowMinimal } from "./ChapterRowMinimal";
 import { ChapterRowLeaderboard } from "./ChapterRowLeaderboard";
 import { CHAPTERS, SUBTOPICS, SUBJECT_ACCENT, SUBJECT_NAME, ACCENT_HEX } from "@/lib/data";
 import type { Subject } from "@/lib/types";
+import { useTheme } from "@/lib/ThemeContext";
+import { SoftCard } from "@/components/ui/soft/SoftUI";
+import { SoftChapterRow } from "./SoftChapterRow";
 import { useTrackerState } from "@/lib/useTrackerState";
 
 interface SubjectCardProps {
@@ -17,6 +20,7 @@ export function SubjectCard({ subject }: SubjectCardProps) {
   const { getChapterState, toggleDone, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubjectStats, isSubtopicDone, toggleSubtopic } =
     useTrackerState();
 
+  const { theme } = useTheme();
   const accent = SUBJECT_ACCENT[subject];
   const accentHex = ACCENT_HEX[accent];
   const { done, rev, total } = getSubjectStats(subject);
@@ -36,6 +40,87 @@ export function SubjectCard({ subject }: SubjectCardProps) {
       }
       if (nextKey) break;
     }
+  }
+
+  if (theme === "light") {
+    const R = 46;
+    const C = 2 * Math.PI * R;
+    return (
+      <SoftCard>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="min-w-0">
+            <span className="sf-cap" style={{ letterSpacing: "0.14em" }}>Chapter tracker</span>
+            <h2 className="sf-h1 mt-2">{SUBJECT_NAME[subject]}</h2>
+            <p className="sf-sub mt-1.5">Class 11 &amp; 12 · NCERT order</p>
+          </div>
+          <div className="sf-ring" role="img" aria-label={`${donePct}% of chapters done`}>
+            <svg viewBox="0 0 108 108" aria-hidden>
+              <defs>
+                <linearGradient id="sf-ring-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#9cc46e" />
+                  <stop offset="1" stopColor="#3f7230" />
+                </linearGradient>
+              </defs>
+              <circle
+                cx="54"
+                cy="54"
+                r={R}
+                fill="none"
+                stroke="url(#sf-ring-grad)"
+                strokeWidth="12"
+                strokeLinecap="round"
+                strokeDasharray={`${(donePct / 100) * C} ${C}`}
+                style={{ transition: "stroke-dasharray .6s ease" }}
+              />
+            </svg>
+            <div className="sf-ring__txt">
+              <b>{donePct}%</b>
+              <span>Done</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="sf-sub mt-5 flex flex-wrap items-center gap-2">
+          <span>{done}/{total} chapters done</span>
+          <span aria-hidden>·</span>
+          <span>{rev}/{total} revised ({revPct}%)</span>
+        </div>
+        <div className="sf-track mt-2.5">
+          <i style={{ width: `${revPct}%` }} />
+        </div>
+
+        <div className="mt-8 space-y-6">
+          {([11, 12] as const).map((cls) => (
+            <div key={cls}>
+              <div className="sf-cap mb-3">Class {cls}</div>
+              <div className="space-y-3">
+                {CHAPTERS[subject][cls].map((name, i) => {
+                  const chState = getChapterState(subject, cls, i);
+                  const subtopics = subject === "bio" ? SUBTOPICS.bio?.[cls]?.[i] : undefined;
+                  return (
+                    <SoftChapterRow
+                      key={i}
+                      index={i}
+                      name={name}
+                      state={chState}
+                      isNext={subject === "chem" && nextKey === `${cls}_${i}`}
+                      subtopics={subtopics}
+                      isSubtopicDone={subtopics ? (subIdx) => isSubtopicDone(subject, cls, i, subIdx) : undefined}
+                      onToggleSubtopic={subtopics ? (subIdx) => toggleSubtopic(subject, cls, i, subIdx) : undefined}
+                      onToggleDone={() => toggleDone(subject, cls, i)}
+                      onBumpRevision={() => bumpRevision(subject, cls, i)}
+                      onResetRevision={() => resetRevision(subject, cls, i)}
+                      onCycleDifficulty={() => cycleDifficulty(subject, cls, i)}
+                      onSaveNote={(note) => setChapterNote(subject, cls, i, note)}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </SoftCard>
+    );
   }
 
   return (

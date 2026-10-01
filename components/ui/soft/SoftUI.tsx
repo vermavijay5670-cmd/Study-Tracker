@@ -13,7 +13,21 @@ export function SoftBackdrop() {
     <>
       {/* React 19 hoists this into <head> and dedupes it. */}
       <link rel="stylesheet" href={FONT_URL} precedence="default" />
-      <div className="sf-bg" aria-hidden />
+      <div className="sf-bg" aria-hidden>
+        <svg className="sf-leaves sf-leaves--tr" viewBox="0 0 260 260">
+          <g fill="#6f9a47">
+            <path d="M200 20c40 30 50 90 10 140-40-20-60-80-10-140z" transform="rotate(18 200 90)" />
+            <path d="M120 10c36 24 44 80 8 124-36-18-52-74-8-124z" transform="rotate(-12 120 70)" />
+            <path d="M240 120c-6 40-40 70-90 60 6-40 40-70 90-60z" />
+          </g>
+        </svg>
+        <svg className="sf-leaves sf-leaves--bl" viewBox="0 0 260 260">
+          <g fill="#7ea24f">
+            <path d="M40 240c-30-40-24-100 24-130 28 36 20 100-24 130z" transform="rotate(-8 60 180)" />
+            <path d="M110 250c-20-36-10-90 36-112 22 34 8 90-36 112z" transform="rotate(14 120 190)" />
+          </g>
+        </svg>
+      </div>
     </>
   );
 }

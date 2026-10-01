@@ -43,9 +43,9 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
   const { theme } = useTheme();
   const isLight = theme === "light";
-  // Per-page light-mode skins: skeuomorphic "study desk" (Today, Dashboard) and soft neumorphic (Study Log).
+  // Per-page light-mode skins: skeuomorphic "study desk" (Today, Dashboard) and soft neumorphic (Study Log, Planner, Daily Goals).
   const desk = isLight && (pathname === "/today" || pathname === "/dashboard");
-  const soft = isLight && pathname === "/study-log";
+  const soft = isLight && (pathname === "/study-log" || pathname === "/planner" || pathname === "/daily-goals");
   const chrome = desk || soft;
   const px = soft ? "sf" : "dk";
   const [mobileOpen, setMobileOpen] = useState(false);
