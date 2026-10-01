@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Check, X, CalendarCheck, StickyNote } from "lucide-react";
 import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { dateKey, todayKey } from "@/lib/date-utils";
+import { useTheme } from "@/lib/ThemeContext";
 
 interface DayMarkCalendarProps {
   marks: Record<string, "tick" | "cross">;
@@ -15,6 +16,8 @@ interface DayMarkCalendarProps {
 }
 
 export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: DayMarkCalendarProps) {
+  const { theme } = useTheme();
+  const glass = theme === "dark";
   const today = new Date();
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth()); // 0-indexed
@@ -68,6 +71,163 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
   const crossCount = Object.values(marks).filter((m) => m === "cross").length;
   const openDate = openDay ? new Date(`${openDay}T00:00:00`) : null;
   const openMark = openDay ? marks[openDay] : undefined;
+
+  const dayDialog = (
+  <AnimatePresence>
+    {openDay && openDate && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.15 }}
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+        onClick={closeDay}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          onClick={(e) => e.stopPropagation()}
+          className={`relative w-full max-w-[300px] rounded-2xl p-6 text-center ${glass ? "gl-modal" : "border border-white/12 bg-[#161618] shadow-2xl"}`}
+        >
+          <button
+            onClick={closeDay}
+            aria-label="Close"
+            className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full text-white/30 transition-colors hover:bg-white/[0.06] hover:text-white/70"
+          >
+            <X size={14} strokeWidth={2} />
+          </button>
+
+          <p className="mb-1 text-[11px] uppercase tracking-wide text-white/40">Mark this day</p>
+          <p className="mb-5 text-[16px] font-medium text-white">
+            {openDate.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
+          </p>
+          <div className="flex items-center justify-center gap-4">
+            <button
+              onClick={() => onMark(openDay, "tick")}
+              aria-label="Mark as tick"
+              className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#6FB37A] transition-transform hover:scale-105"
+              style={{
+                background: "#6FB37A18",
+                boxShadow: openMark === "tick" ? "0 0 0 2px #6FB37Aaa" : "none",
+              }}
+            >
+              <Check size={28} strokeWidth={2.5} />
+            </button>
+            <button
+              onClick={() => onMark(openDay, "cross")}
+              aria-label="Mark as cross"
+              className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#E0766B] transition-transform hover:scale-105"
+              style={{
+                background: "#E0766B18",
+                boxShadow: openMark === "cross" ? "0 0 0 2px #E0766Baa" : "none",
+              }}
+            >
+              <X size={28} strokeWidth={2.5} />
+            </button>
+          </div>
+          {marks[openDay] && (
+            <button
+              onClick={() => onClear(openDay)}
+              className="mt-3 text-[12px] text-white/30 transition-colors hover:text-white/60"
+            >
+              Clear mark
+            </button>
+          )}
+
+          <div className="mt-5 border-t border-white/10 pt-4 text-left">
+            <label className="mb-1.5 flex items-center gap-1.5 text-[10px] uppercase tracking-wide text-white/40">
+              <StickyNote size={11} strokeWidth={1.75} /> note
+            </label>
+            <textarea
+              autoFocus={false}
+              value={noteDraft}
+              onChange={(e) => setNoteDraft(e.target.value)}
+              onBlur={() => {
+                if (openDay && noteDraft !== (notes[openDay] ?? "")) onSaveNote(openDay, noteDraft);
+              }}
+              placeholder="What happened today?"
+              rows={3}
+              className="w-full resize-none rounded-xl border border-white/12 bg-black/30 px-3 py-2 text-[12.5px] leading-relaxed text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-[#6FA8A3]/45"
+            />
+          </div>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+  );
+
+  if (glass) {
+    const weekdays = ["S", "M", "T", "W", "T", "F", "S"];
+    return (
+      <>
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 260, damping: 26 }}
+          className="gl-card"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <span className="gl-pill-label">
+              <CalendarCheck size={15} strokeWidth={1.9} /> Mark your days
+            </span>
+            <span className="gl-tally">
+              <b style={{ color: "var(--gl-good)" }}>{tickCount} good</b>
+              <span style={{ color: "var(--gl-muted)" }}> - </span>
+              <b style={{ color: "var(--gl-bad)" }}>{crossCount} bad</b>
+            </span>
+          </div>
+
+          <div className="mb-5 mt-1 grid grid-cols-[auto_1fr_auto] items-center gap-3">
+            <button onClick={goPrev} aria-label="Previous month" className="gl-circle-btn">
+              <ChevronLeft size={20} strokeWidth={2} />
+            </button>
+            <h2 className="gl-month" aria-live="polite">{monthLabel}</h2>
+            <button onClick={goNext} aria-label="Next month" className="gl-circle-btn">
+              <ChevronRight size={20} strokeWidth={2} />
+            </button>
+          </div>
+
+          <div className="gl-week" aria-hidden>
+            {weekdays.map((d, i) => (
+              <div key={i}>{d}</div>
+            ))}
+          </div>
+
+          <div className="gl-grid">
+            {cells.map((day, i) => {
+              if (day === null) return <div key={i} />;
+              const key = dateKey(new Date(viewYear, viewMonth, day));
+              const mark = marks[key];
+              const hasNote = Boolean(notes[key]?.trim());
+              const isToday = key === todaysKey;
+              return (
+                <button
+                  key={i}
+                  onClick={() => setOpenDay(key)}
+                  aria-label={`${key}${mark ? (mark === "tick" ? ", marked good" : ", marked bad") : ""}${hasNote ? ", has a note" : ""}`}
+                  aria-current={isToday ? "date" : undefined}
+                  className={`gl-day ${isToday && !mark ? "is-today" : ""} ${mark === "tick" ? "is-tick" : ""} ${mark === "cross" ? "is-cross" : ""}`}
+                >
+                  {mark === "tick" ? (
+                    <Check size={20} strokeWidth={2.6} />
+                  ) : mark === "cross" ? (
+                    <X size={20} strokeWidth={2.6} />
+                  ) : (
+                    day
+                  )}
+                  {hasNote && <span aria-hidden className="gl-day__note" />}
+                </button>
+              );
+            })}
+          </div>
+        </motion.section>
+
+        {dayDialog}
+      </>
+    );
+  }
 
   return (
     <>
@@ -147,89 +307,7 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
 
       {/* Rendered as a sibling, not nested inside PaperTiltCard — its tilt transform would
           otherwise turn this fixed overlay into a clipped, mis-positioned element. */}
-      <AnimatePresence>
-        {openDay && openDate && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
-            onClick={closeDay}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-[300px] rounded-2xl border border-white/12 bg-[#161618] p-6 text-center shadow-2xl"
-            >
-              <button
-                onClick={closeDay}
-                aria-label="Close"
-                className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full text-white/30 transition-colors hover:bg-white/[0.06] hover:text-white/70"
-              >
-                <X size={14} strokeWidth={2} />
-              </button>
-
-              <p className="mb-1 text-[11px] uppercase tracking-wide text-white/40">Mark this day</p>
-              <p className="mb-5 text-[16px] font-medium text-white">
-                {openDate.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
-              </p>
-              <div className="flex items-center justify-center gap-4">
-                <button
-                  onClick={() => onMark(openDay, "tick")}
-                  aria-label="Mark as tick"
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#6FB37A] transition-transform hover:scale-105"
-                  style={{
-                    background: "#6FB37A18",
-                    boxShadow: openMark === "tick" ? "0 0 0 2px #6FB37Aaa" : "none",
-                  }}
-                >
-                  <Check size={28} strokeWidth={2.5} />
-                </button>
-                <button
-                  onClick={() => onMark(openDay, "cross")}
-                  aria-label="Mark as cross"
-                  className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#E0766B] transition-transform hover:scale-105"
-                  style={{
-                    background: "#E0766B18",
-                    boxShadow: openMark === "cross" ? "0 0 0 2px #E0766Baa" : "none",
-                  }}
-                >
-                  <X size={28} strokeWidth={2.5} />
-                </button>
-              </div>
-              {marks[openDay] && (
-                <button
-                  onClick={() => onClear(openDay)}
-                  className="mt-3 text-[12px] text-white/30 transition-colors hover:text-white/60"
-                >
-                  Clear mark
-                </button>
-              )}
-
-              <div className="mt-5 border-t border-white/10 pt-4 text-left">
-                <label className="mb-1.5 flex items-center gap-1.5 text-[10px] uppercase tracking-wide text-white/40">
-                  <StickyNote size={11} strokeWidth={1.75} /> note
-                </label>
-                <textarea
-                  autoFocus={false}
-                  value={noteDraft}
-                  onChange={(e) => setNoteDraft(e.target.value)}
-                  onBlur={() => {
-                    if (openDay && noteDraft !== (notes[openDay] ?? "")) onSaveNote(openDay, noteDraft);
-                  }}
-                  placeholder="What happened today?"
-                  rows={3}
-                  className="w-full resize-none rounded-xl border border-white/12 bg-black/30 px-3 py-2 text-[12.5px] leading-relaxed text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-[#6FA8A3]/45"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {dayDialog}
     </>
   );
 }

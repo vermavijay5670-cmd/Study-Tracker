@@ -3,16 +3,19 @@
 import { DayMarkCalendar } from "./DayMarkCalendar";
 import { ThoughtCard } from "./ThoughtCard";
 import { useTrackerState } from "@/lib/useTrackerState";
+import { useTheme } from "@/lib/ThemeContext";
 
 export function MarkYourDaysSection() {
   const { state, hydrated, setDayMark, clearDayMark, setDayNote, addCustomThought } = useTrackerState();
 
+  const { theme } = useTheme();
+
   if (!hydrated) {
-    return <div className="py-24 text-center text-sm text-white/50">Loading…</div>;
+    return <div className={theme === "dark" ? "gl-loading" : "py-24 text-center text-sm text-white/50"}>Loading…</div>;
   }
 
   return (
-    <div className="space-y-6">
+    <div className={theme === "dark" ? "space-y-9" : "space-y-6"}>
       <DayMarkCalendar
         marks={state.dayMarks}
         notes={state.dayNotes}

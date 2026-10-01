@@ -5,6 +5,7 @@ import { Quote, Shuffle, Plus } from "lucide-react";
 import { todayKey } from "@/lib/date-utils";
 import { getThoughtOfTheDay, getRandomThought } from "@/lib/thoughts";
 import { HighlightedText } from "./HighlightedText";
+import { useTheme } from "@/lib/ThemeContext";
 
 const GRAIN_SVG =
   "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
@@ -18,6 +19,7 @@ interface ThoughtCardProps {
 }
 
 export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) {
+  const { theme } = useTheme();
   const dailyThought = useMemo(() => getThoughtOfTheDay(todayKey(), customThoughts), [customThoughts]);
   const [shown, setShown] = useState(dailyThought);
   const [showAdd, setShowAdd] = useState(false);
@@ -33,6 +35,61 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
     onAddThought(draft);
     setDraft("");
     setShowAdd(false);
+  }
+
+  if (theme === "dark") {
+    return (
+      <section className="gl-card" style={{ paddingTop: 30 }}>
+        <div aria-hidden className="gl-tape" />
+        <div className="flex items-start justify-between gap-3">
+          <span className="gl-thought-label">
+            <Quote size={16} strokeWidth={2} /> Thought of the day
+          </span>
+          <button
+            type="button"
+            onClick={shuffle}
+            aria-label="Show another thought"
+            title="Show another thought"
+            className="gl-icon-btn"
+          >
+            <Shuffle size={18} strokeWidth={1.8} />
+          </button>
+        </div>
+
+        <p className="gl-quote">
+          “<HighlightedText text={shown} />”
+        </p>
+
+        <hr className="gl-rule" />
+
+        {showAdd ? (
+          <form onSubmit={handleSubmit} className="space-y-2">
+            <div className="flex gap-2">
+              <input
+                autoFocus
+                type="text"
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+                onBlur={() => !draft && setShowAdd(false)}
+                placeholder="Write a thought that keeps you going…"
+                aria-label="Your own thought"
+                className="gl-input"
+              />
+              <button type="submit" className="gl-btn">
+                Save
+              </button>
+            </div>
+            <p className="text-[12px]" style={{ color: "var(--gl-muted)" }}>
+              Tip: wrap a word in **asterisks** to highlight it.
+            </p>
+          </form>
+        ) : (
+          <button type="button" onClick={() => setShowAdd(true)} className="gl-link">
+            <Plus size={18} strokeWidth={1.8} /> Add your own thought
+          </button>
+        )}
+      </section>
+    );
   }
 
   return (

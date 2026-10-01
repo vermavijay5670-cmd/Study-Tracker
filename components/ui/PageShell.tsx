@@ -46,11 +46,13 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   // Per-page light-mode skins: skeuomorphic "study desk" (Today, Dashboard) and soft neumorphic (Study Log, Planner, Daily Goals).
   const desk = isLight && (pathname === "/today" || pathname === "/dashboard");
   const soft = isLight && (pathname === "/study-log" || pathname === "/planner" || pathname === "/daily-goals");
-  const chrome = desk || soft;
-  const px = soft ? "sf" : "dk";
+  // Dark-mode skin: slate glass (Mark Your Days).
+  const glass = !isLight && pathname === "/mark-your-days";
+  const chrome = desk || soft || glass;
+  const px = soft ? "sf" : glass ? "gl" : "dk";
   const [mobileOpen, setMobileOpen] = useState(false);
   // Kinetic-grid vs matte is a dark-mode-only visual for now — light mode always uses its own backdrop.
-  const showBackgroundToggle = pathname !== "/today" && !isLight;
+  const showBackgroundToggle = pathname !== "/today" && !isLight && !glass;
 
   // Close the mobile drawer whenever the route changes.
   useEffect(() => {
@@ -166,7 +168,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
         }
       >
         <div className="mb-4 flex items-center px-1">
-          <ThemeToggle variant={desk ? "desk" : soft ? "soft" : "default"} />
+          <ThemeToggle variant={desk ? "desk" : soft ? "soft" : glass ? "glass" : "default"} />
         </div>
         <div className="mb-8 px-1">{logoBlock("lg")}</div>
 
@@ -177,10 +179,10 @@ export function PageShell({ children }: { children: React.ReactNode }) {
           style={chrome ? undefined : { borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}
         >
           {showBackgroundToggle && (
-            <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
+            <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} variant={glass ? "glass" : "default"} />
           )}
-          <div className="flex items-center gap-2">
-            {hydrated && <ProfileChip desk={desk} soft={soft} studentName={state.studentName} targetExam={state.targetExam} />}
+          <div className={glass ? "gl-profilebar" : "flex items-center gap-2"}>
+            {hydrated && <ProfileChip desk={desk} soft={soft} glass={glass} studentName={state.studentName} targetExam={state.targetExam} />}
             {hydrated && user && (
               <button
                 onClick={handleSignOut}
@@ -233,7 +235,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
           >
             <Menu size={17} strokeWidth={1.75} />
           </button>
-          <ThemeToggle variant={desk ? "desk" : soft ? "soft" : "default"} />
+          <ThemeToggle variant={desk ? "desk" : soft ? "soft" : glass ? "glass" : "default"} />
         </div>
 
         {logoBlock("sm")}
@@ -293,7 +295,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               }
             >
               <div className="mb-4 flex items-center justify-between px-1">
-                <ThemeToggle variant={desk ? "desk" : soft ? "soft" : "default"} />
+                <ThemeToggle variant={desk ? "desk" : soft ? "soft" : glass ? "glass" : "default"} />
                 <button
                   onClick={() => setMobileOpen(false)}
                   aria-label="Close menu"
@@ -320,9 +322,9 @@ export function PageShell({ children }: { children: React.ReactNode }) {
                 style={chrome ? undefined : { borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}
               >
                 {showBackgroundToggle && (
-                  <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
+                  <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} variant={glass ? "glass" : "default"} />
                 )}
-                {hydrated && <ProfileChip desk={desk} soft={soft} studentName={state.studentName} targetExam={state.targetExam} />}
+                {hydrated && <ProfileChip desk={desk} soft={soft} glass={glass} studentName={state.studentName} targetExam={state.targetExam} />}
               </div>
             </motion.aside>
           </>

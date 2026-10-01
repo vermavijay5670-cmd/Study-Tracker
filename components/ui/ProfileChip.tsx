@@ -10,11 +10,30 @@ interface ProfileChipProps {
   desk?: boolean;
   /** Soft neumorphic styling used by the light-mode Study Log. */
   soft?: boolean;
+  /** Slate-glass styling used by the dark Mark Your Days page. */
+  glass?: boolean;
 }
 
-export function ProfileChip({ studentName, targetExam, desk = false, soft = false }: ProfileChipProps) {
+export function ProfileChip({ studentName, targetExam, desk = false, soft = false, glass = false }: ProfileChipProps) {
   const { theme } = useTheme();
   const isLight = theme === "light";
+
+  if (glass && !isLight) {
+    const name = studentName.trim();
+    return (
+      <Link href="/#profile-form" className="gl-profile">
+        <span className="gl-avatar">{name ? name.charAt(0).toUpperCase() : "+"}</span>
+        <span className="min-w-0 text-left">
+          <span className="block max-w-[120px] truncate text-[15px] font-semibold">{name || "Add your name"}</span>
+          {name && targetExam && (
+            <span className="block max-w-[120px] truncate text-[11px] uppercase tracking-wide" style={{ color: "#9fb0bc" }}>
+              {targetExam}
+            </span>
+          )}
+        </span>
+      </Link>
+    );
+  }
 
   if (soft) {
     const name = studentName.trim();
