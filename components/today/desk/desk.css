@@ -404,7 +404,59 @@ a:active > .dk-logo-badge { transform: translateY(1px); box-shadow: inset 0 3px 
 .dk-profile:hover { filter: brightness(1.2); }
 .dk-avatar { display: flex; align-items: center; justify-content: center; flex: none; width: 38px; height: 38px; border-radius: 50%; font: 700 16px/1 var(--dk-font-label); color: #fff; background: linear-gradient(135deg, #a78bfa, #60a5fa); box-shadow: 0 0 0 2px rgba(224,180,100,.6), 0 2px 5px rgba(0,0,0,.5); }
 
+/* ==========================================================================
+   Dashboard pieces
+   ========================================================================== */
+.dk-ledger {
+  position: relative; isolation: isolate; display: flex; flex-direction: column; border-radius: 22px; padding: 10px;
+  background: var(--dk-tex-leather), linear-gradient(160deg, #6d4327, #4b2b17 52%, #33190c);
+  box-shadow: 0 16px 30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,210,150,.28), inset 0 0 0 1px rgba(0,0,0,.5);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.dk-ledger:hover { transform: translateY(-2px); box-shadow: 0 22px 36px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,210,150,.28), inset 0 0 0 1px rgba(0,0,0,.5); }
+.dk-ledger::before { content: ""; position: absolute; inset: 4px; border-radius: 18px; border: 1.5px dashed rgba(224,180,100,.4); pointer-events: none; }
+.dk-ledger__page { flex: 1; display: flex; flex-direction: column; border-radius: 14px; padding: 18px 20px 20px; }
+@media (max-width: 520px) { .dk-ledger__page { padding: 16px 14px 18px; } }
+
+@media (max-width: 520px) { .dk-seg { width: 100%; } .dk-seg__btn { flex: 1 1 auto; padding: 6px 3px; font-size: 11px; letter-spacing: -.01em; } }
+.dk-btn--sm { min-height: 42px; padding: 7px 16px; font-size: 17px; box-shadow-color: transparent; }
+.dk-btn--sm.dk-btn--brass { box-shadow: 0 4px 0 #7d5519, 0 7px 11px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,251,214,.9), inset 0 -2px 3px rgba(120,74,10,.45); }
+.dk-btn--sm.dk-btn--stone { box-shadow: 0 4px 0 #6b6558, 0 7px 11px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.75), inset 0 -2px 3px rgba(60,50,35,.35); }
+
+.dk-seg { max-width: 100%; display: inline-flex; gap: 2px; padding: 3px; border-radius: 999px; background: linear-gradient(180deg, #3b2a18, #5d4428); box-shadow: inset 0 2px 4px rgba(0,0,0,.75), 0 1px 0 rgba(255,246,222,.6); }
+.dk-seg__btn { white-space: nowrap; padding: 6px 13px; border-radius: 999px; cursor: pointer; font: 700 15px/1 var(--dk-font-hand); color: #e8d6b0; transition: color .15s ease, transform .1s ease, box-shadow .1s ease; }
+.dk-seg__btn:hover:not(.is-on) { color: #fff; }
+.dk-seg__btn:active { transform: translateY(1px); }
+.dk-seg__btn:focus-visible { outline: 3px solid rgba(255,214,120,.95); outline-offset: 2px; }
+.dk-seg__btn.is-on { color: #2d1b05; text-shadow: 0 1px 0 rgba(255,240,190,.7); background: linear-gradient(180deg, #f6da8b, #d3a44c 55%, #bb8832); box-shadow: 0 2px 0 #7d5519, inset 0 1px 0 rgba(255,250,210,.85); }
+
+.dk-bignum { display: inline-block; font: 400 clamp(38px, 5vw, 54px)/1 var(--dk-font-marker); color: #241609; transform: rotate(-1.5deg); text-shadow: 1px 2px 0 rgba(255,255,255,.28), 0 0 1px rgba(0,0,0,.55); font-variant-numeric: tabular-nums; }
+.dk-bignum--sm { font-size: clamp(28px, 3.6vw, 38px); }
+.dk-pill { display: inline-flex; align-items: center; gap: 3px; padding: 4px 11px; border-radius: 999px; font: 700 13px/1 var(--dk-font-label); color: var(--dk-ink-soft); background: rgba(90,60,20,.14); box-shadow: inset 0 1px 3px rgba(90,60,20,.35), 0 1px 0 rgba(255,250,235,.6); }
+.dk-pill.is-up { color: #2c6a33; background: rgba(70,140,70,.18); }
+.dk-link { font: 700 15px/1 var(--dk-font-hand); color: var(--dk-ink-soft); text-decoration: underline; text-decoration-style: dashed; text-underline-offset: 4px; transition: color .15s ease; }
+.dk-link:hover { color: #8b5a12; }
+.dk-link:focus-visible { outline: 3px solid rgba(184,128,42,.8); outline-offset: 3px; }
+.dk-note { font: 500 13px/1.45 var(--dk-font-label); color: var(--dk-ink-soft); }
+.dk-badge { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; color: #e6c273; background: radial-gradient(circle at 35% 28%, #5a3a22, #2a170a 72%); border: 1px solid rgba(224,180,100,.7); box-shadow: 0 3px 6px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,220,160,.3); }
+.dk-seal { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; font: 700 12px/1 var(--dk-font-label); color: #22160a; background: var(--dk-accent, #d4a44c); box-shadow: 0 0 0 2px rgba(60,40,15,.55), 0 3px 5px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.45), inset 0 -3px 5px rgba(0,0,0,.25); }
+.dk-seal--plain { background: linear-gradient(180deg, #efe3c6, #dccba0); color: var(--dk-ink-soft); }
+.dk-seals { display: flex; margin: 16px 0; }
+.dk-seals > * + * { margin-left: -8px; }
+.dk-index {
+  position: relative; border-radius: 10px; padding: 14px 16px 14px 18px; border-left: 8px solid var(--dk-accent, #d4a44c);
+  background: linear-gradient(180deg, #f7edd3, #eadcb8);
+  box-shadow: 0 7px 12px rgba(0,0,0,.3), inset 0 0 0 1px rgba(120,85,40,.35), inset 0 1px 0 rgba(255,255,255,.6);
+}
+.dk-row { display: flex; align-items: center; gap: 12px; padding: 9px 2px; border-bottom: 1px dashed rgba(90,60,20,.35); }
+.dk-row:last-child { border-bottom: 0; }
+.dk-well { display: flex; align-items: center; justify-content: center; flex: none; width: 34px; height: 34px; border-radius: 50%; background: rgba(90,60,20,.14); box-shadow: inset 0 2px 4px rgba(90,60,20,.45), 0 1px 0 rgba(255,250,235,.6); }
+.dk-legend { display: flex; align-items: center; gap: 6px; }
+.dk-legend i { width: 10px; height: 10px; border-radius: 2px; background: linear-gradient(180deg, #e9c56f, #a8701c); box-shadow: 0 1px 1px rgba(0,0,0,.35); }
+.dk-loading { padding: 96px 0; text-align: center; font: 500 22px/1 var(--dk-font-script); color: rgba(255,240,210,.8); }
+
 @media (prefers-reduced-motion: reduce) {
+  .dk-ledger { transition: none; }
   .dk-tile__val, .dk-ptile__val, .dk-track__fill.is-live, .dk-dot.is-live { animation: none; }
   .dk-btn, .dk-chip, .dk-nav, .dk-round-btn { transition: none; }
 }

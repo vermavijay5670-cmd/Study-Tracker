@@ -2,9 +2,11 @@
 
 import { useMemo, useState } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight, Clock } from "lucide-react";
 import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { addDays, dateKey, parseKey } from "@/lib/date-utils";
+import { useTheme } from "@/lib/ThemeContext";
+import { Notebook, Plate, Seg } from "@/components/today/desk/DeskUI";
 
 interface BalanceChartProps {
   log: Record<string, number>;
@@ -34,6 +36,8 @@ function sumHours(log: Record<string, number>, from: Date, to: Date): number {
 
 export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: BalanceChartProps) {
   const [range, setRange] = useState<RangeKey>("30");
+  const { theme } = useTheme();
+  const isLight = theme === "light";
 
   const today = useMemo(() => new Date(), []);
   const start = parseKey(startDate);
@@ -67,6 +71,89 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
   const up = pct >= 0;
 
   const avgPerDay = totalDays > 0 ? totalHoursLogged / totalDays : 0;
+
+  const c = isLight
+    ? {
+        line: "#a8701c",
+        fillTop: "#d4a44c",
+        tick: "#5d4830",
+        cursor: "rgba(43,29,17,0.45)",
+        tip: { background: "#f1e5c8", border: "1px solid #8b6a3a", borderRadius: 10, fontSize: 12, color: "#2b1d11" },
+        dotFill: "#2b1d11",
+      }
+    : {
+        line: "#C084FC",
+        fillTop: "#C084FC",
+        tick: "rgba(255,255,255,0.35)",
+        cursor: "rgba(255,255,255,0.2)",
+        tip: { background: "#171224", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 14, fontSize: 12, color: "#F6F4FF" },
+        dotFill: "#F6F4FF",
+      };
+
+  const chart = (
+    <div className="mt-5 h-[220px] w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <AreaChart data={series} margin={{ top: 10, right: 4, left: 0, bottom: 0 }}>
+          <defs>
+            <linearGradient id="balanceFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={c.fillTop} stopOpacity={isLight ? 0.65 : 0.45} />
+              <stop offset="100%" stopColor={c.fillTop} stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <XAxis
+            dataKey="label"
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: c.tick, fontSize: 10 }}
+            interval={Math.max(0, Math.floor(series.length / 6))}
+          />
+          <Tooltip
+            cursor={{ stroke: c.cursor, strokeWidth: 1 }}
+            contentStyle={c.tip}
+            formatter={(v: number) => [`${v}h`, "Total hours"]}
+          />
+          <Area
+            type="monotone"
+            dataKey="cumulative"
+            stroke={c.line}
+            strokeWidth={isLight ? 3 : 2}
+            fill="url(#balanceFill)"
+            dot={false}
+            activeDot={{ r: 4, fill: c.dotFill, stroke: c.line, strokeWidth: 2 }}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  );
+
+  if (isLight) {
+    return (
+      <Notebook>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <Plate icon={<Clock size={13} strokeWidth={2} />}>Total study hours</Plate>
+            <div className="mt-3 flex items-center gap-3">
+              <span className="dk-bignum">{totalHoursLogged.toFixed(1)}h</span>
+              <span className={`dk-pill ${up ? "is-up" : ""}`}>
+                {up ? <ArrowUpRight size={13} strokeWidth={2.2} /> : <ArrowDownRight size={13} strokeWidth={2.2} />}
+                {Math.abs(pct).toFixed(1)}%
+              </span>
+            </div>
+          </div>
+          <Seg value={range} onChange={setRange} label="Chart range" options={RANGES.map((r) => ({ key: r.key, label: r.label }))} />
+        </div>
+
+        {chart}
+
+        <div className="dk-note mt-3 flex flex-wrap items-center justify-between gap-2">
+          <span>Average pace &nbsp;{avgPerDay.toFixed(1)}h / day</span>
+          <span className="dk-legend">
+            <i /> Cumulative hours logged
+          </span>
+        </div>
+      </Notebook>
+    );
+  }
 
   return (
     <PaperTiltCard>
@@ -103,45 +190,7 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
         </div>
       </div>
 
-      <div className="mt-5 h-[220px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={series} margin={{ top: 10, right: 4, left: 0, bottom: 0 }}>
-            <defs>
-              <linearGradient id="balanceFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#C084FC" stopOpacity={0.45} />
-                <stop offset="100%" stopColor="#C084FC" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            <XAxis
-              dataKey="label"
-              axisLine={false}
-              tickLine={false}
-              tick={{ fill: "rgba(255,255,255,0.35)", fontSize: 10 }}
-              interval={Math.max(0, Math.floor(series.length / 6))}
-            />
-            <Tooltip
-              cursor={{ stroke: "rgba(255,255,255,0.2)", strokeWidth: 1 }}
-              contentStyle={{
-                background: "#171224",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 14,
-                fontSize: 12,
-                color: "#F6F4FF",
-              }}
-              formatter={(v: number) => [`${v}h`, "Total hours"]}
-            />
-            <Area
-              type="monotone"
-              dataKey="cumulative"
-              stroke="#C084FC"
-              strokeWidth={2}
-              fill="url(#balanceFill)"
-              dot={false}
-              activeDot={{ r: 4, fill: "#F6F4FF", stroke: "#C084FC", strokeWidth: 2 }}
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+      {chart}
 
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-white/40">
         <span>Average pace &nbsp;{avgPerDay.toFixed(1)}h / day</span>

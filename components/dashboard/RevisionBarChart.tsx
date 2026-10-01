@@ -6,6 +6,8 @@ import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { addDays, dateKey, parseKey } from "@/lib/date-utils";
 import type { ChapterState, Subject } from "@/lib/types";
 import { CHAPTERS } from "@/lib/data";
+import { useTheme } from "@/lib/ThemeContext";
+import { Ledger, Seg } from "@/components/today/desk/DeskUI";
 
 interface RevisionBarChartProps {
   getChapterState: (subj: Subject, cls: 11 | 12, i: number) => ChapterState;
@@ -15,6 +17,8 @@ type Period = "week" | "month";
 
 export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
   const [period, setPeriod] = useState<Period>("week");
+  const { theme } = useTheme();
+  const isLight = theme === "light";
 
   const revisionDates = useMemo(() => {
     const dates: string[] = [];
@@ -52,6 +56,68 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
   const maxCount = Math.max(1, ...data.map((d) => d.count));
   const totalThisPeriod = data[data.length - 1]?.count ?? 0;
 
+  const c = isLight
+    ? {
+        tick: "#5d4830",
+        cursor: "rgba(90,60,20,0.12)",
+        tip: { background: "#f1e5c8", border: "1px solid #8b6a3a", borderRadius: 10, fontSize: 12, color: "#2b1d11" },
+        hi: "#b8802a",
+        lo: "rgba(184,128,42,0.32)",
+      }
+    : {
+        tick: "rgba(255,255,255,0.35)",
+        cursor: "rgba(255,255,255,0.04)",
+        tip: { background: "#171224", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 14, fontSize: 12, color: "#F6F4FF" },
+        hi: "#C084FC",
+        lo: "rgba(192,132,252,0.28)",
+      };
+
+  const chart = (
+    <div className="h-[170px] w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} margin={{ top: 10, right: 4, left: -20, bottom: 0 }}>
+          <XAxis dataKey="label" axisLine={false} tickLine={false} tick={{ fill: c.tick, fontSize: 10 }} />
+          <Tooltip
+            cursor={{ fill: c.cursor }}
+            contentStyle={c.tip}
+            formatter={(v: number) => [`${v}`, "Chapters revised"]}
+          />
+          <Bar dataKey="count" radius={[8, 8, 8, 8]} maxBarSize={34}>
+            {data.map((d, i) => (
+              <Cell key={i} fill={d.count === maxCount && maxCount > 0 ? c.hi : c.lo} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+
+  if (isLight) {
+    return (
+      <Ledger delay={0.12}>
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="dk-h" style={{ fontSize: 22 }}>Revision activity</h2>
+            <div className="mt-1 flex items-baseline gap-2">
+              <span className="dk-bignum dk-bignum--sm">{totalThisPeriod}</span>
+              <span className="dk-note">this {period}</span>
+            </div>
+          </div>
+          <Seg
+            value={period}
+            onChange={setPeriod}
+            label="Revision period"
+            options={[
+              { key: "week", label: "Weekly" },
+              { key: "month", label: "Monthly" },
+            ]}
+          />
+        </div>
+        {chart}
+      </Ledger>
+    );
+  }
+
   return (
     <PaperTiltCard delay={0.12}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
@@ -77,29 +143,7 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
         </div>
       </div>
 
-      <div className="h-[170px] w-full">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 10, right: 4, left: -20, bottom: 0 }}>
-            <XAxis dataKey="label" axisLine={false} tickLine={false} tick={{ fill: "rgba(255,255,255,0.35)", fontSize: 10 }} />
-            <Tooltip
-              cursor={{ fill: "rgba(255,255,255,0.04)" }}
-              contentStyle={{
-                background: "#171224",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: 14,
-                fontSize: 12,
-                color: "#F6F4FF",
-              }}
-              formatter={(v: number) => [`${v}`, "Chapters revised"]}
-            />
-            <Bar dataKey="count" radius={[8, 8, 8, 8]} maxBarSize={34}>
-              {data.map((d, i) => (
-                <Cell key={i} fill={d.count === maxCount && maxCount > 0 ? "#C084FC" : "rgba(192,132,252,0.28)"} />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+      {chart}
     </PaperTiltCard>
   );
 }

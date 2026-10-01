@@ -43,8 +43,8 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
   const { theme } = useTheme();
   const isLight = theme === "light";
-  // Skeuomorphic "study desk" chrome: light mode on the Today page only (for now).
-  const desk = isLight && pathname === "/today";
+  // Skeuomorphic "study desk" chrome: light mode on the pages that have been converted so far.
+  const desk = isLight && (pathname === "/today" || pathname === "/dashboard");
   const [mobileOpen, setMobileOpen] = useState(false);
   // Kinetic-grid vs matte is a dark-mode-only visual for now — light mode always uses its own backdrop.
   const showBackgroundToggle = pathname !== "/today" && !isLight;

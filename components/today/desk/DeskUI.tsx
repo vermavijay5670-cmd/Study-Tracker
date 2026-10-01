@@ -1,6 +1,7 @@
 "use client";
 
-import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import Link from "next/link";
+import { forwardRef, type ButtonHTMLAttributes, type ComponentProps, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import "./desk.css";
 
@@ -192,5 +193,53 @@ export function Journal({ children, extras, delay = 0 }: { children: ReactNode; 
       <Rings count={6} />
       {extras}
     </motion.section>
+  );
+}
+
+/** Leather-framed parchment sheet (dashboard cards, no spiral binding). */
+export function Ledger({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
+  return (
+    <motion.section className={`dk-ledger ${className}`} {...useEnter(delay)}>
+      <div className="dk-paper dk-ledger__page">{children}</div>
+    </motion.section>
+  );
+}
+
+/** Link that looks and behaves like a DeskButton. */
+export function DeskLink({
+  tone = "stone",
+  small,
+  className = "",
+  ...rest
+}: ComponentProps<typeof Link> & { tone?: Tone; small?: boolean }) {
+  return <Link className={`dk-btn dk-btn--${tone} ${small ? "dk-btn--sm" : ""} ${className}`} {...rest} />;
+}
+
+/** Engraved segmented switch with a brass selected segment. */
+export function Seg<T extends string>({
+  value,
+  options,
+  onChange,
+  label,
+}: {
+  value: T;
+  options: { key: T; label: string }[];
+  onChange: (v: T) => void;
+  label: string;
+}) {
+  return (
+    <div className="dk-seg" role="group" aria-label={label}>
+      {options.map((o) => (
+        <button
+          key={o.key}
+          type="button"
+          aria-pressed={value === o.key}
+          className={`dk-seg__btn ${value === o.key ? "is-on" : ""}`}
+          onClick={() => onChange(o.key)}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
   );
 }

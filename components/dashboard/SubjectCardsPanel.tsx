@@ -7,6 +7,8 @@ import { ArrowDownLeft, ArrowUpRight, GraduationCap } from "lucide-react";
 import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { SUBJECT_NAME, SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject, SubjectStats } from "@/lib/types";
+import { useTheme } from "@/lib/ThemeContext";
+import { Ledger, DeskLink } from "@/components/today/desk/DeskUI";
 
 interface SubjectCardsPanelProps {
   perSubject: (SubjectStats & { subject: Subject })[];
@@ -15,12 +17,90 @@ interface SubjectCardsPanelProps {
 export function SubjectCardsPanel({ perSubject }: SubjectCardsPanelProps) {
   // default to whichever subject has the lowest completion — most useful "front card"
   const sortedByNeed = [...perSubject].sort((a, b) => a.done / a.total - b.done / b.total);
+  const { theme } = useTheme();
   const [frontSubject, setFrontSubject] = useState<Subject>(sortedByNeed[0]?.subject ?? "phy");
 
   const front = perSubject.find((s) => s.subject === frontSubject) ?? perSubject[0];
   const others = perSubject.filter((s) => s.subject !== frontSubject);
   const accentHex = ACCENT_HEX[SUBJECT_ACCENT[front.subject]];
   const pct = front.total > 0 ? Math.round((front.done / front.total) * 100) : 0;
+
+  if (theme === "light") {
+    const ink = (h: string) => `color-mix(in srgb, ${h} 55%, #2b1d11)`;
+    return (
+      <Ledger delay={0.05}>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="dk-h" style={{ fontSize: 24 }}>Subjects</h2>
+          <Link href="/planner" className="dk-link">
+            Open planner →
+          </Link>
+        </div>
+
+        <div className="mb-3 flex gap-2">
+          {others.map((s) => {
+            const hex = ACCENT_HEX[SUBJECT_ACCENT[s.subject]];
+            const p = s.total > 0 ? Math.round((s.done / s.total) * 100) : 0;
+            return (
+              <button
+                key={s.subject}
+                type="button"
+                onClick={() => setFrontSubject(s.subject)}
+                className="dk-chip flex flex-1 items-center justify-between !rounded-xl !px-3 !py-2.5 text-left"
+              >
+                <span>{SUBJECT_NAME[s.subject]}</span>
+                <span className="font-tabular" style={{ color: ink(hex) }}>
+                  {p}%
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={front.subject}
+            initial={{ opacity: 0, y: 10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ type: "spring", stiffness: 300, damping: 26 }}
+            className="dk-index"
+            style={{ "--dk-accent": accentHex } as React.CSSProperties}
+          >
+            <div className="flex items-center justify-between">
+              <span className="dk-cap flex items-center gap-1.5">
+                <GraduationCap size={14} strokeWidth={1.9} style={{ color: ink(accentHex) }} />
+                {SUBJECT_NAME[front.subject]}
+              </span>
+              <span className="dk-cap" style={{ color: ink(accentHex) }}>
+                NEET
+              </span>
+            </div>
+
+            <div className="mt-5 flex items-end justify-between">
+              <div>
+                <div className="dk-cap" style={{ fontSize: 10 }}>Chapters done</div>
+                <div className="dk-bignum dk-bignum--sm mt-1">
+                  {front.done}/{front.total}
+                </div>
+              </div>
+              <span className="dk-pill" style={{ color: ink(accentHex), background: `color-mix(in srgb, ${accentHex} 22%, transparent)` }}>
+                {pct}%
+              </span>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="mt-5 flex gap-3">
+          <DeskLink href="/study-log" small className="flex-1">
+            <ArrowDownLeft size={15} strokeWidth={2} /> Log hours
+          </DeskLink>
+          <DeskLink href="/planner" tone="brass" small className="flex-1">
+            <ArrowUpRight size={15} strokeWidth={2} /> Revise
+          </DeskLink>
+        </div>
+      </Ledger>
+    );
+  }
 
   return (
     <PaperTiltCard delay={0.05}>

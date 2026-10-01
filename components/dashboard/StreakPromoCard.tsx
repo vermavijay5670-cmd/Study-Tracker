@@ -5,6 +5,8 @@ import { Flame } from "lucide-react";
 import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject } from "@/lib/types";
+import { useTheme } from "@/lib/ThemeContext";
+import { Ledger, DeskLink } from "@/components/today/desk/DeskUI";
 
 interface StreakPromoCardProps {
   currentStreak: number;
@@ -16,6 +18,44 @@ const SUBJECTS: Subject[] = ["phy", "chem", "bio"];
 const INITIAL: Record<Subject, string> = { phy: "P", chem: "C", bio: "B" };
 
 export function StreakPromoCard({ currentStreak, bestStreak, totalDone }: StreakPromoCardProps) {
+  const { theme } = useTheme();
+
+  if (theme === "light") {
+    return (
+      <Ledger delay={0.1} className="h-full">
+        <div className="flex flex-1 flex-col justify-between">
+          <div>
+            <span className="dk-badge mb-3">
+              <Flame size={17} strokeWidth={1.9} />
+            </span>
+            <h2 className="dk-h" style={{ fontSize: 24 }}>
+              {currentStreak > 0 ? `${currentStreak}-day streak` : "Start a streak"}
+            </h2>
+            <p className="dk-note mt-1.5">
+              {currentStreak > 0
+                ? `Keep it going — your best run so far is ${bestStreak} days.`
+                : "Log some study time today to kick one off."}
+            </p>
+          </div>
+
+          <div>
+            <div className="dk-seals">
+              {SUBJECTS.map((s) => (
+                <span key={s} className="dk-seal" style={{ "--dk-accent": ACCENT_HEX[SUBJECT_ACCENT[s]] } as React.CSSProperties}>
+                  {INITIAL[s]}
+                </span>
+              ))}
+              <span className="dk-seal dk-seal--plain">+{totalDone}</span>
+            </div>
+            <DeskLink href="/planner" tone="brass" small className="w-full">
+              Open planner
+            </DeskLink>
+          </div>
+        </div>
+      </Ledger>
+    );
+  }
+
   return (
     <PaperTiltCard delay={0.1} className="flex h-full flex-col justify-between">
       <div>
