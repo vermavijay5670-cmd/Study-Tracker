@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { addDays, dateKey, parseKey, fmtHrs } from "@/lib/date-utils";
 import { ACCENT_HEX } from "@/lib/data";
+import { useTheme } from "@/lib/ThemeContext";
 
 interface HeatmapProps {
   log: Record<string, number>;
@@ -22,6 +23,7 @@ function levelFor(hours: number, goal: number): number {
 const LEVEL_OPACITY = [0.06, 0.28, 0.6, 1];
 
 export function Heatmap({ log, startDate, dailyGoalHours, weeks = 16 }: HeatmapProps) {
+  const { theme } = useTheme();
   const today = new Date();
   const start = parseKey(startDate);
   const accent = ACCENT_HEX.lime;
@@ -37,6 +39,43 @@ export function Heatmap({ log, startDate, dailyGoalHours, weeks = 16 }: HeatmapP
       return { key, hours, level, inRange };
     });
   });
+
+  if (theme === "light") {
+    return (
+      <div className="overflow-x-auto p-2 pb-3">
+        <div className="sf-heat">
+          {columns
+            .filter((col) => col.some((c) => c.inRange))
+            .map((col, ci) => (
+            <div key={ci} className="sf-heat__col">
+              {col.map((cell, ri) =>
+                cell.inRange ? (
+                  <motion.div
+                    key={cell.key}
+                    title={`${cell.key}: ${fmtHrs(cell.hours)}`}
+                    initial={{ opacity: 0, scale: 0.4 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: (ci * 7 + ri) * 0.003, type: "spring", stiffness: 300, damping: 20 }}
+                    className={`sf-cell sf-cell--${cell.level}`}
+                  />
+                ) : (
+                  <div key={`${ci}-${ri}`} className="sf-cell" style={{ visibility: "hidden" }} />
+                )
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="sf-legend">
+          <span>Less</span>
+          {[0, 1, 2, 3].map((l) => (
+            <span key={l} className={`sf-cell sf-cell--${l}`} />
+          ))}
+          <span>More</span>
+          <span>·&nbsp; Each column = 1 week, ending today</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-x-auto pb-1">

@@ -43,8 +43,11 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
   const { theme } = useTheme();
   const isLight = theme === "light";
-  // Skeuomorphic "study desk" chrome: light mode on the pages that have been converted so far.
+  // Per-page light-mode skins: skeuomorphic "study desk" (Today, Dashboard) and soft neumorphic (Study Log).
   const desk = isLight && (pathname === "/today" || pathname === "/dashboard");
+  const soft = isLight && pathname === "/study-log";
+  const chrome = desk || soft;
+  const px = soft ? "sf" : "dk";
   const [mobileOpen, setMobileOpen] = useState(false);
   // Kinetic-grid vs matte is a dark-mode-only visual for now — light mode always uses its own backdrop.
   const showBackgroundToggle = pathname !== "/today" && !isLight;
@@ -70,18 +73,18 @@ export function PageShell({ children }: { children: React.ReactNode }) {
             href={href}
             onClick={onNavigate}
             aria-current={active ? "page" : undefined}
-            className={desk ? "dk-navlink relative block" : "relative block"}
+            className={chrome ? `${px}-navlink relative block` : "relative block"}
           >
             {active && (
               <motion.span
                 layoutId="side-nav-pill"
-                className={desk ? "dk-nav-pill" : "absolute inset-0 rounded-xl"}
-                style={desk ? undefined : { background: isLight ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.08)" }}
+                className={chrome ? `${px}-nav-pill` : "absolute inset-0 rounded-xl"}
+                style={chrome ? undefined : { background: isLight ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.08)" }}
                 transition={{ type: "spring", stiffness: 350, damping: 28 }}
               />
             )}
-            {desk ? (
-              <span className="dk-nav relative z-10">
+            {chrome ? (
+              <span className={`${px}-nav relative z-10`}>
                 <Icon size={19} strokeWidth={1.75} />
                 <span>{label}</span>
               </span>
@@ -106,14 +109,14 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
   const logoBlock = (size: "sm" | "lg") => (
     <a href={HOME_URL} className={`flex items-center ${size === "lg" ? "gap-2.5" : "gap-2"}`}>
-      {desk ? (
+      {chrome ? (
         <>
-          <span className="dk-logo-badge">
+          <span className={`${px}-logo-badge`}>
             <Home size={size === "lg" ? 20 : 18} strokeWidth={1.75} />
           </span>
           <span>
-            <p className="dk-logo-kicker">NEET UG PREP</p>
-            <h1 className="dk-logo-title mt-0.5">Study Tracker</h1>
+            <p className={`${px}-logo-kicker`}>NEET UG PREP</p>
+            <h1 className={`${px}-logo-title mt-0.5`}>Study Tracker</h1>
           </span>
         </>
       ) : (
@@ -147,12 +150,14 @@ export function PageShell({ children }: { children: React.ReactNode }) {
       {/* Desktop sidebar */}
       <aside
         className={
-          desk
-            ? "dk-sidebar hidden w-[284px] flex-shrink-0 px-5 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col"
+          chrome
+            ? `${px}-sidebar hidden w-[284px] flex-shrink-0 px-5 py-6 md:sticky md:flex md:flex-col ${
+                soft ? "md:top-4 md:m-4 md:h-[calc(100vh-2rem)]" : "md:top-0 md:h-screen"
+              }`
             : "hidden w-[248px] flex-shrink-0 border-r px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col"
         }
         style={
-          desk
+          chrome
             ? undefined
             : {
                 borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
@@ -161,29 +166,29 @@ export function PageShell({ children }: { children: React.ReactNode }) {
         }
       >
         <div className="mb-4 flex items-center px-1">
-          <ThemeToggle variant={desk ? "desk" : "default"} />
+          <ThemeToggle variant={desk ? "desk" : soft ? "soft" : "default"} />
         </div>
         <div className="mb-8 px-1">{logoBlock("lg")}</div>
 
         {navList()}
 
         <div
-          className={desk ? "dk-sep mt-6 flex flex-col gap-3 pt-4" : "mt-6 flex flex-col gap-3 border-t pt-4"}
-          style={desk ? undefined : { borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}
+          className={chrome ? `${px}-sep mt-6 flex flex-col gap-3 pt-4` : "mt-6 flex flex-col gap-3 border-t pt-4"}
+          style={chrome ? undefined : { borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}
         >
           {showBackgroundToggle && (
             <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
           )}
           <div className="flex items-center gap-2">
-            {hydrated && <ProfileChip desk={desk} studentName={state.studentName} targetExam={state.targetExam} />}
+            {hydrated && <ProfileChip desk={desk} soft={soft} studentName={state.studentName} targetExam={state.targetExam} />}
             {hydrated && user && (
               <button
                 onClick={handleSignOut}
                 aria-label="Sign out"
                 title="Sign out"
-                className={desk ? "dk-round-btn" : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border transition-colors"}
+                className={chrome ? `${px}-round-btn` : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border transition-colors"}
                 style={
-                  desk
+                  chrome
                     ? undefined
                     : {
                         borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
@@ -201,9 +206,9 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
       {/* Mobile top bar */}
       <header
-        className={desk ? "dk-topbar flex items-center justify-between px-4 py-3 md:hidden" : "flex items-center justify-between border-b px-4 py-4 md:hidden"}
+        className={chrome ? `${px}-topbar flex items-center justify-between px-4 py-3 md:hidden` : "flex items-center justify-between border-b px-4 py-4 md:hidden"}
         style={
-          desk
+          chrome
             ? undefined
             : {
                 borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
@@ -215,9 +220,9 @@ export function PageShell({ children }: { children: React.ReactNode }) {
           <button
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
-            className={desk ? "dk-round-btn" : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"}
+            className={chrome ? `${px}-round-btn` : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"}
             style={
-              desk
+              chrome
                 ? undefined
                 : {
                     borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
@@ -228,7 +233,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
           >
             <Menu size={17} strokeWidth={1.75} />
           </button>
-          <ThemeToggle variant={desk ? "desk" : "default"} />
+          <ThemeToggle variant={desk ? "desk" : soft ? "soft" : "default"} />
         </div>
 
         {logoBlock("sm")}
@@ -238,9 +243,9 @@ export function PageShell({ children }: { children: React.ReactNode }) {
             <button
               onClick={handleSignOut}
               aria-label="Sign out"
-              className={desk ? "dk-round-btn" : "flex h-9 w-9 items-center justify-center rounded-full border"}
+              className={chrome ? `${px}-round-btn` : "flex h-9 w-9 items-center justify-center rounded-full border"}
               style={
-                desk
+                chrome
                   ? undefined
                   : {
                       borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
@@ -274,12 +279,12 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 320, damping: 32 }}
               className={
-                desk
-                  ? "dk-sidebar fixed inset-y-0 left-0 z-50 flex w-[284px] flex-col px-5 py-6 md:hidden"
+                chrome
+                  ? `${px}-sidebar fixed inset-y-0 left-0 z-50 flex w-[284px] flex-col px-5 py-6 md:hidden`
                   : "fixed inset-y-0 left-0 z-50 flex w-[268px] flex-col border-r px-4 py-6 md:hidden"
               }
               style={
-                desk
+                chrome
                   ? undefined
                   : {
                       borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
@@ -288,13 +293,13 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               }
             >
               <div className="mb-4 flex items-center justify-between px-1">
-                <ThemeToggle variant={desk ? "desk" : "default"} />
+                <ThemeToggle variant={desk ? "desk" : soft ? "soft" : "default"} />
                 <button
                   onClick={() => setMobileOpen(false)}
                   aria-label="Close menu"
-                  className={desk ? "dk-round-btn" : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"}
+                  className={chrome ? `${px}-round-btn` : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"}
                   style={
-                    desk
+                    chrome
                       ? undefined
                       : {
                           borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
@@ -311,13 +316,13 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               {navList(() => setMobileOpen(false))}
 
               <div
-                className={desk ? "dk-sep mt-6 flex flex-col gap-3 pt-4" : "mt-6 flex flex-col gap-3 border-t pt-4"}
-                style={desk ? undefined : { borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}
+                className={chrome ? `${px}-sep mt-6 flex flex-col gap-3 pt-4` : "mt-6 flex flex-col gap-3 border-t pt-4"}
+                style={chrome ? undefined : { borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}
               >
                 {showBackgroundToggle && (
                   <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} />
                 )}
-                {hydrated && <ProfileChip desk={desk} studentName={state.studentName} targetExam={state.targetExam} />}
+                {hydrated && <ProfileChip desk={desk} soft={soft} studentName={state.studentName} targetExam={state.targetExam} />}
               </div>
             </motion.aside>
           </>
@@ -326,7 +331,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
       {/* Main content */}
       <div className="min-w-0 flex-1">
-        <main className={`mx-auto px-4 py-6 sm:px-6 sm:py-10 md:px-12 md:py-[48px] ${desk ? "max-w-[1160px]" : "max-w-[1040px]"}`}>{children}</main>
+        <main className={`mx-auto px-4 py-6 sm:px-6 sm:py-10 md:px-12 md:py-[48px] ${soft ? "max-w-[1320px]" : chrome ? "max-w-[1160px]" : "max-w-[1040px]"}`}>{children}</main>
       </div>
     </div>
   );

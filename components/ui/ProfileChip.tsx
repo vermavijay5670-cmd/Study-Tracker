@@ -8,11 +8,31 @@ interface ProfileChipProps {
   targetExam: string;
   /** Leather-sidebar styling used by the light-mode Today desk. */
   desk?: boolean;
+  /** Soft neumorphic styling used by the light-mode Study Log. */
+  soft?: boolean;
 }
 
-export function ProfileChip({ studentName, targetExam, desk = false }: ProfileChipProps) {
+export function ProfileChip({ studentName, targetExam, desk = false, soft = false }: ProfileChipProps) {
   const { theme } = useTheme();
   const isLight = theme === "light";
+
+  if (soft) {
+    const name = studentName.trim();
+    return (
+      <Link href="/#profile-form" className="sf-profile">
+        <span className="sf-avatar">
+          {name ? name.charAt(0).toUpperCase() : "+"}
+          <i className="sf-avatar__dot" />
+        </span>
+        <span className="min-w-0 text-left">
+          <span className="block max-w-[120px] truncate text-[14px] font-semibold">{name || "Add your name"}</span>
+          {name && targetExam && (
+            <span className="block max-w-[120px] truncate text-[10px] uppercase tracking-wide opacity-60">{targetExam}</span>
+          )}
+        </span>
+      </Link>
+    );
+  }
 
   if (desk) {
     const name = studentName.trim();

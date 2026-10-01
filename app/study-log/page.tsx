@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { StudyLogSection } from "@/components/study-log/StudyLogSection";
-import { SectionBackground } from "@/components/ui/SectionBackground";
+import { StudyLogBackground } from "@/components/study-log/StudyLogBackground";
 
 export default function StudyLogPage() {
   return (
-    <SectionBackground>
+    <StudyLogBackground>
       <PageShell>
         <StudyLogSection />
       </PageShell>
-    </SectionBackground>
+    </StudyLogBackground>
   );
 }
