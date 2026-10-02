@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,6 +20,7 @@ import {
 import { ProfileChip } from "./ProfileChip";
 import { BackgroundToggle } from "./BackgroundToggle";
 import { ThemeToggle } from "./ThemeToggle";
+import { SidebarRail } from "./rail/SidebarRail";
 import { useTrackerState } from "@/lib/useTrackerState";
 import { useKineticGrid } from "@/lib/KineticGridContext";
 import { useTheme } from "@/lib/ThemeContext";
@@ -51,6 +52,14 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const chrome = desk || soft || glass;
   const px = soft ? "sf" : glass ? "gl" : "dk";
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Desktop sidebar: a slim rail until the pointer (or keyboard focus) enters, then the full sidebar.
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const expanded = hovered || focused;
+  useEffect(() => () => {
+    if (leaveTimer.current) clearTimeout(leaveTimer.current);
+  }, []);
   // Kinetic-grid vs matte is a dark-mode-only visual for now — light mode always uses its own backdrop.
   const showBackgroundToggle = pathname !== "/today" && !isLight;
 
@@ -149,14 +158,40 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="md:flex md:min-h-screen">
-      {/* Desktop sidebar */}
+      {/* Desktop sidebar: reserves the rail's width, then overlays the page when expanded */}
+      <div className="rail-spacer" aria-hidden="true" />
+      <div
+        className="rail-wrap"
+        data-expanded={expanded}
+        data-theme={isLight ? "light" : "dark"}
+        onMouseEnter={() => {
+          if (leaveTimer.current) clearTimeout(leaveTimer.current);
+          setHovered(true);
+        }}
+        onMouseLeave={() => {
+          if (leaveTimer.current) clearTimeout(leaveTimer.current);
+          leaveTimer.current = setTimeout(() => setHovered(false), 140);
+        }}
+        onFocus={(e) => {
+          let visible = true;
+          try {
+            visible = e.target.matches(":focus-visible");
+          } catch {
+            /* older browsers: treat any focus as keyboard focus */
+          }
+          if (visible) setFocused(true);
+        }}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false);
+        }}
+      >
       <aside
         className={
           chrome
-            ? `${px}-sidebar hidden w-[284px] flex-shrink-0 px-5 py-6 md:sticky md:flex md:flex-col ${
+            ? `rail-aside ${px}-sidebar hidden w-[284px] flex-shrink-0 px-5 py-6 md:sticky md:flex md:flex-col ${
                 soft || desk ? "md:top-4 md:m-4 md:h-[calc(100vh-2rem)]" : "md:top-0 md:h-screen"
               }`
-            : "hidden w-[248px] flex-shrink-0 border-r px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col"
+            : "rail-aside hidden w-[248px] flex-shrink-0 border-r px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col"
         }
         style={
           chrome
@@ -205,6 +240,17 @@ export function PageShell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </aside>
+
+      <SidebarRail
+        items={NAV}
+        activeHref={pathname}
+        isLight={isLight}
+        showGrid={showBackgroundToggle}
+        gridOn={kineticOn}
+        initial={hydrated ? (state.studentName || "").trim().charAt(0).toUpperCase() : ""}
+        signedIn={Boolean(hydrated && user)}
+      />
+      </div>
 
       {/* Mobile top bar */}
       <header
