@@ -1,14 +1,13 @@
-import { TodayBackdrop } from "@/components/ui/TodayBackdrop";
 import { PageShell } from "@/components/ui/PageShell";
 import { TodaySection } from "@/components/today/TodaySection";
+import { TodayBackground } from "@/components/today/TodayBackground";
 
 export default function TodayPage() {
   return (
-    <>
-      <TodayBackdrop />
+    <TodayBackground>
       <PageShell>
         <TodaySection />
       </PageShell>
-    </>
+    </TodayBackground>
   );
 }

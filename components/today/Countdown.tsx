@@ -5,7 +5,7 @@ import { CalendarClock, Target } from "lucide-react";
 import { PaperCard } from "@/components/ui/PaperCard";
 import { parseKey, pad } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
-import { Notebook, Plate, Sticky, FlipClock, Track } from "./desk/DeskUI";
+import { SoftCard, SoftTiles } from "@/components/ui/soft/SoftUI";
 
 interface CountdownProps {
   examDate: string;
@@ -26,7 +26,7 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
 
   if (!now) {
     return isLight ? (
-      <div className="dk-notebook" style={{ minHeight: 240 }} />
+      <div className="sf-card" style={{ minHeight: 240 }} />
     ) : (
       <PaperCard delay={0} className="min-h-[220px]"><span /></PaperCard>
     );
@@ -62,41 +62,47 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
 
   if (isLight) {
     return (
-      <Notebook
-        aside={
-          <Sticky className="dk-notebook__sticky">
-            Better
-            <br />
-            Than
-            <br />
-            Yesterday
-          </Sticky>
-        }
-      >
-        <div className="dk-cd">
+      <SoftCard>
+        <div className="sf-cd">
           <div className="min-w-0">
-            <Plate icon={<Target size={13} strokeWidth={2} />}>Target Exam</Plate>
-            <h2 className="dk-h dk-cd__title">NEET UG Countdown</h2>
-            <label className="dk-cd__date dk-cap">
-              Exam date
+            <div className="flex items-center gap-3">
+              <span className="sf-badge" style={{ width: 38, height: 38 }}>
+                <Target size={17} strokeWidth={1.9} />
+              </span>
+              <span className="sf-cap">Target exam</span>
+            </div>
+            <h2 className="sf-title mt-4" style={{ fontSize: 26 }}>NEET UG Countdown</h2>
+            <label className="mt-3 flex flex-wrap items-center gap-3">
+              <span className="sf-cap">Exam date</span>
               <input
                 type="date"
                 value={examDate}
                 onChange={(e) => onSetExamDate(e.target.value)}
-                className="dk-inline-input"
+                className="sf-input sf-input--date"
               />
             </label>
-            <div className="dk-cd__days">
-              <span className="dk-days">{days}</span>
-              <span className="dk-days-label">{label}</span>
+            <div className="mt-6 flex flex-wrap items-end gap-x-4 gap-y-1">
+              <span className="sf-hero">{days}</span>
+              <span className="sf-hero__lbl">{label}</span>
             </div>
           </div>
-          <div className="dk-cd__clock">
-            <FlipClock hh={hh} mm={mm} ss={ss} />
-            <Track pct={pct} label="Time elapsed since you started" thin />
+
+          <div className="sf-cd__clock">
+            <SoftTiles hh={hh} mm={mm} ss={ss} size="lg" />
+            <div
+              className="sf-track"
+              role="progressbar"
+              aria-label="Time elapsed since you started"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round(pct)}
+              title={`${Math.round(pct)}% of the journey elapsed`}
+            >
+              <i style={{ width: `${pct}%` }} />
+            </div>
           </div>
         </div>
-      </Notebook>
+      </SoftCard>
     );
   }
 

@@ -6,6 +6,7 @@ import { todayKey } from "@/lib/date-utils";
 import { getThoughtOfTheDay, getRandomThought } from "@/lib/thoughts";
 import { HighlightedText } from "./HighlightedText";
 import { useTheme } from "@/lib/ThemeContext";
+import { SoftCard } from "@/components/ui/soft/SoftUI";
 
 const GRAIN_SVG =
   "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
@@ -39,32 +40,34 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
 
   if (theme === "light") {
     return (
-      <section className="gl-card" style={{ paddingTop: 30 }}>
-        <div aria-hidden className="gl-tape" />
+      <SoftCard delay={0.1}>
         <div className="flex items-start justify-between gap-3">
-          <span className="gl-thought-label">
-            <Quote size={16} strokeWidth={2} /> Thought of the day
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="sf-badge" style={{ width: 38, height: 38 }}>
+              <Quote size={17} strokeWidth={1.9} />
+            </span>
+            <span className="sf-cap">Thought of the day</span>
+          </div>
           <button
             type="button"
             onClick={shuffle}
             aria-label="Show another thought"
             title="Show another thought"
-            className="gl-icon-btn"
+            className="sf-round-btn"
           >
-            <Shuffle size={18} strokeWidth={1.8} />
+            <Shuffle size={18} strokeWidth={1.9} />
           </button>
         </div>
 
-        <p className="gl-quote">
-          “<HighlightedText text={shown} />”
+        <p className="sf-quote">
+          “<HighlightedText text={shown} tone="green" />”
         </p>
 
-        <hr className="gl-rule" />
+        <hr className="sf-rule" />
 
         {showAdd ? (
           <form onSubmit={handleSubmit} className="space-y-2">
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-3">
               <input
                 autoFocus
                 type="text"
@@ -73,22 +76,20 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
                 onBlur={() => !draft && setShowAdd(false)}
                 placeholder="Write a thought that keeps you going…"
                 aria-label="Your own thought"
-                className="gl-input"
+                className="sf-input sf-input--text min-w-[200px]"
               />
-              <button type="submit" className="gl-btn">
+              <button type="submit" className="sf-btn">
                 Save
               </button>
             </div>
-            <p className="text-[12px]" style={{ color: "var(--gl-muted)" }}>
-              Tip: wrap a word in **asterisks** to highlight it.
-            </p>
+            <p className="sf-sub">Tip: wrap a word in **asterisks** to highlight it.</p>
           </form>
         ) : (
-          <button type="button" onClick={() => setShowAdd(true)} className="gl-link">
-            <Plus size={18} strokeWidth={1.8} /> Add your own thought
+          <button type="button" onClick={() => setShowAdd(true)} className="sf-linkbtn inline-flex items-center gap-2">
+            <Plus size={16} strokeWidth={2.2} /> Add your own thought
           </button>
         )}
-      </section>
+      </SoftCard>
     );
   }
 

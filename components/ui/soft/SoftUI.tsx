@@ -134,3 +134,53 @@ export function SoftLink({
 }: ComponentProps<typeof Link> & { tone?: "green" | "plain" }) {
   return <Link className={`${tone === "green" ? "sf-btn" : "sf-chip sf-chip--lg"} ${className}`} {...rest} />;
 }
+
+const CLOCK_UNITS = ["HRS", "MIN", "SEC"] as const;
+
+/** Pressed-in digit "display" tiles (countdown, stopwatch, timer). */
+export function SoftTiles({
+  hh,
+  mm,
+  ss,
+  size = "md",
+  done,
+  children,
+}: {
+  hh: string;
+  mm: string;
+  ss: string;
+  size?: "md" | "lg";
+  done?: boolean;
+  children?: ReactNode;
+}) {
+  const vals = [hh, mm, ss];
+  return (
+    <div className={`sf-tiles sf-tiles--${size}`} role="timer" aria-label={`${hh} hours ${mm} minutes ${ss} seconds`}>
+      {vals.map((v, i) => (
+        <div key={CLOCK_UNITS[i]} style={{ display: "contents" }}>
+          <div className="sf-tilecol">
+            <div className={`sf-tile ${done ? "is-done" : ""}`}>
+              <span key={v} className="sf-tile__val">
+                {v}
+              </span>
+            </div>
+            <span className="sf-cap" style={{ fontSize: 10 }}>
+              {CLOCK_UNITS[i]}
+            </span>
+          </div>
+          {i < 2 && <span className="sf-colon">:</span>}
+        </div>
+      ))}
+      {children}
+    </div>
+  );
+}
+
+export function SoftStatus({ state, children }: { state: "idle" | "live" | "done"; children: ReactNode }) {
+  return (
+    <div className="sf-status">
+      <span className={`sf-sdot ${state === "live" ? "is-live" : ""} ${state === "done" ? "is-done" : ""}`} />
+      {children}
+    </div>
+  );
+}

@@ -6,7 +6,7 @@ import { PaperCard } from "@/components/ui/PaperCard";
 import { CapsuleButton } from "@/components/ui/CapsuleButton";
 import { pad, todayKey } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
-import { Journal, Plate, Paperclip, PaperClock, DeskButton, DeskChip, Track, Status } from "./desk/DeskUI";
+import { SoftCard, SoftTiles, SoftStatus } from "@/components/ui/soft/SoftUI";
 
 interface TimerProps {
   timerDurationMs: number;
@@ -156,88 +156,115 @@ export function Timer({
 
   if (isLight) {
     return (
-      <Journal delay={0.16} extras={<Paperclip />}>
-        <Plate icon={<TimerReset size={13} strokeWidth={2} />}>Focus Timer</Plate>
-        <span className="dk-scribble">Focus Builds Freedom</span>
-        <h2 className="dk-h" style={{ fontSize: 28 }}>Timer</h2>
-        <Status state={completed ? "done" : running ? "live" : "idle"}>
-          {completed ? "Time's up" : running ? "Counting down" : "Ready to start"}
-        </Status>
-
-        <PaperClock hh={hh} mm={mm} ss={ss} done={completed} />
-        <Track pct={pct} label="Timer progress" live={running} done={completed} thin />
-
-        <div className="flex flex-wrap items-center gap-2">
-          {PRESETS_MIN.map((min) => (
-            <DeskChip
-              key={min}
-              active={timerDurationMs === min * 60_000}
-              disabled={running}
-              onClick={() => applyDuration(min * 60_000)}
-            >
-              {min}m
-            </DeskChip>
-          ))}
-          <DeskChip active={showCustom} disabled={running} onClick={() => setShowCustom((v) => !v)}>
-            Custom
-          </DeskChip>
-        </div>
-
-        {showCustom && !running && (
-          <div className="flex flex-wrap items-end gap-3">
-            <label className="flex flex-col gap-1">
-              <span className="dk-cap" style={{ fontSize: 9 }}>Hrs</span>
-              <input
-                type="number"
-                min="0"
-                max="12"
-                placeholder="0"
-                value={customHrs}
-                onChange={(e) => setCustomHrs(e.target.value)}
-                className="dk-field"
-              />
-            </label>
-            <label className="flex flex-col gap-1">
-              <span className="dk-cap" style={{ fontSize: 9 }}>Min</span>
-              <input
-                type="number"
-                min="0"
-                max="59"
-                placeholder="0"
-                value={customMin}
-                onChange={(e) => setCustomMin(e.target.value)}
-                className="dk-field"
-              />
-            </label>
-            <DeskButton onClick={applyCustom} style={{ minHeight: 40, padding: "6px 18px", fontSize: 17 }}>
-              <Check size={15} strokeWidth={2.2} /> Set
-            </DeskButton>
+      <SoftCard delay={0.1}>
+        <div className="flex flex-col gap-5">
+          <div className="flex items-center gap-3">
+            <span className="sf-badge" style={{ width: 38, height: 38 }}>
+              <TimerReset size={17} strokeWidth={1.9} />
+            </span>
+            <span className="sf-cap">Focus timer</span>
           </div>
-        )}
+          <div>
+            <h2 className="sf-title" style={{ fontSize: 24 }}>Timer</h2>
+            <div className="mt-2">
+              <SoftStatus state={completed ? "done" : running ? "live" : "idle"}>
+                {completed ? "Time's up" : running ? "Counting down" : "Ready to start"}
+              </SoftStatus>
+            </div>
+          </div>
 
-        <div className="dk-actions">
-          {completed ? (
-            <>
-              <DeskButton onClick={handleReset}>
-                <RotateCcw size={18} strokeWidth={2} /> Restart
-              </DeskButton>
-              <DeskButton tone="brass" onClick={logSession} disabled={logged}>
-                <Plus size={18} strokeWidth={2} /> {logged ? "Logged" : `Log ${fmtDurationLabel(timerDurationMs)}`}
-              </DeskButton>
-            </>
-          ) : (
-            <>
-              <DeskButton tone="brass" onClick={running ? onPause : handleStart}>
-                {running ? <Pause size={18} strokeWidth={2} /> : <Play size={18} strokeWidth={2} fill="currentColor" />}
-                {running ? "Pause" : "Start"}
-              </DeskButton>
-              <DeskButton onClick={handleReset}>
-                <RotateCcw size={18} strokeWidth={2} /> Reset
-              </DeskButton>
-            </>
+          <SoftTiles hh={hh} mm={mm} ss={ss} done={completed} />
+          <div
+            className="sf-track"
+            role="progressbar"
+            aria-label="Timer progress"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(Math.min(100, Math.max(0, pct)))}
+          >
+            <i style={{ width: `${Math.min(100, Math.max(0, pct))}%` }} />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {PRESETS_MIN.map((min) => (
+              <button
+                key={min}
+                type="button"
+                aria-pressed={timerDurationMs === min * 60_000}
+                disabled={running}
+                onClick={() => applyDuration(min * 60_000)}
+                className={`sf-chip ${timerDurationMs === min * 60_000 ? "is-on" : ""}`}
+              >
+                {min}m
+              </button>
+            ))}
+            <button
+              type="button"
+              aria-pressed={showCustom}
+              disabled={running}
+              onClick={() => setShowCustom((v) => !v)}
+              className={`sf-chip ${showCustom ? "is-on" : ""}`}
+            >
+              Custom
+            </button>
+          </div>
+
+          {showCustom && !running && (
+            <div className="flex flex-wrap items-end gap-3">
+              <label className="flex flex-col gap-1">
+                <span className="sf-cap" style={{ fontSize: 10 }}>Hrs</span>
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  placeholder="0"
+                  value={customHrs}
+                  onChange={(e) => setCustomHrs(e.target.value)}
+                  className="sf-input w-[76px]"
+                />
+              </label>
+              <label className="flex flex-col gap-1">
+                <span className="sf-cap" style={{ fontSize: 10 }}>Min</span>
+                <input
+                  type="number"
+                  min="0"
+                  max="59"
+                  placeholder="0"
+                  value={customMin}
+                  onChange={(e) => setCustomMin(e.target.value)}
+                  className="sf-input w-[76px]"
+                />
+              </label>
+              <button type="button" className="sf-btn" onClick={applyCustom}>
+                <Check size={15} strokeWidth={2.4} /> Set
+              </button>
+            </div>
           )}
+
+          <div className="sf-actions">
+            {completed ? (
+              <>
+                <button type="button" className="sf-chip sf-chip--lg" onClick={handleReset}>
+                  <RotateCcw size={16} strokeWidth={2.2} /> Restart
+                </button>
+                <button type="button" className="sf-btn sf-btn--lg" onClick={logSession} disabled={logged}>
+                  <Plus size={18} strokeWidth={2.2} /> {logged ? "Logged" : `Log ${fmtDurationLabel(timerDurationMs)}`}
+                </button>
+              </>
+            ) : (
+              <>
+                <button type="button" className="sf-btn sf-btn--lg" onClick={running ? onPause : handleStart}>
+                  {running ? <Pause size={18} strokeWidth={2.2} /> : <Play size={18} strokeWidth={2.2} fill="currentColor" />}
+                  {running ? "Pause" : "Start"}
+                </button>
+                <button type="button" className="sf-chip sf-chip--lg" onClick={handleReset}>
+                  <RotateCcw size={16} strokeWidth={2.2} /> Reset
+                </button>
+              </>
+            )}
+          </div>
         </div>
-      </Journal>
+      </SoftCard>
     );
   }
 

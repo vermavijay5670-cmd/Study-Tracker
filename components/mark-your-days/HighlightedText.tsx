@@ -7,20 +7,20 @@ import { useId, type ReactNode } from "react";
  * hand-drawn marker-style highlight — an SVG blob with a jittered edge
  * and a sketchy border sitting behind the word, not a flat color block.
  */
-export function HighlightedText({ text }: { text: string }): ReactNode {
+export function HighlightedText({ text, tone = "orange" }: { text: string; tone?: "orange" | "green" }): ReactNode {
   const parts = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
   return (
     <>
       {parts.map((part, i) => {
         const m = part.match(/^\*\*([^*]+)\*\*$/);
-        if (m) return <MarkerHighlight key={i}>{m[1]}</MarkerHighlight>;
+        if (m) return <MarkerHighlight key={i} tone={tone}>{m[1]}</MarkerHighlight>;
         return <span key={i}>{part}</span>;
       })}
     </>
   );
 }
 
-function MarkerHighlight({ children }: { children: string }) {
+function MarkerHighlight({ children, tone }: { children: string; tone: "orange" | "green" }) {
   const rawId = useId();
   const filterId = `rough-${rawId.replace(/[^a-zA-Z0-9]/g, "")}`;
   // Deterministic "randomness" from the word itself, so server and client render
@@ -48,8 +48,8 @@ function MarkerHighlight({ children }: { children: string }) {
           width="94"
           height="28"
           rx="3"
-          fill="rgba(224,122,54,0.5)"
-          stroke="rgba(138,79,30,0.75)"
+          fill={tone === "green" ? "rgba(150,196,96,0.55)" : "rgba(224,122,54,0.5)"}
+          stroke={tone === "green" ? "rgba(70,115,40,0.7)" : "rgba(138,79,30,0.75)"}
           strokeWidth="2.2"
           filter={`url(#${filterId})`}
         />

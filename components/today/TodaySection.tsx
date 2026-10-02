@@ -31,7 +31,7 @@ export function TodaySection() {
 
   if (!hydrated) {
     return (
-      <div className="py-24 text-center text-sm" style={{ color: isLight ? "rgba(255,240,210,0.75)" : "rgba(255,255,255,0.5)" }}>
+      <div className={isLight ? "sf-loading" : "py-24 text-center text-sm text-white/50"}>
         Loading…
       </div>
     );
@@ -40,10 +40,10 @@ export function TodaySection() {
   const todayHours = state.log[todayKey()] ?? 0;
 
   return (
-    <div className={isLight ? "grid gap-9" : "grid gap-5"}>
+    <div className={isLight ? "grid gap-6" : "grid gap-5"}>
       <Countdown examDate={state.examDate} startDate={state.startDate} onSetExamDate={setExamDate} />
 
-      <div className={isLight ? "dk-grid2" : "grid gap-5 sm:grid-cols-2"}>
+      <div className={isLight ? "sf-grid2" : "grid gap-5 sm:grid-cols-2"}>
         <Stopwatch
           todayHours={todayHours}
           dailyGoalHours={state.dailyGoalHours}
