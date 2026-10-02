@@ -11,11 +11,11 @@ export function MarkYourDaysSection() {
   const { theme } = useTheme();
 
   if (!hydrated) {
-    return <div className={theme === "dark" ? "gl-loading" : "py-24 text-center text-sm text-white/50"}>Loading…</div>;
+    return <div className={theme === "light" ? "gl-loading" : "py-24 text-center text-sm text-white/50"}>Loading…</div>;
   }
 
   return (
-    <div className={theme === "dark" ? "space-y-9" : "space-y-6"}>
+    <div className={theme === "light" ? "space-y-9" : "space-y-6"}>
       <DayMarkCalendar
         marks={state.dayMarks}
         notes={state.dayNotes}

@@ -17,7 +17,7 @@ interface DayMarkCalendarProps {
 
 export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: DayMarkCalendarProps) {
   const { theme } = useTheme();
-  const glass = theme === "dark";
+  const glass = theme === "light";
   const today = new Date();
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth()); // 0-indexed

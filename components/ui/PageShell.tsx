@@ -46,13 +46,13 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   // Per-page light-mode skins: skeuomorphic "study desk" (Today, Dashboard) and soft neumorphic (Study Log, Planner, Daily Goals).
   const desk = isLight && pathname === "/today";
   const soft = isLight && (pathname === "/study-log" || pathname === "/planner" || pathname === "/daily-goals" || pathname === "/dashboard" || pathname === "/question-practice");
-  // Dark-mode skin: slate glass (Mark Your Days).
-  const glass = !isLight && pathname === "/mark-your-days";
+  // Light-mode skin: slate glass (Mark Your Days).
+  const glass = isLight && pathname === "/mark-your-days";
   const chrome = desk || soft || glass;
   const px = soft ? "sf" : glass ? "gl" : "dk";
   const [mobileOpen, setMobileOpen] = useState(false);
   // Kinetic-grid vs matte is a dark-mode-only visual for now — light mode always uses its own backdrop.
-  const showBackgroundToggle = pathname !== "/today" && !isLight && !glass;
+  const showBackgroundToggle = pathname !== "/today" && !isLight;
 
   // Close the mobile drawer whenever the route changes.
   useEffect(() => {
@@ -154,7 +154,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
         className={
           chrome
             ? `${px}-sidebar hidden w-[284px] flex-shrink-0 px-5 py-6 md:sticky md:flex md:flex-col ${
-                soft ? "md:top-4 md:m-4 md:h-[calc(100vh-2rem)]" : "md:top-0 md:h-screen"
+                soft || desk ? "md:top-4 md:m-4 md:h-[calc(100vh-2rem)]" : "md:top-0 md:h-screen"
               }`
             : "hidden w-[248px] flex-shrink-0 border-r px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col"
         }

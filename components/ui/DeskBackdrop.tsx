@@ -3,7 +3,7 @@
 import "../today/desk/desk.css";
 
 const FONTS =
-  "https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@400;700&family=Oswald:wght@500;600&family=Permanent+Marker&display=swap";
+  "https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@400;700&family=Manrope:wght@500;600;700&family=Oswald:wght@500;600&family=Permanent+Marker&display=swap";
 
 /**
  * Light-mode Today backdrop: a dark walnut desk lit by a lamp, with books,

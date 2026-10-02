@@ -37,7 +37,7 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
     setShowAdd(false);
   }
 
-  if (theme === "dark") {
+  if (theme === "light") {
     return (
       <section className="gl-card" style={{ paddingTop: 30 }}>
         <div aria-hidden className="gl-tape" />

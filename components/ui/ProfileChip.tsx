@@ -10,7 +10,7 @@ interface ProfileChipProps {
   desk?: boolean;
   /** Soft neumorphic styling used by the light-mode Study Log. */
   soft?: boolean;
-  /** Slate-glass styling used by the dark Mark Your Days page. */
+  /** Slate-glass styling used by the light-mode Mark Your Days page. */
   glass?: boolean;
 }
 
@@ -18,7 +18,7 @@ export function ProfileChip({ studentName, targetExam, desk = false, soft = fals
   const { theme } = useTheme();
   const isLight = theme === "light";
 
-  if (glass && !isLight) {
+  if (glass) {
     const name = studentName.trim();
     return (
       <Link href="/#profile-form" className="gl-profile">
@@ -59,7 +59,7 @@ export function ProfileChip({ studentName, targetExam, desk = false, soft = fals
       <Link href="/#profile-form" className="dk-profile">
         <span className="dk-avatar">{name ? name.charAt(0).toUpperCase() : "+"}</span>
         <span className="min-w-0 text-left">
-          <span className="block max-w-[120px] truncate text-[14px] font-semibold" style={{ fontFamily: "var(--dk-font-label)" }}>
+          <span className="block max-w-[120px] truncate text-[14px] font-semibold">
             {name || "Add your name"}
           </span>
           {name && targetExam && (
