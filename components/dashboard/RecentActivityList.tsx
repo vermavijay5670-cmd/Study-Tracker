@@ -7,7 +7,7 @@ import { SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject } from "@/lib/types";
 import { relDays } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
-import { Ledger } from "@/components/today/desk/DeskUI";
+import { SoftCard } from "@/components/ui/soft/SoftUI";
 
 type Activity =
   | { type: "log"; date: string; hours: number }
@@ -17,56 +17,49 @@ export function RecentActivityList({ activity }: { activity: Activity[] }) {
   const { theme } = useTheme();
 
   if (theme === "light") {
-    const ink = (h: string) => `color-mix(in srgb, ${h} 55%, #2b1d11)`;
     return (
-      <Ledger delay={0.15}>
+      <SoftCard delay={0.15}>
         <div className="mb-2 flex items-center justify-between">
-          <h2 className="dk-h" style={{ fontSize: 24 }}>Recent activity</h2>
-          <Link href="/study-log" className="dk-link">
+          <h2 className="sf-title" style={{ fontSize: 22 }}>Recent activity</h2>
+          <Link href="/study-log" className="sf-linkbtn">
             View all
           </Link>
         </div>
 
         {activity.length === 0 ? (
-          <p className="dk-note py-6 text-center">Nothing logged yet — get started on Today.</p>
+          <p className="sf-sub py-6 text-center">Nothing logged yet — get started on Today.</p>
         ) : (
           <div>
-            {activity.map((a, i) => {
-              if (a.type === "log") {
-                return (
-                  <div key={i} className="dk-row">
-                    <span className="dk-well">
-                      <Clock3 size={15} strokeWidth={1.9} style={{ color: "#5d4830" }} />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="truncate text-[14px] font-semibold" style={{ color: "var(--dk-ink)" }}>Study session</div>
-                      <div className="dk-note" style={{ fontSize: 11 }}>{relDays(a.date)}</div>
-                    </div>
-                    <span className="font-tabular flex-shrink-0 text-[14px] font-bold" style={{ color: "#2c6a33" }}>
-                      +{a.hours.toFixed(1)}h
-                    </span>
-                  </div>
-                );
-              }
-              const hex = ACCENT_HEX[SUBJECT_ACCENT[a.subject]];
-              return (
-                <div key={i} className="dk-row">
-                  <span className="dk-well">
-                    <RefreshCw size={15} strokeWidth={1.9} style={{ color: ink(hex) }} />
+            {activity.map((a, i) =>
+              a.type === "log" ? (
+                <div key={i} className="sf-act">
+                  <span className="sf-act__ico">
+                    <Clock3 size={16} strokeWidth={1.9} />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <div className="truncate text-[14px] font-semibold" style={{ color: "var(--dk-ink)" }}>{a.chapter}</div>
-                    <div className="dk-note" style={{ fontSize: 11 }}>{relDays(a.date)}</div>
+                    <div className="truncate text-[14px] font-semibold" style={{ color: "var(--sf-text)" }}>Study session</div>
+                    <div className="sf-sub" style={{ fontSize: 11 }}>{relDays(a.date)}</div>
                   </div>
-                  <span className="dk-pill flex-shrink-0" style={{ color: ink(hex), background: `color-mix(in srgb, ${hex} 22%, transparent)` }}>
-                    Revised
+                  <span className="font-tabular flex-shrink-0 text-[14px] font-bold" style={{ color: "#3b7d45" }}>
+                    +{a.hours.toFixed(1)}h
                   </span>
                 </div>
-              );
-            })}
+              ) : (
+                <div key={i} className="sf-act">
+                  <span className="sf-act__ico">
+                    <RefreshCw size={16} strokeWidth={1.9} />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate text-[14px] font-semibold" style={{ color: "var(--sf-text)" }}>{a.chapter}</div>
+                    <div className="sf-sub" style={{ fontSize: 11 }}>{relDays(a.date)}</div>
+                  </div>
+                  <span className="sf-trend is-up flex-shrink-0">Revised</span>
+                </div>
+              )
+            )}
           </div>
         )}
-      </Ledger>
+      </SoftCard>
     );
   }
 

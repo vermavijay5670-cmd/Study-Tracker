@@ -44,8 +44,8 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const { theme } = useTheme();
   const isLight = theme === "light";
   // Per-page light-mode skins: skeuomorphic "study desk" (Today, Dashboard) and soft neumorphic (Study Log, Planner, Daily Goals).
-  const desk = isLight && (pathname === "/today" || pathname === "/dashboard");
-  const soft = isLight && (pathname === "/study-log" || pathname === "/planner" || pathname === "/daily-goals");
+  const desk = isLight && pathname === "/today";
+  const soft = isLight && (pathname === "/study-log" || pathname === "/planner" || pathname === "/daily-goals" || pathname === "/dashboard" || pathname === "/question-practice");
   // Dark-mode skin: slate glass (Mark Your Days).
   const glass = !isLight && pathname === "/mark-your-days";
   const chrome = desk || soft || glass;

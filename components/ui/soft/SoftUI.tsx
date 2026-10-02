@@ -1,6 +1,7 @@
 "use client";
 
-import type { ComponentType, ReactNode } from "react";
+import Link from "next/link";
+import type { ComponentProps, ComponentType, ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useCountUp } from "@/lib/useCountUp";
 import "./soft.css";
@@ -94,4 +95,42 @@ export function SoftCountStat({
   const animated = useCountUp(Number.isFinite(value) ? value : 0);
   const shown = decimals > 0 ? animated.toFixed(decimals) : Math.round(animated).toString();
   return <SoftStat {...rest} value={`${shown}${suffix}`} />;
+}
+
+/** Pressed-in segmented switch with a raised green selected segment. */
+export function SoftSeg<T extends string>({
+  value,
+  options,
+  onChange,
+  label,
+}: {
+  value: T;
+  options: { key: T; label: string }[];
+  onChange: (v: T) => void;
+  label: string;
+}) {
+  return (
+    <div className="sf-seg" role="group" aria-label={label}>
+      {options.map((o) => (
+        <button
+          key={o.key}
+          type="button"
+          aria-pressed={value === o.key}
+          className={`sf-seg__btn ${value === o.key ? "is-on" : ""}`}
+          onClick={() => onChange(o.key)}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/** Next.js link styled as a soft button ("green" = primary, "plain" = raised grey). */
+export function SoftLink({
+  tone = "plain",
+  className = "",
+  ...rest
+}: ComponentProps<typeof Link> & { tone?: "green" | "plain" }) {
+  return <Link className={`${tone === "green" ? "sf-btn" : "sf-chip sf-chip--lg"} ${className}`} {...rest} />;
 }

@@ -6,7 +6,7 @@ import { ArrowUpRight, ArrowDownRight, Clock } from "lucide-react";
 import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { addDays, dateKey, parseKey } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
-import { Notebook, Plate, Seg } from "@/components/today/desk/DeskUI";
+import { SoftCard, SoftSeg } from "@/components/ui/soft/SoftUI";
 
 interface BalanceChartProps {
   log: Record<string, number>;
@@ -74,12 +74,12 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
 
   const c = isLight
     ? {
-        line: "#a8701c",
-        fillTop: "#d4a44c",
-        tick: "#5d4830",
-        cursor: "rgba(43,29,17,0.45)",
-        tip: { background: "#f1e5c8", border: "1px solid #8b6a3a", borderRadius: 10, fontSize: 12, color: "#2b1d11" },
-        dotFill: "#2b1d11",
+        line: "#5d8838",
+        fillTop: "#86ab57",
+        tick: "#78868c",
+        cursor: "rgba(93,136,56,0.45)",
+        tip: { background: "#f3f6f6", border: "1px solid #cfd7da", borderRadius: 14, fontSize: 12, color: "#27363c", boxShadow: "4px 6px 14px rgba(150,165,176,.45)" },
+        dotFill: "#fff",
       }
     : {
         line: "#C084FC",
@@ -96,7 +96,7 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
         <AreaChart data={series} margin={{ top: 10, right: 4, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="balanceFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={c.fillTop} stopOpacity={isLight ? 0.65 : 0.45} />
+              <stop offset="0%" stopColor={c.fillTop} stopOpacity={isLight ? 0.5 : 0.45} />
               <stop offset="100%" stopColor={c.fillTop} stopOpacity={0} />
             </linearGradient>
           </defs>
@@ -119,7 +119,7 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
             strokeWidth={isLight ? 3 : 2}
             fill="url(#balanceFill)"
             dot={false}
-            activeDot={{ r: 4, fill: c.dotFill, stroke: c.line, strokeWidth: 2 }}
+            activeDot={{ r: 5, fill: c.dotFill, stroke: c.line, strokeWidth: 2 }}
           />
         </AreaChart>
       </ResponsiveContainer>
@@ -128,30 +128,33 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
 
   if (isLight) {
     return (
-      <Notebook>
+      <SoftCard>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <Plate icon={<Clock size={13} strokeWidth={2} />}>Total study hours</Plate>
-            <div className="mt-3 flex items-center gap-3">
-              <span className="dk-bignum">{totalHoursLogged.toFixed(1)}h</span>
-              <span className={`dk-pill ${up ? "is-up" : ""}`}>
-                {up ? <ArrowUpRight size={13} strokeWidth={2.2} /> : <ArrowDownRight size={13} strokeWidth={2.2} />}
+            <div className="flex items-center gap-3">
+              <span className="sf-badge" style={{ width: 38, height: 38 }}>
+                <Clock size={17} strokeWidth={1.9} />
+              </span>
+              <span className="sf-cap">Total study hours</span>
+            </div>
+            <div className="mt-4 flex items-center gap-3">
+              <span className="sf-bignum">{totalHoursLogged.toFixed(1)}h</span>
+              <span className={`sf-trend ${up ? "is-up" : ""}`}>
+                {up ? <ArrowUpRight size={13} strokeWidth={2.4} /> : <ArrowDownRight size={13} strokeWidth={2.4} />}
                 {Math.abs(pct).toFixed(1)}%
               </span>
             </div>
           </div>
-          <Seg value={range} onChange={setRange} label="Chart range" options={RANGES.map((r) => ({ key: r.key, label: r.label }))} />
+          <SoftSeg value={range} onChange={setRange} label="Chart range" options={RANGES.map((r) => ({ key: r.key, label: r.label }))} />
         </div>
 
         {chart}
 
-        <div className="dk-note mt-3 flex flex-wrap items-center justify-between gap-2">
-          <span>Average pace &nbsp;{avgPerDay.toFixed(1)}h / day</span>
-          <span className="dk-legend">
-            <i /> Cumulative hours logged
-          </span>
+        <div className="sf-sub mt-3 flex flex-wrap items-center justify-between gap-2">
+          <span>Average pace · {avgPerDay.toFixed(1)}h / day</span>
+          <span>Cumulative hours logged</span>
         </div>
-      </Notebook>
+      </SoftCard>
     );
   }
 

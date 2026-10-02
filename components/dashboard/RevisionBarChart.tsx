@@ -7,7 +7,7 @@ import { addDays, dateKey, parseKey } from "@/lib/date-utils";
 import type { ChapterState, Subject } from "@/lib/types";
 import { CHAPTERS } from "@/lib/data";
 import { useTheme } from "@/lib/ThemeContext";
-import { Ledger, Seg } from "@/components/today/desk/DeskUI";
+import { SoftCard, SoftSeg } from "@/components/ui/soft/SoftUI";
 
 interface RevisionBarChartProps {
   getChapterState: (subj: Subject, cls: 11 | 12, i: number) => ChapterState;
@@ -58,11 +58,11 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
 
   const c = isLight
     ? {
-        tick: "#5d4830",
-        cursor: "rgba(90,60,20,0.12)",
-        tip: { background: "#f1e5c8", border: "1px solid #8b6a3a", borderRadius: 10, fontSize: 12, color: "#2b1d11" },
-        hi: "#b8802a",
-        lo: "rgba(184,128,42,0.32)",
+        tick: "#78868c",
+        cursor: "rgba(93,136,56,0.08)",
+        tip: { background: "#f3f6f6", border: "1px solid #cfd7da", borderRadius: 14, fontSize: 12, color: "#27363c", boxShadow: "4px 6px 14px rgba(150,165,176,.45)" },
+        hi: "#6f9a47",
+        lo: "rgba(134,171,87,0.4)",
       }
     : {
         tick: "rgba(255,255,255,0.35)",
@@ -94,16 +94,16 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
 
   if (isLight) {
     return (
-      <Ledger delay={0.12}>
+      <SoftCard delay={0.1}>
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="dk-h" style={{ fontSize: 22 }}>Revision activity</h2>
-            <div className="mt-1 flex items-baseline gap-2">
-              <span className="dk-bignum dk-bignum--sm">{totalThisPeriod}</span>
-              <span className="dk-note">this {period}</span>
+            <h2 className="sf-title" style={{ fontSize: 20 }}>Revision activity</h2>
+            <div className="mt-1.5 flex items-baseline gap-2">
+              <span className="sf-bignum" style={{ fontSize: 30 }}>{totalThisPeriod}</span>
+              <span className="sf-sub">this {period}</span>
             </div>
           </div>
-          <Seg
+          <SoftSeg
             value={period}
             onChange={setPeriod}
             label="Revision period"
@@ -114,7 +114,7 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
           />
         </div>
         {chart}
-      </Ledger>
+      </SoftCard>
     );
   }
 

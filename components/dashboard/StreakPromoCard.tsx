@@ -6,7 +6,7 @@ import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject } from "@/lib/types";
 import { useTheme } from "@/lib/ThemeContext";
-import { Ledger, DeskLink } from "@/components/today/desk/DeskUI";
+import { SoftCard, SoftLink } from "@/components/ui/soft/SoftUI";
 
 interface StreakPromoCardProps {
   currentStreak: number;
@@ -22,16 +22,16 @@ export function StreakPromoCard({ currentStreak, bestStreak, totalDone }: Streak
 
   if (theme === "light") {
     return (
-      <Ledger delay={0.1} className="h-full">
-        <div className="flex flex-1 flex-col justify-between">
+      <SoftCard delay={0.05} className="h-full">
+        <div className="flex h-full flex-col justify-between">
           <div>
-            <span className="dk-badge mb-3">
-              <Flame size={17} strokeWidth={1.9} />
+            <span className="sf-badge mb-4">
+              <Flame size={19} strokeWidth={1.9} />
             </span>
-            <h2 className="dk-h" style={{ fontSize: 24 }}>
+            <h2 className="sf-title" style={{ fontSize: 22 }}>
               {currentStreak > 0 ? `${currentStreak}-day streak` : "Start a streak"}
             </h2>
-            <p className="dk-note mt-1.5">
+            <p className="sf-sub mt-2" style={{ lineHeight: 1.5 }}>
               {currentStreak > 0
                 ? `Keep it going — your best run so far is ${bestStreak} days.`
                 : "Log some study time today to kick one off."}
@@ -39,20 +39,22 @@ export function StreakPromoCard({ currentStreak, bestStreak, totalDone }: Streak
           </div>
 
           <div>
-            <div className="dk-seals">
+            <div className="sf-seals">
               {SUBJECTS.map((s) => (
-                <span key={s} className="dk-seal" style={{ "--dk-accent": ACCENT_HEX[SUBJECT_ACCENT[s]] } as React.CSSProperties}>
+                <span key={s} className="sf-seal" style={{ "--sf-accent": ACCENT_HEX[SUBJECT_ACCENT[s]] } as React.CSSProperties}>
                   {INITIAL[s]}
                 </span>
               ))}
-              <span className="dk-seal dk-seal--plain">+{totalDone}</span>
+              <span className="sf-seal" style={{ "--sf-accent": "#e4e9ea", color: "#78868c" } as React.CSSProperties}>
+                +{totalDone}
+              </span>
             </div>
-            <DeskLink href="/planner" tone="brass" small className="w-full">
+            <SoftLink href="/planner" tone="green" className="w-full">
               Open planner
-            </DeskLink>
+            </SoftLink>
           </div>
         </div>
-      </Ledger>
+      </SoftCard>
     );
   }
 

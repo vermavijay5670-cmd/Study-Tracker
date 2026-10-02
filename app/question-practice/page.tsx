@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { QuestionPracticeSection } from "@/components/question-practice/QuestionPracticeSection";
-import { SectionBackground } from "@/components/ui/SectionBackground";
+import { SoftBackground } from "@/components/ui/soft/SoftBackground";
 
 export default function QuestionPracticePage() {
   return (
-    <SectionBackground>
+    <SoftBackground>
       <PageShell>
         <QuestionPracticeSection />
       </PageShell>
-    </SectionBackground>
+    </SoftBackground>
   );
 }

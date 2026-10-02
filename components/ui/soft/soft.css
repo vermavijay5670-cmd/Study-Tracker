@@ -252,7 +252,44 @@ a:active > .sf-logo-badge { transform: translateY(1px); box-shadow: var(--sf-ins
 .sf-icobtn:focus-visible { outline: 3px solid rgba(111,154,71,.7); outline-offset: 2px; }
 .sf-empty { padding: 28px 12px; text-align: center; font-size: 13px; color: var(--sf-muted); border-radius: 22px; }
 
+/* ==========================================================================
+   Dashboard + Question Practice
+   ========================================================================== */
+.sf-seg { display: inline-flex; max-width: 100%; gap: 2px; padding: 4px; border-radius: 999px; background: linear-gradient(145deg, #dde3e4, #eaeeef); box-shadow: var(--sf-inset); }
+.sf-seg__btn { white-space: nowrap; padding: 7px 14px; border-radius: 999px; cursor: pointer; border: 0; background: transparent; font: 600 13px/1 var(--sf-font); color: var(--sf-muted); transition: color .15s ease, transform .1s ease; }
+.sf-seg__btn:hover:not(.is-on) { color: var(--sf-text); }
+.sf-seg__btn:active { transform: translateY(1px); }
+.sf-seg__btn:focus-visible { outline: 3px solid rgba(111,154,71,.65); outline-offset: 2px; }
+.sf-seg__btn.is-on { color: #fff; background: linear-gradient(145deg, #8db35e, #5d8838); box-shadow: 3px 4px 9px rgba(93,136,56,.4), inset 0 1px 0 rgba(255,255,255,.35); }
+@media (max-width: 520px) { .sf-seg { width: 100%; } .sf-seg__btn { flex: 1 1 auto; padding: 7px 4px; font-size: 11px; } }
+
+.sf-chip--lg { white-space: nowrap; padding: 11px 16px; font-size: 14px; min-height: 42px; justify-content: center; text-decoration: none; }
+.sf-bignum { font-size: clamp(34px, 4.2vw, 46px); font-weight: 700; line-height: 1.05; letter-spacing: -.02em; color: var(--sf-text); font-variant-numeric: tabular-nums; }
+.sf-trend { display: inline-flex; align-items: center; gap: 4px; padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--sf-muted); background: linear-gradient(145deg, #dde3e4, #eaeeef); box-shadow: inset 2px 2px 5px rgba(150,165,176,.45), inset -2px -2px 5px rgba(255,255,255,.9); }
+.sf-trend.is-up { color: #3b7d45; }
+.sf-seal { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; font-size: 12px; font-weight: 700; color: #27363c; background: var(--sf-accent, #b3d086); box-shadow: 0 0 0 3px #eef1f2, 3px 4px 8px rgba(150,165,176,.5); }
+.sf-seals { display: flex; margin: 16px 0; }
+.sf-seals > * + * { margin-left: -8px; }
+.sf-index { position: relative; border-radius: 22px; padding: 16px 18px; background: linear-gradient(145deg, #f6f8f8, #e4e9ea); box-shadow: var(--sf-raised-sm); }
+.sf-index::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 5px; border-radius: 0 6px 6px 0; background: linear-gradient(180deg, #a9c97c, #5d8838); }
+.sf-act { display: flex; align-items: center; gap: 12px; padding: 10px 4px; border-bottom: 1px solid rgba(150,165,176,.28); }
+.sf-act:last-child { border-bottom: 0; }
+.sf-act__ico { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 36px; height: 36px; border-radius: 50%; color: var(--sf-green); background: linear-gradient(145deg, #f3f6f6, #e2e7e8); box-shadow: var(--sf-raised-sm); }
+.sf-linkbtn { font-size: 13px; font-weight: 700; color: var(--sf-green); text-decoration: none; }
+.sf-linkbtn:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sf-linkbtn:focus-visible { outline: 3px solid rgba(111,154,71,.65); outline-offset: 3px; border-radius: 6px; }
+.sf-qcard { border: 1px solid rgba(255,255,255,.7); background: linear-gradient(145deg, #f1f4f5, #e3e8ea); box-shadow: var(--sf-raised); }
+.sf-pickcard { cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+.sf-pickcard:hover { transform: translateY(-3px); }
+.sf-pickcard:active { transform: translateY(1px); box-shadow: var(--sf-inset); }
+.sf-pickcard:focus-visible { outline: 3px solid rgba(111,154,71,.65); outline-offset: 3px; }
+.sf-option { transition: transform .12s ease, box-shadow .12s ease, background .15s ease; }
+.sf-option:enabled:hover { transform: translateY(-1px); background: #fff; }
+.sf-option:enabled:active { transform: translateY(1px); }
+.sf-option:focus-visible { outline: 3px solid rgba(111,154,71,.65); outline-offset: 2px; }
+
 @media (prefers-reduced-motion: reduce) {
+  .sf-seg__btn, .sf-pickcard, .sf-option { transition: none; }
   .sf-goal { transition: none; }
   .sf-prow, .sf-tab, .sf-chip, .sf-check, .sf-track > i { transition: none; }
   .sf-bar__cap, .sf-collapse, .sf-fold__arrow, .sf-btn, .sf-nav svg, .sf-round-btn, .sf-cell { transition: none; }

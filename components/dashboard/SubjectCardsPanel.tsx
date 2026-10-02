@@ -8,7 +8,7 @@ import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { SUBJECT_NAME, SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject, SubjectStats } from "@/lib/types";
 import { useTheme } from "@/lib/ThemeContext";
-import { Ledger, DeskLink } from "@/components/today/desk/DeskUI";
+import { SoftCard, SoftLink } from "@/components/ui/soft/SoftUI";
 
 interface SubjectCardsPanelProps {
   perSubject: (SubjectStats & { subject: Subject })[];
@@ -26,29 +26,27 @@ export function SubjectCardsPanel({ perSubject }: SubjectCardsPanelProps) {
   const pct = front.total > 0 ? Math.round((front.done / front.total) * 100) : 0;
 
   if (theme === "light") {
-    const ink = (h: string) => `color-mix(in srgb, ${h} 55%, #2b1d11)`;
     return (
-      <Ledger delay={0.05}>
+      <SoftCard>
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="dk-h" style={{ fontSize: 24 }}>Subjects</h2>
-          <Link href="/planner" className="dk-link">
+          <h2 className="sf-title" style={{ fontSize: 22 }}>Subjects</h2>
+          <Link href="/planner" className="sf-linkbtn">
             Open planner →
           </Link>
         </div>
 
-        <div className="mb-3 flex gap-2">
+        <div className="mb-4 flex gap-3">
           {others.map((s) => {
-            const hex = ACCENT_HEX[SUBJECT_ACCENT[s.subject]];
             const p = s.total > 0 ? Math.round((s.done / s.total) * 100) : 0;
             return (
               <button
                 key={s.subject}
                 type="button"
                 onClick={() => setFrontSubject(s.subject)}
-                className="dk-chip flex flex-1 items-center justify-between !rounded-xl !px-3 !py-2.5 text-left"
+                className="sf-chip flex-1 !justify-between !rounded-2xl !px-4 !py-3 text-left"
               >
                 <span>{SUBJECT_NAME[s.subject]}</span>
-                <span className="font-tabular" style={{ color: ink(hex) }}>
+                <span className="font-tabular" style={{ color: "#5d8838" }}>
                   {p}%
                 </span>
               </button>
@@ -63,42 +61,37 @@ export function SubjectCardsPanel({ perSubject }: SubjectCardsPanelProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ type: "spring", stiffness: 300, damping: 26 }}
-            className="dk-index"
-            style={{ "--dk-accent": accentHex } as React.CSSProperties}
+            className="sf-index"
           >
-            <div className="flex items-center justify-between">
-              <span className="dk-cap flex items-center gap-1.5">
-                <GraduationCap size={14} strokeWidth={1.9} style={{ color: ink(accentHex) }} />
+            <div className="flex items-center justify-between pl-2">
+              <span className="sf-cap flex items-center gap-1.5">
+                <GraduationCap size={14} strokeWidth={1.9} style={{ color: "#5d8838" }} />
                 {SUBJECT_NAME[front.subject]}
               </span>
-              <span className="dk-cap" style={{ color: ink(accentHex) }}>
-                NEET
-              </span>
+              <span className="sf-cap" style={{ color: "#5d8838" }}>NEET</span>
             </div>
 
-            <div className="mt-5 flex items-end justify-between">
+            <div className="mt-5 flex items-end justify-between pl-2">
               <div>
-                <div className="dk-cap" style={{ fontSize: 10 }}>Chapters done</div>
-                <div className="dk-bignum dk-bignum--sm mt-1">
+                <div className="sf-cap" style={{ fontSize: 10 }}>Chapters done</div>
+                <div className="sf-bignum mt-1" style={{ fontSize: 34 }}>
                   {front.done}/{front.total}
                 </div>
               </div>
-              <span className="dk-pill" style={{ color: ink(accentHex), background: `color-mix(in srgb, ${accentHex} 22%, transparent)` }}>
-                {pct}%
-              </span>
+              <span className="sf-trend is-up">{pct}%</span>
             </div>
           </motion.div>
         </AnimatePresence>
 
         <div className="mt-5 flex gap-3">
-          <DeskLink href="/study-log" small className="flex-1">
+          <SoftLink href="/study-log" className="flex-1">
             <ArrowDownLeft size={15} strokeWidth={2} /> Log hours
-          </DeskLink>
-          <DeskLink href="/planner" tone="brass" small className="flex-1">
+          </SoftLink>
+          <SoftLink href="/planner" tone="green" className="flex-1">
             <ArrowUpRight size={15} strokeWidth={2} /> Revise
-          </DeskLink>
+          </SoftLink>
         </div>
-      </Ledger>
+      </SoftCard>
     );
   }
 

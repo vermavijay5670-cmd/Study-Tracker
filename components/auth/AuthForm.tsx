@@ -15,6 +15,7 @@ interface AuthFormProps {
 export function AuthForm({ mode }: AuthFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [checkEmail, setCheckEmail] = useState(false);
@@ -25,23 +26,29 @@ export function AuthForm({ mode }: AuthFormProps) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
+
+    if (mode === "signup" && password !== confirmPassword) {
+      setError("Passwords don't match.");
+      return;
+    }
+
     setLoading(true);
     const supabase = createSupabaseBrowserClient();
 
     if (mode === "signup") {
-      // Email-first signup: no password yet. This sends a confirmation link;
-      // clicking it logs the person in and sends them to /auth/set-password
-      // where they create their password.
-      const { error: otpError } = await supabase.auth.signInWithOtp({
+      // Email + password signup: Supabase emails a confirmation link; clicking
+      // it verifies the address and logs the person straight in with the
+      // password they already chose here.
+      const { error: signUpError } = await supabase.auth.signUp({
         email,
+        password,
         options: {
-          shouldCreateUser: true,
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent("/auth/set-password")}`,
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent("/today")}`,
         },
       });
       setLoading(false);
-      if (otpError) {
-        setError(otpError.message);
+      if (signUpError) {
+        setError(signUpError.message);
         return;
       }
       setCheckEmail(true);
@@ -67,7 +74,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           <h1 className="text-[22px] font-semibold text-[#F6F4FF]">Check your inbox</h1>
           <p className="mt-2 text-[13.5px] text-white/50">
             We&apos;ve sent a confirmation link to <span className="text-white/80">{email}</span>. Click it to
-            confirm your email — you&apos;ll be asked to create a password right after.
+            confirm your email and you&apos;ll be logged straight in.
           </p>
           <Link href="/login" className="mt-6 inline-block text-[13px] text-[#D8B4FE] hover:underline">
             Back to log in
@@ -82,7 +89,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       <h1 className="text-[24px] font-semibold text-[#F6F4FF]">{mode === "signup" ? "Create your account" : "Welcome back"}</h1>
       <p className="mt-1.5 text-[13.5px] text-white/50">
         {mode === "signup"
-          ? "Enter your email — we'll send a confirmation link, then you'll set a password."
+          ? "Enter your email and choose a password — we'll send a confirmation link to verify it's you."
           : "Log in to pick up where you left off."}
       </p>
 
@@ -103,19 +110,36 @@ export function AuthForm({ mode }: AuthFormProps) {
           </div>
         </label>
 
-        {mode === "login" && (
+        <label className="block">
+          <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Password</span>
+          <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
+            <Lock size={15} strokeWidth={1.75} className="text-white/30" />
+            <input
+              type="password"
+              required
+              minLength={6}
+              autoComplete={mode === "signup" ? "new-password" : "current-password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="At least 6 characters"
+              className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
+            />
+          </div>
+        </label>
+
+        {mode === "signup" && (
           <label className="block">
-            <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Password</span>
+            <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Confirm password</span>
             <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
               <Lock size={15} strokeWidth={1.75} className="text-white/30" />
               <input
                 type="password"
                 required
                 minLength={6}
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="At least 6 characters"
+                autoComplete="new-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Re-enter your password"
                 className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
               />
             </div>
