@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Notch sidebar. One dark panel (expanded or collapsed) whose edge is cut away
+   around the active page: the active item is a coloured circle sitting in a
+   rounded slot, with its label in the same colour. The panel outline is an SVG
+   path computed in Sidebar.tsx. Row/circle sizes scale down on short screens.
+   ========================================================================== */
+:root {
+  --nv-row: 58px; --nv-circle: 46px; --nv-x0: 6px; --nv-wide: 272px;
+  --nv-panel: #0c0c0e;
+  --nv-font: "Manrope", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (max-height: 860px) { :root { --nv-row: 52px; --nv-circle: 42px; } }
+@media (max-height: 780px) { :root { --nv-row: 46px; --nv-circle: 38px; } }
+@media (max-height: 700px) { :root { --nv-row: 42px; --nv-circle: 34px; } }
+
+.nv-spacer, .nv-dock { display: none; }
+@media (min-width: 768px) {
+  .nv-spacer { display: block; flex: none; width: calc(var(--nv-row) + var(--nv-x0) * 2 + 32px); transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+  .nv-spacer[data-expanded="true"] { width: calc(var(--nv-wide) + 32px); }
+  .nv-dock { display: block; position: fixed; left: 16px; top: 16px; bottom: 16px; z-index: 40; pointer-events: none; }
+  .nv-dock > .nv { pointer-events: auto; }
+}
+
+.nv { position: relative; display: flex; flex-direction: column; height: 100%; width: calc(var(--nv-row) + var(--nv-x0) * 2); font-family: var(--nv-font); color: #d6d6dc; transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.nv.is-expanded { width: var(--nv-wide); }
+.nv:not(.is-measured) { background: var(--nv-panel); border-radius: 22px; }
+.nv--drawer { position: fixed; inset: 0 auto 0 0; z-index: 50; width: var(--nv-wide); height: 100vh; }
+
+.nv__bg { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.42)); }
+.nv__inner { position: relative; z-index: 1; display: flex; flex: 1; flex-direction: column; min-height: 0; padding: 14px 0 12px; overflow: hidden; border-radius: 22px; }
+
+/* every row (logo, nav, bottom actions) shares one geometry so icons line up in a single column */
+.nv-item {
+  position: relative; display: flex; flex: none; align-items: center; width: 100%; height: var(--nv-row); padding: 0 12px 0 calc(var(--nv-x0) + (var(--nv-row) - var(--nv-circle)) / 2);
+  color: #d6d6dc; background: none; border: 0; cursor: pointer; text-align: left; font: inherit; text-decoration: none; white-space: nowrap;
+}
+.nv-ico { display: flex; align-items: center; justify-content: center; flex: none; width: var(--nv-circle); height: var(--nv-circle); border-radius: 50%; color: #e8e8ee; transition: transform 0.15s ease, color 0.15s ease, background 0.2s ease; }
+.nv-ico svg { width: 22px; height: 22px; }
+.nv-label { margin-left: 18px; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; opacity: 0; transition: opacity 0.2s ease, color 0.15s ease; }
+.nv.is-expanded .nv-label { opacity: 1; transition-delay: 0.08s; }
+.nv-sub { display: block; margin-top: 1px; font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8a92; }
+
+.nv-item:hover .nv-ico { color: #fff; transform: scale(1.08); }
+.nv-item:hover .nv-label { color: #fff; }
+.nv-item:active .nv-ico { transform: scale(0.94); }
+.nv-item:focus-visible { outline: 3px solid #d8ff5c; outline-offset: -3px; border-radius: 14px; }
+
+/* the active page: coloured circle in the slot, coloured label */
+.nv-item.is-active .nv-ico { background: var(--c, #ef4444); color: #fff; transform: none; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); }
+.nv-item.is-active .nv-label { color: var(--t, var(--c)); font-weight: 700; }
+
+.nv-top { padding-bottom: 6px; }
+.nv-logo .nv-ico { background: transparent; }
+.nv-logo .nv-label { font-size: 15px; font-weight: 700; letter-spacing: 0; color: #fff; }
+
+.nv-toggle {
+  display: flex; align-items: center; justify-content: center; flex: none; width: 44px; height: 24px; margin: 4px 0 10px calc(var(--nv-x0) + var(--nv-row) / 2 - 22px);
+  border: 0; border-radius: 999px; cursor: pointer; color: #0a0a0a; background: #d8ff5c;
+  box-shadow: 0 4px 12px rgba(216, 255, 92, 0.25), inset 0 -2px 3px rgba(60, 80, 0, 0.25); transition: transform 0.12s ease, filter 0.15s ease;
+}
+.nv-toggle:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.nv-toggle:active { transform: translateY(1px) scale(0.96); }
+.nv-toggle:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+.nv-nav { display: flex; flex: 1 1 auto; flex-direction: column; gap: 2px; min-height: 0; overflow-y: auto; scrollbar-width: none; }
+.nv-nav::-webkit-scrollbar { display: none; }
+.nv-bottom { display: flex; flex: none; flex-direction: column; margin-top: 8px; padding-top: 6px; }
+.nv-bottom .nv-ico svg { width: 20px; height: 20px; }
+.nv-avatar { display: flex; align-items: center; justify-content: center; flex: none; width: calc(var(--nv-circle) - 4px); height: calc(var(--nv-circle) - 4px); border-radius: 50%; background: #fff; color: #0a0a0a; font: 700 15px/1 var(--nv-font); }
+.nv-item.is-on .nv-ico { color: #d8ff5c; }
+@media (max-height: 700px) { .nv-kinetic { display: none; } }
+
+/* mobile top bar */
+.nv-topbar { color: #f2f2f4; font-family: var(--nv-font); background: var(--nv-panel); border-radius: 0 0 26px 26px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 28px rgba(0, 0, 0, 0.4); }
+.nv-round-btn { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; color: #e8e8ee; background: #1d1d20; border: 1px solid rgba(255, 255, 255, 0.12); transition: transform 0.12s ease, filter 0.15s ease; }
+.nv-round-btn:hover { filter: brightness(1.25); }
+.nv-round-btn:active { transform: translateY(1px); }
+.nv-round-btn:focus-visible { outline: 3px solid #d8ff5c; outline-offset: 2px; }
+.nv-mini-logo { display: flex; min-width: 0; align-items: center; gap: 8px; color: #fff; }
+.nv-mini-logo b { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nv, .nv-spacer, .nv-label, .nv-ico, .nv-toggle { transition: none; }
+}

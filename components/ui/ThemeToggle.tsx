@@ -28,7 +28,7 @@ export function ThemeToggle({ className = "", variant = "default" }: ThemeToggle
           : variant === "glass"
           ? `gl-round-btn ${className}`
           : variant === "bk"
-          ? `bk-round-btn ${className}`
+          ? `nv-round-btn ${className}`
           : `flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border transition-colors ${className}`
       }
       style={
