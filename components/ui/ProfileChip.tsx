@@ -12,11 +12,30 @@ interface ProfileChipProps {
   soft?: boolean;
   /** Slate-glass styling used by the light-mode Mark Your Days page. */
   glass?: boolean;
+  /** Black sidebar styling (expanded sidebar). */
+  bk?: boolean;
 }
 
-export function ProfileChip({ studentName, targetExam, desk = false, soft = false, glass = false }: ProfileChipProps) {
+export function ProfileChip({ studentName, targetExam, desk = false, soft = false, glass = false, bk = false }: ProfileChipProps) {
   const { theme } = useTheme();
   const isLight = theme === "light";
+
+  if (bk) {
+    const name = studentName.trim();
+    return (
+      <Link href="/#profile-form" className="bk-profile">
+        <span className="bk-avatar">{name ? name.charAt(0).toUpperCase() : "+"}</span>
+        <span className="min-w-0 text-left">
+          <span className="block max-w-[130px] truncate text-[14px] font-semibold">{name || "Add your name"}</span>
+          {name && targetExam && (
+            <span className="block max-w-[130px] truncate text-[10px] uppercase tracking-wide" style={{ color: "#8d8d92" }}>
+              {targetExam}
+            </span>
+          )}
+        </span>
+      </Link>
+    );
+  }
 
   if (glass) {
     const name = studentName.trim();

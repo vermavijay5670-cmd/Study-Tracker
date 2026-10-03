@@ -1,34 +1,26 @@
 /* ==========================================================================
-   Collapsed sidebar "rail" — shown on desktop (hover-capable pointers) while the
-   cursor is NOT over the sidebar. Black pill, white icons, white bubble with a
-   scooped notch around the active page. Hovering (or keyboard-focusing) the rail
-   expands it into the page's normal sidebar, which overlays the content.
-   Touch / no-hover devices keep the regular always-open sidebar.
+   Desktop sidebar shell: a slim black "rail" (collapsed) or the full black
+   sidebar (expanded). A lime arrow pill toggles between them; nothing happens
+   on hover. Both are real navigation — only the visible one is interactive.
    ========================================================================== */
-.rail-spacer, .rail-wrap, .rl-rail { display: none; }
+.rail-spacer, .rail-wrap { display: none; }
 
 @media (min-width: 768px) {
-  .rail-wrap { display: contents; }
-}
+  .rail-spacer { display: block; flex: none; width: 108px; transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+  .rail-spacer[data-expanded="true"] { width: 316px; }
+  .rail-wrap { display: block; position: fixed; left: 0; top: 0; z-index: 40; width: 316px; height: 100vh; pointer-events: none; }
 
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
-  .rail-spacer { display: block; flex: none; width: 108px; }
-  .rail-wrap {
-    display: block; position: fixed; left: 0; top: 0; z-index: 40; width: 316px; height: 100vh; pointer-events: none;
-  }
-
-  /* the real sidebar: stays in the DOM (keyboard + screen readers) but is only visible when expanded */
+  /* expanded sidebar */
   .rail-aside {
-    position: absolute !important; left: 0; top: 0;
-    opacity: 0; transform: translateX(-30px) scale(0.88); transform-origin: 0 0; pointer-events: none !important;
+    position: absolute; left: 0; top: 0; margin: 16px; height: calc(100vh - 32px); width: 284px;
+    opacity: 0; transform: translateX(-30px) scale(0.9); transform-origin: 0 0; pointer-events: none;
     transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  /* the default (dark) sidebar is translucent — make it solid while it overlays the page */
-  .rail-wrap[data-theme="dark"] .rail-aside { background: #0f0f11 !important; box-shadow: 18px 0 44px rgba(0, 0, 0, 0.55); }
-  .rail-wrap[data-expanded="true"] .rail-aside { opacity: 1; transform: none; pointer-events: auto !important; }
+  .rail-wrap[data-expanded="true"] .rail-aside { opacity: 1; transform: none; pointer-events: auto; }
 
+  /* collapsed rail */
   .rl-rail {
-    --rl-item: 44px; --rl-pitch: 62px; --rl-pad: 22px; --rl-bubble: 54px; --rl-hole: 41px;
+    --rl-item: 44px; --rl-pitch: 62px; --rl-pad: 62px; --rl-bubble: 54px; --rl-hole: 41px;
     display: flex; flex-direction: column; align-items: center; gap: 12px;
     position: absolute; left: 14px; top: 14px; bottom: 14px; width: 68px; pointer-events: auto;
     transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -36,24 +28,26 @@
   .rail-wrap[data-expanded="true"] .rl-rail { opacity: 0; transform: translateX(-16px) scale(0.94); pointer-events: none; }
 }
 
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) and (max-height: 800px) {
-  .rl-rail { --rl-item: 40px; --rl-pitch: 50px; --rl-pad: 18px; --rl-bubble: 48px; --rl-hole: 37px; gap: 10px; }
+@media (min-width: 768px) and (max-height: 800px) {
+  .rl-rail { --rl-item: 40px; --rl-pitch: 50px; --rl-pad: 54px; --rl-bubble: 48px; --rl-hole: 37px; gap: 10px; }
   .rl-logo { width: 56px !important; height: 56px !important; }
+}
+@media (min-width: 768px) and (max-height: 700px) {
+  .rl-grid { display: none !important; }
 }
 
 .rl-logo {
   display: flex; align-items: center; justify-content: center; flex: none; width: 64px; height: 64px; border-radius: 50%; color: #fff; background: #0a0a0a;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 10px 22px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), 0 10px 22px rgba(0, 0, 0, 0.35); transition: color 0.15s ease;
 }
+.rl-logo:hover { color: #d8ff5c; }
 
 .rl-pill {
   --rl-ay: calc(var(--rl-pad) + var(--rl-idx, 0) * var(--rl-pitch) + var(--rl-item) / 2);
   position: relative; flex: 1; min-height: 0; width: 64px; border-radius: 32px; box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 /* black body with a circular scoop cut out around the active page */
-.rl-pill__bg {
-  position: absolute; inset: 0; border-radius: 32px; background: #0a0a0a;
-}
+.rl-pill__bg { position: absolute; inset: 0; border-radius: 32px; background: #0a0a0a; }
 .rl-pill[data-has-active="true"] .rl-pill__bg {
   -webkit-mask: radial-gradient(circle var(--rl-hole) at 50% var(--rl-ay), transparent 98%, #000 100%);
   mask: radial-gradient(circle var(--rl-hole) at 50% var(--rl-ay), transparent 98%, #000 100%);
@@ -62,14 +56,34 @@
   position: absolute; left: 50%; top: var(--rl-ay); width: var(--rl-bubble); height: var(--rl-bubble); margin: calc(var(--rl-bubble) / -2) 0 0 calc(var(--rl-bubble) / -2);
   border-radius: 50%; background: #fff; box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.06);
 }
+
+/* lime arrow pill: expands / collapses the sidebar */
+.rl-toggle {
+  position: absolute; left: 50%; top: 14px; z-index: 2; display: flex; align-items: center; justify-content: center; width: 44px; height: 24px; margin-left: -22px;
+  border: 0; border-radius: 999px; cursor: pointer; color: #0a0a0a; background: #d8ff5c;
+  box-shadow: 0 4px 12px rgba(216, 255, 92, 0.25), inset 0 -2px 3px rgba(60, 80, 0, 0.25);
+  transition: transform 0.12s ease, filter 0.15s ease;
+}
+.rl-toggle:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.rl-toggle:active { transform: translateY(1px) scale(0.96); }
+
 .rl-items { position: absolute; left: 0; right: 0; top: var(--rl-pad); display: flex; flex-direction: column; align-items: center; gap: calc(var(--rl-pitch) - var(--rl-item)); }
-.rl-item { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: var(--rl-item); height: var(--rl-item); border-radius: 50%; color: #fff; }
-.rl-item.is-active { color: #0a0a0a; }
+.rl-item { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: var(--rl-item); height: var(--rl-item); border-radius: 50%; color: #fff; transition: color 0.15s ease, transform 0.12s ease; }
+.rl-item:hover { color: #d8ff5c; }
+.rl-item.is-active, .rl-item.is-active:hover { color: #0a0a0a; }
+.rl-item:active { transform: scale(0.94); }
 .rl-bottom { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.rl-icon { display: flex; align-items: center; justify-content: center; width: var(--rl-item); height: var(--rl-item); color: rgba(255, 255, 255, 0.85); }
+.rl-icon { display: flex; align-items: center; justify-content: center; width: var(--rl-item); height: var(--rl-item); border: 0; border-radius: 50%; cursor: pointer; background: transparent; color: rgba(255, 255, 255, 0.85); transition: color 0.15s ease, transform 0.12s ease; }
+.rl-icon:hover { color: #d8ff5c; }
+.rl-icon:active { transform: scale(0.92); }
 .rl-icon.is-on { color: #d8ff5c; }
-.rl-avatar { display: flex; align-items: center; justify-content: center; width: calc(var(--rl-item) + 2px); height: calc(var(--rl-item) + 2px); border-radius: 50%; background: #fff; color: #0a0a0a; font: 700 15px/1 Inter, system-ui, sans-serif; }
+.rl-avatar { display: flex; align-items: center; justify-content: center; width: calc(var(--rl-item) + 2px); height: calc(var(--rl-item) + 2px); border-radius: 50%; background: #fff; color: #0a0a0a; font: 700 15px/1 Inter, system-ui, sans-serif; transition: transform 0.12s ease; }
+.rl-avatar:hover { transform: scale(1.06); }
+
+.rl-logo:focus-visible, .rl-toggle:focus-visible, .rl-item:focus-visible, .rl-icon:focus-visible, .rl-avatar:focus-visible {
+  outline: 3px solid #d8ff5c; outline-offset: 3px;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .rail-aside, .rl-rail { transition: none; }
+  .rail-spacer, .rail-aside, .rl-rail { transition: none; }
 }

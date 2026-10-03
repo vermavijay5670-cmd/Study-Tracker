@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   Clock,
   LayoutDashboard,
@@ -12,6 +12,7 @@ import {
   ListChecks,
   Target,
   CalendarCheck,
+  ChevronLeft,
   LogOut,
   Menu,
   X,
@@ -24,6 +25,8 @@ import { SidebarRail } from "./rail/SidebarRail";
 import { useTrackerState } from "@/lib/useTrackerState";
 import { useKineticGrid } from "@/lib/KineticGridContext";
 import { useTheme } from "@/lib/ThemeContext";
+import { useSidebar } from "@/lib/SidebarContext";
+import "./rail/sidebar.css";
 
 const NAV = [
   { href: "/today", label: "Today", icon: Clock },
@@ -42,25 +45,11 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { state, hydrated, user, signOut } = useTrackerState();
   const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const { expanded, setExpanded } = useSidebar();
   const isLight = theme === "light";
-  // Light mode uses the soft neumorphic skin on every page. (The earlier "study desk" and
-  // slate-glass skins still exist in the repo but are no longer selected.)
-  const desk = false;
-  const glass = false;
-  const soft = isLight;
-  const chrome = desk || soft || glass;
-  const px = soft ? "sf" : glass ? "gl" : "dk";
   const [mobileOpen, setMobileOpen] = useState(false);
-  // Desktop sidebar: a slim rail until the pointer (or keyboard focus) enters, then the full sidebar.
-  const [hovered, setHovered] = useState(false);
-  const [focused, setFocused] = useState(false);
-  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const expanded = hovered || focused;
-  useEffect(() => () => {
-    if (leaveTimer.current) clearTimeout(leaveTimer.current);
-  }, []);
-  // Kinetic-grid vs matte is a dark-mode-only visual for now — light mode always uses its own backdrop.
+  // Kinetic-grid vs matte is a dark-mode-only visual — light mode always uses its own backdrop.
   const showBackgroundToggle = pathname !== "/today" && !isLight;
 
   // Close the mobile drawer whenever the route changes.
@@ -75,7 +64,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   }
 
   const navList = (onNavigate?: () => void) => (
-    <nav className="flex flex-1 flex-col gap-1">
+    <nav className="flex flex-1 flex-col gap-1" aria-label="Sections">
       {NAV.map(({ href, label, icon: Icon }) => {
         const active = pathname === href;
         return (
@@ -84,34 +73,12 @@ export function PageShell({ children }: { children: React.ReactNode }) {
             href={href}
             onClick={onNavigate}
             aria-current={active ? "page" : undefined}
-            className={chrome ? `${px}-navlink relative block` : "relative block"}
+            className="bk-navlink relative block"
           >
-            {active && (
-              <motion.span
-                layoutId="side-nav-pill"
-                className={chrome ? `${px}-nav-pill` : "absolute inset-0 rounded-xl"}
-                style={chrome ? undefined : { background: isLight ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.08)" }}
-                transition={{ type: "spring", stiffness: 350, damping: 28 }}
-              />
-            )}
-            {chrome ? (
-              <span className={`${px}-nav relative z-10`}>
-                <Icon size={19} strokeWidth={1.75} />
-                <span>{label}</span>
-              </span>
-            ) : (
-              <span
-                className="relative z-10 flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors"
-                style={{ color: active ? (isLight ? "#171717" : "#ffffff") : isLight ? "#737373" : "rgba(255,255,255,0.8)" }}
-              >
-                <Icon
-                  size={17}
-                  strokeWidth={1.75}
-                  style={{ color: active ? (isLight ? "#171717" : "#ffffff") : isLight ? "#a3a3a3" : "rgba(255,255,255,0.5)" }}
-                />
-                <span>{label}</span>
-              </span>
-            )}
+            <span className="bk-nav relative z-10">
+              <Icon size={22} strokeWidth={1.6} />
+              <span>{label}</span>
+            </span>
           </Link>
         );
       })}
@@ -119,189 +86,93 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   );
 
   const logoBlock = (size: "sm" | "lg") => (
-    <a href={HOME_URL} className={`flex items-center ${size === "lg" ? "gap-2.5" : "gap-2"}`}>
-      {chrome ? (
-        <>
-          <span className={`${px}-logo-badge`}>
-            <Home size={size === "lg" ? 20 : 18} strokeWidth={1.75} />
-          </span>
-          <span>
-            <p className={`${px}-logo-kicker`}>NEET UG PREP</p>
-            <h1 className={`${px}-logo-title mt-0.5`}>Study Tracker</h1>
-          </span>
-        </>
-      ) : (
-        <>
-          <span
-            className={`flex flex-shrink-0 items-center justify-center rounded-lg border ${size === "lg" ? "h-8 w-8" : "h-7 w-7"}`}
-            style={{
-              borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
-              background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.04)",
-              color: isLight ? "#525252" : "rgba(255,255,255,0.7)",
-            }}
-          >
-            <Home size={size === "lg" ? 15 : 13} strokeWidth={1.75} />
-          </span>
-          <span>
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#737373]">NEET UG PREP</p>
-            <h1
-              className={`mt-0.5 font-medium ${size === "lg" ? "text-[19px]" : "text-[16px]"}`}
-              style={{ color: isLight ? "#171717" : "#ffffff" }}
-            >
-              Study Tracker
-            </h1>
-          </span>
-        </>
-      )}
+    <a href={HOME_URL} className={`flex min-w-0 items-center ${size === "lg" ? "gap-3" : "gap-2"}`}>
+      <span className="bk-logo-badge" style={size === "sm" ? { width: 38, height: 38 } : undefined}>
+        <Home size={size === "lg" ? 20 : 17} strokeWidth={1.75} />
+      </span>
+      <span>
+        <p className="bk-logo-kicker">NEET UG PREP</p>
+        <h1 className="bk-logo-title mt-0.5">Study Tracker</h1>
+      </span>
     </a>
+  );
+
+  const bottomBlock = (withProfile: boolean) => (
+    <div className="bk-bottom">
+      <div className="bk-actions">
+        <ThemeToggle variant="bk" />
+        {hydrated && user && (
+          <button onClick={handleSignOut} aria-label="Sign out" title="Sign out" className="bk-round-btn">
+            <LogOut size={17} strokeWidth={1.75} />
+          </button>
+        )}
+      </div>
+      {showBackgroundToggle && (
+        <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} variant="bk" />
+      )}
+      {withProfile && hydrated && (
+        <div className="flex items-center">
+          <ProfileChip bk studentName={state.studentName} targetExam={state.targetExam} />
+        </div>
+      )}
+    </div>
   );
 
   return (
     <div className="md:flex md:min-h-screen">
-      {/* Desktop sidebar: reserves the rail's width, then overlays the page when expanded */}
-      <div className="rail-spacer" aria-hidden="true" />
-      <div
-        className="rail-wrap"
-        data-expanded={expanded}
-        data-theme={isLight ? "light" : "dark"}
-        onMouseEnter={() => {
-          if (leaveTimer.current) clearTimeout(leaveTimer.current);
-          setHovered(true);
-        }}
-        onMouseLeave={() => {
-          if (leaveTimer.current) clearTimeout(leaveTimer.current);
-          leaveTimer.current = setTimeout(() => setHovered(false), 140);
-        }}
-        onFocus={(e) => {
-          let visible = true;
-          try {
-            visible = e.target.matches(":focus-visible");
-          } catch {
-            /* older browsers: treat any focus as keyboard focus */
-          }
-          if (visible) setFocused(true);
-        }}
-        onBlur={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false);
-        }}
-      >
-      <aside
-        className={
-          chrome
-            ? `rail-aside ${px}-sidebar hidden w-[284px] flex-shrink-0 px-5 py-6 md:sticky md:flex md:flex-col ${
-                soft || desk ? "md:top-4 md:m-4 md:h-[calc(100vh-2rem)]" : "md:top-0 md:h-screen"
-              }`
-            : "rail-aside hidden w-[248px] flex-shrink-0 border-r px-4 py-6 md:sticky md:top-0 md:flex md:h-screen md:flex-col"
-        }
-        style={
-          chrome
-            ? undefined
-            : {
-                borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
-                background: isLight ? "#ffffff" : "rgba(255,255,255,0.02)",
-              }
-        }
-      >
-        <div className="mb-4 flex items-center px-1">
-          <ThemeToggle variant={desk ? "desk" : soft ? "soft" : glass ? "glass" : "default"} />
-        </div>
-        <div className="mb-8 px-1">{logoBlock("lg")}</div>
+      {/* Desktop sidebar: the spacer reserves the room; the rail or the full sidebar fills it */}
+      <div className="rail-spacer" data-expanded={expanded} aria-hidden="true" />
+      <div className="rail-wrap" data-expanded={expanded}>
+        <aside className="rail-aside bk-sidebar hidden md:flex md:flex-col" aria-label="Sidebar" inert={!expanded}>
+          <div className="bk-top">{logoBlock("lg")}</div>
 
-        {navList()}
-
-        <div
-          className={chrome ? `${px}-sep mt-6 flex flex-col gap-3 pt-4` : "mt-6 flex flex-col gap-3 border-t pt-4"}
-          style={chrome ? undefined : { borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}
-        >
-          {showBackgroundToggle && (
-            <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} variant={glass ? "glass" : "default"} />
-          )}
-          <div className={glass ? "gl-profilebar" : "flex items-center gap-2"}>
-            {hydrated && <ProfileChip desk={desk} soft={soft} glass={glass} studentName={state.studentName} targetExam={state.targetExam} />}
-            {hydrated && user && (
-              <button
-                onClick={handleSignOut}
-                aria-label="Sign out"
-                title="Sign out"
-                className={chrome ? `${px}-round-btn` : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border transition-colors"}
-                style={
-                  chrome
-                    ? undefined
-                    : {
-                        borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
-                        background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
-                        color: isLight ? "#737373" : "rgba(255,255,255,0.4)",
-                      }
-                }
-              >
-                <LogOut size={15} strokeWidth={1.75} />
-              </button>
-            )}
+          <div className="bk-wing">
+            <button
+              type="button"
+              className="bk-toggle"
+              onClick={() => setExpanded(false)}
+              aria-label="Collapse sidebar"
+              title="Collapse sidebar"
+            >
+              <ChevronLeft size={18} strokeWidth={2.6} />
+            </button>
+            {navList()}
           </div>
-        </div>
-      </aside>
 
-      <SidebarRail
-        items={NAV}
-        activeHref={pathname}
-        isLight={isLight}
-        showGrid={showBackgroundToggle}
-        gridOn={kineticOn}
-        initial={hydrated ? (state.studentName || "").trim().charAt(0).toUpperCase() : ""}
-        signedIn={Boolean(hydrated && user)}
-      />
+          {bottomBlock(true)}
+        </aside>
+
+        <SidebarRail
+          items={NAV}
+          activeHref={pathname}
+          homeUrl={HOME_URL}
+          isLight={isLight}
+          showGrid={showBackgroundToggle}
+          gridOn={kineticOn}
+          initial={hydrated ? (state.studentName || "").trim().charAt(0).toUpperCase() : ""}
+          signedIn={Boolean(hydrated && user)}
+          hidden={expanded}
+          onExpand={() => setExpanded(true)}
+          onToggleTheme={toggleTheme}
+          onToggleGrid={() => setKineticOn(!kineticOn)}
+          onSignOut={handleSignOut}
+        />
       </div>
 
       {/* Mobile top bar */}
-      <header
-        className={chrome ? `${px}-topbar flex items-center justify-between px-4 py-3 md:hidden` : "flex items-center justify-between border-b px-4 py-4 md:hidden"}
-        style={
-          chrome
-            ? undefined
-            : {
-                borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
-                background: isLight ? "#ffffff" : "#0a0a0a",
-              }
-        }
-      >
+      <header className="bk-topbar flex items-center justify-between px-4 py-3 md:hidden">
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-            className={chrome ? `${px}-round-btn` : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"}
-            style={
-              chrome
-                ? undefined
-                : {
-                    borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
-                    background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
-                    color: isLight ? "#525252" : "rgba(255,255,255,0.7)",
-                  }
-            }
-          >
+          <button onClick={() => setMobileOpen(true)} aria-label="Open menu" className="bk-round-btn">
             <Menu size={17} strokeWidth={1.75} />
           </button>
-          <ThemeToggle variant={desk ? "desk" : soft ? "soft" : glass ? "glass" : "default"} />
+          <ThemeToggle variant="bk" />
         </div>
 
         {logoBlock("sm")}
 
-        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center">
+        <div className="flex h-[42px] w-[42px] flex-shrink-0 items-center justify-center">
           {hydrated && user && (
-            <button
-              onClick={handleSignOut}
-              aria-label="Sign out"
-              className={chrome ? `${px}-round-btn` : "flex h-9 w-9 items-center justify-center rounded-full border"}
-              style={
-                chrome
-                  ? undefined
-                  : {
-                      borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
-                      background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
-                      color: isLight ? "#737373" : "rgba(255,255,255,0.4)",
-                    }
-              }
-            >
+            <button onClick={handleSignOut} aria-label="Sign out" className="bk-round-btn">
               <LogOut size={15} strokeWidth={1.75} />
             </button>
           )}
@@ -326,52 +197,18 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 320, damping: 32 }}
-              className={
-                chrome
-                  ? `${px}-sidebar fixed inset-y-0 left-0 z-50 flex w-[284px] flex-col px-5 py-6 md:hidden`
-                  : "fixed inset-y-0 left-0 z-50 flex w-[268px] flex-col border-r px-4 py-6 md:hidden"
-              }
-              style={
-                chrome
-                  ? undefined
-                  : {
-                      borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)",
-                      background: isLight ? "#ffffff" : "#0a0a0a",
-                    }
-              }
+              className="bk-sidebar bk-sidebar--drawer fixed inset-y-0 left-0 z-50 flex w-[284px] flex-col md:hidden"
             >
-              <div className="mb-4 flex items-center justify-between px-1">
-                <ThemeToggle variant={desk ? "desk" : soft ? "soft" : glass ? "glass" : "default"} />
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  aria-label="Close menu"
-                  className={chrome ? `${px}-round-btn` : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"}
-                  style={
-                    chrome
-                      ? undefined
-                      : {
-                          borderColor: isLight ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.1)",
-                          background: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
-                          color: isLight ? "#525252" : "rgba(255,255,255,0.6)",
-                        }
-                  }
-                >
+              <div className="bk-top">
+                {logoBlock("sm")}
+                <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="bk-round-btn">
                   <X size={16} strokeWidth={1.75} />
                 </button>
               </div>
-              <div className="mb-8 px-1">{logoBlock("lg")}</div>
 
-              {navList(() => setMobileOpen(false))}
+              <div className="bk-wing">{navList(() => setMobileOpen(false))}</div>
 
-              <div
-                className={chrome ? `${px}-sep mt-6 flex flex-col gap-3 pt-4` : "mt-6 flex flex-col gap-3 border-t pt-4"}
-                style={chrome ? undefined : { borderColor: isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)" }}
-              >
-                {showBackgroundToggle && (
-                  <BackgroundToggle enabled={kineticOn} onToggle={() => setKineticOn(!kineticOn)} variant={glass ? "glass" : "default"} />
-                )}
-                {hydrated && <ProfileChip desk={desk} soft={soft} glass={glass} studentName={state.studentName} targetExam={state.targetExam} />}
-              </div>
+              {bottomBlock(true)}
             </motion.aside>
           </>
         )}
@@ -379,7 +216,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
       {/* Main content */}
       <div className="min-w-0 flex-1">
-        <main className={`mx-auto px-4 py-6 sm:px-6 sm:py-10 md:px-12 md:py-[48px] ${soft ? "max-w-[1320px]" : chrome ? "max-w-[1160px]" : "max-w-[1040px]"}`}>{children}</main>
+        <main className={`mx-auto px-4 py-6 sm:px-6 sm:py-10 md:px-12 md:py-[48px] ${isLight ? "max-w-[1320px]" : "max-w-[1040px]"}`}>{children}</main>
       </div>
     </div>
   );

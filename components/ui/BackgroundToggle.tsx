@@ -7,7 +7,7 @@ interface BackgroundToggleProps {
   onToggle: () => void;
   className?: string;
   /** "glass" = slate-glass pill used on the Mark Your Days page. */
-  variant?: "default" | "glass";
+  variant?: "default" | "glass" | "bk";
 }
 
 /** Click-to-toggle text label used in the sidebar to swap the kinetic-grid background on/off. */
@@ -19,12 +19,14 @@ export function BackgroundToggle({ enabled, onToggle, className = "", variant = 
       aria-pressed={enabled}
       title={enabled ? "Switch to matte background" : "Switch to kinetic grid"}
       className={
-        variant === "glass"
+        variant === "bk"
+          ? `bk-bgtoggle ${className}`
+          : variant === "glass"
           ? `gl-bgtoggle ${className}`
           : `flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-[13px] font-medium transition-colors ${className}`
       }
       style={
-        variant === "glass"
+        variant === "glass" || variant === "bk"
           ? undefined
           : {
               borderColor: enabled ? "rgba(74,158,255,0.4)" : "rgba(255,255,255,0.08)",
@@ -33,7 +35,7 @@ export function BackgroundToggle({ enabled, onToggle, className = "", variant = 
             }
       }
     >
-      <Grid3x3 size={variant === "glass" ? 18 : 14} strokeWidth={1.75} />
+      <Grid3x3 size={variant === "glass" || variant === "bk" ? 18 : 14} strokeWidth={1.75} />
       Kinetic Grid
     </button>
   );

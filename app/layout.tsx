@@ -3,6 +3,7 @@ import "./globals.css";
 import { ServiceWorkerRegister } from "@/components/ui/ServiceWorkerRegister";
 import { KineticGridProvider } from "@/lib/KineticGridContext";
 import { ThemeProvider } from "@/lib/ThemeContext";
+import { SidebarProvider } from "@/lib/SidebarContext";
 
 const SITE_URL = "https://study-tracker-green-nine.vercel.app";
 
@@ -64,7 +65,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen antialiased">
         <ServiceWorkerRegister />
         <ThemeProvider>
-          <KineticGridProvider>{children}</KineticGridProvider>
+          <KineticGridProvider>
+            <SidebarProvider>{children}</SidebarProvider>
+          </KineticGridProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -6,7 +6,7 @@ import { useTheme } from "@/lib/ThemeContext";
 interface ThemeToggleProps {
   className?: string;
   /** "desk" = brass push-button used on the leather sidebar. */
-  variant?: "default" | "desk" | "soft" | "glass";
+  variant?: "default" | "desk" | "soft" | "glass" | "bk";
 }
 
 export function ThemeToggle({ className = "", variant = "default" }: ThemeToggleProps) {
@@ -27,10 +27,12 @@ export function ThemeToggle({ className = "", variant = "default" }: ThemeToggle
           ? `sf-round-btn sf-round-btn--dark ${className}`
           : variant === "glass"
           ? `gl-round-btn ${className}`
+          : variant === "bk"
+          ? `bk-round-btn ${className}`
           : `flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border transition-colors ${className}`
       }
       style={
-        variant === "desk" || variant === "soft" || variant === "glass"
+        variant === "desk" || variant === "soft" || variant === "glass" || variant === "bk"
           ? undefined
           : {
               borderColor: isLight ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.1)",
