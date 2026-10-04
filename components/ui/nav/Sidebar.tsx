@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useLayoutEffect, useRef, useState, type ComponentType, type CSSProperties } from "react";
-import { ChevronLeft, ChevronRight, Grid3x3, Home, LogOut, Moon, Sun, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Grid3x3, Home, LogOut, Moon, Settings, Sun, X } from "lucide-react";
 import "./nav.css";
 
 export interface NavItem {
@@ -59,6 +59,7 @@ interface SidebarProps {
   onToggleExpanded?: () => void;
   onClose?: () => void;
   onNavigate?: () => void;
+  onOpenSettings: () => void;
   onToggleTheme: () => void;
   onToggleKinetic: () => void;
   onSignOut: () => void;
@@ -79,6 +80,7 @@ export function Sidebar({
   onToggleExpanded,
   onClose,
   onNavigate,
+  onOpenSettings,
   onToggleTheme,
   onToggleKinetic,
   onSignOut,
@@ -187,6 +189,13 @@ export function Sidebar({
         </nav>
 
         <div className="nv-bottom">
+          <button type="button" className="nv-item" onClick={onOpenSettings} title="Settings" aria-haspopup="dialog">
+            <span className="nv-ico">
+              <Settings strokeWidth={1.6} />
+            </span>
+            <span className="nv-label">Settings</span>
+          </button>
+
           <button type="button" className="nv-item" onClick={onToggleTheme} title={isLight ? "Switch to dark mode" : "Switch to light mode"}>
             <span className="nv-ico">
               <ThemeIcon strokeWidth={1.6} />

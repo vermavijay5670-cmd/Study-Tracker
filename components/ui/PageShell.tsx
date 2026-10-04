@@ -42,7 +42,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   const { state, hydrated, user, signOut } = useTrackerState();
   const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
   const { theme, toggleTheme } = useTheme();
-  const { expanded, toggle } = useSidebar();
+  const { expanded, toggle, openSettings } = useSidebar();
   const isLight = theme === "light";
   const [mobileOpen, setMobileOpen] = useState(false);
   // Kinetic-grid vs matte is a dark-mode-only visual — light mode always uses its own backdrop.
@@ -69,6 +69,10 @@ export function PageShell({ children }: { children: React.ReactNode }) {
     signedIn: Boolean(hydrated && user),
     showKinetic,
     kineticOn,
+    onOpenSettings: () => {
+      setMobileOpen(false);
+      openSettings();
+    },
     onToggleTheme: toggleTheme,
     onToggleKinetic: () => setKineticOn(!kineticOn),
     onSignOut: handleSignOut,

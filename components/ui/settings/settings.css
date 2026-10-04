@@ -1,0 +1,56 @@
+/* Settings dialog — a dark panel that matches the sidebar, readable on light and dark pages. */
+.sd-backdrop { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(5, 5, 8, 0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.sd-panel {
+  display: flex; flex-direction: column; width: 100%; max-width: 480px; max-height: min(100%, 720px); overflow: hidden; border-radius: 28px; color: #f2f2f4;
+  font-family: "Manrope", Inter, system-ui, -apple-system, "Segoe UI", sans-serif; background: #0e0e10; border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.sd-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 22px 14px; }
+.sd-title { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.sd-body { overflow-y: auto; padding: 0 22px 22px; }
+.sd-section { padding: 16px 0; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.sd-section:first-child { border-top: 0; padding-top: 4px; }
+.sd-label { margin-bottom: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8d8d95; }
+.sd-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.sd-row + .sd-row { margin-top: 14px; }
+.sd-name { font-size: 14.5px; font-weight: 600; }
+.sd-hint { margin-top: 2px; font-size: 12.5px; line-height: 1.45; color: #8d8d95; }
+
+.sd-iconbtn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; cursor: pointer; color: #e8e8ee; background: #1d1d20; border: 1px solid rgba(255, 255, 255, 0.12); transition: filter 0.15s ease, transform 0.12s ease; }
+.sd-iconbtn:hover { filter: brightness(1.3); }
+.sd-iconbtn:active { transform: translateY(1px); }
+
+.sd-seg { display: inline-flex; padding: 3px; border-radius: 999px; background: #18181b; border: 1px solid rgba(255, 255, 255, 0.1); }
+.sd-seg button { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px/1 "Manrope", Inter, system-ui, sans-serif; color: #b6b6bd; background: transparent; transition: color 0.15s ease, background 0.15s ease; }
+.sd-seg button:hover { color: #fff; }
+.sd-seg button[aria-checked="true"] { color: #0a0a0a; background: #d8ff5c; }
+
+.sd-switch { position: relative; flex: none; width: 48px; height: 28px; border: 0; border-radius: 999px; cursor: pointer; background: #2a2a2f; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5); transition: background 0.2s ease; }
+.sd-switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1); }
+.sd-switch[aria-checked="true"] { background: #7fb800; }
+.sd-switch[aria-checked="true"]::after { transform: translateX(20px); }
+.sd-switch:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.sd-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 10px 18px; border-radius: 999px; cursor: pointer; font: 700 13.5px/1 "Manrope", Inter, system-ui, sans-serif; color: #f2f2f4; background: #1d1d20; border: 1px solid rgba(255, 255, 255, 0.14); transition: filter 0.15s ease, transform 0.12s ease; }
+.sd-btn:hover:not(:disabled) { filter: brightness(1.25); }
+.sd-btn:active:not(:disabled) { transform: translateY(1px); }
+.sd-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.sd-btn--primary { color: #0a0a0a; background: #d8ff5c; border-color: transparent; }
+.sd-btn--danger { color: #ffb4ab; border-color: rgba(255, 120, 110, 0.4); }
+.sd-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.sd-note { margin-top: 12px; padding: 10px 14px; border-radius: 14px; font-size: 12.5px; line-height: 1.5; background: rgba(255, 255, 255, 0.05); color: #c9c9d0; }
+.sd-note--ok { background: rgba(127, 184, 0, 0.14); color: #d8ff5c; }
+.sd-note--err { background: rgba(255, 90, 80, 0.14); color: #ffb4ab; }
+
+.sd-preview { margin-top: 14px; padding: 14px; border-radius: 18px; background: #151518; border: 1px solid rgba(255, 255, 255, 0.1); }
+.sd-preview b { color: #fff; }
+.sd-preview ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 13px; color: #c9c9d0; }
+.sd-radio { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; padding: 12px 14px; border-radius: 16px; cursor: pointer; background: #151518; border: 1px solid rgba(255, 255, 255, 0.1); }
+.sd-radio[data-on="true"] { border-color: #d8ff5c; background: rgba(216, 255, 92, 0.06); }
+.sd-radio input { margin-top: 3px; accent-color: #d8ff5c; }
+.sd-check { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 13px; color: #c9c9d0; cursor: pointer; }
+.sd-check input { accent-color: #d8ff5c; width: 16px; height: 16px; }
+
+.sd-panel :is(button, input, [role="radio"]):focus-visible { outline: 3px solid #d8ff5c; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .sd-switch, .sd-switch::after, .sd-btn, .sd-iconbtn { transition: none; } }

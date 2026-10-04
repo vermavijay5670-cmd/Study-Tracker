@@ -8,12 +8,19 @@ interface SidebarContextValue {
   expanded: boolean;
   setExpanded: (next: boolean) => void;
   toggle: () => void;
+  /** Settings dialog (lives here so it stays open when a theme switch remounts the page). */
+  settingsOpen: boolean;
+  openSettings: () => void;
+  closeSettings: () => void;
 }
 
 const SidebarContext = createContext<SidebarContextValue>({
   expanded: false,
   setExpanded: () => {},
   toggle: () => {},
+  settingsOpen: false,
+  openSettings: () => {},
+  closeSettings: () => {},
 });
 
 /**
@@ -23,6 +30,7 @@ const SidebarContext = createContext<SidebarContextValue>({
  */
 export function SidebarProvider({ children }: { children: ReactNode }) {
   const [expanded, setExpandedState] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -53,7 +61,14 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  return <SidebarContext.Provider value={{ expanded, setExpanded, toggle }}>{children}</SidebarContext.Provider>;
+  const openSettings = useCallback(() => setSettingsOpen(true), []);
+  const closeSettings = useCallback(() => setSettingsOpen(false), []);
+
+  return (
+    <SidebarContext.Provider value={{ expanded, setExpanded, toggle, settingsOpen, openSettings, closeSettings }}>
+      {children}
+    </SidebarContext.Provider>
+  );
 }
 
 export function useSidebar() {

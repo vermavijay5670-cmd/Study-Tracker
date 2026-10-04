@@ -4,6 +4,7 @@ import { ServiceWorkerRegister } from "@/components/ui/ServiceWorkerRegister";
 import { KineticGridProvider } from "@/lib/KineticGridContext";
 import { ThemeProvider } from "@/lib/ThemeContext";
 import { SidebarProvider } from "@/lib/SidebarContext";
+import { SettingsHost } from "@/components/ui/settings/SettingsHost";
 
 const SITE_URL = "https://study-tracker-green-nine.vercel.app";
 
@@ -66,7 +67,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ServiceWorkerRegister />
         <ThemeProvider>
           <KineticGridProvider>
-            <SidebarProvider>{children}</SidebarProvider>
+            <SidebarProvider>
+              {children}
+              <SettingsHost />
+            </SidebarProvider>
           </KineticGridProvider>
         </ThemeProvider>
       </body>

@@ -7,13 +7,13 @@ import { createSupabaseBrowserClient } from "./supabase/client";
 import type { User } from "@supabase/supabase-js";
 import type { ChapterState, Difficulty, Goal, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
-const STORAGE_KEY = "neet_tracker_v1";
+export const STORAGE_KEY = "neet_tracker_v1";
 const TABLE = "user_state";
 const SYNC_DEBOUNCE_MS = 1500;
 
 const DEFAULT_TIMER_MS = 25 * 60_000;
 
-function defaultState(): TrackerState {
+export function defaultState(): TrackerState {
   return {
     startDate: todayKey(),
     examDate: "",
