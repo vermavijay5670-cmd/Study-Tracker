@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { GoalsList } from "./GoalsList";
 import { AchievementsCard } from "./AchievementsCard";
 import { useTrackerState } from "@/lib/useTrackerState";
-import { todayKey } from "@/lib/date-utils";
+import { addDays, dateKey, todayKey } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCountStat } from "@/components/ui/soft/SoftUI";
 import { CheckCircle2, Flame, Trophy, Target } from "lucide-react";
@@ -12,6 +13,7 @@ export function DailyGoalsSection() {
   const { state, hydrated, addGoal, toggleGoal, deleteGoal, toggleGoalMandatory, goalStats } = useTrackerState();
 
   const { theme } = useTheme();
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
 
   if (!hydrated) {
     return theme === "light" ? (
@@ -21,7 +23,26 @@ export function DailyGoalsSection() {
     );
   }
 
-  const todaysGoals = state.dailyGoals[todayKey()] ?? [];
+  const today = todayKey();
+
+  // Today plus the next 7 days can be planned; a stale selection (e.g. past midnight) falls back to today.
+  const upcoming = Array.from({ length: 8 }, (_, i) => {
+    const key = dateKey(addDays(new Date(), i));
+    return { key, count: state.dailyGoals[key]?.length ?? 0 };
+  });
+  const selectedKey = selectedDay && upcoming.some((d) => d.key === selectedDay) ? selectedDay : today;
+  const selectedGoals = state.dailyGoals[selectedKey] ?? [];
+
+  const goalsListProps = {
+    goals: selectedGoals,
+    selectedKey,
+    upcoming,
+    onSelect: setSelectedDay,
+    onAdd: addGoal,
+    onToggle: (id: string) => toggleGoal(id, selectedKey),
+    onDelete: (id: string) => deleteGoal(id, selectedKey),
+    onToggleMandatory: (id: string) => toggleGoalMandatory(id, selectedKey),
+  };
 
   if (theme === "light") {
     const todayPct = goalStats.todayTotal > 0 ? Math.round((goalStats.todayDone / goalStats.todayTotal) * 100) : 0;
@@ -48,26 +69,14 @@ export function DailyGoalsSection() {
           />
         </div>
 
-        <GoalsList
-          goals={todaysGoals}
-          onAdd={addGoal}
-          onToggle={toggleGoal}
-          onDelete={deleteGoal}
-          onToggleMandatory={toggleGoalMandatory}
-        />
+        <GoalsList {...goalsListProps} />
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <GoalsList
-        goals={todaysGoals}
-        onAdd={addGoal}
-        onToggle={toggleGoal}
-        onDelete={deleteGoal}
-        onToggleMandatory={toggleGoalMandatory}
-      />
+      <GoalsList {...goalsListProps} />
 
       <AchievementsCard
         currentStreak={goalStats.currentStreak}

@@ -321,30 +321,33 @@ export function useTrackerState() {
 
   // ---- Daily Goals: a fresh checklist per calendar day, keyed like `log` ----
   const addGoal = useCallback(
-    (text: string, mandatory: boolean = false) => {
+    (text: string, mandatory: boolean = false, dates?: string[]) => {
       const trimmed = text.trim();
       if (!trimmed) return;
+      const targets = Array.from(new Set(dates && dates.length > 0 ? dates : [todayKey()]));
       setState((s) => {
-        const key = todayKey();
-        const todays = s.dailyGoals[key] ?? [];
-        const goal: Goal = {
-          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-          text: trimmed,
-          done: false,
-          mandatory,
-        };
-        return { ...s, dailyGoals: { ...s.dailyGoals, [key]: [...todays, goal] } };
+        const dailyGoals = { ...s.dailyGoals };
+        targets.forEach((key, i) => {
+          const goal: Goal = {
+            id: `${Date.now()}-${i}-${Math.random().toString(36).slice(2, 8)}`,
+            text: trimmed,
+            done: false,
+            mandatory,
+          };
+          dailyGoals[key] = [...(dailyGoals[key] ?? []), goal];
+        });
+        return { ...s, dailyGoals };
       });
     },
     [setState]
   );
 
   const toggleGoal = useCallback(
-    (id: string) => {
+    (id: string, date?: string) => {
       setState((s) => {
-        const key = todayKey();
-        const todays = s.dailyGoals[key] ?? [];
-        const updated = todays.map((g) => (g.id === id ? { ...g, done: !g.done } : g));
+        const key = date ?? todayKey();
+        const list = s.dailyGoals[key] ?? [];
+        const updated = list.map((g) => (g.id === id ? { ...g, done: !g.done } : g));
         return { ...s, dailyGoals: { ...s.dailyGoals, [key]: updated } };
       });
     },
@@ -352,22 +355,22 @@ export function useTrackerState() {
   );
 
   const deleteGoal = useCallback(
-    (id: string) => {
+    (id: string, date?: string) => {
       setState((s) => {
-        const key = todayKey();
-        const todays = s.dailyGoals[key] ?? [];
-        return { ...s, dailyGoals: { ...s.dailyGoals, [key]: todays.filter((g) => g.id !== id) } };
+        const key = date ?? todayKey();
+        const list = s.dailyGoals[key] ?? [];
+        return { ...s, dailyGoals: { ...s.dailyGoals, [key]: list.filter((g) => g.id !== id) } };
       });
     },
     [setState]
   );
 
   const toggleGoalMandatory = useCallback(
-    (id: string) => {
+    (id: string, date?: string) => {
       setState((s) => {
-        const key = todayKey();
-        const todays = s.dailyGoals[key] ?? [];
-        const updated = todays.map((g) => (g.id === id ? { ...g, mandatory: !g.mandatory } : g));
+        const key = date ?? todayKey();
+        const list = s.dailyGoals[key] ?? [];
+        const updated = list.map((g) => (g.id === id ? { ...g, mandatory: !g.mandatory } : g));
         return { ...s, dailyGoals: { ...s.dailyGoals, [key]: updated } };
       });
     },
@@ -561,7 +564,9 @@ export function useTrackerState() {
   );
 
   const goalStats = useMemo(() => {
-    const days = Object.keys(state.dailyGoals).filter((k) => (state.dailyGoals[k]?.length ?? 0) > 0);
+    const today = todayKey();
+    // goals planned for future days don't count towards streaks or totals until their day arrives
+    const days = Object.keys(state.dailyGoals).filter((k) => k <= today && (state.dailyGoals[k]?.length ?? 0) > 0);
     const isPerfect = (k: string) => {
       const list = state.dailyGoals[k] ?? [];
       return list.length > 0 && list.every((g) => g.done);
@@ -598,7 +603,8 @@ export function useTrackerState() {
     let totalGoals = 0;
     let mandatoryTotal = 0;
     let mandatoryDone = 0;
-    Object.values(state.dailyGoals).forEach((list) => {
+    Object.entries(state.dailyGoals).forEach(([k, list]) => {
+      if (k > today) return;
       list.forEach((g) => {
         totalGoals++;
         if (g.done) totalCompleted++;

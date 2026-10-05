@@ -346,11 +346,27 @@ a:active > .sf-logo-badge { transform: translateY(1px); box-shadow: var(--sf-ins
 .sf-quote { margin: 22px 0 0; font-size: clamp(20px, 2.3vw, 27px); font-weight: 600; line-height: 1.55; letter-spacing: -.01em; color: var(--sf-text); }
 .sf-rule { margin: 26px 0 16px; height: 1px; border: 0; background: rgba(150,165,176,.3); }
 
+/* plan-ahead day strip (Daily Goals) */
+.sf-strip { display: grid; grid-template-columns: repeat(8, minmax(64px, 1fr)); gap: 10px; margin-bottom: 20px; overflow-x: auto; padding: 4px 2px 10px; scrollbar-width: thin; }
+.sf-daychip { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 6px 9px; border: 0; border-radius: 20px; cursor: pointer; font-family: var(--sf-font); color: var(--sf-text); background: linear-gradient(145deg, #f4f7f7, #e2e7e9); box-shadow: var(--sf-raised-sm); transition: transform .12s ease, box-shadow .12s ease; }
+.sf-daychip:hover { transform: translateY(-2px); }
+.sf-daychip:active { transform: translateY(1px); box-shadow: var(--sf-inset); }
+.sf-daychip:focus-visible { outline: 3px solid rgba(111,154,71,.7); outline-offset: 2px; }
+.sf-daychip small { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--sf-muted); }
+.sf-daychip b { font-size: 20px; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.sf-daychip .sf-count { min-height: 16px; margin-top: 2px; padding: 1px 8px; border-radius: 999px; font-size: 10.5px; font-weight: 700; color: var(--sf-green); background: rgba(111,154,71,.14); }
+.sf-daychip[aria-pressed="true"] { color: #fff; background: linear-gradient(145deg, #8db35e, #5d8838); box-shadow: 4px 6px 12px rgba(93,136,56,.4), inset 0 1px 0 rgba(255,255,255,.35); }
+.sf-daychip[aria-pressed="true"] small { color: rgba(255,255,255,.85); }
+.sf-daychip[aria-pressed="true"] .sf-count { color: #fff; background: rgba(255,255,255,.22); }
+.sf-chip.is-on-plain { color: #fff; background: linear-gradient(145deg, #8db35e, #5d8838); box-shadow: inset 2px 3px 7px rgba(40,70,15,.35); }
+.sf-repeat { margin-top: 14px; padding: 14px; border-radius: 22px; background: linear-gradient(145deg, #dfe4e6, #ecf0f1); box-shadow: var(--sf-inset); }
+.sf-check:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   .sf-tile__val, .sf-sdot.is-live { animation: none; }
   .sf-day { transition: none; }
   .sf-seg__btn, .sf-pickcard, .sf-option { transition: none; }
-  .sf-goal { transition: none; }
+  .sf-goal, .sf-daychip { transition: none; }
   .sf-prow, .sf-tab, .sf-chip, .sf-check, .sf-track > i { transition: none; }
   .sf-bar__cap, .sf-collapse, .sf-fold__arrow, .sf-btn, .sf-nav svg, .sf-round-btn, .sf-cell { transition: none; }
 }
