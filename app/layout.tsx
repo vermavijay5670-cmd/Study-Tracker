@@ -5,6 +5,7 @@ import { KineticGridProvider } from "@/lib/KineticGridContext";
 import { ThemeProvider } from "@/lib/ThemeContext";
 import { SidebarProvider } from "@/lib/SidebarContext";
 import { SettingsHost } from "@/components/ui/settings/SettingsHost";
+import { TimerAlarmHost } from "@/components/ui/TimerAlarmHost";
 
 const SITE_URL = "https://study-tracker-green-nine.vercel.app";
 
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SidebarProvider>
               {children}
               <SettingsHost />
+              <TimerAlarmHost />
             </SidebarProvider>
           </KineticGridProvider>
         </ThemeProvider>

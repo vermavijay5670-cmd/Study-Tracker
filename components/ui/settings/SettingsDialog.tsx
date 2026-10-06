@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
-import { Download, Moon, Sun, Upload, X } from "lucide-react";
+import { Bell, Download, Moon, Sun, Upload, X } from "lucide-react";
 import { useTheme } from "@/lib/ThemeContext";
 import { useKineticGrid } from "@/lib/KineticGridContext";
 import {
@@ -17,6 +17,7 @@ import {
   type ImportSummary,
 } from "@/lib/dataTransfer";
 import { todayKey } from "@/lib/date-utils";
+import { getSoundEnabled, playPreview, setSoundEnabled, stopAlarm, subscribeAlarm, unlockAudio } from "@/lib/timerAlarm";
 import type { TrackerState } from "@/lib/types";
 import "./settings.css";
 
@@ -31,6 +32,7 @@ interface Pending {
 export function SettingsDialog({ open, onClose, kineticAvailable }: { open: boolean; onClose: () => void; kineticAvailable: boolean }) {
   const { theme, setTheme } = useTheme();
   const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
+  const alarmOn = useSyncExternalStore(subscribeAlarm, getSoundEnabled, () => true);
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -186,6 +188,45 @@ export function SettingsDialog({ open, onClose, kineticAvailable }: { open: bool
                 aria-label="Kinetic grid background"
                 onClick={() => setKineticOn(!kineticOn)}
               />
+            </div>
+          </section>
+
+          <section className="sd-section" aria-label="Timer">
+            <div className="sd-label">Focus timer</div>
+            <div className="sd-row">
+              <div>
+                <div className="sd-name">Time&apos;s-up alarm</div>
+                <div className="sd-hint">A bell rings when the countdown reaches zero, on any page.</div>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                className="sd-switch"
+                aria-checked={alarmOn}
+                aria-label="Time's-up alarm sound"
+                onClick={() => {
+                  const next = !alarmOn;
+                  setSoundEnabled(next);
+                  if (next) {
+                    unlockAudio();
+                    playPreview();
+                  } else {
+                    stopAlarm();
+                  }
+                }}
+              />
+            </div>
+            <div className="sd-actions" style={{ marginTop: 12 }}>
+              <button
+                type="button"
+                className="sd-btn"
+                onClick={() => {
+                  unlockAudio();
+                  playPreview();
+                }}
+              >
+                <Bell size={15} strokeWidth={2.2} /> Play test sound
+              </button>
             </div>
           </section>
 

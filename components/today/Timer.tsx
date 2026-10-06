@@ -1,12 +1,21 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Play, Pause, RotateCcw, TimerReset, Plus, Check } from "lucide-react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { Play, Pause, RotateCcw, TimerReset, Plus, Check, Volume2, VolumeX, BellOff } from "lucide-react";
 import { PaperCard } from "@/components/ui/PaperCard";
 import { CapsuleButton } from "@/components/ui/CapsuleButton";
 import { pad, todayKey } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard, SoftTiles, SoftStatus } from "@/components/ui/soft/SoftUI";
+import {
+  getRinging,
+  getSoundEnabled,
+  playPreview,
+  setSoundEnabled,
+  stopAlarm,
+  subscribeAlarm,
+  unlockAudio,
+} from "@/lib/timerAlarm";
 
 interface TimerProps {
   timerDurationMs: number;
@@ -21,23 +30,6 @@ interface TimerProps {
 }
 
 const PRESETS_MIN = [5, 10, 15, 25, 45];
-
-function playChime(ctx: AudioContext) {
-  const now = ctx.currentTime;
-  [880, 1108].forEach((freq, i) => {
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.value = freq;
-    gain.gain.setValueAtTime(0, now + i * 0.22);
-    gain.gain.linearRampToValueAtTime(0.25, now + i * 0.22 + 0.03);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.22 + 0.35);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start(now + i * 0.22);
-    osc.stop(now + i * 0.22 + 0.4);
-  });
-}
 
 function fmtDurationLabel(ms: number): string {
   const totalMin = Math.round(ms / 60000);
@@ -68,22 +60,25 @@ export function Timer({
   const [customHrs, setCustomHrs] = useState("");
   const [customMin, setCustomMin] = useState("");
   const [showCustom, setShowCustom] = useState(false);
-  const audioRef = useRef<AudioContext | null>(null);
-  const chimedRef = useRef(false);
+  const completedRef = useRef(false);
+  // The bell itself is rung by the app-wide TimerAlarmHost (so it also sounds on other pages);
+  // this card only shows the state and lets you silence it.
+  const soundOn = useSyncExternalStore(subscribeAlarm, getSoundEnabled, () => true);
+  const ringing = useSyncExternalStore(subscribeAlarm, getRinging, () => false);
 
-  function ensureAudio() {
-    if (!audioRef.current) {
-      try {
-        audioRef.current = new AudioContext();
-      } catch {
-        /* Web Audio unsupported — timer still works, just silently */
-      }
+  function toggleSound() {
+    const next = !soundOn;
+    setSoundEnabled(next);
+    if (next) {
+      unlockAudio();
+      playPreview(); // let the user hear it
+    } else {
+      stopAlarm();
     }
-    return audioRef.current;
   }
 
   // On mount: if the persisted end time has already passed (timer finished while
-  // this component wasn't mounted), settle it immediately without a chime.
+  // this component wasn't mounted), settle it immediately without ringing.
   useEffect(() => {
     if (running && timerEndAt! <= Date.now()) {
       onComplete();
@@ -94,17 +89,15 @@ export function Timer({
 
   useEffect(() => {
     if (!running) return;
-    chimedRef.current = false;
+    completedRef.current = false;
     const id = setInterval(() => {
       const remaining = timerEndAt! - Date.now();
       if (remaining <= 0) {
         forceTick((n) => n + 1);
-        if (!chimedRef.current) {
-          chimedRef.current = true;
+        if (!completedRef.current) {
+          completedRef.current = true;
           onComplete();
           setCompleted(true);
-          const ctx = audioRef.current;
-          if (ctx) playChime(ctx);
         }
       } else {
         forceTick((n) => n + 1);
@@ -114,14 +107,15 @@ export function Timer({
   }, [running, timerEndAt, onComplete]);
 
   function handleStart() {
-    const ctx = ensureAudio();
-    if (ctx && ctx.state === "suspended") ctx.resume();
+    unlockAudio(); // starting is a click, so this is when the browser allows sound
+    stopAlarm();
     setCompleted(false);
     setLogged(false);
     onStart();
   }
 
   function handleReset() {
+    stopAlarm();
     setCompleted(false);
     setLogged(false);
     onReset();
@@ -143,6 +137,7 @@ export function Timer({
   }
 
   function logSession() {
+    stopAlarm();
     onAddHours(todayKey(), timerDurationMs / 3_600_000);
     setLogged(true);
   }
@@ -158,11 +153,23 @@ export function Timer({
     return (
       <SoftCard delay={0.1}>
         <div className="flex flex-col gap-5">
-          <div className="flex items-center gap-3">
-            <span className="sf-badge" style={{ width: 38, height: 38 }}>
-              <TimerReset size={17} strokeWidth={1.9} />
-            </span>
-            <span className="sf-cap">Focus timer</span>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <span className="sf-badge" style={{ width: 38, height: 38 }}>
+                <TimerReset size={17} strokeWidth={1.9} />
+              </span>
+              <span className="sf-cap">Focus timer</span>
+            </div>
+            <button
+              type="button"
+              className="sf-round-btn"
+              onClick={toggleSound}
+              aria-pressed={soundOn}
+              aria-label={soundOn ? "Alarm sound on — click to mute" : "Alarm sound off — click to turn on"}
+              title={soundOn ? "Alarm sound on" : "Alarm sound off"}
+            >
+              {soundOn ? <Volume2 size={18} strokeWidth={1.9} /> : <VolumeX size={18} strokeWidth={1.9} />}
+            </button>
           </div>
           <div>
             <h2 className="sf-title" style={{ fontSize: 24 }}>Timer</h2>
@@ -241,6 +248,12 @@ export function Timer({
             </div>
           )}
 
+          {ringing && (
+            <button type="button" className="sf-btn sf-btn--lg" onClick={stopAlarm}>
+              <BellOff size={18} strokeWidth={2.2} /> Stop alarm
+            </button>
+          )}
+
           <div className="sf-actions">
             {completed ? (
               <>
@@ -270,9 +283,21 @@ export function Timer({
 
   return (
     <PaperCard delay={0.16}>
-      <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#FFD64D]/30 bg-[#FFD64D]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#FFD64D]">
-        <TimerReset size={11} strokeWidth={1.75} /> focus timer
-      </span>
+      <div className="mb-2.5 flex items-center justify-between">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#FFD64D]/30 bg-[#FFD64D]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#FFD64D]">
+          <TimerReset size={11} strokeWidth={1.75} /> focus timer
+        </span>
+        <button
+          type="button"
+          onClick={toggleSound}
+          aria-pressed={soundOn}
+          aria-label={soundOn ? "Alarm sound on — click to mute" : "Alarm sound off — click to turn on"}
+          title={soundOn ? "Alarm sound on" : "Alarm sound off"}
+          className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-white/30 hover:text-white"
+        >
+          {soundOn ? <Volume2 size={14} strokeWidth={1.75} /> : <VolumeX size={14} strokeWidth={1.75} />}
+        </button>
+      </div>
         <h2 className="text-[16px] font-medium text-[#F7F2E7]">Timer</h2>
 
         <div className="mb-4 mt-1 flex items-center gap-1.5 text-[9px] uppercase tracking-wide text-white/40">
@@ -383,6 +408,12 @@ export function Timer({
               <Check size={13} strokeWidth={2} /> Set
             </CapsuleButton>
           </div>
+        )}
+
+        {ringing && (
+          <CapsuleButton onClick={stopAlarm} accent="gold" variant="solid" className="mb-2 w-full rounded-full">
+            <BellOff size={14} strokeWidth={1.75} /> Stop alarm
+          </CapsuleButton>
         )}
 
         {completed ? (
