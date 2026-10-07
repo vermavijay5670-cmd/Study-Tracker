@@ -6,12 +6,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The term 'ecosystem' was coined by:",
     "options": [
-      "A.G. Tansley",
-      "Eugene Odum",
       "Robert Whittaker",
-      "Charles Elton"
+      "A.G. Tansley",
+      "Charles Elton",
+      "Eugene Odum"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The term 'ecosystem' was coined by A.G. Tansley.",
     "difficulty": "easy"
   },
@@ -20,12 +20,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "An ecosystem is best defined as a:",
     "options": [
+      "Functional unit of nature in which living organisms interact among themselves and with their physical environment",
       "Structural unit consisting only of non-living components",
       "Group of only producer organisms in a habitat",
-      "Functional unit of nature in which living organisms interact among themselves and with their physical environment",
       "Fixed geographical boundary with no biotic component"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "An ecosystem is defined as a functional unit of nature in which living organisms interact among themselves and with their physical environment.",
     "difficulty": "easy"
   },
@@ -35,11 +35,11 @@ const questions: Question[] = [
     "question": "Which of the following is an example of a natural terrestrial ecosystem?",
     "options": [
       "Aquarium",
-      "Forest",
       "Crop field",
+      "Forest",
       "Fish tank"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "A forest is a natural terrestrial ecosystem, unlike man-made systems such as an aquarium or crop field.",
     "difficulty": "easy"
   },
@@ -48,12 +48,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following is an example of an artificial (man-made) ecosystem?",
     "options": [
-      "Grassland",
-      "Desert",
       "Pond",
-      "Crop field"
+      "Desert",
+      "Crop field",
+      "Grassland"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "A crop field is an artificial (man-made) ecosystem, created and maintained by human activity.",
     "difficulty": "easy"
   },
@@ -62,12 +62,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The abiotic components of an ecosystem include all of the following EXCEPT:",
     "options": [
-      "Climatic factors like temperature and rainfall",
       "Herbivorous animals feeding on plants",
-      "Inorganic and organic substances present in the environment",
-      "Edaphic factors like soil type and pH"
+      "Climatic factors like temperature and rainfall",
+      "Edaphic factors like soil type and pH",
+      "Inorganic and organic substances present in the environment"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Herbivorous animals are biotic components; abiotic components include climatic factors, edaphic factors, and inorganic/organic substances — not living organisms.",
     "difficulty": "easy"
   },
@@ -76,12 +76,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Organisms that manufacture their own food using solar energy through photosynthesis, forming the base of most ecosystems, are called:",
     "options": [
-      "Producers",
       "Primary consumers",
-      "Secondary consumers",
-      "Decomposers"
+      "Producers",
+      "Decomposers",
+      "Secondary consumers"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Organisms that manufacture their own food via photosynthesis, forming the base of most ecosystems, are called producers.",
     "difficulty": "easy"
   },
@@ -90,12 +90,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Herbivores, which feed directly on producers, are also referred to as:",
     "options": [
-      "Tertiary consumers",
-      "Secondary consumers",
+      "Decomposers",
       "Primary consumers",
-      "Decomposers"
+      "Secondary consumers",
+      "Tertiary consumers"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Herbivores, which feed directly on producers, are also called primary consumers.",
     "difficulty": "easy"
   },
@@ -104,12 +104,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Organisms occupying the top of a food chain, which feed on other carnivores, are called:",
     "options": [
-      "Primary consumers",
+      "Producers",
       "Secondary consumers",
-      "Tertiary consumers",
-      "Producers"
+      "Primary consumers",
+      "Tertiary consumers"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Organisms at the top of a food chain that feed on other carnivores are tertiary consumers.",
     "difficulty": "medium"
   },
@@ -118,12 +118,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The vertical distribution of different species occupying different levels within an ecosystem, such as the canopy, shrub, and ground layers of a forest, is called:",
     "options": [
-      "Zonation",
-      "Productivity",
       "Succession",
-      "Stratification"
+      "Zonation",
+      "Stratification",
+      "Productivity"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "The vertical distribution of species at different levels of an ecosystem, such as canopy, shrub, and ground layers, is called stratification.",
     "difficulty": "medium"
   },
@@ -133,9 +133,9 @@ const questions: Question[] = [
     "question": "'Species composition', as a structural feature of an ecosystem, refers to:",
     "options": [
       "The number and kind of species present, along with their spatial arrangement",
-      "Only the abiotic factors of the habitat",
+      "Only the geographic location of the ecosystem",
       "Only the prevailing climatic conditions",
-      "Only the geographic location of the ecosystem"
+      "Only the abiotic factors of the habitat"
     ],
     "correctIndex": 0,
     "explanation": "Species composition refers to the number and kind of species present in an ecosystem along with their spatial arrangement.",
@@ -146,12 +146,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A sequence of organisms in which each is consumed by the next member in the series, starting from a producer, is called a:",
     "options": [
-      "Food web",
       "Food chain",
+      "Food web",
       "Ecological pyramid",
       "Nutrient cycle"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "A sequence of organisms where each is consumed by the next, starting from a producer, is called a food chain.",
     "difficulty": "easy"
   },
@@ -160,10 +160,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A food chain that begins with green plants (producers) and proceeds through herbivores and then carnivores is called a:",
     "options": [
-      "Detritus food chain",
-      "Grazing food chain",
       "Parasitic food chain",
-      "Saprophytic chain"
+      "Grazing food chain",
+      "Saprophytic chain",
+      "Detritus food chain"
     ],
     "correctIndex": 1,
     "explanation": "A food chain starting with green plants and proceeding through herbivores and carnivores is called a grazing food chain.",
@@ -174,12 +174,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A food chain that begins with dead organic matter and proceeds through decomposers and detritivores is called a:",
     "options": [
-      "Detritus food chain",
+      "Aquatic food chain",
       "Grazing food chain",
       "Predator food chain",
-      "Aquatic food chain"
+      "Detritus food chain"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "A food chain starting with dead organic matter and proceeding through decomposers and detritivores is called a detritus food chain.",
     "difficulty": "easy"
   },
@@ -202,10 +202,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In contrast to terrestrial ecosystems, in most aquatic ecosystems a relatively greater share of energy flow occurs through the:",
     "options": [
-      "Detritus food chain",
+      "Only through decomposers with no energy transfer",
       "Grazing food chain",
-      "Neither pathway contributes significantly",
-      "Only through decomposers with no energy transfer"
+      "Detritus food chain",
+      "Neither pathway contributes significantly"
     ],
     "correctIndex": 1,
     "explanation": "In most aquatic ecosystems, a relatively greater share of energy flow occurs through the grazing food chain compared to terrestrial ecosystems.",
@@ -218,10 +218,10 @@ const questions: Question[] = [
     "options": [
       "Food pyramid",
       "Nutrient cycle",
-      "Food web",
-      "Trophic ladder"
+      "Trophic ladder",
+      "Food web"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "An interconnected network of multiple interlinked food chains, offering alternative pathways for energy flow, is called a food web.",
     "difficulty": "easy"
   },
@@ -230,12 +230,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The position occupied by an organism in a food chain, determined by the number of energy-transfer steps to reach that level, is called its:",
     "options": [
-      "Habitat",
       "Trophic level",
-      "Ecological niche",
-      "Biome"
+      "Biome",
+      "Habitat",
+      "Ecological niche"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The position an organism occupies in a food chain, based on the number of energy-transfer steps to reach it, is called its trophic level.",
     "difficulty": "easy"
   },
@@ -244,12 +244,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Grass (producer) → grasshopper (primary consumer) → frog (secondary consumer) → snake (tertiary consumer) → hawk (top carnivore) is a classic example of a:",
     "options": [
-      "Grazing food chain",
-      "Detritus food chain",
       "Nutrient cycle",
-      "Ecological pyramid"
+      "Ecological pyramid",
+      "Grazing food chain",
+      "Detritus food chain"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Grass → grasshopper → frog → snake → hawk is a classic example of a grazing food chain, starting with a producer.",
     "difficulty": "easy"
   },
@@ -258,12 +258,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The number of trophic levels in a grazing food chain is generally restricted to only about four or five steps mainly because:",
     "options": [
-      "Predators at higher levels always go extinct",
-      "There is no biological limit; the restriction is purely coincidental",
       "Producers are physically incapable of supporting more levels",
-      "A large proportion of energy is lost as heat at each successive transfer, following the laws of thermodynamics"
+      "Predators at higher levels always go extinct",
+      "A large proportion of energy is lost as heat at each successive transfer, following the laws of thermodynamics",
+      "There is no biological limit; the restriction is purely coincidental"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "Grazing food chains are generally restricted to four or five trophic levels because a large proportion of energy is lost as heat at each transfer, per the laws of thermodynamics.",
     "difficulty": "medium"
   },
@@ -273,8 +273,8 @@ const questions: Question[] = [
     "question": "Which of the following statements about food webs is correct?",
     "options": [
       "Food webs increase the overall stability of an ecosystem by providing alternative pathways for energy flow",
-      "A food web consists of only a single, linear pathway of energy flow",
       "Food webs exist only in aquatic ecosystems",
+      "A food web consists of only a single, linear pathway of energy flow",
       "Food webs have no meaningful relationship to individual food chains"
     ],
     "correctIndex": 0,
@@ -286,12 +286,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A graphic representation of the number, biomass, or energy present at successive trophic levels of a food chain is called an:",
     "options": [
-      "Ecological pyramid",
-      "Food web",
       "Biogeochemical cycle",
+      "Food web",
+      "Ecological pyramid",
       "Ecotone"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "A graphic representation of the number, biomass, or energy at successive trophic levels of a food chain is called an ecological pyramid.",
     "difficulty": "easy"
   },
@@ -300,12 +300,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The three main types of ecological pyramids generally recognised are pyramids of number, biomass, and:",
     "options": [
-      "Productivity",
+      "Population density",
       "Species diversity",
-      "Energy",
-      "Population density"
+      "Productivity",
+      "Energy"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "The three main types of ecological pyramids are pyramids of number, biomass, and energy.",
     "difficulty": "easy"
   },
@@ -314,12 +314,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In most ecosystems, such as a grassland, the pyramid of numbers, with producers at the base and top carnivores at the apex, is typically:",
     "options": [
+      "A perfect rectangle",
       "Inverted",
       "Upright",
-      "A perfect rectangle",
       "Absent altogether"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "In most ecosystems like grassland, the pyramid of numbers, with many producers at the base and few top carnivores at the apex, is typically upright.",
     "difficulty": "medium"
   },
@@ -328,8 +328,8 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The pyramid of numbers is characteristically inverted in which type of ecosystem, where a single large tree supports numerous insects, which in turn support fewer birds?",
     "options": [
-      "Grassland ecosystem",
       "Pond ecosystem",
+      "Grassland ecosystem",
       "Ocean ecosystem",
       "Tree ecosystem"
     ],
@@ -343,11 +343,11 @@ const questions: Question[] = [
     "question": "The pyramid of biomass in a terrestrial ecosystem such as a forest, where the total biomass of producers greatly exceeds that of consumers, is generally:",
     "options": [
       "Inverted",
-      "Upright",
+      "Non-existent",
       "Perfectly rectangular",
-      "Non-existent"
+      "Upright"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The pyramid of biomass in a forest, where producer biomass greatly exceeds consumer biomass, is generally upright.",
     "difficulty": "medium"
   },
@@ -356,12 +356,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The pyramid of biomass is typically inverted in which ecosystem, where the standing crop biomass of producers (phytoplankton) at a given instant is less than that of consumers (zooplankton, fish)?",
     "options": [
-      "Pond/aquatic ecosystem",
-      "Grassland ecosystem",
+      "Desert ecosystem",
       "Forest ecosystem",
-      "Desert ecosystem"
+      "Pond/aquatic ecosystem",
+      "Grassland ecosystem"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "The pyramid of biomass is inverted in a pond/aquatic ecosystem, where the standing crop of phytoplankton at a given instant is less than that of the zooplankton and fish that consume it.",
     "difficulty": "medium"
   },
@@ -385,11 +385,11 @@ const questions: Question[] = [
     "question": "The pyramid of energy is always upright because:",
     "options": [
       "Producers always contain less energy than consumers",
-      "Energy content increases at higher trophic levels",
       "Energy content progressively decreases at each successive trophic level as it is lost as heat during transfer",
-      "Energy pyramids are not governed by thermodynamic principles"
+      "Energy pyramids are not governed by thermodynamic principles",
+      "Energy content increases at higher trophic levels"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "The pyramid of energy is always upright because energy content progressively decreases at each successive trophic level as it is lost as heat during transfer.",
     "difficulty": "medium"
   },
@@ -398,9 +398,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A major limitation of pyramids of numbers and biomass is that they generally fail to account for the fact that:",
     "options": [
-      "Producers always occupy the base",
-      "Solar energy is the ultimate source of all energy",
       "Ecological pyramids are always accurate",
+      "Solar energy is the ultimate source of all energy",
+      "Producers always occupy the base",
       "A given species may occupy more than one trophic level simultaneously"
     ],
     "correctIndex": 3,
@@ -412,12 +412,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Ecological pyramids of numbers and biomass typically fail to take into account the important contribution made by the:",
     "options": [
+      "Solar energy input",
       "Decomposers / detritus food chain",
-      "Producers",
       "Primary consumers",
-      "Solar energy input"
+      "Producers"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Ecological pyramids of numbers and biomass typically fail to account for the important contribution of decomposers and the detritus food chain.",
     "difficulty": "hard"
   },
@@ -426,12 +426,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The rate of biomass production by producers per unit area over a given time period, through photosynthesis, is called:",
     "options": [
-      "Secondary productivity",
-      "Gross Primary Productivity (GPP)",
+      "Standing crop",
       "Net Primary Productivity (NPP)",
-      "Standing crop"
+      "Secondary productivity",
+      "Gross Primary Productivity (GPP)"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The rate of biomass production by producers per unit area through photosynthesis is called Gross Primary Productivity (GPP).",
     "difficulty": "easy"
   },
@@ -440,12 +440,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Net Primary Productivity (NPP) is calculated using the relation:",
     "options": [
+      "NPP = GPP ÷ Respiration losses (R)",
       "NPP = GPP + Respiration losses (R)",
-      "NPP = GPP − Respiration losses (R)",
       "NPP = GPP × Respiration losses (R)",
-      "NPP = GPP ÷ Respiration losses (R)"
+      "NPP = GPP − Respiration losses (R)"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Net Primary Productivity is calculated as NPP = GPP − Respiration losses (R).",
     "difficulty": "medium"
   },
@@ -455,9 +455,9 @@ const questions: Question[] = [
     "question": "The biomass/energy that is actually available to heterotrophs (herbivores and decomposers) in an ecosystem corresponds to:",
     "options": [
       "Net Primary Productivity (NPP)",
-      "Gross Primary Productivity (GPP)",
       "Secondary productivity of carnivores alone",
-      "The standing crop of primary consumers only"
+      "The standing crop of primary consumers only",
+      "Gross Primary Productivity (GPP)"
     ],
     "correctIndex": 0,
     "explanation": "Net Primary Productivity (NPP) is the biomass/energy actually available to heterotrophs such as herbivores and decomposers.",
@@ -468,12 +468,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The rate at which consumers convert assimilated food energy into their own body biomass is termed:",
     "options": [
-      "Gross primary productivity",
-      "Net primary productivity",
+      "Secondary productivity",
       "Decomposition rate",
-      "Secondary productivity"
+      "Gross primary productivity",
+      "Net primary productivity"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "The rate at which consumers convert assimilated food energy into their own body biomass is called secondary productivity.",
     "difficulty": "medium"
   },
@@ -482,12 +482,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Primary productivity of an ecosystem chiefly depends on:",
     "options": [
-      "Only the number of decomposers present",
-      "The plant species present and their photosynthetic capacity, along with environmental factors and nutrient availability",
       "Only the ambient temperature, with no role for nutrients",
-      "Only the amount of carbon dioxide dissolved in soil water"
+      "Only the amount of carbon dioxide dissolved in soil water",
+      "The plant species present and their photosynthetic capacity, along with environmental factors and nutrient availability",
+      "Only the number of decomposers present"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Primary productivity of an ecosystem chiefly depends on the plant species present, their photosynthetic capacity, and environmental factors and nutrient availability.",
     "difficulty": "medium"
   },
@@ -496,10 +496,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The total amount of living organic matter present in an ecosystem at a given point in time is referred to as the:",
     "options": [
-      "Net primary productivity",
+      "Trophic level",
       "Gross primary productivity",
       "Standing crop",
-      "Trophic level"
+      "Net primary productivity"
     ],
     "correctIndex": 2,
     "explanation": "The total amount of living organic matter present in an ecosystem at a given point in time is called the standing crop.",
@@ -510,12 +510,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Among the world's major ecosystem types, which is generally regarded as having among the highest net primary productivity per unit area?",
     "options": [
-      "Open ocean",
-      "Tropical rainforest",
       "Desert",
-      "Arctic tundra"
+      "Open ocean",
+      "Arctic tundra",
+      "Tropical rainforest"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Among major ecosystem types, tropical rainforests are generally regarded as having among the highest net primary productivity per unit area.",
     "difficulty": "medium"
   },
@@ -524,12 +524,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Primary productivity is generally expressed in units of:",
     "options": [
-      "Grams per square metre per year (or its energy equivalent, kcal/m²/yr)",
       "Kilograms alone, with no reference to area or time",
       "Litres per hectare",
-      "As a simple, unitless percentage"
+      "As a simple, unitless percentage",
+      "Grams per square metre per year (or its energy equivalent, kcal/m²/yr)"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Primary productivity is generally expressed in units of grams per square metre per year, or its energy equivalent (kcal/m²/yr).",
     "difficulty": "medium"
   },
@@ -539,11 +539,11 @@ const questions: Question[] = [
     "question": "The process by which decomposers break down complex organic matter present in detritus into simpler inorganic substances is called:",
     "options": [
       "Productivity",
-      "Succession",
       "Stratification",
-      "Decomposition"
+      "Decomposition",
+      "Succession"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "The process by which decomposers break down complex organic matter in detritus into simpler inorganic substances is called decomposition.",
     "difficulty": "easy"
   },
@@ -553,8 +553,8 @@ const questions: Question[] = [
     "question": "Decomposition occurs mainly on:",
     "options": [
       "Dead plant and animal remains (detritus)",
-      "Living green plants",
       "Fresh, unripe fruits",
+      "Living green plants",
       "Bare rock surfaces"
     ],
     "correctIndex": 0,
@@ -566,12 +566,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The first step in decomposition, in which detritivores such as earthworms break detritus down into smaller particles, is called:",
     "options": [
-      "Fragmentation",
+      "Humification",
       "Leaching",
       "Catabolism",
-      "Humification"
+      "Fragmentation"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Fragmentation is the first step in decomposition, in which detritivores such as earthworms break detritus into smaller particles.",
     "difficulty": "medium"
   },
@@ -580,12 +580,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The process by which water-soluble inorganic nutrients from detritus move down into the soil horizon and get precipitated as unavailable salts is called:",
     "options": [
-      "Fragmentation",
       "Mineralisation",
       "Leaching",
-      "Humification"
+      "Humification",
+      "Fragmentation"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Leaching is the process by which water-soluble inorganic nutrients from detritus move down into the soil horizon and get precipitated as unavailable salts.",
     "difficulty": "medium"
   },
@@ -594,9 +594,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The step in decomposition in which bacterial and fungal enzymes degrade detritus into simpler inorganic substances is called:",
     "options": [
-      "Fragmentation",
-      "Catabolism",
       "Leaching",
+      "Catabolism",
+      "Fragmentation",
       "Humification"
     ],
     "correctIndex": 1,
@@ -608,12 +608,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Humification, a process occurring during decomposition, leads to the accumulation of a dark-coloured, amorphous substance called:",
     "options": [
-      "Compost",
+      "Humus",
       "Litter",
-      "Detritus",
-      "Humus"
+      "Compost",
+      "Detritus"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Humification during decomposition leads to the accumulation of a dark-coloured, amorphous substance called humus.",
     "difficulty": "medium"
   },
@@ -622,12 +622,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following statements about humus is correct?",
     "options": [
-      "It undergoes rapid microbial decomposition and disappears quickly",
       "It is highly resistant to further microbial action and decomposes very slowly, acting as a reservoir of nutrients",
       "It contains no nutrients of any kind",
+      "It undergoes rapid microbial decomposition and disappears quickly",
       "It is formed exclusively in aquatic ecosystems"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Humus is highly resistant to further microbial action and decomposes very slowly, acting as a reservoir of nutrients.",
     "difficulty": "hard"
   },
@@ -636,12 +636,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The release of inorganic nutrients such as CO2, water, and other minerals from humus, through the action of certain microbial enzymes, is called:",
     "options": [
-      "Mineralisation",
-      "Leaching",
+      "Catabolism",
       "Fragmentation",
-      "Catabolism"
+      "Mineralisation",
+      "Leaching"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "The release of inorganic nutrients such as CO2, water, and minerals from humus through microbial enzyme action is called mineralisation.",
     "difficulty": "medium"
   },
@@ -650,12 +650,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The unidirectional flow of energy through the various trophic levels of an ecosystem obeys the:",
     "options": [
-      "Hardy–Weinberg principle",
+      "Law of tolerance",
       "Law of limiting factors",
-      "First and second laws of thermodynamics",
-      "Law of tolerance"
+      "Hardy–Weinberg principle",
+      "First and second laws of thermodynamics"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "The unidirectional flow of energy through the trophic levels of an ecosystem obeys the first and second laws of thermodynamics.",
     "difficulty": "medium"
   },
@@ -664,12 +664,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "According to Lindeman's 'Ten Percent Law' of energy transfer, at each successive trophic level, approximately what percentage of the energy present is transferred to the next trophic level?",
     "options": [
-      "1%",
-      "50%",
+      "90%",
       "10%",
-      "90%"
+      "50%",
+      "1%"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "According to Lindeman's Ten Percent Law, approximately 10% of the energy at one trophic level is transferred to the next.",
     "difficulty": "easy"
   },
@@ -678,12 +678,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "According to the ten percent law, the remaining approximately 90% of the energy present at any given trophic level is:",
     "options": [
-      "Stored permanently as biomass at that level",
       "Reflected straight back into the atmosphere as light",
+      "Lost mainly as heat during respiration and other metabolic activities, and to incompletely consumed/digested matter",
       "Transferred entirely to decomposers with no loss",
-      "Lost mainly as heat during respiration and other metabolic activities, and to incompletely consumed/digested matter"
+      "Stored permanently as biomass at that level"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Per the ten percent law, the remaining ~90% of energy at a trophic level is lost mainly as heat during respiration and metabolic activities, and to incompletely consumed or digested matter.",
     "difficulty": "medium"
   },
@@ -693,8 +693,8 @@ const questions: Question[] = [
     "question": "All ecosystems on earth are ultimately dependent on an influx of solar energy, which is first captured by:",
     "options": [
       "Producers, via the process of photosynthesis",
-      "Consumers",
       "Decomposers",
+      "Consumers",
       "Detritivores"
     ],
     "correctIndex": 0,
@@ -707,11 +707,11 @@ const questions: Question[] = [
     "question": "Of the total solar radiation incident on a green plant, the proportion that is actually captured and fixed by photosynthesis as net primary productivity is:",
     "options": [
       "Almost 100%",
-      "A very small fraction, typically well under 1% of incident photosynthetically active radiation",
       "Approximately 50%",
+      "A very small fraction, typically well under 1% of incident photosynthetically active radiation",
       "Approximately 90%"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Of the total solar radiation incident on a green plant, only a very small fraction — typically well under 1% of incident PAR — is actually fixed as net primary productivity.",
     "difficulty": "hard"
   },
@@ -720,12 +720,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Only the visible component of solar radiation used by plants for photosynthesis is termed 'PAR', which stands for:",
     "options": [
-      "Photosynthetic Assimilation Rate",
       "Photosynthetically Active Radiation",
       "Primary Available Resource",
+      "Photosynthetic Assimilation Rate",
       "Photochemical Active Reaction"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "PAR stands for Photosynthetically Active Radiation, the visible component of solar radiation used by plants for photosynthesis.",
     "difficulty": "medium"
   },
@@ -734,12 +734,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Energy flow through an ecosystem is described as unidirectional mainly because:",
     "options": [
-      "Energy captured by producers flows on to consumers and decomposers but is never returned to producers in a usable form",
+      "There is no loss of energy at any step of transfer",
       "Energy is recycled indefinitely between all trophic levels, much like nutrients",
       "Energy flows equally in both directions between every pair of trophic levels",
-      "There is no loss of energy at any step of transfer"
+      "Energy captured by producers flows on to consumers and decomposers but is never returned to producers in a usable form"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Energy flow is described as unidirectional because energy captured by producers flows on to consumers and decomposers but is never returned to producers in a usable form.",
     "difficulty": "medium"
   },
@@ -748,12 +748,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The restriction of a food chain to typically only four or five trophic levels, as explained by the ten percent law, results from the fact that:",
     "options": [
-      "There is no biological restriction on the number of trophic levels",
       "Energy available for transfer progressively increases at each higher trophic level",
+      "Energy available for transfer progressively decreases at each higher trophic level",
       "All trophic levels receive an identical amount of energy",
-      "Energy available for transfer progressively decreases at each higher trophic level"
+      "There is no biological restriction on the number of trophic levels"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Food chains are restricted to about four or five trophic levels because, per the ten percent law, energy available for transfer progressively decreases at each higher trophic level.",
     "difficulty": "medium"
   },
@@ -762,9 +762,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The cyclic movement of nutrient elements through the biotic and abiotic components of an ecosystem is termed a:",
     "options": [
-      "Ecological pyramid",
-      "Biogeochemical cycle",
       "Trophic transfer",
+      "Biogeochemical cycle",
+      "Ecological pyramid",
       "Productivity index"
     ],
     "correctIndex": 1,
@@ -777,9 +777,9 @@ const questions: Question[] = [
     "question": "Biogeochemical cycles are broadly classified into gaseous cycles (reservoir in the atmosphere/ocean) and sedimentary cycles (reservoir in the earth's crust). The carbon cycle is an example of a:",
     "options": [
       "Sedimentary cycle",
-      "Neither type of cycle",
+      "Hydrological cycle",
       "Gaseous cycle",
-      "Hydrological cycle"
+      "Neither type of cycle"
     ],
     "correctIndex": 2,
     "explanation": "The carbon cycle is an example of a gaseous cycle, with its reservoir in the atmosphere and ocean.",
@@ -791,11 +791,11 @@ const questions: Question[] = [
     "question": "The major atmospheric reservoir pool of carbon exists primarily in the form of:",
     "options": [
       "Solid carbonate rocks",
+      "Methane gas exclusively",
       "Carbon dioxide (CO2) gas",
-      "Carbon monoxide gas",
-      "Methane gas exclusively"
+      "Carbon monoxide gas"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "The major atmospheric reservoir pool of carbon exists primarily as carbon dioxide (CO2) gas.",
     "difficulty": "easy"
   },
@@ -804,12 +804,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Photosynthesis carried out by producers is the primary process through which atmospheric carbon dioxide is:",
     "options": [
-      "Fixed into organic compounds within living tissue",
+      "Lost permanently as heat",
       "Released back into the atmosphere",
       "Converted directly into carbonate rocks",
-      "Lost permanently as heat"
+      "Fixed into organic compounds within living tissue"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Photosynthesis by producers is the primary process through which atmospheric carbon dioxide is fixed into organic compounds in living tissue.",
     "difficulty": "easy"
   },
@@ -818,9 +818,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Fixed carbon is returned to the atmosphere as CO2 through respiration of living organisms and decomposition of dead matter, and also significantly through:",
     "options": [
-      "Photosynthesis itself",
-      "Absorption exclusively by sedimentary rocks",
       "The formation of humus alone",
+      "Absorption exclusively by sedimentary rocks",
+      "Photosynthesis itself",
       "The combustion of wood and fossil fuels"
     ],
     "correctIndex": 3,
@@ -833,9 +833,9 @@ const questions: Question[] = [
     "question": "Compared to the atmosphere, the world's oceans hold approximately how much more dissolved carbon dioxide?",
     "options": [
       "Nearly 50 times more",
-      "Roughly the same amount",
+      "About 1,000 times more",
       "About half as much",
-      "About 1,000 times more"
+      "Roughly the same amount"
     ],
     "correctIndex": 0,
     "explanation": "The world's oceans hold nearly 50 times more dissolved carbon dioxide than the atmosphere.",
@@ -846,12 +846,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Human activities, particularly the widespread burning of fossil fuels for industry and transport, have significantly increased:",
     "options": [
-      "Atmospheric carbon dioxide levels, contributing to global warming",
-      "Atmospheric oxygen levels",
       "Atmospheric nitrogen levels",
+      "Atmospheric oxygen levels",
+      "Atmospheric carbon dioxide levels, contributing to global warming",
       "The thickness of the stratospheric ozone layer"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Human activities, particularly burning of fossil fuels, have significantly increased atmospheric carbon dioxide levels, contributing to global warming.",
     "difficulty": "medium"
   },
@@ -860,12 +860,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Unlike the carbon cycle, the phosphorus cycle is classified as a:",
     "options": [
-      "Gaseous cycle",
       "Hydrological cycle",
-      "Sedimentary cycle",
-      "Combined gaseous-sedimentary cycle"
+      "Gaseous cycle",
+      "Combined gaseous-sedimentary cycle",
+      "Sedimentary cycle"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Unlike the carbon cycle, the phosphorus cycle is classified as a sedimentary cycle.",
     "difficulty": "medium"
   },
@@ -875,11 +875,11 @@ const questions: Question[] = [
     "question": "The main natural reservoir of phosphorus in the phosphorus cycle is:",
     "options": [
       "The atmosphere",
-      "Phosphorus-bearing rocks in the earth's crust",
+      "Living organisms",
       "The ocean surface layer",
-      "Living organisms"
+      "Phosphorus-bearing rocks in the earth's crust"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The main natural reservoir of phosphorus is phosphorus-bearing rocks in the earth's crust.",
     "difficulty": "medium"
   },
@@ -888,12 +888,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Phosphorus is released from its main reservoir primarily through the process of:",
     "options": [
-      "Photosynthesis",
-      "Combustion of biomass",
       "Respiration",
-      "Weathering of phosphorus-containing rocks"
+      "Weathering of phosphorus-containing rocks",
+      "Combustion of biomass",
+      "Photosynthesis"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Phosphorus is released from its main rock reservoir primarily through weathering of phosphorus-containing rocks.",
     "difficulty": "medium"
   },
@@ -902,12 +902,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In living organisms, phosphorus is a key structural constituent of which of the following?",
     "options": [
-      "Only structural proteins",
       "Nucleic acids, phospholipids, and ATP",
+      "Only structural proteins",
       "Only carbohydrates",
       "Only vitamins"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "In living organisms, phosphorus is a key structural constituent of nucleic acids, phospholipids, and ATP.",
     "difficulty": "medium"
   },
@@ -916,12 +916,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Unlike the carbon cycle, the phosphorus cycle lacks a significant:",
     "options": [
-      "Atmospheric or gaseous phase",
-      "Reservoir in rocks",
       "Role in the structure of living organisms",
+      "Reservoir in rocks",
+      "Atmospheric or gaseous phase",
       "Sedimentary component"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Unlike the carbon cycle, the phosphorus cycle lacks a significant atmospheric or gaseous phase.",
     "difficulty": "hard"
   },
@@ -930,12 +930,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In many aquatic ecosystems, phosphate (PO4^3-) commonly acts as:",
     "options": [
-      "An abundant, non-limiting nutrient",
-      "A toxic pollutant with no biological role",
       "The major limiting nutrient controlling primary productivity",
-      "A biologically unavailable, inert compound"
+      "An abundant, non-limiting nutrient",
+      "A biologically unavailable, inert compound",
+      "A toxic pollutant with no biological role"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "In many aquatic ecosystems, phosphate commonly acts as the major limiting nutrient controlling primary productivity.",
     "difficulty": "medium"
   },
@@ -944,12 +944,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Ecosystem services — the direct and indirect benefits humans derive from healthy, functioning ecosystems — include all of the following EXCEPT:",
     "options": [
+      "Prevention of soil erosion",
       "Pollination of crops",
       "Purification of air and water",
-      "A global increase in habitat destruction",
-      "Prevention of soil erosion"
+      "A global increase in habitat destruction"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "A global increase in habitat destruction is a harmful outcome, not an ecosystem service that healthy ecosystems provide.",
     "difficulty": "easy"
   },
@@ -958,12 +958,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "According to an estimate by economist Robert Costanza and colleagues, the total monetary value of ecosystem services provided globally by the biosphere each year is roughly:",
     "options": [
-      "33 billion US dollars",
       "Impossible to estimate in monetary terms",
-      "33 million US dollars",
-      "33 trillion US dollars"
+      "33 trillion US dollars",
+      "33 billion US dollars",
+      "33 million US dollars"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Robert Costanza and colleagues estimated the total monetary value of global ecosystem services at roughly 33 trillion US dollars per year.",
     "difficulty": "hard"
   },
@@ -987,11 +987,11 @@ const questions: Question[] = [
     "question": "Wetland ecosystems are particularly valued for providing the ecosystem service of:",
     "options": [
       "Fossil fuel production",
-      "Flood control and water purification",
       "Maintenance of the stratospheric ozone layer",
+      "Flood control and water purification",
       "Reduction of soil fertility"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Wetland ecosystems are particularly valued for the ecosystem service of flood control and water purification.",
     "difficulty": "medium"
   },
@@ -1000,9 +1000,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The overall stability and productivity of an ecosystem generally depend on maintaining a balance among:",
     "options": [
-      "A single dominant species only",
-      "All its biotic and abiotic components, including proper energy flow and nutrient cycling",
       "Zero decomposer activity throughout the system",
+      "All its biotic and abiotic components, including proper energy flow and nutrient cycling",
+      "A single dominant species only",
       "Complete isolation from any external energy input"
     ],
     "correctIndex": 1,
@@ -1014,12 +1014,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which pair correctly matches a type of biogeochemical cycle with its category?",
     "options": [
-      "Gaseous cycle — Carbon; Sedimentary cycle — Phosphorus",
       "Gaseous cycle — Phosphorus; Sedimentary cycle — Carbon",
-      "Gaseous cycle — Sulphur only, with no other cycles existing",
-      "Both carbon and phosphorus cycles are classified as gaseous"
+      "Gaseous cycle — Carbon; Sedimentary cycle — Phosphorus",
+      "Both carbon and phosphorus cycles are classified as gaseous",
+      "Gaseous cycle — Sulphur only, with no other cycles existing"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The carbon cycle is a gaseous cycle, while the phosphorus cycle is a sedimentary cycle.",
     "difficulty": "medium"
   },
@@ -1028,12 +1028,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: In a pond ecosystem, the pyramid of biomass is typically inverted.\nReason: The producers (phytoplankton) in a pond have a short individual lifespan and small standing biomass but reproduce very rapidly, so at any given instant the standing biomass of producers is less than that of consumers.\nChoose the correct option:",
     "options": [
-      "Both the assertion and the reason are false",
+      "Both assertion and reason are true, and the reason correctly explains the assertion",
       "The assertion is true, but the reason is false",
-      "The assertion is false, but the reason is true",
-      "Both assertion and reason are true, and the reason correctly explains the assertion"
+      "Both the assertion and the reason are false",
+      "The assertion is false, but the reason is true"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Both the assertion and reason are true and correctly linked: phytoplankton reproduce rapidly but have short lifespans and low standing biomass at any instant, making the pond's biomass pyramid inverted.",
     "difficulty": "hard"
   },
@@ -1042,10 +1042,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: The detritus food chain generally plays a more important role in energy flow within terrestrial ecosystems than the grazing food chain.\nReason: In most terrestrial ecosystems, a very large proportion of net primary production is not consumed directly by herbivores but instead enters the detritus pathway as dead organic matter.\nChoose the correct option:",
     "options": [
-      "The assertion is true, but the reason is unrelated to it",
+      "Both the assertion and the reason are false",
       "Both assertion and reason are true, and the reason correctly explains the assertion",
       "The assertion is false, but the reason is true",
-      "Both the assertion and the reason are false"
+      "The assertion is true, but the reason is unrelated to it"
     ],
     "correctIndex": 1,
     "explanation": "Both the assertion and reason are true and correctly linked: since most net primary production in terrestrial ecosystems enters the detritus pathway rather than being grazed directly, the detritus food chain plays the larger role in energy flow.",
@@ -1056,12 +1056,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following correctly ranks trophic levels from base to apex in a typical grazing food chain?",
     "options": [
-      "Tertiary consumer → Secondary consumer → Primary consumer → Producer",
       "Primary consumer → Producer → Secondary consumer → Tertiary consumer",
       "Producer → Primary consumer → Secondary consumer → Tertiary consumer",
+      "Tertiary consumer → Secondary consumer → Primary consumer → Producer",
       "Decomposer → Producer → Consumer → Tertiary consumer"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "A typical grazing food chain proceeds from base to apex as: Producer → Primary consumer → Secondary consumer → Tertiary consumer.",
     "difficulty": "easy"
   },
@@ -1070,12 +1070,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following is a completely artificial (man-made) ecosystem often used to illustrate basic ecological principles?",
     "options": [
-      "A forest",
       "An aquarium",
+      "A forest",
       "A river",
       "A grassland"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "An aquarium is a completely artificial, man-made ecosystem often used to illustrate basic ecological principles.",
     "difficulty": "easy"
   },
@@ -1085,9 +1085,9 @@ const questions: Question[] = [
     "question": "The overall structure of an ecosystem — encompassing the number and kinds of species present, their spatial arrangement/stratification, and the prevailing range of climatic conditions — together constitutes its:",
     "options": [
       "Structural and compositional features",
-      "Nutrient cycling profile alone",
       "Trophic dynamics alone",
-      "Energy budget alone"
+      "Energy budget alone",
+      "Nutrient cycling profile alone"
     ],
     "correctIndex": 0,
     "explanation": "The number and kinds of species present, their spatial arrangement/stratification, and prevailing climatic conditions together constitute an ecosystem's structural and compositional features.",

@@ -10,12 +10,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The tap root system, typically found in dicotyledonous plants, develops directly from the:',
     options: [
+      'Radicle of the embryo',
       'Base of the stem',
       'Node of the stem',
-      'Radicle of the embryo',
       'Leaf axil'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'In dicots, the tap root system develops from the radicle of the embryo, growing directly into the primary root.',
     difficulty: 'easy'
   },
@@ -24,12 +24,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Adventitious roots, characteristically found in monocotyledonous plants, arise from parts of the plant other than the:',
     options: [
-      'Radicle',
       'Stem node',
+      'Radicle',
       'Leaf blade',
       'Shoot apex'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Adventitious roots arise from plant parts other than the radicle, such as the base of the stem, and are characteristic of monocots.',
     difficulty: 'medium'
   },
@@ -52,10 +52,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The region of the root that lies just behind the root cap, consisting of small, thin-walled, actively dividing cells, is called the:',
     options: [
-      'Region of elongation',
+      'Root cap',
       'Region of meristematic activity',
       'Region of maturation',
-      'Root cap'
+      'Region of elongation'
     ],
     correctIndex: 1,
     explanation: 'The region of meristematic activity, situated just behind the root cap, consists of small, densely cytoplasmic, actively dividing cells.',
@@ -66,12 +66,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The region of the root where cells undergo rapid elongation, contributing to the increase in root length, is called the:',
     options: [
-      'Region of meristematic activity',
       'Region of elongation',
+      'Root cap',
       'Region of maturation',
-      'Root cap'
+      'Region of meristematic activity'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Cells in the region of elongation, lying proximal to the meristematic zone, rapidly elongate, contributing significantly to root growth in length.',
     difficulty: 'medium'
   },
@@ -82,10 +82,10 @@ const questions: Question[] = [
     options: [
       'Region of elongation',
       'Root cap',
-      'Region of meristematic activity',
-      'Region of maturation'
+      'Region of maturation',
+      'Region of meristematic activity'
     ],
-    correctIndex: 3,
+    correctIndex: 2,
     explanation: 'The region of maturation, the most proximal zone of the root, bears root hairs, which are the primary sites of water and mineral absorption.',
     difficulty: 'easy'
   },
@@ -94,12 +94,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In carrots, the tap root becomes swollen and modified for food storage, taking on a characteristic shape described as:',
     options: [
-      'Conical',
-      'Napiform (spherical/rounded)',
       'Fusiform (spindle-shaped)',
-      'Tuberous (irregular, no definite shape)'
+      'Tuberous (irregular, no definite shape)',
+      'Napiform (spherical/rounded)',
+      'Conical'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'The storage root of carrot is conical in shape, broader at the top and gradually tapering toward the tip.',
     difficulty: 'medium'
   },
@@ -108,10 +108,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In turnip, the modified tap root used for food storage is characteristically described as:',
     options: [
+      'Tuberous, with no definite shape',
       'Conical',
-      'Fusiform (spindle-shaped)',
       'Napiform (nearly spherical/rounded)',
-      'Tuberous, with no definite shape'
+      'Fusiform (spindle-shaped)'
     ],
     correctIndex: 2,
     explanation: 'The storage root of turnip is napiform, being nearly spherical or top-shaped.',
@@ -122,9 +122,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The pillar-like roots that grow down from the horizontal branches of the banyan tree, providing mechanical support, are called:',
     options: [
-      'Stilt roots',
-      'Pneumatophores',
       'Adventitious storage roots',
+      'Pneumatophores',
+      'Stilt roots',
       'Prop roots'
     ],
     correctIndex: 3,
@@ -136,12 +136,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The oblique roots arising from the lower nodes of the stem in plants like maize and sugarcane, providing extra mechanical support, are called:',
     options: [
-      'Prop roots',
-      'Stilt roots',
       'Pneumatophores',
-      'Tap roots'
+      'Tap roots',
+      'Stilt roots',
+      'Prop roots'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Stilt roots arise obliquely from the lower stem nodes in plants like maize and sugarcane, providing additional mechanical support to the plant.',
     difficulty: 'medium'
   },
@@ -150,12 +150,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In mangrove/saline habitat plants such as Rhizophora, specialised roots that grow vertically upward out of the soil (negatively geotropic) to facilitate gaseous exchange are called:',
     options: [
-      'Prop roots',
+      'Tap roots',
       'Stilt roots',
-      'Pneumatophores',
-      'Tap roots'
+      'Prop roots',
+      'Pneumatophores'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'Pneumatophores are specialised, negatively geotropic roots found in mangrove plants like Rhizophora, growing upward out of waterlogged soil and bearing pores for gaseous exchange.',
     difficulty: 'medium'
   },
@@ -164,12 +164,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The numerous small pores present on the surface of pneumatophores, which facilitate the exchange of gases, are called:',
     options: [
+      'Root hairs',
       'Lenticels (pneumatophore pores)',
       'Stomata only',
-      'Root hairs',
       'Nodes'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Pneumatophores possess numerous small pores that allow the exchange of gases from the atmosphere, helping mangrove roots respire in waterlogged, oxygen-poor soil.',
     difficulty: 'hard'
   },
@@ -178,12 +178,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The stem of a flowering plant develops from which part of the embryo?',
     options: [
-      'Plumule',
-      'Radicle',
+      'Hypocotyl only',
       'Cotyledon',
-      'Hypocotyl only'
+      'Plumule',
+      'Radicle'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'The stem develops from the plumule of the embryo, the portion that gives rise to the shoot system.',
     difficulty: 'easy'
   },
@@ -192,12 +192,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The regions of the stem that bear leaves are called nodes, while the portions between two successive nodes are called:',
     options: [
+      'Internodes',
       'Axillary buds',
       'Terminal buds',
-      'Internodes',
       'Petioles'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'Nodes are the points on a stem where leaves are attached, and the stem segments between two successive nodes are called internodes.',
     difficulty: 'easy'
   },
@@ -207,11 +207,11 @@ const questions: Question[] = [
     question: 'Underground stem modification of ginger, which grows horizontally and stores food while also aiding perennation, is called a:',
     options: [
       'Tuber',
-      'Rhizome',
       'Corm',
+      'Rhizome',
       'Bulb'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Ginger has an underground stem modification called a rhizome, a horizontally growing stem used for food storage and perennation.',
     difficulty: 'medium'
   },
@@ -220,12 +220,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The underground stem of potato, which is swollen at its tip for food storage and bears characteristic \'eyes\' (nodes with axillary buds), is called a:',
     options: [
-      'Rhizome',
       'Corm',
+      'Tuber',
       'Bulb',
-      'Tuber'
+      'Rhizome'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'The potato tuber is a swollen underground stem modification, with \'eyes\' representing nodes bearing axillary buds.',
     difficulty: 'easy'
   },
@@ -235,11 +235,11 @@ const questions: Question[] = [
     question: 'The underground stem of Colocasia, which is a vertically growing, condensed and swollen structure used for storage, is called a:',
     options: [
       'Rhizome',
-      'Corm',
       'Tuber',
-      'Bulb'
+      'Bulb',
+      'Corm'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Colocasia possesses a corm, a vertically oriented, condensed underground stem used for food storage.',
     difficulty: 'medium'
   },
@@ -248,12 +248,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The underground stem of onion, consisting of a small, condensed stem surrounded by fleshy, overlapping scale leaves for storage, is called a:',
     options: [
+      'Bulb',
       'Rhizome',
-      'Tuber',
       'Corm',
-      'Bulb'
+      'Tuber'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'Onion possesses a bulb, a highly condensed underground stem surrounded by fleshy, food-storing scale leaves.',
     difficulty: 'easy'
   },
@@ -262,12 +262,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A weak, prostrate stem in grass that runs along the ground surface and roots at nodes to form new plants is called a:',
     options: [
-      'Sucker',
       'Offset',
-      'Runner',
-      'Stolon'
+      'Sucker',
+      'Stolon',
+      'Runner'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'A runner is a slender, prostrate lateral stem in plants like grass, running along the surface of the soil and forming new plants at its nodes.',
     difficulty: 'medium'
   },
@@ -276,12 +276,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In strawberry, a weak, arching lateral stem that grows obliquely upward before bending down to touch the soil and form a new plant is called a:',
     options: [
+      'Sucker',
       'Stolon',
       'Runner',
-      'Offset',
-      'Sucker'
+      'Offset'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Strawberry produces a stolon, a lateral stem that arches out and then bends downward, touching the soil to establish a new plant.',
     difficulty: 'medium'
   },
@@ -290,12 +290,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The tendrils used for climbing in plants like grapevine and cucumber are modifications of the:',
     options: [
+      'Stem (axillary bud)',
       'Leaf',
       'Root',
-      'Stem (axillary bud)',
       'Petiole exclusively'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'In grapevine and cucumber, tendrils used for climbing are modifications of the stem (specifically, of axillary buds).',
     difficulty: 'medium'
   },
@@ -305,9 +305,9 @@ const questions: Question[] = [
     question: 'In cacti such as Opuntia, the stem is modified into a flattened, fleshy, green structure that performs photosynthesis in place of leaves, called a:',
     options: [
       'Phylloclade',
+      'Runner',
       'Rhizome',
-      'Tuber',
-      'Runner'
+      'Tuber'
     ],
     correctIndex: 0,
     explanation: 'Opuntia (a cactus) has a phylloclade - a flattened, fleshy, photosynthetic stem modification that compensates for its reduced, spine-like leaves.',
@@ -318,10 +318,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The leaf is a lateral, generally flattened structure borne on the stem, developing at the node from the:',
     options: [
-      'Root apical meristem',
+      'Vascular cambium',
       'Shoot apical meristem',
       'Floral meristem exclusively',
-      'Vascular cambium'
+      'Root apical meristem'
     ],
     correctIndex: 1,
     explanation: 'Leaves develop exogenously at the nodes of the stem from the shoot apical meristem.',
@@ -333,8 +333,8 @@ const questions: Question[] = [
     question: 'The flattened, expanded part of a typical leaf, containing veins and veinlets, is called the:',
     options: [
       'Leaf base',
-      'Petiole',
       'Stipule',
+      'Petiole',
       'Lamina (leaf blade)'
     ],
     correctIndex: 3,
@@ -346,12 +346,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The stalk-like part of the leaf that connects the lamina to the stem, and helps the leaf blade to flutter in air (aiding gas exchange), is called the:',
     options: [
+      'Petiole',
       'Lamina',
       'Leaf base',
-      'Rachis',
-      'Petiole'
+      'Rachis'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'The petiole is the stalk of the leaf connecting the lamina to the stem, and its flexibility allows the leaf blade to flutter, facilitating gas exchange.',
     difficulty: 'easy'
   },
@@ -361,11 +361,11 @@ const questions: Question[] = [
     question: 'The type of venation in which veins and veinlets are irregularly distributed, forming a network, typically seen in dicotyledonous leaves, is called:',
     options: [
       'Parallel venation',
-      'Reticulate venation',
+      'Palmate venation only',
       'Radial venation',
-      'Palmate venation only'
+      'Reticulate venation'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Reticulate venation, forming a net-like pattern of veins, is characteristic of dicotyledonous leaves.',
     difficulty: 'easy'
   },
@@ -374,12 +374,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The type of venation in which veins run parallel to each other within the lamina, typically seen in monocotyledonous leaves, is called:',
     options: [
-      'Parallel venation',
-      'Reticulate venation',
       'Net venation',
-      'Compound venation'
+      'Parallel venation',
+      'Compound venation',
+      'Reticulate venation'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Parallel venation, in which veins run alongside one another without forming a network, is characteristic of monocotyledonous leaves.',
     difficulty: 'easy'
   },
@@ -388,12 +388,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A leaf in which the incisions of the lamina do not reach up to the midrib, so that it remains a single, undivided unit, is called a:',
     options: [
-      'Compound leaf',
       'Pinnately compound leaf',
       'Simple leaf',
+      'Compound leaf',
       'Palmately compound leaf'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'A simple leaf has an undivided lamina, with any incisions failing to reach the midrib, leaving it as one continuous unit.',
     difficulty: 'easy'
   },
@@ -402,12 +402,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A leaf in which the incisions of the lamina reach right up to the midrib, dividing it into several leaflets, is called a:',
     options: [
-      'Compound leaf',
+      'Reticulate leaf',
       'Simple leaf',
-      'Sessile leaf',
-      'Reticulate leaf'
+      'Compound leaf',
+      'Sessile leaf'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'In a compound leaf, incisions extend all the way to the midrib, dividing the lamina into distinct leaflets.',
     difficulty: 'easy'
   },
@@ -416,12 +416,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A compound leaf, such as that of neem, in which leaflets are arranged along a common central axis (representing the midrib), is called a:',
     options: [
-      'Palmately compound leaf',
-      'Simple leaf',
       'Sessile leaf',
-      'Pinnately compound leaf'
+      'Pinnately compound leaf',
+      'Palmately compound leaf',
+      'Simple leaf'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'In a pinnately compound leaf (as in neem), leaflets are arranged along a common rachis, representing the midrib.',
     difficulty: 'medium'
   },
@@ -430,12 +430,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A compound leaf, such as that of silk cotton, in which all leaflets are attached at a common point at the tip of the petiole, is called a:',
     options: [
-      'Pinnately compound leaf',
       'Simple leaf',
-      'Palmately compound leaf',
-      'Sessile leaf'
+      'Sessile leaf',
+      'Pinnately compound leaf',
+      'Palmately compound leaf'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'In a palmately compound leaf (as in silk cotton), all leaflets radiate from a single common point at the tip of the petiole.',
     difficulty: 'medium'
   },
@@ -444,12 +444,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The arrangement of leaves on a stem or its branches is called phyllotaxy. When only a single leaf arises at each node, alternating on either side (as in china rose and mustard), the phyllotaxy is described as:',
     options: [
-      'Opposite',
       'Alternate',
       'Whorled',
-      'Radial'
+      'Radial',
+      'Opposite'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'In alternate phyllotaxy, as in china rose and mustard, a single leaf arises at each node, with successive leaves alternating on either side of the stem.',
     difficulty: 'medium'
   },
@@ -458,12 +458,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When a pair of leaves arises at each node, positioned opposite to each other (as in Calotropis and guava), the phyllotaxy is described as:',
     options: [
-      'Alternate',
       'Opposite',
       'Whorled',
+      'Alternate',
       'Spiral'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'In opposite phyllotaxy, as seen in Calotropis and guava, a pair of leaves is present at each node, positioned directly opposite one another.',
     difficulty: 'medium'
   },
@@ -472,10 +472,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In pea plants, the terminal leaflets of the compound leaf are often modified into slender, coiling structures used for climbing, called:',
     options: [
+      'Bulbils',
       'Spines',
-      'Phylloclades',
       'Tendrils',
-      'Bulbils'
+      'Phylloclades'
     ],
     correctIndex: 2,
     explanation: 'In pea (Pisum sativum), some leaflets of the compound leaf are modified into tendrils, which help the weak stem climb by coiling around a support.',
@@ -486,8 +486,8 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In racemose inflorescences, the main floral axis continues to grow, and flowers are borne laterally in an order such that the youngest flowers are found:',
     options: [
-      'At the base, with the oldest flowers near the apex',
       'Scattered randomly with no particular order',
+      'At the base, with the oldest flowers near the apex',
       'Only at the very tip, with no flowers elsewhere',
       'Near the apex (top), with the oldest flowers toward the base'
     ],
@@ -500,12 +500,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In cymose inflorescences, the main floral axis terminates in a flower, resulting in limited growth, with flowers arranged such that the oldest flower is found:',
     options: [
-      'At the top (or centre), with youngest flowers toward the base (or periphery)',
-      'At the base, with the youngest flower at the top',
       'Scattered randomly with no particular order',
-      'Nowhere, since cymose inflorescences bear only a single flower'
+      'Nowhere, since cymose inflorescences bear only a single flower',
+      'At the base, with the youngest flower at the top',
+      'At the top (or centre), with youngest flowers toward the base (or periphery)'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'In cymose inflorescences, since the main axis terminates in a flower, growth is limited, and flowers are arranged in basipetal order, with the oldest flower at the top/centre and youngest toward the base/periphery.',
     difficulty: 'medium'
   },
@@ -515,11 +515,11 @@ const questions: Question[] = [
     question: 'The arrangement of flowers on the floral axis of a plant is termed:',
     options: [
       'Phyllotaxy',
+      'Inflorescence',
       'Aestivation',
-      'Placentation',
-      'Inflorescence'
+      'Placentation'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'Inflorescence refers to the specific pattern in which flowers are arranged on the floral axis of a plant.',
     difficulty: 'easy'
   },
@@ -528,12 +528,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A flower that can be divided into two equal radial halves by any vertical plane passing through the centre is said to show:',
     options: [
-      'Actinomorphic (radial) symmetry',
+      'Only vertical symmetry',
       'Zygomorphic (bilateral) symmetry',
       'Asymmetry',
-      'Only vertical symmetry'
+      'Actinomorphic (radial) symmetry'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Actinomorphic (radially symmetrical) flowers, such as those of mustard and datura, can be divided into two equal halves by any vertical plane through the centre.',
     difficulty: 'medium'
   },
@@ -542,12 +542,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A flower that can be divided into two equal halves by only one particular vertical plane is said to show:',
     options: [
-      'Actinomorphic (radial) symmetry',
       'Zygomorphic (bilateral) symmetry',
+      'Actinomorphic (radial) symmetry',
       'Asymmetry',
       'Radial symmetry in every plane'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Zygomorphic (bilaterally symmetrical) flowers, such as those of pea and gulmohar, can be divided into two equal halves only along one specific vertical plane.',
     difficulty: 'medium'
   },
@@ -570,12 +570,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the ovary of a flower is superior, and the other floral whorls (calyx, corolla, androecium) are inserted below it on the thalamus, the condition is termed:',
     options: [
-      'Perigynous',
       'Epigynous',
-      'Hypogynous',
-      'Syncarpous'
+      'Syncarpous',
+      'Perigynous',
+      'Hypogynous'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'In hypogynous flowers, such as mustard and china rose, the ovary is superior, positioned above the point of insertion of the other floral whorls.',
     difficulty: 'medium'
   },
@@ -584,12 +584,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the gynoecium (ovary) is half-inferior, with the other floral whorls arising from the rim of the thalamus at roughly the same level as the ovary, the condition is termed:',
     options: [
+      'Apocarpous',
       'Hypogynous',
       'Perigynous',
-      'Epigynous',
-      'Apocarpous'
+      'Epigynous'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'In perigynous flowers, such as plum and rose, the ovary is half-inferior, and other floral parts arise from the rim of the thalamus around it.',
     difficulty: 'medium'
   },
@@ -599,9 +599,9 @@ const questions: Question[] = [
     question: 'When the ovary is inferior, positioned below the level of insertion of the other floral whorls (which appear to arise from above the ovary), the condition is termed:',
     options: [
       'Epigynous',
+      'Monocarpellary',
       'Hypogynous',
-      'Perigynous',
-      'Monocarpellary'
+      'Perigynous'
     ],
     correctIndex: 0,
     explanation: 'In epigynous flowers, such as guava and cucumber, the ovary is inferior, with the other floral whorls appearing to arise from above it.',
@@ -612,9 +612,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The outermost whorl of a typical flower, usually green and protective, made up of individual units called sepals, is called the:',
     options: [
-      'Corolla',
-      'Androecium',
       'Gynoecium',
+      'Androecium',
+      'Corolla',
       'Calyx'
     ],
     correctIndex: 3,
@@ -626,12 +626,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The floral whorl located just inside the calyx, generally brightly coloured to attract pollinators, and composed of individual units called petals, is called the:',
     options: [
+      'Gynoecium',
       'Corolla',
-      'Calyx',
       'Androecium',
-      'Gynoecium'
+      'Calyx'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The corolla, composed of petals, is typically brightly coloured and located just inside the calyx, functioning to attract pollinators.',
     difficulty: 'easy'
   },
@@ -640,12 +640,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The male reproductive whorl of a flower, composed of individual units called stamens, is called the:',
     options: [
-      'Gynoecium',
       'Calyx',
-      'Corolla',
-      'Androecium'
+      'Gynoecium',
+      'Androecium',
+      'Corolla'
     ],
-    correctIndex: 3,
+    correctIndex: 2,
     explanation: 'The androecium is the male reproductive whorl of a flower, made up of individual stamens.',
     difficulty: 'easy'
   },
@@ -654,12 +654,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the sepals of the calyx remain free from one another, this condition is described as:',
     options: [
-      'Gamosepalous',
-      'Gamopetalous',
       'Polysepalous',
+      'Gamopetalous',
+      'Gamosepalous',
       'Polypetalous'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'When sepals remain separate/unfused, the calyx is described as polysepalous.',
     difficulty: 'easy'
   },
@@ -668,9 +668,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the sepals of the calyx are fused together, this condition is described as:',
     options: [
-      'Polysepalous',
-      'Gamosepalous',
       'Gamopetalous',
+      'Gamosepalous',
+      'Polysepalous',
       'Polyandrous'
     ],
     correctIndex: 1,
@@ -682,12 +682,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the petals of the corolla remain free from one another, this condition is described as:',
     options: [
-      'Gamopetalous',
       'Polypetalous',
       'Gamosepalous',
-      'Monoadelphous'
+      'Monoadelphous',
+      'Gamopetalous'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'When petals remain separate/unfused, the corolla is described as polypetalous.',
     difficulty: 'easy'
   },
@@ -696,12 +696,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the petals of the corolla are fused together, this condition is described as:',
     options: [
-      'Gamopetalous',
       'Polypetalous',
       'Polysepalous',
+      'Gamopetalous',
       'Syncarpous'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'When petals are fused together, the corolla is described as gamopetalous.',
     difficulty: 'easy'
   },
@@ -710,12 +710,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In valvate aestivation, as seen in Calotropis, the margins of adjacent sepals or petals:',
     options: [
-      'Overlap one another in one particular direction only',
-      'Twist around each other completely',
+      'Just touch one another, without any overlapping',
       'Overlap in no particular, definite direction',
-      'Just touch one another, without any overlapping'
+      'Overlap one another in one particular direction only',
+      'Twist around each other completely'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'In valvate aestivation, adjacent floral members simply touch at their margins, without any degree of overlap, as seen in Calotropis.',
     difficulty: 'medium'
   },
@@ -724,10 +724,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In twisted aestivation, as seen in china rose and cotton, the arrangement of petals is such that:',
     options: [
-      'Margins simply touch, without any overlap',
       'Margins overlap, but with no fixed or particular direction',
+      'Petals do not touch each other at all',
       'One margin of each petal overlaps the margin of the next petal in a consistent, twisting pattern',
-      'Petals do not touch each other at all'
+      'Margins simply touch, without any overlap'
     ],
     correctIndex: 2,
     explanation: 'In twisted aestivation, one margin of each petal consistently overlaps the next, creating a spiral/twisted pattern, as seen in china rose and cotton.',
@@ -738,12 +738,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In imbricate aestivation, as seen in Cassia and gulmohar, the margins of sepals or petals overlap one another, but:',
     options: [
-      'Only in a strict, one-directional twisting pattern',
-      'Without any overlap occurring at all',
       'Only at a single point, with no other contact',
-      'Without following any particular, consistent direction'
+      'Without following any particular, consistent direction',
+      'Without any overlap occurring at all',
+      'Only in a strict, one-directional twisting pattern'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'In imbricate aestivation, margins of the floral members overlap one another, but not in any fixed, consistent direction, as seen in Cassia and gulmohar.',
     difficulty: 'hard'
   },
@@ -754,10 +754,10 @@ const questions: Question[] = [
     options: [
       'Valvate aestivation',
       'Twisted aestivation',
-      'Vexillary (papilionaceous) aestivation',
-      'Imbricate aestivation, of the ordinary type'
+      'Imbricate aestivation, of the ordinary type',
+      'Vexillary (papilionaceous) aestivation'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'Vexillary (papilionaceous) aestivation is characteristic of the pea family (Fabaceae), where the large posterior standard petal overlaps the lateral wing petals, which in turn overlap the smallest anterior keel petals.',
     difficulty: 'hard'
   },
@@ -766,12 +766,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A typical stamen, the unit of the androecium, consists of a stalk called the filament, and a terminal, usually bilobed structure called the:',
     options: [
-      'Anther',
       'Stigma',
       'Style',
+      'Anther',
       'Ovary'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'A stamen consists of a stalk-like filament and a terminal anther, which is usually bilobed and contains the pollen sacs.',
     difficulty: 'easy'
   },
@@ -780,12 +780,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the stamens of a flower are united into a single bundle by their filaments, as in china rose, this condition is called:',
     options: [
-      'Diadelphous',
       'Monoadelphous',
       'Polyadelphous',
+      'Diadelphous',
       'Syngenesious'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'In monoadelphous stamens (as in china rose), all the stamens are united by their filaments into a single common bundle.',
     difficulty: 'medium'
   },
@@ -794,12 +794,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the stamens of a flower are united into two distinct bundles by their filaments, as in pea (with a 9+1 arrangement), this condition is called:',
     options: [
-      'Diadelphous',
       'Monoadelphous',
       'Polyadelphous',
-      'Syngenesious'
+      'Syngenesious',
+      'Diadelphous'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'In diadelphous stamens (as in pea), the filaments are united into two separate bundles, typically in a 9+1 arrangement.',
     difficulty: 'medium'
   },
@@ -808,12 +808,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the stamens of a flower are united into more than two bundles by their filaments, as in citrus, this condition is called:',
     options: [
-      'Monoadelphous',
-      'Polyadelphous',
       'Diadelphous',
-      'Syngenesious'
+      'Monoadelphous',
+      'Syngenesious',
+      'Polyadelphous'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'In polyadelphous stamens (as in citrus), the filaments are united into more than two separate bundles.',
     difficulty: 'medium'
   },
@@ -822,12 +822,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the stamens of a flower are united together by their anthers (rather than their filaments), as commonly seen in the sunflower family, this condition is called:',
     options: [
-      'Monoadelphous',
+      'Syngenesious',
       'Diadelphous',
-      'Polyadelphous',
-      'Syngenesious'
+      'Monoadelphous',
+      'Polyadelphous'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'Syngenesious stamens are united by their anthers (not filaments), a condition commonly observed in the Asteraceae (sunflower) family.',
     difficulty: 'hard'
   },
@@ -836,12 +836,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When stamens are attached to the petals of the corolla, as seen in brinjal, this condition is described as:',
     options: [
+      'Epipetalous',
       'Epiphyllous',
       'Monoadelphous',
-      'Epipetalous',
       'Gamopetalous'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'Epipetalous stamens are attached to the petals of the corolla, as observed in brinjal.',
     difficulty: 'medium'
   },
@@ -850,12 +850,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A flower in which the stamens occur in two pairs of different lengths, two long and two short, as seen in Salvia and Ocimum, shows a condition called:',
     options: [
-      'Tetradynamous',
       'Monoadelphous',
       'Didynamous',
+      'Tetradynamous',
       'Syngenesious'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Didynamous stamens (two long and two short) are found in plants like Salvia and Ocimum.',
     difficulty: 'hard'
   },
@@ -865,11 +865,11 @@ const questions: Question[] = [
     question: 'A flower in which six stamens occur as four long and two short, as commonly seen in mustard (family Brassicaceae), shows a condition called:',
     options: [
       'Didynamous',
-      'Diadelphous',
+      'Tetradynamous',
       'Polyadelphous',
-      'Tetradynamous'
+      'Diadelphous'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'Tetradynamous stamens (four long and two short, totaling six) are characteristic of the mustard family (Brassicaceae).',
     difficulty: 'hard'
   },
@@ -878,12 +878,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The basic unit of the gynoecium, consisting of the stigma, style, and ovary, is called the:',
     options: [
-      'Stamen',
-      'Carpel (pistil)',
+      'Petal',
       'Sepal',
-      'Petal'
+      'Stamen',
+      'Carpel (pistil)'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The carpel (or pistil) is the fundamental unit of the gynoecium, consisting of the stigma, style, and ovary.',
     difficulty: 'easy'
   },
@@ -893,9 +893,9 @@ const questions: Question[] = [
     question: 'A gynoecium made up of only a single carpel, as seen in pea, is described as:',
     options: [
       'Monocarpellary',
-      'Syncarpous',
       'Apocarpous',
-      'Multicarpellary'
+      'Multicarpellary',
+      'Syncarpous'
     ],
     correctIndex: 0,
     explanation: 'A monocarpellary gynoecium consists of only a single carpel, as seen in pea.',
@@ -906,12 +906,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When a gynoecium has more than one carpel, and these carpels are fused together, as in tomato and mustard, the condition is called:',
     options: [
-      'Apocarpous',
-      'Syncarpous',
+      'Free carpels throughout',
       'Monocarpellary',
-      'Free carpels throughout'
+      'Syncarpous',
+      'Apocarpous'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'A syncarpous gynoecium consists of multiple carpels that are fused together, as seen in tomato and mustard.',
     difficulty: 'medium'
   },
@@ -920,12 +920,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When a gynoecium has more than one carpel, and these carpels remain free (unfused) from one another, as in lotus and rose, the condition is called:',
     options: [
-      'Apocarpous',
+      'Perigynous',
       'Syncarpous',
-      'Monocarpellary',
-      'Perigynous'
+      'Apocarpous',
+      'Monocarpellary'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'An apocarpous gynoecium consists of multiple carpels that remain free and unfused, as seen in lotus and rose.',
     difficulty: 'medium'
   },
@@ -935,11 +935,11 @@ const questions: Question[] = [
     question: 'The specific arrangement of ovules within the ovary is called:',
     options: [
       'Aestivation',
-      'Phyllotaxy',
       'Placentation',
+      'Phyllotaxy',
       'Vernation'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Placentation describes the specific pattern in which ovules are arranged and attached within the ovary.',
     difficulty: 'easy'
   },
@@ -948,12 +948,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In marginal placentation, as seen in pea, the placenta forms a ridge along the ventral suture of the ovary, and the ovules are borne on this ridge in:',
     options: [
-      'A single row only',
-      'Multiple, scattered rows with no pattern',
       'A ring around a central axis',
-      'Two rows'
+      'Two rows',
+      'A single row only',
+      'Multiple, scattered rows with no pattern'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'In marginal placentation (as in pea), the placenta develops along the ventral suture and bears ovules arranged in two rows.',
     difficulty: 'medium'
   },
@@ -962,12 +962,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In axile placentation, as seen in china rose, tomato, and lemon, the placenta is located centrally within a multilocular ovary, and ovules are attached to it in a manner such that the placenta:',
     options: [
-      'Forms a ridge only along one ventral suture',
       'Is completely absent, with ovules scattered freely',
       'Develops only at the very base of the ovary',
-      'Forms a central axis, with septa dividing the ovary into chambers'
+      'Forms a central axis, with septa dividing the ovary into chambers',
+      'Forms a ridge only along one ventral suture'
     ],
-    correctIndex: 3,
+    correctIndex: 2,
     explanation: 'In axile placentation, the placenta is axial (central), and the ovary is divided into multiple chambers (locules) by septa, with ovules attached to the central axis.',
     difficulty: 'medium'
   },
@@ -976,12 +976,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In parietal placentation, as seen in mustard and Argemone, the ovules develop on the inner wall of the ovary, which is typically:',
     options: [
-      'Always multi-chambered from the very beginning, with no false septum involved',
-      'Never divided into any chambers under any circumstance',
       'One-chambered, but may become two-chambered due to the formation of a false septum',
-      'Chambered directly by true septa formed by fused carpel margins meeting at the centre'
+      'Chambered directly by true septa formed by fused carpel margins meeting at the centre',
+      'Always multi-chambered from the very beginning, with no false septum involved',
+      'Never divided into any chambers under any circumstance'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'Parietal placentation involves ovules developing on the inner wall (periphery) of a typically one-chambered ovary, which may become two-chambered due to a false septum, as in mustard.',
     difficulty: 'hard'
   },
@@ -990,12 +990,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In free central placentation, as seen in Dianthus and Primrose, the ovules are borne on a central axis, and unlike axile placentation, this condition is characterised by the:',
     options: [
-      'Absence of septa within the ovary',
       'Presence of numerous septa dividing the ovary into many chambers',
       'Ovules being restricted to only the ovary wall',
+      'Absence of septa within the ovary',
       'Complete absence of any placenta'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'Free central placentation involves ovules attached to a central axis, but unlike axile placentation, there are no septa present, so the ovary remains a single chamber.',
     difficulty: 'hard'
   },
@@ -1004,12 +1004,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In basal placentation, as seen in sunflower and marigold, the placenta develops at the base of the ovary, typically bearing:',
     options: [
+      'Ovules arranged around a central axis',
       'Numerous ovules arranged in two rows',
       'A single ovule',
-      'Ovules scattered along the entire ovary wall',
-      'Ovules arranged around a central axis'
+      'Ovules scattered along the entire ovary wall'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Basal placentation involves the placenta developing at the base of the ovary, typically attaching only a single ovule, as seen in sunflower and marigold.',
     difficulty: 'medium'
   },
@@ -1018,12 +1018,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A fruit is generally defined as a mature, ripened structure that typically develops from the:',
     options: [
-      'Ovary, following fertilisation',
-      'Petal, without any fertilisation event',
+      'Stamen, after pollen release',
       'Sepal, following pollination alone',
-      'Stamen, after pollen release'
+      'Petal, without any fertilisation event',
+      'Ovary, following fertilisation'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'A fruit is generally a matured ovary, typically developing as a result of fertilisation following pollination.',
     difficulty: 'easy'
   },
@@ -1034,8 +1034,8 @@ const questions: Question[] = [
     options: [
       'Aggregate fruit',
       'Parthenocarpic fruit',
-      'Composite fruit',
-      'True fruit only'
+      'True fruit only',
+      'Composite fruit'
     ],
     correctIndex: 1,
     explanation: 'A parthenocarpic fruit develops from the ovary without fertilisation having taken place, and such fruits are typically seedless.',
@@ -1046,12 +1046,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The wall of a fruit, developing from the wall of the ovary, is called the:',
     options: [
-      'Testa',
       'Tegmen',
-      'Placenta',
-      'Pericarp'
+      'Pericarp',
+      'Testa',
+      'Placenta'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'The pericarp is the fruit wall, developing from the wall of the ovary following fertilisation.',
     difficulty: 'medium'
   },
@@ -1062,10 +1062,10 @@ const questions: Question[] = [
     options: [
       'Testa',
       'Tegmen',
-      'Endocarp',
-      'Aril'
+      'Aril',
+      'Endocarp'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'In fleshy fruits, the pericarp differentiates into the outer epicarp, middle mesocarp, and innermost endocarp.',
     difficulty: 'medium'
   },
@@ -1074,10 +1074,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The outer protective covering (or coat) of a mature seed is called the:',
     options: [
-      'Pericarp',
-      'Seed coat (testa and tegmen)',
       'Placenta',
-      'Endosperm exclusively'
+      'Seed coat (testa and tegmen)',
+      'Endosperm exclusively',
+      'Pericarp'
     ],
     correctIndex: 1,
     explanation: 'The outer covering of a seed, typically consisting of an outer testa and an inner tegmen, is called the seed coat.',
@@ -1088,10 +1088,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In non-endospermic (exalbuminous) dicot seeds, such as pea and gram, the food reserves consumed during embryo development are stored in the:',
     options: [
-      'Endosperm, which persists in the mature seed',
+      'The radicle exclusively',
       'The seed coat',
       'Cotyledons',
-      'The radicle exclusively'
+      'Endosperm, which persists in the mature seed'
     ],
     correctIndex: 2,
     explanation: 'In non-endospermic (exalbuminous) seeds like pea and gram, the endosperm is consumed during development, and food reserves are instead stored in the swollen cotyledons.',

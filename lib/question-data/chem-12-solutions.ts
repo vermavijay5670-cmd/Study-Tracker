@@ -7,10 +7,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A solution is best defined as',
     options: [
-      'a heterogeneous mixture of two or more components',
+      'a compound formed by chemical combination of solute and solvent',
       'a homogeneous mixture of two or more chemically non-reacting components',
-      'a mixture of only two liquids',
-      'a compound formed by chemical combination of solute and solvent'
+      'a heterogeneous mixture of two or more components',
+      'a mixture of only two liquids'
     ],
     correctIndex: 1,
     explanation: 'A solution is a homogeneous mixture of two or more components whose composition can be varied within limits, and the components do not react chemically with each other.',
@@ -20,8 +20,8 @@ const questions: Question[] = [
     id: 'solutions-2',
     type: 'mcq',
     question: 'In a binary solution, the component present in the larger quantity is called the',
-    options: ['solute', 'solvent', 'colloid', 'precipitate'],
-    correctIndex: 1,
+    options: ['colloid', 'precipitate', 'solute', 'solvent'],
+    correctIndex: 3,
     explanation: 'By convention, in a binary solution the component present in larger proportion is the solvent, and the one in smaller proportion is the solute.',
     difficulty: 'easy'
   },
@@ -29,8 +29,8 @@ const questions: Question[] = [
     id: 'solutions-3',
     type: 'mcq',
     question: 'An alloy such as brass, in which zinc (solid) is dissolved in copper (solid), is an example of a',
-    options: ['gas in solid solution', 'liquid in solid solution', 'solid in solid solution', 'solid in liquid solution'],
-    correctIndex: 2,
+    options: ['solid in liquid solution', 'solid in solid solution', 'gas in solid solution', 'liquid in solid solution'],
+    correctIndex: 1,
     explanation: 'Brass is a solid solution of zinc (solute) dissolved in copper (solvent), so it is classified as solid dissolved in solid.',
     difficulty: 'easy'
   },
@@ -38,8 +38,8 @@ const questions: Question[] = [
     id: 'solutions-4',
     type: 'mcq',
     question: 'Soda water (CO2 dissolved in water) is an example of which type of solution?',
-    options: ['Gas in gas', 'Gas in liquid', 'Liquid in gas', 'Solid in liquid'],
-    correctIndex: 1,
+    options: ['Liquid in gas', 'Solid in liquid', 'Gas in gas', 'Gas in liquid'],
+    correctIndex: 3,
     explanation: 'Soda water contains CO2 gas dissolved in the liquid solvent water, making it a gas-in-liquid solution.',
     difficulty: 'easy'
   },
@@ -47,7 +47,7 @@ const questions: Question[] = [
     id: 'solutions-5',
     type: 'mcq',
     question: 'Camphor in nitrogen gas is an example of a solution of the type',
-    options: ['gas in gas', 'solid in gas', 'liquid in gas', 'gas in solid'],
+    options: ['liquid in gas', 'solid in gas', 'gas in gas', 'gas in solid'],
     correctIndex: 1,
     explanation: 'Camphor (a solid) sublimes and disperses into nitrogen gas, giving a solid dissolved in gas type solution, as listed in NCERT for the types of solutions.',
     difficulty: 'medium'
@@ -56,8 +56,8 @@ const questions: Question[] = [
     id: 'solutions-6',
     type: 'mcq',
     question: 'Which of the following concentration terms is independent of temperature?',
-    options: ['Molarity', 'Molality', 'Normality', 'Formality'],
-    correctIndex: 1,
+    options: ['Formality', 'Normality', 'Molarity', 'Molality'],
+    correctIndex: 3,
     explanation: 'Molality is defined using mass of solvent (in kg), which does not change with temperature, unlike molarity, normality and formality, which are volume-based and hence temperature dependent.',
     difficulty: 'medium'
   },
@@ -67,11 +67,11 @@ const questions: Question[] = [
     question: 'Mole fraction of a component in a solution is defined as',
     options: [
       'moles of that component divided by total mass of solution',
-      'moles of that component divided by total moles of all components',
       'mass of that component divided by mass of solvent',
-      'moles of that component divided by volume of solution in litres'
+      'moles of that component divided by volume of solution in litres',
+      'moles of that component divided by total moles of all components'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Mole fraction of a component = (number of moles of that component) / (total number of moles of all components in the solution).',
     difficulty: 'easy'
   },
@@ -79,8 +79,8 @@ const questions: Question[] = [
     id: 'solutions-8',
     type: 'mcq',
     question: 'For a binary solution with components 1 and 2, the mole fractions x1 and x2 satisfy',
-    options: ['x1 + x2 = 0', 'x1 + x2 = 1', 'x1 - x2 = 1', 'x1 × x2 = 1'],
-    correctIndex: 1,
+    options: ['x1 - x2 = 1', 'x1 + x2 = 0', 'x1 × x2 = 1', 'x1 + x2 = 1'],
+    correctIndex: 3,
     explanation: 'Since mole fractions are fractional parts of the total moles, the mole fractions of all components in a solution must always sum to 1.',
     difficulty: 'easy'
   },
@@ -89,10 +89,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Parts per million (ppm) is a concentration unit generally used for',
     options: [
-      'concentrated solutions like brine',
+      'solid solutions like alloys',
       'very dilute solutions, such as trace pollutants in water or air',
       'solutions of gases in gases only',
-      'solid solutions like alloys'
+      'concentrated solutions like brine'
     ],
     correctIndex: 1,
     explanation: 'ppm expresses the amount of solute per million parts of solution and is used when a solute is present in trace quantities, such as pollutants in water or air.',
@@ -117,12 +117,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The dissolution of a gas in a liquid is generally',
     options: [
+      'neither exothermic nor endothermic',
       'an endothermic process',
       'an exothermic process',
-      'neither exothermic nor endothermic',
       'always accompanied by a large increase in entropy that overrides enthalpy effects'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Dissolution of a gas in a liquid is usually exothermic, which is why, according to Le Chatelier\'s principle, the solubility of a gas in a liquid decreases with an increase in temperature.',
     difficulty: 'medium'
   },
@@ -130,8 +130,8 @@ const questions: Question[] = [
     id: 'solutions-12',
     type: 'mcq',
     question: 'On increasing temperature, the solubility of most gases in liquids',
-    options: ['increases', 'decreases', 'remains unaffected', 'first increases then decreases sharply'],
-    correctIndex: 1,
+    options: ['first increases then decreases sharply', 'remains unaffected', 'increases', 'decreases'],
+    correctIndex: 3,
     explanation: 'Since dissolution of gases is exothermic, increasing temperature shifts the equilibrium to favour escape of the gas, decreasing its solubility, which is why aquatic life is more comfortable in cold water.',
     difficulty: 'easy'
   },
@@ -140,12 +140,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Henry\'s law states that the partial pressure of a gas in vapour phase is proportional to the',
     options: [
-      'mole fraction of the gas in the solution',
       'total pressure of the system',
       'volume of the solution',
-      'molar mass of the gas'
+      'molar mass of the gas',
+      'mole fraction of the gas in the solution'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Henry\'s law states p = KH·x, where p is the partial pressure of the gas above the solution and x is the mole fraction of the dissolved gas in the solution.',
     difficulty: 'easy'
   },
@@ -154,9 +154,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A gas with a higher value of Henry\'s law constant (KH) at a given temperature is',
     options: [
-      'more soluble in the liquid',
-      'less soluble in the liquid',
       'equally soluble regardless of KH',
+      'less soluble in the liquid',
+      'more soluble in the liquid',
       'not able to dissolve at all'
     ],
     correctIndex: 1,
@@ -169,11 +169,11 @@ const questions: Question[] = [
     question: 'Bottles of soft drinks are sealed under high pressure of CO2 mainly to',
     options: [
       'increase the shelf life of the flavouring agents',
-      'increase the solubility of CO2 in the drink, as per Henry\'s law',
+      'reduce the cost of packaging',
       'prevent bacterial growth',
-      'reduce the cost of packaging'
+      'increase the solubility of CO2 in the drink, as per Henry\'s law'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'By Henry\'s law, increasing the partial pressure of CO2 increases its solubility (mole fraction) in the liquid, which is why soft drink bottles are sealed under high CO2 pressure.',
     difficulty: 'medium'
   },
@@ -184,8 +184,8 @@ const questions: Question[] = [
     options: [
       'helium is cheaper than nitrogen',
       'the lower solubility of helium in blood, compared to nitrogen, reduces the risk of bends caused by gas bubbles on ascent',
-      'helium reacts with nitrogen to remove it from the tank',
-      'helium increases the density of the breathing mixture'
+      'helium increases the density of the breathing mixture',
+      'helium reacts with nitrogen to remove it from the tank'
     ],
     correctIndex: 1,
     explanation: 'At high underwater pressure, nitrogen dissolves in blood in large amounts due to Henry\'s law; on rapid ascent it forms bubbles causing decompression sickness (bends). Helium, being less soluble in blood, is used instead of nitrogen to avoid this.',
@@ -196,10 +196,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'People taken suddenly to high altitudes suffer from a condition called anoxia because',
     options: [
-      'the partial pressure of oxygen at high altitude is higher than at sea level',
+      'oxygen becomes chemically inert at low pressure',
       'low atmospheric pressure at high altitude leads to low concentration of oxygen dissolved in blood and tissue fluid',
-      'high altitude air contains more carbon dioxide than oxygen',
-      'oxygen becomes chemically inert at low pressure'
+      'the partial pressure of oxygen at high altitude is higher than at sea level',
+      'high altitude air contains more carbon dioxide than oxygen'
     ],
     correctIndex: 1,
     explanation: 'At high altitude, the partial pressure of oxygen is lower than at sea level, and by Henry\'s law this leads to a lower concentration of dissolved oxygen in blood, causing weakness and inability to think clearly (anoxia).',
@@ -210,10 +210,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Henry\'s law is not applicable to gases such as ammonia or hydrogen chloride when dissolved in water because these gases',
     options: [
-      'have extremely low molar mass',
+      'do not dissolve in water at all',
       'undergo ionisation or reaction with the solvent',
-      'have very low boiling points',
-      'do not dissolve in water at all'
+      'have extremely low molar mass',
+      'have very low boiling points'
     ],
     correctIndex: 1,
     explanation: 'Henry\'s law applies well when the gas does not chemically interact with the solvent. Gases like NH3 and HCl react with or ionise in water, so their solubility does not simply follow Henry\'s law.',
@@ -223,8 +223,8 @@ const questions: Question[] = [
     id: 'solutions-19',
     type: 'mcq',
     question: 'The solubility of a solid solute in a liquid solvent is affected significantly by',
-    options: ['pressure only', 'temperature, since dissolution of solids in liquids is not appreciably affected by pressure', 'neither temperature nor pressure', 'only the colour of the solute'],
-    correctIndex: 1,
+    options: ['only the colour of the solute', 'neither temperature nor pressure', 'pressure only', 'temperature, since dissolution of solids in liquids is not appreciably affected by pressure'],
+    correctIndex: 3,
     explanation: 'For solid-in-liquid solutions, since solids and liquids are highly incompressible, pressure has practically no effect on solubility, whereas temperature has a significant effect (increasing or decreasing solubility depending on whether dissolution is endothermic or exothermic).',
     difficulty: 'medium'
   },
@@ -232,8 +232,8 @@ const questions: Question[] = [
     id: 'solutions-20',
     type: 'mcq',
     question: 'If the dissolution process of a solid in a liquid is endothermic, then according to Le Chatelier\'s principle, an increase in temperature will',
-    options: ['decrease the solubility of the solid', 'increase the solubility of the solid', 'have no effect on solubility', 'cause the solid to sublime instead of dissolve'],
-    correctIndex: 1,
+    options: ['have no effect on solubility', 'decrease the solubility of the solid', 'cause the solid to sublime instead of dissolve', 'increase the solubility of the solid'],
+    correctIndex: 3,
     explanation: 'For an endothermic dissolution process, heat is a reactant in the equilibrium sense, so increasing temperature shifts equilibrium towards more dissolution, increasing solubility.',
     difficulty: 'medium'
   },
@@ -242,10 +242,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Raoult\'s law for a solution of two volatile liquids states that the partial vapour pressure of each component is',
     options: [
-      'independent of its mole fraction in solution',
-      'directly proportional to its mole fraction in the solution',
       'inversely proportional to its mole fraction in the solution',
-      'equal to the vapour pressure of the pure liquid regardless of composition'
+      'directly proportional to its mole fraction in the solution',
+      'equal to the vapour pressure of the pure liquid regardless of composition',
+      'independent of its mole fraction in solution'
     ],
     correctIndex: 1,
     explanation: 'Raoult\'s law states p1 = p1°x1 and p2 = p2°x2, i.e. the partial vapour pressure of each volatile component is proportional to its mole fraction in the solution.',
@@ -255,8 +255,8 @@ const questions: Question[] = [
     id: 'solutions-22',
     type: 'mcq',
     question: 'According to Raoult\'s law, the total vapour pressure of an ideal solution of two volatile liquids is given by',
-    options: ['ptotal = p1° + p2°', 'ptotal = p1°x1 + p2°x2', 'ptotal = p1°x2 + p2°x1', 'ptotal = p1°/x1 + p2°/x2'],
-    correctIndex: 1,
+    options: ['ptotal = p1°/x1 + p2°/x2', 'ptotal = p1° + p2°', 'ptotal = p1°x2 + p2°x1', 'ptotal = p1°x1 + p2°x2'],
+    correctIndex: 3,
     explanation: 'The total vapour pressure is the sum of the partial vapour pressures of both components, each given by Raoult\'s law: ptotal = p1°x1 + p2°x2.',
     difficulty: 'medium'
   },
@@ -265,12 +265,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Raoult\'s law is regarded as a special case of Henry\'s law when',
     options: [
+      'the solvent is water',
       'the Henry\'s law constant KH becomes equal to the vapour pressure of the pure component',
-      'the mole fraction of solute becomes zero',
       'the solute is a non-volatile solid',
-      'the solvent is water'
+      'the mole fraction of solute becomes zero'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Both laws relate partial pressure to mole fraction with a proportionality constant. Raoult\'s law becomes a special case of Henry\'s law when the proportionality constant KH equals p° (the vapour pressure of the pure component).',
     difficulty: 'hard'
   },
@@ -279,12 +279,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In the vapour phase above an ideal binary liquid mixture, the vapour is always',
     options: [
-      'richer in the component with the lower boiling point (more volatile component)',
       'richer in the component with the higher boiling point',
-      'of exactly the same composition as the liquid',
-      'entirely composed of only one component'
+      'richer in the component with the lower boiling point (more volatile component)',
+      'entirely composed of only one component',
+      'of exactly the same composition as the liquid'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The more volatile component (higher vapour pressure, lower boiling point) contributes proportionally more to the vapour phase than to the liquid phase, so the vapour is richer in that component.',
     difficulty: 'medium'
   },
@@ -293,12 +293,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'An ideal solution is one that',
     options: [
-      'obeys Raoult\'s law over the entire range of concentration',
-      'always shows a positive deviation from Raoult\'s law',
       'has a boiling point higher than either pure component',
-      'cannot exist in nature'
+      'always shows a positive deviation from Raoult\'s law',
+      'cannot exist in nature',
+      'obeys Raoult\'s law over the entire range of concentration'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'An ideal solution obeys Raoult\'s law at all concentrations and temperatures, with ΔmixH = 0 and ΔmixV = 0.',
     difficulty: 'easy'
   },
@@ -306,8 +306,8 @@ const questions: Question[] = [
     id: 'solutions-26',
     type: 'mcq',
     question: 'For an ideal solution, the enthalpy and volume of mixing are',
-    options: ['both positive', 'both negative', 'both zero', 'ΔmixH is zero but ΔmixV is positive'],
-    correctIndex: 2,
+    options: ['ΔmixH is zero but ΔmixV is positive', 'both zero', 'both positive', 'both negative'],
+    correctIndex: 1,
     explanation: 'In an ideal solution, since intermolecular attractive forces between A-A, B-B and A-B are essentially the same, there is no heat change or volume change on mixing, so ΔmixH = 0 and ΔmixV = 0.',
     difficulty: 'medium'
   },
@@ -315,8 +315,8 @@ const questions: Question[] = [
     id: 'solutions-27',
     type: 'mcq',
     question: 'Which of the following pairs is generally cited as forming a nearly ideal solution?',
-    options: ['Ethanol and water', 'n-hexane and n-heptane', 'Phenol and aniline', 'Nitric acid and water'],
-    correctIndex: 1,
+    options: ['Ethanol and water', 'Nitric acid and water', 'Phenol and aniline', 'n-hexane and n-heptane'],
+    correctIndex: 3,
     explanation: 'n-hexane and n-heptane are structurally similar non-polar liquids with nearly identical intermolecular forces, forming a solution that closely obeys Raoult\'s law (nearly ideal), unlike the other listed pairs which show significant deviations.',
     difficulty: 'medium'
   },
@@ -325,12 +325,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A solution showing positive deviation from Raoult\'s law has',
     options: [
-      'A-B interactions stronger than A-A and B-B interactions',
-      'A-B interactions weaker than A-A and B-B interactions',
       'no intermolecular interactions at all',
-      'A-B interactions exactly equal to A-A and B-B interactions'
+      'A-B interactions exactly equal to A-A and B-B interactions',
+      'A-B interactions stronger than A-A and B-B interactions',
+      'A-B interactions weaker than A-A and B-B interactions'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Positive deviation occurs when solute-solvent (A-B) interactions are weaker than the solute-solute and solvent-solvent interactions, so molecules escape into vapour more easily than predicted, raising the vapour pressure above the ideal value.',
     difficulty: 'medium'
   },
@@ -338,7 +338,7 @@ const questions: Question[] = [
     id: 'solutions-29',
     type: 'mcq',
     question: 'For a solution showing positive deviation from Raoult\'s law, the enthalpy of mixing (ΔmixH) is',
-    options: ['zero', 'positive (endothermic)', 'negative (exothermic)', 'undefined'],
+    options: ['undefined', 'positive (endothermic)', 'zero', 'negative (exothermic)'],
     correctIndex: 1,
     explanation: 'Positive deviation is associated with weaker A-B interactions, so mixing requires energy to be absorbed to separate the stronger A-A/B-B interactions, making ΔmixH positive (endothermic).',
     difficulty: 'medium'
@@ -347,8 +347,8 @@ const questions: Question[] = [
     id: 'solutions-30',
     type: 'mcq',
     question: 'Which of the following mixtures shows positive deviation from Raoult\'s law?',
-    options: ['Chloroform and acetone', 'Ethanol and acetone', 'Nitric acid and water', 'Phenol and aniline'],
-    correctIndex: 1,
+    options: ['Phenol and aniline', 'Chloroform and acetone', 'Nitric acid and water', 'Ethanol and acetone'],
+    correctIndex: 3,
     explanation: 'Ethanol and acetone show positive deviation because ethanol molecules that were hydrogen-bonded to each other get partly disrupted by acetone, weakening the A-B interactions compared to A-A and B-B.',
     difficulty: 'medium'
   },
@@ -356,7 +356,7 @@ const questions: Question[] = [
     id: 'solutions-31',
     type: 'mcq',
     question: 'A solution showing negative deviation from Raoult\'s law is exemplified by',
-    options: ['ethanol and acetone', 'phenol and aniline', 'cyclohexane and ethanol', 'acetone and carbon disulphide'],
+    options: ['acetone and carbon disulphide', 'phenol and aniline', 'ethanol and acetone', 'cyclohexane and ethanol'],
     correctIndex: 1,
     explanation: 'Phenol and aniline show negative deviation because hydrogen bonding between phenol and aniline molecules makes A-B interactions stronger than A-A and B-B interactions, lowering the vapour pressure below the ideal value.',
     difficulty: 'medium'
@@ -365,8 +365,8 @@ const questions: Question[] = [
     id: 'solutions-32',
     type: 'mcq',
     question: 'For a solution showing negative deviation from Raoult\'s law, mixing of the two components is generally',
-    options: ['exothermic, with ΔmixH negative', 'endothermic, with ΔmixH positive', 'accompanied by no enthalpy change', 'always accompanied by an increase in volume'],
-    correctIndex: 0,
+    options: ['accompanied by no enthalpy change', 'exothermic, with ΔmixH negative', 'always accompanied by an increase in volume', 'endothermic, with ΔmixH positive'],
+    correctIndex: 1,
     explanation: 'In negative deviation, stronger A-B interactions form on mixing, releasing energy, so ΔmixH is negative (exothermic), and the solution volume also typically decreases.',
     difficulty: 'medium'
   },
@@ -384,12 +384,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'An azeotrope is a mixture of two liquids that',
     options: [
-      'boils at a constant temperature and has the same composition in liquid and vapour phases, so it cannot be separated by simple fractional distillation',
-      'always has a boiling point lower than either pure component',
       'is always an ideal solution',
+      'always has a boiling point lower than either pure component',
+      'boils at a constant temperature and has the same composition in liquid and vapour phases, so it cannot be separated by simple fractional distillation',
       'consists of only one component in the vapour phase'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'An azeotrope boils at a fixed temperature with liquid and vapour of identical composition, so its components cannot be separated by fractional distillation.',
     difficulty: 'medium'
   },
@@ -397,8 +397,8 @@ const questions: Question[] = [
     id: 'solutions-35',
     type: 'mcq',
     question: 'Solutions that show a large positive deviation from Raoult\'s law form',
-    options: ['minimum boiling azeotropes', 'maximum boiling azeotropes', 'no azeotropes at all', 'only solid solutions'],
-    correctIndex: 0,
+    options: ['only solid solutions', 'maximum boiling azeotropes', 'minimum boiling azeotropes', 'no azeotropes at all'],
+    correctIndex: 2,
     explanation: 'Large positive deviation raises the total vapour pressure above ideal at some composition, giving a minimum in the boiling point curve there, so a minimum boiling azeotrope forms (e.g. ethanol-water at about 95% ethanol).',
     difficulty: 'hard'
   },
@@ -406,8 +406,8 @@ const questions: Question[] = [
     id: 'solutions-36',
     type: 'mcq',
     question: 'A mixture of nitric acid and water, which shows large negative deviation from Raoult\'s law, forms a',
-    options: ['minimum boiling azeotrope', 'maximum boiling azeotrope', 'perfectly ideal solution', 'gaseous solution only'],
-    correctIndex: 1,
+    options: ['gaseous solution only', 'perfectly ideal solution', 'minimum boiling azeotrope', 'maximum boiling azeotrope'],
+    correctIndex: 3,
     explanation: 'Large negative deviation lowers the vapour pressure and raises the boiling point at some composition, giving a maximum boiling azeotrope, as observed for the nitric acid-water system.',
     difficulty: 'hard'
   },
@@ -416,12 +416,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The four colligative properties studied in NCERT for dilute solutions of non-volatile solutes are',
     options: [
-      'boiling point, melting point, density and viscosity',
-      'relative lowering of vapour pressure, elevation of boiling point, depression of freezing point and osmotic pressure',
+      'molarity, molality, normality and mole fraction',
       'colour, odour, taste and pH',
-      'molarity, molality, normality and mole fraction'
+      'boiling point, melting point, density and viscosity',
+      'relative lowering of vapour pressure, elevation of boiling point, depression of freezing point and osmotic pressure'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Colligative properties depend only on the number of solute particles and not their identity; the four studied are relative lowering of vapour pressure, elevation in boiling point, depression in freezing point, and osmotic pressure.',
     difficulty: 'easy'
   },
@@ -430,12 +430,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Colligative properties of a dilute solution depend on',
     options: [
-      'the chemical nature of the solute particles',
-      'the number of solute particles present, irrespective of their nature',
       'the colour of the solute',
-      'the molar mass of the solvent only'
+      'the chemical nature of the solute particles',
+      'the molar mass of the solvent only',
+      'the number of solute particles present, irrespective of their nature'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'By definition, colligative properties depend only on the number of solute particles dissolved in a fixed amount of solvent, not on what those particles are.',
     difficulty: 'easy'
   },
@@ -443,8 +443,8 @@ const questions: Question[] = [
     id: 'solutions-39',
     type: 'mcq',
     question: 'The relative lowering of vapour pressure of a solution containing a non-volatile solute is equal to',
-    options: ['the mole fraction of the solvent', 'the mole fraction of the solute', 'the molarity of the solute', 'the mass fraction of the solvent'],
-    correctIndex: 1,
+    options: ['the mole fraction of the solvent', 'the mass fraction of the solvent', 'the molarity of the solute', 'the mole fraction of the solute'],
+    correctIndex: 3,
     explanation: 'For a dilute solution with non-volatile solute, (p1° - p1)/p1° = x2, where x2 is the mole fraction of the solute — this is the relative lowering of vapour pressure.',
     difficulty: 'medium'
   },
@@ -454,11 +454,11 @@ const questions: Question[] = [
     question: 'The boiling point of a solution containing a non-volatile solute is always',
     options: [
       'lower than the boiling point of the pure solvent',
-      'higher than the boiling point of the pure solvent',
       'equal to the boiling point of the pure solvent',
-      'independent of the amount of solute dissolved'
+      'independent of the amount of solute dissolved',
+      'higher than the boiling point of the pure solvent'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'A non-volatile solute lowers the vapour pressure of the solvent, so a higher temperature is needed for the vapour pressure to equal atmospheric pressure, raising the boiling point above that of the pure solvent.',
     difficulty: 'easy'
   },
@@ -466,8 +466,8 @@ const questions: Question[] = [
     id: 'solutions-41',
     type: 'mcq',
     question: 'The elevation in boiling point (ΔTb) of a dilute solution is related to molality (m) by',
-    options: ['ΔTb = Kb / m', 'ΔTb = Kb m', 'ΔTb = Kb + m', 'ΔTb = Kb - m'],
-    correctIndex: 1,
+    options: ['ΔTb = Kb + m', 'ΔTb = Kb / m', 'ΔTb = Kb - m', 'ΔTb = Kb m'],
+    correctIndex: 3,
     explanation: 'Elevation of boiling point is directly proportional to molality of the solution: ΔTb = Kb m, where Kb is the molal boiling point elevation constant (ebullioscopic constant) of the solvent.',
     difficulty: 'easy'
   },
@@ -475,7 +475,7 @@ const questions: Question[] = [
     id: 'solutions-42',
     type: 'mcq',
     question: 'The ebullioscopic constant (Kb) of a solvent is defined for a solution containing',
-    options: ['1 mole of solute per litre of solution', '1 mole of solute per kg of solvent', '1 gram of solute per 100 g of solvent', '1 mole of solute per mole of solvent'],
+    options: ['1 mole of solute per mole of solvent', '1 mole of solute per kg of solvent', '1 gram of solute per 100 g of solvent', '1 mole of solute per litre of solution'],
     correctIndex: 1,
     explanation: 'Kb (molal elevation constant) is the elevation in boiling point produced when 1 mole of solute is dissolved in 1 kg of solvent, i.e. for a solution of molality 1.',
     difficulty: 'medium'
@@ -485,12 +485,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The freezing point of a solution containing a non-volatile, non-electrolyte solute is',
     options: [
-      'higher than that of the pure solvent',
-      'lower than that of the pure solvent',
+      'unrelated to the vapour pressure of the solution',
       'the same as that of the pure solvent',
-      'unrelated to the vapour pressure of the solution'
+      'higher than that of the pure solvent',
+      'lower than that of the pure solvent'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Since the solution has a lower vapour pressure than the pure solvent at any temperature, its solid-liquid equilibrium (freezing point) is reached at a lower temperature than for the pure solvent.',
     difficulty: 'easy'
   },
@@ -498,7 +498,7 @@ const questions: Question[] = [
     id: 'solutions-44',
     type: 'mcq',
     question: 'Depression in freezing point (ΔTf) is related to molality (m) of the solution as',
-    options: ['ΔTf = Kf / m', 'ΔTf = Kf m', 'ΔTf = Kf + m', 'ΔTf = m / Kf'],
+    options: ['ΔTf = m / Kf', 'ΔTf = Kf m', 'ΔTf = Kf + m', 'ΔTf = Kf / m'],
     correctIndex: 1,
     explanation: 'Depression in freezing point is directly proportional to molality: ΔTf = Kf m, where Kf is the molal depression constant (cryoscopic constant) of the solvent.',
     difficulty: 'easy'
@@ -522,12 +522,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Osmosis is defined as the',
     options: [
+      'evaporation of solvent from an open solution',
       'spontaneous flow of solvent molecules through a semipermeable membrane from a dilute solution (or pure solvent) into a more concentrated solution',
-      'spontaneous flow of solute molecules through any membrane in either direction',
       'diffusion of gas molecules through a porous membrane only',
-      'evaporation of solvent from an open solution'
+      'spontaneous flow of solute molecules through any membrane in either direction'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Osmosis is the spontaneous movement of solvent molecules through a semipermeable membrane from a region of lower solute concentration (or pure solvent) to a region of higher solute concentration.',
     difficulty: 'easy'
   },
@@ -536,12 +536,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A semipermeable membrane allows the passage of',
     options: [
-      'only solute molecules',
+      'neither solute nor solvent molecules',
       'both solute and solvent molecules equally',
-      'only solvent molecules and not solute molecules',
-      'neither solute nor solvent molecules'
+      'only solute molecules',
+      'only solvent molecules and not solute molecules'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'A semipermeable membrane selectively allows small solvent molecules to pass through while blocking larger solute molecules.',
     difficulty: 'easy'
   },
@@ -549,8 +549,8 @@ const questions: Question[] = [
     id: 'solutions-48',
     type: 'mcq',
     question: 'Osmotic pressure of a dilute solution is related to its molar concentration (C) and absolute temperature (T) by',
-    options: ['π = CRT', 'π = C/RT', 'π = RT/C', 'π = C + RT'],
-    correctIndex: 0,
+    options: ['π = C/RT', 'π = C + RT', 'π = RT/C', 'π = CRT'],
+    correctIndex: 3,
     explanation: 'Osmotic pressure follows the van\'t Hoff equation for dilute solutions, π = CRT, analogous in form to the ideal gas equation.',
     difficulty: 'medium'
   },
@@ -560,11 +560,11 @@ const questions: Question[] = [
     question: 'Osmotic pressure is a particularly preferred method for determining the molar masses of macromolecules such as proteins and polymers because',
     options: [
       'it requires very high temperatures',
-      'the osmotic pressure produced is appreciable and measurable even for very small amounts of solute, since molar concentration used is small but the effect is significant at room temperature',
+      'osmotic pressure does not depend on concentration',
       'proteins do not dissolve in any solvent',
-      'osmotic pressure does not depend on concentration'
+      'the osmotic pressure produced is appreciable and measurable even for very small amounts of solute, since molar concentration used is small but the effect is significant at room temperature'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Even a small concentration of a macromolecule produces a measurable osmotic pressure at ordinary room temperature, making this method more practical and accurate than boiling point elevation or freezing point depression for large molecules, which produce very small changes in those properties.',
     difficulty: 'hard'
   },
@@ -572,8 +572,8 @@ const questions: Question[] = [
     id: 'solutions-50',
     type: 'mcq',
     question: 'Two solutions having the same osmotic pressure at a given temperature are said to be',
-    options: ['isomeric', 'isotonic', 'isotopic', 'isobaric'],
-    correctIndex: 1,
+    options: ['isomeric', 'isobaric', 'isotonic', 'isotopic'],
+    correctIndex: 2,
     explanation: 'Solutions with equal osmotic pressure at the same temperature are called isotonic solutions.',
     difficulty: 'easy'
   },
@@ -582,12 +582,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When red blood cells are placed in a solution having osmotic pressure higher than that inside the cells (a hypertonic solution), the cells undergo',
     options: [
+      'immediate dissolution',
       'haemolysis (bursting) due to water entering the cell',
       'crenation (shrinking) due to loss of water from the cell',
-      'no change at all',
-      'immediate dissolution'
+      'no change at all'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'In a hypertonic solution, water flows out of the red blood cell (from lower to higher solute concentration) causing the cell to shrink, a phenomenon called crenation.',
     difficulty: 'medium'
   },
@@ -596,12 +596,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When red blood cells are placed in a solution more dilute than blood plasma (a hypotonic solution), the cells will',
     options: [
-      'swell and may burst due to water entering the cell (haemolysis)',
+      'undergo denaturation of haemoglobin',
       'shrink due to water leaving the cell',
       'remain completely unaffected',
-      'undergo denaturation of haemoglobin'
+      'swell and may burst due to water entering the cell (haemolysis)'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'In a hypotonic solution, water moves into the red blood cell by osmosis (since intracellular solute concentration is relatively higher), causing the cell to swell and possibly burst, called haemolysis.',
     difficulty: 'medium'
   },
@@ -609,7 +609,7 @@ const questions: Question[] = [
     id: 'solutions-53',
     type: 'mcq',
     question: 'When a solution is separated from pure solvent by a semipermeable membrane and external pressure greater than the osmotic pressure is applied on the solution side, the phenomenon that occurs is called',
-    options: ['normal osmosis', 'reverse osmosis', 'plasmolysis', 'diffusion'],
+    options: ['normal osmosis', 'reverse osmosis', 'diffusion', 'plasmolysis'],
     correctIndex: 1,
     explanation: 'Applying a pressure greater than the osmotic pressure on the solution side reverses the natural direction of solvent flow, forcing solvent from the solution into the pure solvent side; this is reverse osmosis.',
     difficulty: 'medium'
@@ -619,10 +619,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Reverse osmosis is widely used for',
     options: [
-      'increasing the boiling point of a solvent',
+      'preparing standard solutions in a laboratory',
       'desalination of sea water to obtain fresh drinking water',
       'measuring the freezing point of a liquid',
-      'preparing standard solutions in a laboratory'
+      'increasing the boiling point of a solvent'
     ],
     correctIndex: 1,
     explanation: 'Reverse osmosis, using membranes such as cellulose acetate, is used to purify sea water by forcing pure water through the membrane while retaining dissolved salts, a common desalination method.',
@@ -632,8 +632,8 @@ const questions: Question[] = [
     id: 'solutions-55',
     type: 'mcq',
     question: 'The membrane commonly used in reverse osmosis for water purification is',
-    options: ['cellulose acetate', 'copper sulphate', 'starch', 'polyethylene'],
-    correctIndex: 0,
+    options: ['polyethylene', 'starch', 'copper sulphate', 'cellulose acetate'],
+    correctIndex: 3,
     explanation: 'Cellulose acetate is a commonly used semipermeable membrane in reverse osmosis units for desalination and water purification.',
     difficulty: 'medium'
   },
@@ -656,10 +656,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For a solute that undergoes association (e.g. dimerisation) in a solvent, the observed molar mass is',
     options: [
-      'lower than the normal (expected) molar mass',
+      'zero',
       'higher than the normal (expected) molar mass',
       'equal to the normal molar mass',
-      'zero'
+      'lower than the normal (expected) molar mass'
     ],
     correctIndex: 1,
     explanation: 'Association reduces the number of effective particles in solution, lowering the colligative property, which corresponds to a calculated molar mass that is higher than the true (normal) molar mass.',
@@ -670,12 +670,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The van\'t Hoff factor (i) is defined as the ratio of',
     options: [
-      'normal molar mass to observed molar mass',
       'observed molar mass to normal molar mass',
-      'molarity to molality',
-      'osmotic pressure to vapour pressure'
+      'normal molar mass to observed molar mass',
+      'osmotic pressure to vapour pressure',
+      'molarity to molality'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The van\'t Hoff factor i = (normal molar mass) / (observed/abnormal molar mass), and is equivalently the ratio of observed colligative property to the calculated (normal) colligative property.',
     difficulty: 'medium'
   },
@@ -683,8 +683,8 @@ const questions: Question[] = [
     id: 'solutions-59',
     type: 'mcq',
     question: 'For acetic acid dimerising in benzene, the value of the van\'t Hoff factor i is',
-    options: ['greater than 1', 'less than 1', 'equal to 1', 'equal to 0'],
-    correctIndex: 1,
+    options: ['equal to 0', 'equal to 1', 'less than 1', 'greater than 1'],
+    correctIndex: 2,
     explanation: 'Since acetic acid molecules associate in benzene to form dimers, the effective number of particles decreases, giving i less than 1 (approaching 0.5 for complete dimerisation).',
     difficulty: 'medium'
   },
@@ -692,8 +692,8 @@ const questions: Question[] = [
     id: 'solutions-60',
     type: 'mcq',
     question: 'For an aqueous solution of NaCl, which fully dissociates into Na+ and Cl- ions, the van\'t Hoff factor i is close to',
-    options: ['0.5', '1', '2', '3'],
-    correctIndex: 2,
+    options: ['1', '3', '0.5', '2'],
+    correctIndex: 3,
     explanation: 'Complete dissociation of NaCl into two ions (Na+ and Cl-) doubles the number of particles compared to the undissociated formula unit, giving i close to 2.',
     difficulty: 'medium'
   },
@@ -701,8 +701,8 @@ const questions: Question[] = [
     id: 'solutions-61',
     type: 'mcq',
     question: 'For a non-electrolyte solute that neither dissociates nor associates in solution, the value of the van\'t Hoff factor i is',
-    options: ['0', 'less than 1', 'equal to 1', 'greater than 1'],
-    correctIndex: 2,
+    options: ['equal to 1', '0', 'greater than 1', 'less than 1'],
+    correctIndex: 0,
     explanation: 'If the number of particles in solution equals the number of formula units dissolved (no association or dissociation), i = 1, and the observed colligative property equals the calculated (ideal) value.',
     difficulty: 'easy'
   },
@@ -710,7 +710,7 @@ const questions: Question[] = [
     id: 'solutions-62',
     type: 'mcq',
     question: 'When the van\'t Hoff factor is included, the elevation of boiling point is expressed as',
-    options: ['ΔTb = Kb m / i', 'ΔTb = i Kb m', 'ΔTb = Kb m - i', 'ΔTb = Kb m + i'],
+    options: ['ΔTb = Kb m / i', 'ΔTb = i Kb m', 'ΔTb = Kb m + i', 'ΔTb = Kb m - i'],
     correctIndex: 1,
     explanation: 'To account for association or dissociation, the colligative property equations are modified by the van\'t Hoff factor: ΔTb = i Kb m.',
     difficulty: 'medium'
@@ -719,8 +719,8 @@ const questions: Question[] = [
     id: 'solutions-63',
     type: 'mcq',
     question: 'With the van\'t Hoff factor included, osmotic pressure is expressed as',
-    options: ['π = i C R T', 'π = C R T / i', 'π = i + C R T', 'π = C R T - i'],
-    correctIndex: 0,
+    options: ['π = i + C R T', 'π = i C R T', 'π = C R T / i', 'π = C R T - i'],
+    correctIndex: 1,
     explanation: 'For solutes that dissociate or associate, the modified osmotic pressure equation is π = i C R T, where i is the van\'t Hoff factor.',
     difficulty: 'medium'
   },
@@ -729,12 +729,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Molarity of a solution is defined as',
     options: [
+      'grams of solute per litre of solution',
       'moles of solute per litre of solution',
       'moles of solute per kg of solvent',
-      'moles of solute per litre of solvent',
-      'grams of solute per litre of solution'
+      'moles of solute per litre of solvent'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Molarity (M) is defined as the number of moles of solute dissolved per litre (dm³) of solution.',
     difficulty: 'easy'
   },
@@ -744,11 +744,11 @@ const questions: Question[] = [
     question: 'Molality of a solution is defined as',
     options: [
       'moles of solute per litre of solution',
+      'moles of solvent per litre of solution',
       'moles of solute per kilogram of solvent',
-      'moles of solute per kilogram of solution',
-      'moles of solvent per litre of solution'
+      'moles of solute per kilogram of solution'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Molality (m) is defined as the number of moles of solute dissolved per kilogram of solvent.',
     difficulty: 'easy'
   },
@@ -757,12 +757,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When the temperature of an aqueous solution is increased, its molarity generally',
     options: [
-      'decreases, because the volume of the solution expands',
-      'increases, because the volume of the solution shrinks',
       'remains exactly constant',
-      'becomes undefined'
+      'becomes undefined',
+      'decreases, because the volume of the solution expands',
+      'increases, because the volume of the solution shrinks'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'Since molarity depends on the volume of the solution, and volume generally increases (expands) with temperature, molarity of a given solution decreases as temperature rises.',
     difficulty: 'medium'
   },
@@ -770,8 +770,8 @@ const questions: Question[] = [
     id: 'solutions-67',
     type: 'mcq',
     question: 'Which of the following concentration terms would remain unchanged when a solution\'s temperature is changed, assuming no evaporation occurs?',
-    options: ['Molarity', 'Molality and mole fraction', 'Normality', 'None of the concentration terms'],
-    correctIndex: 1,
+    options: ['None of the concentration terms', 'Molarity', 'Normality', 'Molality and mole fraction'],
+    correctIndex: 3,
     explanation: 'Molality and mole fraction are based on mass or mole ratios (not volume), so they do not change with temperature, unlike molarity and normality which depend on solution volume.',
     difficulty: 'medium'
   },
@@ -780,12 +780,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A solution is said to be saturated when',
     options: [
-      'no more solute can dissolve in it at a given temperature, and it is in dynamic equilibrium with undissolved solute',
-      'it contains the maximum possible amount of solvent',
       'it has reacted completely with the solvent',
+      'it contains the maximum possible amount of solvent',
+      'no more solute can dissolve in it at a given temperature, and it is in dynamic equilibrium with undissolved solute',
       'its concentration is exactly 1 molar'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'A saturated solution is one in which no more solute can dissolve at a given temperature and pressure, existing in dynamic equilibrium with any excess undissolved solute.',
     difficulty: 'easy'
   },
@@ -794,12 +794,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The vapour pressure of a pure liquid at a given temperature depends on',
     options: [
-      'the strength of intermolecular forces of attraction between its molecules',
-      'the colour of the liquid',
       'the shape of the container',
-      'the atmospheric pressure only'
+      'the atmospheric pressure only',
+      'the strength of intermolecular forces of attraction between its molecules',
+      'the colour of the liquid'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'Vapour pressure at a given temperature is determined by how easily molecules escape the liquid surface, which depends on the strength of intermolecular attractive forces — stronger forces give lower vapour pressure.',
     difficulty: 'easy'
   },

@@ -58,7 +58,7 @@ export function sanitizeState(input: unknown): TrackerState {
   const log: Record<string, number> = {};
   if (isObj(src.log)) {
     for (const [k, v] of Object.entries(src.log)) {
-      if (DATE_RE.test(k) && typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 100) log[k] = v;
+      if (DATE_RE.test(k) && typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 24) log[k] = v;
     }
   }
 

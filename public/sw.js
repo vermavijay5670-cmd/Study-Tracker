@@ -1,5 +1,5 @@
-const CACHE_NAME = "neet-tracker-cache-v2";
-const PRECACHE_URLS = ["/today", "/manifest.json", "/icons/icon-192.png", "/icons/icon-512.png"];
+const CACHE_NAME = "neet-tracker-cache-v3";
+const PRECACHE_URLS = ["/manifest.json", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -35,6 +35,6 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    fetch(request).catch(() => caches.match(request).then((cached) => cached || caches.match("/today")))
+    fetch(request).catch(() => caches.match(request))
   );
 });

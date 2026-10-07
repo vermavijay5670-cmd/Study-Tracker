@@ -21,12 +21,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'At the macroscopic level, we usually ignore quantization of charge and treat it as continuous because',
     options: [
+      'quantization applies only to insulators',
       'quantization does not actually exist',
-      'the elementary charge e is extremely small compared to typical macroscopic charges, so discreteness is not observable',
       'charge is not actually quantized in conductors',
-      'quantization applies only to insulators'
+      'the elementary charge e is extremely small compared to typical macroscopic charges, so discreteness is not observable'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Since e ≈ 1.6 × 10⁻¹⁹ C is minuscule compared to charges we usually deal with (of order microcoulombs and higher), the granularity is undetectable and charge can be treated as a continuous variable.',
     difficulty: 'medium'
   },
@@ -35,10 +35,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The law of conservation of charge states that',
     options: [
-      'charge can be created but not destroyed',
+      'charge can never move within a system',
       'the total charge of an isolated system remains constant, though charge can be transferred from one part to another',
-      'positive and negative charges always exist in equal amounts',
-      'charge can never move within a system'
+      'charge can be created but not destroyed',
+      'positive and negative charges always exist in equal amounts'
     ],
     correctIndex: 1,
     explanation: 'Conservation of charge means the algebraic sum of positive and negative charges in an isolated system does not change with time, even though charge may be redistributed within the system.',
@@ -50,11 +50,11 @@ const questions: Question[] = [
     question: 'When a glass rod is rubbed with silk, the glass rod becomes positively charged. This happens because',
     options: [
       'protons are transferred from silk to glass',
-      'electrons are transferred from the glass rod to the silk',
+      'charge is created on the glass rod',
       'the glass rod gains extra electrons',
-      'charge is created on the glass rod'
+      'electrons are transferred from the glass rod to the silk'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Rubbing does not create charge; it merely transfers electrons from one body to another. Glass loses electrons to silk, leaving it with a net positive charge, while silk becomes negatively charged.',
     difficulty: 'easy'
   },
@@ -63,10 +63,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Coulomb\'s law describes the force between two point charges as',
     options: [
-      'directly proportional to the product of charges and inversely proportional to distance',
-      'directly proportional to the product of charges and inversely proportional to the square of the distance between them',
       'inversely proportional to the product of charges',
-      'independent of the distance between them'
+      'directly proportional to the product of charges and inversely proportional to the square of the distance between them',
+      'independent of the distance between them',
+      'directly proportional to the product of charges and inversely proportional to distance'
     ],
     correctIndex: 1,
     explanation: 'Coulomb\'s law: F = k q1q2/r², the force is directly proportional to the product of the magnitudes of the two charges and inversely proportional to the square of the separation.',
@@ -76,8 +76,8 @@ const questions: Question[] = [
     id: 'charges-fields-6',
     type: 'mcq',
     question: 'The value of the Coulomb constant k (= 1/4πε₀) in SI units is approximately',
-    options: ['9 × 10⁹ N m²/C²', '8.85 × 10⁻¹² N m²/C²', '6.67 × 10⁻¹¹ N m²/C²', '1.6 × 10⁻¹⁹ N m²/C²'],
-    correctIndex: 0,
+    options: ['1.6 × 10⁻¹⁹ N m²/C²', '8.85 × 10⁻¹² N m²/C²', '6.67 × 10⁻¹¹ N m²/C²', '9 × 10⁹ N m²/C²'],
+    correctIndex: 3,
     explanation: 'k = 1/(4πε₀) ≈ 9 × 10⁹ N m²/C² in SI units (free space), a large value reflecting the strength of the electrostatic force compared to gravity.',
     difficulty: 'easy'
   },
@@ -86,12 +86,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Coulomb\'s law in vector form correctly shows that the force on charge q1 due to q2 is directed',
     options: [
-      'along the line joining the two charges, repulsive for like charges and attractive for unlike charges',
       'always perpendicular to the line joining the charges',
+      'along the line joining the two charges, repulsive for like charges and attractive for unlike charges',
       'always attractive regardless of the sign of charges',
       'in a direction independent of the position of the charges'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The electrostatic force always acts along the line joining the two point charges; like charges repel each other while unlike charges attract, consistent with the vector form of Coulomb\'s law.',
     difficulty: 'easy'
   },
@@ -101,11 +101,11 @@ const questions: Question[] = [
     question: 'Coulomb\'s law is applicable strictly to',
     options: [
       'any two charged bodies regardless of size',
-      'point charges, or charges whose sizes are much smaller than the distance between them',
+      'only charges placed in a vacuum',
       'only charges of equal magnitude',
-      'only charges placed in a vacuum'
+      'point charges, or charges whose sizes are much smaller than the distance between them'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Coulomb\'s law in its simple form F = kq1q2/r² applies exactly to point charges; for extended bodies it is only a good approximation when their sizes are negligible compared to the separation.',
     difficulty: 'medium'
   },
@@ -114,12 +114,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When a dielectric medium (relative permittivity εr) replaces vacuum between two point charges, the force between them',
     options: [
+      'becomes zero',
       'increases by a factor of εr',
-      'decreases by a factor of εr',
       'remains unchanged',
-      'becomes zero'
+      'decreases by a factor of εr'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'In a medium, F = q1q2/(4πε₀εr r²), so the force is reduced by a factor of εr (the relative permittivity/dielectric constant) compared to the force in vacuum.',
     difficulty: 'medium'
   },
@@ -128,10 +128,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The principle of superposition of electric forces states that',
     options: [
-      'only the nearest charge exerts a force on a given charge',
-      'the total force on a charge due to several other charges is the vector sum of the forces due to each charge individually, as if the others were absent',
       'forces between charges cancel out when more than two charges are present',
-      'total force is the scalar sum of the magnitude of individual forces'
+      'the total force on a charge due to several other charges is the vector sum of the forces due to each charge individually, as if the others were absent',
+      'total force is the scalar sum of the magnitude of individual forces',
+      'only the nearest charge exerts a force on a given charge'
     ],
     correctIndex: 1,
     explanation: 'The superposition principle states that the net force on any charge due to a group of charges is the vector sum of the pairwise Coulomb forces, each computed independently.',
@@ -142,12 +142,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Electric field intensity at a point is defined as',
     options: [
-      'the force experienced by any charge placed at that point',
-      'the force per unit positive test charge placed at that point, in the limit the test charge is vanishingly small',
+      'the total charge enclosed in a region around that point',
       'the potential energy of a charge at that point',
-      'the total charge enclosed in a region around that point'
+      'the force experienced by any charge placed at that point',
+      'the force per unit positive test charge placed at that point, in the limit the test charge is vanishingly small'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Electric field E = F/q0, defined as the force per unit positive test charge, taken in the limit q0 → 0 so that the test charge itself does not disturb the source charge distribution.',
     difficulty: 'easy'
   },
@@ -155,8 +155,8 @@ const questions: Question[] = [
     id: 'charges-fields-12',
     type: 'mcq',
     question: 'The SI unit of electric field is',
-    options: ['N/C or V/m', 'C/N', 'N·C', 'J/C²'],
-    correctIndex: 0,
+    options: ['N·C', 'J/C²', 'C/N', 'N/C or V/m'],
+    correctIndex: 3,
     explanation: 'Electric field is force per unit charge, giving units of newton per coulomb (N/C), which is dimensionally and numerically equivalent to volt per metre (V/m).',
     difficulty: 'easy'
   },
@@ -167,8 +167,8 @@ const questions: Question[] = [
     options: [
       'as large as possible for accurate measurement',
       'vanishingly small, so it does not disturb the configuration of the source charges',
-      'negative in sign only',
-      'equal in magnitude to the source charge'
+      'equal in magnitude to the source charge',
+      'negative in sign only'
     ],
     correctIndex: 1,
     explanation: 'A large test charge could exert its own force on the source charges and alter their distribution, changing the very field being measured, so the test charge must be taken as infinitesimally small.',
@@ -180,11 +180,11 @@ const questions: Question[] = [
     question: 'Electric field lines around an isolated positive point charge are',
     options: [
       'circles around the charge',
-      'straight lines radiating outward from the charge',
       'straight lines converging into the charge',
-      'parallel straight lines'
+      'parallel straight lines',
+      'straight lines radiating outward from the charge'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For an isolated positive charge, field lines point radially outward in all directions, since the field itself points away from a positive source charge.',
     difficulty: 'easy'
   },
@@ -193,12 +193,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Which of the following is NOT a correct property of electric field lines?',
     options: [
-      'They start from positive charges and end on negative charges (or at infinity)',
-      'Two field lines can never intersect each other',
+      'The tangent to a field line at any point gives the direction of the electric field at that point',
       'Field lines are always closed loops, like magnetic field lines',
-      'The tangent to a field line at any point gives the direction of the electric field at that point'
+      'Two field lines can never intersect each other',
+      'They start from positive charges and end on negative charges (or at infinity)'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Unlike magnetic field lines, electrostatic field lines are never closed loops — they originate on positive charges (or infinity) and terminate on negative charges (or infinity), reflecting the conservative nature of the electrostatic field.',
     difficulty: 'medium'
   },
@@ -208,11 +208,11 @@ const questions: Question[] = [
     question: 'The reason two electric field lines never intersect each other is that',
     options: [
       'field lines repel each other like charges',
-      'if they intersected, the field at that point would have two different directions, which is not possible for a well-defined field',
+      'intersecting lines would represent zero field',
       'field lines are always straight',
-      'intersecting lines would represent zero field'
+      'if they intersected, the field at that point would have two different directions, which is not possible for a well-defined field'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'At any point in space, the electric field has a single, unique direction (the resultant of contributions from all charges). If two field lines crossed, the field at the intersection would have two directions simultaneously, contradicting the definition of a field.',
     difficulty: 'medium'
   },
@@ -236,11 +236,11 @@ const questions: Question[] = [
     question: 'An electric dipole consists of',
     options: [
       'two equal and like point charges separated by a small distance',
-      'two equal and opposite point charges separated by a small distance',
       'a single charge with two poles',
-      'a charge distributed over a sphere'
+      'a charge distributed over a sphere',
+      'two equal and opposite point charges separated by a small distance'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'An electric dipole is defined as a pair of equal and opposite charges (+q and -q) separated by a small distance 2a.',
     difficulty: 'easy'
   },
@@ -250,11 +250,11 @@ const questions: Question[] = [
     question: 'The dipole moment of an electric dipole is defined as a vector of magnitude p = q(2a), directed',
     options: [
       'from the positive charge to the negative charge',
+      'along the external electric field',
       'from the negative charge to the positive charge',
-      'perpendicular to the line joining the charges',
-      'along the external electric field'
+      'perpendicular to the line joining the charges'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'By convention, the electric dipole moment vector p points from the negative charge to the positive charge, along the axis of the dipole, with magnitude p = q × 2a.',
     difficulty: 'medium'
   },
@@ -262,8 +262,8 @@ const questions: Question[] = [
     id: 'charges-fields-20',
     type: 'mcq',
     question: 'The electric field due to a short dipole at a point on its axial line, at large distance r, falls off as',
-    options: ['1/r', '1/r²', '1/r³', '1/r⁴'],
-    correctIndex: 2,
+    options: ['1/r²', '1/r', '1/r⁴', '1/r³'],
+    correctIndex: 3,
     explanation: 'For an ideal (short) dipole, the field at large distances on the axial line varies as 1/r³, decreasing faster than the field of a single point charge (which falls as 1/r²).',
     difficulty: 'medium'
   },
@@ -271,8 +271,8 @@ const questions: Question[] = [
     id: 'charges-fields-21',
     type: 'mcq',
     question: 'The electric field due to a short dipole at a point on its axial line is how many times stronger than the field at an equatorial point at the same distance r?',
-    options: ['Equal', 'Half', 'Twice', 'Four times'],
-    correctIndex: 2,
+    options: ['Half', 'Twice', 'Equal', 'Four times'],
+    correctIndex: 1,
     explanation: 'E_axial = 2kp/r³ and E_equatorial = kp/r³ for a short dipole, so the axial field is twice the equatorial field at the same distance.',
     difficulty: 'hard'
   },
@@ -281,10 +281,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When an electric dipole is placed in a uniform external electric field, it experiences',
     options: [
-      'a net force but no torque',
+      'neither a net force nor a torque',
       'a torque but no net force (if not aligned with the field)',
       'both a net force and a torque',
-      'neither a net force nor a torque'
+      'a net force but no torque'
     ],
     correctIndex: 1,
     explanation: 'In a uniform field, the equal and opposite forces on the two charges of the dipole cancel out (net force = 0), but if the dipole is not aligned with the field, these forces form a couple, producing a net torque τ = p × E.',
@@ -295,12 +295,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When an electric dipole is placed in a non-uniform external electric field, it generally experiences',
     options: [
+      'only a net force, never a torque',
       'no force and no torque',
       'only a torque, never a net force',
-      'both a net force and a torque (in general)',
-      'only a net force, never a torque'
+      'both a net force and a torque (in general)'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'In a non-uniform field, the forces on the two charges of the dipole are unequal in magnitude (since the field strength differs at the two charge locations), resulting in both a net force and a torque, in general.',
     difficulty: 'medium'
   },
@@ -308,8 +308,8 @@ const questions: Question[] = [
     id: 'charges-fields-24',
     type: 'mcq',
     question: 'The torque experienced by a dipole of moment p in a uniform field E is given by τ = pE sinθ, where θ is the angle between p and E. This torque is maximum when',
-    options: ['θ = 0°', 'θ = 90°', 'θ = 180°', 'θ = 45°'],
-    correctIndex: 1,
+    options: ['θ = 0°', 'θ = 180°', 'θ = 45°', 'θ = 90°'],
+    correctIndex: 3,
     explanation: 'Torque magnitude is τ = pE sinθ, which is maximum when sinθ = 1, i.e., θ = 90°, when the dipole moment is perpendicular to the field.',
     difficulty: 'medium'
   },
@@ -318,10 +318,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A dipole is in stable equilibrium in a uniform electric field when its dipole moment is',
     options: [
-      'perpendicular to the field',
+      'at any arbitrary angle to the field',
       'parallel and in the same direction as the field',
       'antiparallel to the field (opposite direction)',
-      'at any arbitrary angle to the field'
+      'perpendicular to the field'
     ],
     correctIndex: 1,
     explanation: 'The potential energy of a dipole is U = -pE cosθ, which is minimum (most stable) when θ = 0°, i.e., when p is aligned parallel to E.',
@@ -332,12 +332,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A dipole is in unstable equilibrium in a uniform electric field when its dipole moment is',
     options: [
+      'zero',
       'parallel to the field',
-      'antiparallel to the field (opposite direction)',
       'perpendicular to the field',
-      'zero'
+      'antiparallel to the field (opposite direction)'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'When θ = 180°, potential energy U = -pE cos180° = +pE is maximum, corresponding to unstable equilibrium; the dipole is aligned opposite to the field.',
     difficulty: 'medium'
   },
@@ -346,10 +346,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Electric flux through a surface is defined as',
     options: [
-      'the total charge enclosed by the surface',
+      'the force experienced by the surface due to the field',
       'the dot product of electric field and the area vector, summed (integrated) over the surface',
       'the total electric field at every point on the surface added algebraically',
-      'the force experienced by the surface due to the field'
+      'the total charge enclosed by the surface'
     ],
     correctIndex: 1,
     explanation: 'Electric flux ΦE through a surface is defined as the surface integral of E·dA, i.e., the component of the electric field normal to the surface element, integrated over the entire surface.',
@@ -359,7 +359,7 @@ const questions: Question[] = [
     id: 'charges-fields-28',
     type: 'mcq',
     question: 'The SI unit of electric flux is',
-    options: ['N/C', 'N m²/C', 'C/m²', 'N/m'],
+    options: ['C/m²', 'N m²/C', 'N/m', 'N/C'],
     correctIndex: 1,
     explanation: 'Since flux is E (in N/C) times area (in m²), its unit is N m²/C (equivalently, V·m).',
     difficulty: 'medium'
@@ -369,12 +369,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Gauss\'s law relates the electric flux through a closed surface to',
     options: [
+      'the distance from the surface to the nearest charge',
       'the electric field at the centre of the surface',
-      'the total charge enclosed within that closed surface, divided by ε₀',
       'the surface area of the closed surface only',
-      'the distance from the surface to the nearest charge'
+      'the total charge enclosed within that closed surface, divided by ε₀'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Gauss\'s law states ΦE = qenclosed/ε₀ — the total electric flux through any closed surface (Gaussian surface) equals the net charge enclosed by that surface, divided by ε₀.',
     difficulty: 'easy'
   },
@@ -383,9 +383,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'According to Gauss\'s law, charges located outside a closed Gaussian surface',
     options: [
-      'contribute significantly to the net flux through the surface',
-      'contribute zero net flux through the surface, though they may still affect the electric field at points on the surface',
       'always cancel the effect of enclosed charges',
+      'contribute zero net flux through the surface, though they may still affect the electric field at points on the surface',
+      'contribute significantly to the net flux through the surface',
       'must be included when calculating enclosed charge'
     ],
     correctIndex: 1,
@@ -411,12 +411,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The electric field due to an infinite plane sheet of charge with uniform surface charge density σ is',
     options: [
+      'zero everywhere',
       'σ/ε₀, independent of the distance from the sheet',
-      'σ/2ε₀, independent of the distance from the sheet',
       'σ/4πε₀r², decreasing with distance',
-      'zero everywhere'
+      'σ/2ε₀, independent of the distance from the sheet'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Using Gauss\'s law with a cylindrical (pillbox) Gaussian surface, the field due to an infinite plane sheet of charge is E = σ/2ε₀, uniform and independent of distance from the sheet.',
     difficulty: 'medium'
   },
@@ -424,8 +424,8 @@ const questions: Question[] = [
     id: 'charges-fields-33',
     type: 'mcq',
     question: 'The electric field just outside the surface of a charged conductor with surface charge density σ is',
-    options: ['σ/ε₀, directed normal to the surface', 'σ/2ε₀', 'zero', 'σ/4πε₀'],
-    correctIndex: 0,
+    options: ['σ/4πε₀', 'σ/ε₀, directed normal to the surface', 'zero', 'σ/2ε₀'],
+    correctIndex: 1,
     explanation: 'For a conductor, the field just outside the surface is E = σ/ε₀ (normal to the surface), which is twice the field of an isolated infinite sheet, because a conductor\'s field lines emanate only outward (none inside).',
     difficulty: 'medium'
   },
@@ -434,12 +434,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The electric field inside a uniformly charged thin spherical shell (charge on the surface only) is',
     options: [
-      'maximum at the centre',
-      'zero everywhere inside the shell',
+      'directed radially inward',
       'equal to the field at the surface',
-      'directed radially inward'
+      'zero everywhere inside the shell',
+      'maximum at the centre'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'By Gauss\'s law, a Gaussian sphere drawn inside the shell encloses zero charge, so the electric field inside a uniformly charged thin spherical shell is zero everywhere.',
     difficulty: 'medium'
   },
@@ -448,12 +448,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Outside a uniformly charged thin spherical shell of total charge Q and radius R (at distance r > R from the centre), the electric field behaves as if',
     options: [
-      'the shell did not exist',
-      'the entire charge Q were concentrated at the centre of the shell',
+      'the field increased linearly with r',
       'the field were zero',
-      'the field increased linearly with r'
+      'the entire charge Q were concentrated at the centre of the shell',
+      'the shell did not exist'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'For r > R, Gauss\'s law gives E = kQ/r², exactly as though the total charge Q were a point charge located at the centre of the shell.',
     difficulty: 'medium'
   },
@@ -461,8 +461,8 @@ const questions: Question[] = [
     id: 'charges-fields-36',
     type: 'mcq',
     question: 'The electric field inside a uniformly charged solid non-conducting sphere at a distance r from the centre (r < R) is proportional to',
-    options: ['1/r²', 'r', '1/r', 'r²'],
-    correctIndex: 1,
+    options: ['r²', '1/r²', '1/r', 'r'],
+    correctIndex: 3,
     explanation: 'Inside a uniformly charged solid sphere, applying Gauss\'s law with enclosed charge proportional to r³ (volume) gives E ∝ r, increasing linearly from zero at the centre to a maximum at the surface.',
     difficulty: 'medium'
   },
@@ -470,8 +470,8 @@ const questions: Question[] = [
     id: 'charges-fields-37',
     type: 'mcq',
     question: 'The electric field due to an infinitely long straight uniformly charged wire (linear charge density λ) at perpendicular distance r from the wire is',
-    options: ['λ/2πε₀r, decreasing with distance', 'λ/2πε₀r², decreasing with distance squared', 'constant, independent of r', 'λ/4πε₀r'],
-    correctIndex: 0,
+    options: ['λ/4πε₀r', 'λ/2πε₀r, decreasing with distance', 'constant, independent of r', 'λ/2πε₀r², decreasing with distance squared'],
+    correctIndex: 1,
     explanation: 'Using a cylindrical Gaussian surface coaxial with the wire, Gauss\'s law gives E = λ/(2πε₀r), which decreases as 1/r with perpendicular distance from an infinite line charge.',
     difficulty: 'medium'
   },
@@ -479,8 +479,8 @@ const questions: Question[] = [
     id: 'charges-fields-38',
     type: 'mcq',
     question: 'A point charge q is placed exactly at the centre of a cube of side a. The electric flux through one face of the cube is',
-    options: ['q/ε₀', 'q/6ε₀', 'q/2ε₀', 'q/3ε₀'],
-    correctIndex: 1,
+    options: ['q/ε₀', 'q/3ε₀', 'q/2ε₀', 'q/6ε₀'],
+    correctIndex: 3,
     explanation: 'By symmetry, the total flux q/ε₀ through the closed cube is equally distributed among its 6 identical faces, giving q/6ε₀ through each face.',
     difficulty: 'medium'
   },
@@ -489,10 +489,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'If the size of a Gaussian surface is doubled while keeping the enclosed charge constant, the total electric flux through it',
     options: [
-      'doubles',
+      'becomes zero',
       'remains the same, since flux depends only on enclosed charge, not on the size or shape of the surface',
       'becomes one-fourth',
-      'becomes zero'
+      'doubles'
     ],
     correctIndex: 1,
     explanation: 'According to Gauss\'s law, total flux through a closed surface depends solely on the enclosed charge (qenc/ε₀), and is completely independent of the size or shape of the Gaussian surface chosen.',
@@ -503,12 +503,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For a system of continuous charge distribution, the concept of "charge density" is introduced because',
     options: [
-      'individual point charges cannot be identified separately, so charge per unit length/area/volume gives a more useful description',
       'charge no longer exists in such systems',
+      'individual point charges cannot be identified separately, so charge per unit length/area/volume gives a more useful description',
       'Coulomb\'s law becomes invalid for continuous distributions',
       'the total charge becomes infinite'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'For continuous distributions, we describe the charge using densities (linear λ, surface σ, or volume ρ) since it is impractical to track discrete elementary charges individually, and this allows Coulomb\'s law to be applied via integration.',
     difficulty: 'medium'
   },
@@ -516,8 +516,8 @@ const questions: Question[] = [
     id: 'charges-fields-41',
     type: 'mcq',
     question: 'Linear charge density λ has SI units of',
-    options: ['C', 'C/m', 'C/m²', 'C/m³'],
-    correctIndex: 1,
+    options: ['C/m²', 'C/m³', 'C', 'C/m'],
+    correctIndex: 3,
     explanation: 'Linear charge density is charge per unit length, so its SI unit is coulomb per metre (C/m).',
     difficulty: 'easy'
   },
@@ -525,8 +525,8 @@ const questions: Question[] = [
     id: 'charges-fields-42',
     type: 'mcq',
     question: 'Surface charge density σ has SI units of',
-    options: ['C/m', 'C/m²', 'C/m³', 'C'],
-    correctIndex: 1,
+    options: ['C', 'C/m³', 'C/m', 'C/m²'],
+    correctIndex: 3,
     explanation: 'Surface charge density is charge per unit area, with SI unit coulomb per square metre (C/m²).',
     difficulty: 'easy'
   },
@@ -534,8 +534,8 @@ const questions: Question[] = [
     id: 'charges-fields-43',
     type: 'mcq',
     question: 'Volume charge density ρ has SI units of',
-    options: ['C/m', 'C/m²', 'C/m³', 'C·m'],
-    correctIndex: 2,
+    options: ['C/m²', 'C/m', 'C·m', 'C/m³'],
+    correctIndex: 3,
     explanation: 'Volume charge density is charge per unit volume, with SI unit coulomb per cubic metre (C/m³).',
     difficulty: 'easy'
   },
@@ -546,8 +546,8 @@ const questions: Question[] = [
     options: [
       'increases K times',
       'decreases to 1/K of the original value',
-      'remains the same',
-      'becomes zero'
+      'becomes zero',
+      'remains the same'
     ],
     correctIndex: 1,
     explanation: 'In a dielectric medium, F = kq1q2/(Kr²), so the force reduces by a factor of K compared to the force in vacuum/air, since K > 1 weakens the effective force between charges.',
@@ -558,9 +558,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Which of the following statements about electric charge is correct?',
     options: [
-      'Charge is affected by the motion of the charged body (relativistic mass-like effect)',
-      'Charge is invariant — it does not change with the speed of the charged body, unlike mass',
       'Charge depends on the reference frame of the observer',
+      'Charge is invariant — it does not change with the speed of the charged body, unlike mass',
+      'Charge is affected by the motion of the charged body (relativistic mass-like effect)',
       'Charge increases as the speed of the body approaches the speed of light'
     ],
     correctIndex: 1,
@@ -572,12 +572,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Charge is described as "additive" because',
     options: [
-      'charges of the same sign always add up to zero',
-      'the total charge of a system is the algebraic sum (with due regard to sign) of all individual charges present',
+      'charge cannot be summed across different objects',
       'only positive charges can be added together',
-      'charge cannot be summed across different objects'
+      'charges of the same sign always add up to zero',
+      'the total charge of a system is the algebraic sum (with due regard to sign) of all individual charges present'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Additivity of charge means the net charge of a system of charges is obtained simply by algebraically adding the individual charges, taking their signs into account.',
     difficulty: 'medium'
   },
@@ -586,12 +586,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'An object is said to be electrically neutral when',
     options: [
+      'it cannot be charged by rubbing',
       'it has no protons or electrons',
-      'the total positive charge exactly equals the total negative charge it contains',
       'it has only neutrons',
-      'it cannot be charged by rubbing'
+      'the total positive charge exactly equals the total negative charge it contains'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'A neutral object contains equal amounts of positive charge (protons) and negative charge (electrons), so the net charge is zero, though both types of charge are present.',
     difficulty: 'easy'
   },
@@ -602,8 +602,8 @@ const questions: Question[] = [
     options: [
       'friction, conduction, and induction',
       'friction, radiation, and convection',
-      'conduction, convection, and reflection',
-      'induction, reflection, and radiation'
+      'induction, reflection, and radiation',
+      'conduction, convection, and reflection'
     ],
     correctIndex: 0,
     explanation: 'A body can become charged by friction (rubbing), by conduction (direct contact with an already-charged body), or by induction (without direct contact, through redistribution of charge in a nearby body).',
@@ -614,12 +614,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Charging a neutral conductor by induction, without touching it with a charged body, results in the conductor acquiring a net charge that is',
     options: [
+      'always positive',
       'the same sign as the inducing charge',
-      'opposite in sign to the inducing charge (when the induced charge is grounded and then isolated appropriately)',
       'exactly zero always',
-      'always positive'
+      'opposite in sign to the inducing charge (when the induced charge is grounded and then isolated appropriately)'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'In the standard induction charging process (bringing a charged rod near, grounding the far side, then removing the ground and the rod), the conductor ends up with a net charge opposite in sign to that of the inducing (charged) body.',
     difficulty: 'medium'
   },
@@ -629,11 +629,11 @@ const questions: Question[] = [
     question: 'The electric field lines due to two equal and opposite point charges (an electric dipole) are',
     options: [
       'straight radial lines from each charge with no connection between them',
-      'curved lines starting on the positive charge and curving around to end on the negative charge',
+      'parallel straight lines',
       'circular loops around the midpoint',
-      'parallel straight lines'
+      'curved lines starting on the positive charge and curving around to end on the negative charge'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For a dipole, field lines originate on the positive charge and curve through space to terminate on the negative charge, forming the characteristic dipole field-line pattern.',
     difficulty: 'medium'
   },
@@ -642,9 +642,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The electric field lines between two oppositely charged parallel plates (as in a parallel plate capacitor, ignoring edge effects) are',
     options: [
-      'curved and non-uniform',
-      'straight, parallel, and equally spaced, indicating a uniform field',
       'radiating outward from the plates',
+      'straight, parallel, and equally spaced, indicating a uniform field',
+      'curved and non-uniform',
       'circular around the plates'
     ],
     correctIndex: 1,
@@ -656,10 +656,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Which statement about the number of electric field lines emanating from or terminating on a charge is correct?',
     options: [
-      'The number of field lines is arbitrary and unrelated to the magnitude of charge',
-      'The number of field lines associated with a charge is (by convention) taken proportional to the magnitude of the charge',
       'Every charge, regardless of magnitude, has exactly the same number of field lines',
-      'Field lines exist only for charges greater than 1 coulomb'
+      'The number of field lines associated with a charge is (by convention) taken proportional to the magnitude of the charge',
+      'Field lines exist only for charges greater than 1 coulomb',
+      'The number of field lines is arbitrary and unrelated to the magnitude of charge'
     ],
     correctIndex: 1,
     explanation: 'By convention, the number of field lines drawn originating from or ending on a charge is taken to be proportional to the magnitude of that charge, allowing field line density to represent field strength consistently.',
@@ -669,8 +669,8 @@ const questions: Question[] = [
     id: 'charges-fields-53',
     type: 'mcq',
     question: 'Two charges of equal magnitude, +q and +q, are placed at a distance d apart. The point on the line joining them where the net electric field is zero lies',
-    options: ['exactly at the midpoint of the two charges', 'closer to one of the charges, not at the midpoint', 'outside the line segment joining the charges', 'at infinity only'],
-    correctIndex: 0,
+    options: ['at infinity only', 'closer to one of the charges, not at the midpoint', 'outside the line segment joining the charges', 'exactly at the midpoint of the two charges'],
+    correctIndex: 3,
     explanation: 'For two equal like charges, by symmetry, the fields due to each charge cancel exactly at the midpoint between them, since both charges are equal in magnitude.',
     difficulty: 'medium'
   },
@@ -679,12 +679,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For two unlike point charges +q and -2q separated by a distance d, the point of zero net electric field on the line joining them (extended, if needed) lies',
     options: [
+      'nowhere; zero field is not possible for unlike charges',
       'exactly at the midpoint',
-      'outside the segment, closer to the smaller charge +q',
       'outside the segment, closer to the larger charge -2q',
-      'nowhere; zero field is not possible for unlike charges'
+      'outside the segment, closer to the smaller charge +q'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For unlike charges of different magnitude, the null point lies outside the segment joining them, on the side of the smaller-magnitude charge, where the fields from the two charges can be made to point in opposite directions and cancel.',
     difficulty: 'hard'
   },
@@ -692,7 +692,7 @@ const questions: Question[] = [
     id: 'charges-fields-55',
     type: 'mcq',
     question: 'A charged particle is placed in a region of uniform electric field with no other forces acting on it. Its trajectory (if given an initial velocity perpendicular to the field) will be',
-    options: ['a straight line', 'a circle', 'a parabola, similar to projectile motion', 'an ellipse'],
+    options: ['a straight line', 'an ellipse', 'a parabola, similar to projectile motion', 'a circle'],
     correctIndex: 2,
     explanation: 'A uniform field produces constant acceleration on the charge, analogous to gravity in projectile motion; with an initial velocity perpendicular to this constant force, the trajectory is a parabola.',
     difficulty: 'medium'
@@ -702,12 +702,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The electric field due to a point charge q at a distance r, when r approaches zero, mathematically',
     options: [
+      'becomes negative',
       'approaches zero',
-      'tends to infinity, revealing a limitation of treating charge as a true point',
       'remains finite and constant',
-      'becomes negative'
+      'tends to infinity, revealing a limitation of treating charge as a true point'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Since E = kq/r², as r → 0, the field diverges to infinity, which is a known idealization/limitation of the point-charge model rather than a physically realizable situation.',
     difficulty: 'medium'
   },
@@ -716,12 +716,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Electrostatic forces obey Newton\'s third law, meaning',
     options: [
-      'the force charge A exerts on charge B is unrelated to the force B exerts on A',
-      'the force exerted by charge A on charge B is equal in magnitude and opposite in direction to the force exerted by B on A',
       'only one of the two charges experiences a force',
-      'the forces are always in the same direction'
+      'the force charge A exerts on charge B is unrelated to the force B exerts on A',
+      'the forces are always in the same direction',
+      'the force exerted by charge A on charge B is equal in magnitude and opposite in direction to the force exerted by B on A'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Coulomb forces are consistent with Newton\'s third law: the force each charge exerts on the other is equal in magnitude and opposite in direction, forming an action-reaction pair.',
     difficulty: 'easy'
   },
@@ -730,12 +730,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The electrostatic force between two charges, unlike gravitational force between two masses, can be',
     options: [
-      'only attractive',
-      'only repulsive',
+      'zero at all separations',
       'either attractive or repulsive, depending on the signs of the charges',
-      'zero at all separations'
+      'only repulsive',
+      'only attractive'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Gravity is always attractive, but electrostatic force can be attractive (unlike charges) or repulsive (like charges), a key qualitative difference between the two forces despite their similar 1/r² form.',
     difficulty: 'easy'
   },
@@ -757,8 +757,8 @@ const questions: Question[] = [
     id: 'charges-fields-60',
     type: 'mcq',
     question: 'Consider two identical small conducting spheres carrying charges q1 and q2, brought into contact and then separated. After separation, each sphere carries a charge of',
-    options: ['q1 and q2 (unchanged)', '(q1 + q2)/2 each', 'q1 + q2 on one sphere and zero on the other', 'zero on both spheres'],
-    correctIndex: 1,
+    options: ['q1 and q2 (unchanged)', 'q1 + q2 on one sphere and zero on the other', '(q1 + q2)/2 each', 'zero on both spheres'],
+    correctIndex: 2,
     explanation: 'Since the spheres are identical, when brought into contact, the total charge (q1 + q2) redistributes equally between them due to symmetry, so each ends up with (q1+q2)/2 after separation.',
     difficulty: 'medium'
   },
@@ -766,8 +766,8 @@ const questions: Question[] = [
     id: 'charges-fields-61',
     type: 'mcq',
     question: 'A charge Q is placed at the centre of a Gaussian sphere. If a second charge q is placed just outside the sphere (not enclosed), the total electric flux through the Gaussian sphere is',
-    options: ['(Q+q)/ε₀', 'Q/ε₀, unaffected by q', 'q/ε₀', 'zero'],
-    correctIndex: 1,
+    options: ['zero', '(Q+q)/ε₀', 'q/ε₀', 'Q/ε₀, unaffected by q'],
+    correctIndex: 3,
     explanation: 'Gauss\'s law depends only on the enclosed charge; since q lies outside the Gaussian surface, it contributes zero net flux, so the total flux remains Q/ε₀ regardless of q\'s presence outside.',
     difficulty: 'medium'
   },
@@ -776,12 +776,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A hollow conducting sphere is given some positive charge. The charge distributes itself',
     options: [
-      'uniformly throughout the volume of the sphere',
-      'entirely on the outer surface of the conductor',
       'entirely at the exact centre of the sphere',
-      'equally between the inner and outer surfaces'
+      'equally between the inner and outer surfaces',
+      'uniformly throughout the volume of the sphere',
+      'entirely on the outer surface of the conductor'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For a conductor in electrostatic equilibrium, excess charge resides entirely on the outer surface, since the interior electric field must be zero and any excess charge distributes to the boundary (consistent with the shell theorem and Gauss\'s law).',
     difficulty: 'medium'
   },
@@ -790,12 +790,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Inside the material of a charged conductor in electrostatic equilibrium, the electric field is',
     options: [
-      'maximum',
-      'zero',
       'equal to the field outside',
-      'directed radially inward always'
+      'directed radially inward always',
+      'maximum',
+      'zero'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'In electrostatic equilibrium, free charges inside a conductor rearrange until the internal electric field becomes zero everywhere within the conducting material.',
     difficulty: 'easy'
   },
@@ -804,12 +804,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The electric field just outside the surface of a charged conductor is always',
     options: [
+      'at 45° to the surface',
       'tangential to the surface',
       'zero',
-      'perpendicular (normal) to the surface',
-      'at 45° to the surface'
+      'perpendicular (normal) to the surface'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'If the field had a tangential component just outside the surface, charges on the conductor\'s surface would experience a force along the surface and move until equilibrium is restored; hence in equilibrium the field is always perpendicular to the surface.',
     difficulty: 'medium'
   },
@@ -833,11 +833,11 @@ const questions: Question[] = [
     question: 'For a closed surface placed in a uniform external electric field with no charge enclosed inside, the total electric flux through the surface is',
     options: [
       'always positive',
+      'infinite',
       'always negative',
-      'zero, since as much flux enters the surface as leaves it',
-      'infinite'
+      'zero, since as much flux enters the surface as leaves it'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'When no net charge is enclosed, whatever field lines enter the closed surface must also exit it (they cannot terminate inside without a charge to end on), so the net flux is exactly zero.',
     difficulty: 'medium'
   },
@@ -845,8 +845,8 @@ const questions: Question[] = [
     id: 'charges-fields-67',
     type: 'mcq',
     question: 'Gauss\'s law is a consequence of and is fully equivalent to',
-    options: ['Newton\'s law of gravitation', 'Coulomb\'s law and the principle of superposition', 'Ohm\'s law', 'Faraday\'s law of induction'],
-    correctIndex: 1,
+    options: ['Ohm\'s law', 'Faraday\'s law of induction', 'Newton\'s law of gravitation', 'Coulomb\'s law and the principle of superposition'],
+    correctIndex: 3,
     explanation: 'Gauss\'s law can be derived from Coulomb\'s law combined with the principle of superposition for a system of charges, and the two formulations (Coulomb\'s law and Gauss\'s law) are mathematically equivalent for electrostatics.',
     difficulty: 'hard'
   },
@@ -855,9 +855,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For the purpose of applying Gauss\'s law, an appropriate Gaussian surface should be chosen such that',
     options: [
-      'it passes exactly through the source charges',
-      'the electric field is either constant in magnitude and known direction over parts of the surface, or zero, exploiting the symmetry of the charge distribution',
       'it always has to be a sphere',
+      'the electric field is either constant in magnitude and known direction over parts of the surface, or zero, exploiting the symmetry of the charge distribution',
+      'it passes exactly through the source charges',
       'it must always be very small'
     ],
     correctIndex: 1,
@@ -869,12 +869,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A small metal ball is charged and suspended near a large charged sphere with the same sign of charge. The small ball will experience',
     options: [
-      'an attractive force always',
-      'a repulsive force pushing it away from the large sphere',
+      'a force perpendicular to the line joining them',
       'no force at all',
-      'a force perpendicular to the line joining them'
+      'an attractive force always',
+      'a repulsive force pushing it away from the large sphere'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Like charges repel; since both bodies carry the same sign of charge, the small ball experiences a repulsive electrostatic force away from the large sphere, consistent with Coulomb\'s law.',
     difficulty: 'easy'
   },
@@ -883,10 +883,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The physical significance of the constant ε₀ (permittivity of free space) in Coulomb\'s law is that it',
     options: [
-      'has no physical meaning, it is just a mathematical constant',
+      'is equal to the speed of light',
       'characterizes the ability of vacuum to permit (or "permit-tivity" of) electric field lines / electrostatic interactions',
       'represents the charge of an electron',
-      'is equal to the speed of light'
+      'has no physical meaning, it is just a mathematical constant'
     ],
     correctIndex: 1,
     explanation: 'The permittivity of free space, ε₀, is a fundamental constant that characterizes how the vacuum responds to (or "permits") electric fields, and it appears throughout electrostatics, including in Coulomb\'s law and Gauss\'s law.',

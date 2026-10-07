@@ -10,12 +10,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The cell was first observed and named by:',
     options: [
-      'Robert Brown, while studying orchid cells',
       'Matthias Schleiden, while studying plant tissues',
-      'Robert Hooke, while examining a thin slice of cork under a microscope',
-      'Rudolf Virchow, while studying animal tissues'
+      'Robert Brown, while studying orchid cells',
+      'Rudolf Virchow, while studying animal tissues',
+      'Robert Hooke, while examining a thin slice of cork under a microscope'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'Robert Hooke first observed and named the cell in 1665, while examining a thin slice of cork under a simple microscope.',
     difficulty: 'easy'
   },
@@ -24,12 +24,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The Cell Theory, as originally proposed, states that all plants and animals are composed of cells, and that the cell is the basic unit of life. This theory was jointly proposed by:',
     options: [
-      'Matthias Schleiden and Theodor Schwann',
       'Robert Hooke and Robert Brown',
       'Rudolf Virchow and Anton van Leeuwenhoek',
+      'Matthias Schleiden and Theodor Schwann',
       'Camillo Golgi and George Palade'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'Matthias Schleiden (for plants, 1838) and Theodor Schwann (for animals, 1839) jointly proposed the foundational principles of the Cell Theory.',
     difficulty: 'medium'
   },
@@ -39,8 +39,8 @@ const questions: Question[] = [
     question: 'The Cell Theory was later expanded by Rudolf Virchow, who proposed that all cells arise from pre-existing cells, a concept summarised by the phrase:',
     options: [
       'Omnis vita-e vita',
-      'Cellula est vita',
       'Natura non facit saltus',
+      'Cellula est vita',
       'Omnis cellula-e cellula'
     ],
     correctIndex: 3,
@@ -53,11 +53,11 @@ const questions: Question[] = [
     question: 'The scientist credited with first observing living cells, using a self-designed simple microscope, was:',
     options: [
       'Robert Hooke',
+      'Rudolf Virchow',
       'Anton van Leeuwenhoek',
-      'Robert Brown',
-      'Rudolf Virchow'
+      'Robert Brown'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Anton van Leeuwenhoek was the first to observe and describe living, free cells, using his own simple microscopes.',
     difficulty: 'medium'
   },
@@ -66,12 +66,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The nucleus of the cell was first discovered and described by:',
     options: [
-      'Robert Hooke',
       'Robert Brown',
-      'Rudolf Virchow',
-      'Camillo Golgi'
+      'Robert Hooke',
+      'Camillo Golgi',
+      'Rudolf Virchow'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Robert Brown is credited with first describing the nucleus, in 1831, while studying orchid cells.',
     difficulty: 'medium'
   },
@@ -81,11 +81,11 @@ const questions: Question[] = [
     question: 'Among known cells, the smallest cells, belonging to the genus Mycoplasma (PPLO), have a size of approximately:',
     options: [
       '30 micrometres',
+      '0.3 micrometre',
       '300 micrometres',
-      '3 millimetres',
-      '0.3 micrometre'
+      '3 millimetres'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'Mycoplasma (PPLO) are among the smallest known cells, with a size of approximately 0.3 micrometre.',
     difficulty: 'medium'
   },
@@ -94,12 +94,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Cell size and shape are generally related to the specific function that a particular cell performs, meaning that:',
     options: [
-      'Cell shape varies considerably depending on the cell\'s function',
       'All cells in the body, regardless of function, are identical in shape',
+      'Only plant cells show any variation in shape',
       'Cell shape has no relationship to cell function at all',
-      'Only plant cells show any variation in shape'
+      'Cell shape varies considerably depending on the cell\'s function'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Cell shape typically varies in accordance with the specific function a cell performs, resulting in a wide diversity of cell shapes within an organism.',
     difficulty: 'easy'
   },
@@ -122,12 +122,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In prokaryotic cells, the genetic material is present in an undefined nuclear region called the:',
     options: [
-      'Nucleoid',
       'Nucleolus',
-      'Nuclear envelope',
-      'Chromatin body'
+      'Chromatin body',
+      'Nucleoid',
+      'Nuclear envelope'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'The nucleoid is the nuclear region of a prokaryotic cell, containing the genetic material but not enclosed by a nuclear membrane.',
     difficulty: 'easy'
   },
@@ -136,12 +136,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The outermost, loosely attached or thick and tough layer surrounding some bacterial cells, external to the cell wall, is called the:',
     options: [
-      'Mesosome',
       'Nucleoid',
       'Glycocalyx',
+      'Mesosome',
       'Plasma membrane'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'The glycocalyx is the outermost bacterial cell covering, which may be a loose slime layer or a thick, tough capsule, depending on the species.',
     difficulty: 'medium'
   },
@@ -151,11 +151,11 @@ const questions: Question[] = [
     question: 'In bacteria, the rigid layer that determines cell shape and provides protection against osmotic lysis or mechanical damage is called the:',
     options: [
       'Glycocalyx',
-      'Cell wall',
+      'Mesosome',
       'Plasma membrane',
-      'Mesosome'
+      'Cell wall'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The bacterial cell wall determines cell shape and provides essential protection against osmotic lysis and mechanical damage.',
     difficulty: 'easy'
   },
@@ -164,12 +164,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Extensions of the plasma membrane into the interior of a bacterial cell, formed by infolding and appearing as vesicles, tubules, or lamellae, are called:',
     options: [
-      'Ribosomes',
+      'Mesosomes',
       'Nucleoids',
       'Pili',
-      'Mesosomes'
+      'Ribosomes'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'Mesosomes are membranous extensions formed by the infolding of the plasma membrane in bacteria, aiding in functions like cell wall formation and DNA replication.',
     difficulty: 'medium'
   },
@@ -192,10 +192,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Motile bacteria typically possess whip-like appendages used for locomotion, called flagella, each of which is composed of three main parts: a filament, a hook, and a:',
     options: [
-      'Nucleoid',
+      'Ribosome',
       'Basal body',
       'Mesosome',
-      'Ribosome'
+      'Nucleoid'
     ],
     correctIndex: 1,
     explanation: 'A bacterial flagellum is structurally composed of three main parts: the filament, the hook, and the basal body.',
@@ -206,12 +206,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Small, bristle-like fibres present on the surface of some bacteria, distinct from flagella and not related to motility, but instead involved in attachment, are called:',
     options: [
-      'Mesosomes',
-      'Nucleoids',
+      'Cristae',
       'Pili and fimbriae',
-      'Cristae'
+      'Nucleoids',
+      'Mesosomes'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Pili and fimbriae are small, bristle-like surface structures found in some bacteria, functioning in attachment rather than motility.',
     difficulty: 'medium'
   },
@@ -220,12 +220,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The reserve food material found in bacterial cells, lying freely in the cytoplasm without being bound by any membrane, is generally referred to as:',
     options: [
-      'Inclusion bodies',
-      'Mesosomes',
+      'Golgi bodies',
       'Nucleoids',
-      'Golgi bodies'
+      'Inclusion bodies',
+      'Mesosomes'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'Inclusion bodies represent reserve material (such as phosphate or glycogen granules) found freely in the bacterial cytoplasm, lacking a bounding membrane.',
     difficulty: 'medium'
   },
@@ -234,12 +234,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Certain photosynthetic bacteria, such as blue-green, purple, and green photosynthetic bacteria, possess specialised inclusion bodies filled with gas, called:',
     options: [
-      'Phosphate granules',
-      'Gas vacuoles',
+      'Cyanophycean granules',
       'Glycogen granules',
-      'Cyanophycean granules'
+      'Gas vacuoles',
+      'Phosphate granules'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Gas vacuoles are specialised, gas-filled inclusion bodies found in certain photosynthetic bacteria, including blue-green, purple, and green photosynthetic bacteria.',
     difficulty: 'hard'
   },
@@ -248,12 +248,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Ribosomes associated with the plasma membrane of a prokaryotic cell, serving as the site of protein synthesis, are characteristically of which sedimentation type?',
     options: [
-      '80S',
+      '70S',
       '60S',
       '40S',
-      '70S'
+      '80S'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'Prokaryotic ribosomes are of the 70S type (composed of 50S and 30S subunits), distinct from the larger 80S ribosomes found in eukaryotic cytoplasm.',
     difficulty: 'medium'
   },
@@ -262,12 +262,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The 70S ribosome found in prokaryotic cells is composed of two subunits, sedimenting at:',
     options: [
+      '80S and 70S',
       '50S and 30S',
       '60S and 40S',
-      '80S and 70S',
       '40S and 20S'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The 70S prokaryotic ribosome is composed of a larger 50S subunit and a smaller 30S subunit.',
     difficulty: 'medium'
   },
@@ -276,12 +276,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Ribosomes function as the cellular site for the process of:',
     options: [
-      'DNA replication',
-      'Lipid synthesis exclusively',
       'Protein synthesis',
-      'ATP production exclusively'
+      'ATP production exclusively',
+      'Lipid synthesis exclusively',
+      'DNA replication'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'Ribosomes, found in both prokaryotic and eukaryotic cells, function as the site of protein synthesis.',
     difficulty: 'easy'
   },
@@ -291,11 +291,11 @@ const questions: Question[] = [
     question: 'The widely accepted model describing the molecular organisation of the plasma membrane, proposed by Singer and Nicolson, is called the:',
     options: [
       'Sandwich model',
-      'Unit membrane model exclusively',
       'Fluid mosaic model',
-      'Solid mosaic model'
+      'Solid mosaic model',
+      'Unit membrane model exclusively'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'The fluid mosaic model, proposed by Singer and Nicolson in 1972, describes the plasma membrane as a fluid structure with proteins embedded in a lipid bilayer.',
     difficulty: 'medium'
   },
@@ -304,12 +304,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'According to the fluid mosaic model, the lipid molecules within the plasma membrane are arranged in a bilayer that exhibits which key property?',
     options: [
-      'Quasi-fluidity, allowing for the lateral movement of proteins',
-      'Complete rigidity, with no movement of any component allowed',
       'A completely crystalline, solid-state structure',
-      'A gaseous state, allowing free diffusion of the entire membrane'
+      'Complete rigidity, with no movement of any component allowed',
+      'A gaseous state, allowing free diffusion of the entire membrane',
+      'Quasi-fluidity, allowing for the lateral movement of proteins'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'The lipid bilayer of the plasma membrane exhibits a quasi-fluid nature, allowing embedded protein molecules to move somewhat freely within the membrane, akin to icebergs floating in a sea of lipids.',
     difficulty: 'medium'
   },
@@ -318,9 +318,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Membrane proteins that completely span the width of the plasma membrane are classified as:',
     options: [
-      'Peripheral proteins',
-      'Integral proteins',
       'Structural proteins exclusively',
+      'Integral proteins',
+      'Peripheral proteins',
       'Enzymatic proteins exclusively'
     ],
     correctIndex: 1,
@@ -332,12 +332,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Membrane proteins that are found only on the inner or outer surface of the plasma membrane, without spanning its full width, are classified as:',
     options: [
-      'Integral proteins',
       'Transmembrane proteins',
-      'Cytoskeletal proteins exclusively',
-      'Peripheral proteins'
+      'Peripheral proteins',
+      'Integral proteins',
+      'Cytoskeletal proteins exclusively'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'Peripheral proteins are located only on the surface of the plasma membrane (either inner or outer), unlike integral proteins, which span the entire membrane.',
     difficulty: 'medium'
   },
@@ -346,8 +346,8 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The movement of molecules across the plasma membrane without any expenditure of cellular energy (ATP), moving along a concentration gradient, is called:',
     options: [
-      'Active transport',
       'Osmotic pumping',
+      'Active transport',
       'Facilitated hydrolysis',
       'Passive transport'
     ],
@@ -374,12 +374,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The cell wall of plant cells is chemically composed primarily of:',
     options: [
-      'Cellulose',
-      'Chitin',
       'Peptidoglycan',
-      'Keratin'
+      'Keratin',
+      'Cellulose',
+      'Chitin'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'The plant cell wall is composed primarily of cellulose, distinguishing it from the fungal cell wall (chitin) and bacterial cell wall (peptidoglycan).',
     difficulty: 'easy'
   },
@@ -388,12 +388,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The plant cell wall provides a rigid structure and helps the cell to withstand changes in osmotic pressure, primarily by:',
     options: [
-      'Actively pumping out excess water using ATP',
       'Preventing the cell from bursting when placed in a hypotonic medium',
       'Completely preventing any water movement into or out of the cell',
+      'Actively pumping out excess water using ATP',
       'Dissolving completely in hypotonic solutions'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'The rigid cell wall provides structural support that prevents the plant cell from bursting (lysis) when it absorbs water and swells in a hypotonic medium.',
     difficulty: 'medium'
   },
@@ -402,12 +402,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The layer that cements together the walls of two adjacent plant cells, composed mainly of calcium pectate, is called the:',
     options: [
-      'Middle lamella',
       'Tonoplast',
       'Glycocalyx',
-      'Mesosome'
+      'Mesosome',
+      'Middle lamella'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'The middle lamella, composed mainly of calcium pectate, cements together the cell walls of adjacent plant cells.',
     difficulty: 'medium'
   },
@@ -416,12 +416,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The endomembrane system of a eukaryotic cell includes the endoplasmic reticulum, Golgi apparatus, lysosomes, and vacuoles, since their functions are:',
     options: [
+      'Restricted only to animal cells, never found in plants',
       'Completely independent of one another',
-      'Coordinated with one another',
       'Identical to those of mitochondria and chloroplasts',
-      'Restricted only to animal cells, never found in plants'
+      'Coordinated with one another'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The endomembrane system comprises organelles (ER, Golgi apparatus, lysosomes, vacuoles) whose functions are coordinated with each other, distinguishing them from organelles like mitochondria and chloroplasts, which function more independently.',
     difficulty: 'medium'
   },
@@ -430,12 +430,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Mitochondria, chloroplasts, and peroxisomes are generally NOT included as part of the endomembrane system mainly because their functions are:',
     options: [
-      'Identical to those of the Golgi apparatus',
       'Completely unnecessary for the cell\'s survival',
-      'Restricted only to prokaryotic cells',
-      'Not coordinated with the other endomembrane organelles'
+      'Not coordinated with the other endomembrane organelles',
+      'Identical to those of the Golgi apparatus',
+      'Restricted only to prokaryotic cells'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'Since the functions of mitochondria, chloroplasts, and peroxisomes are not coordinated with those of the ER, Golgi, lysosomes, and vacuoles, they are excluded from the endomembrane system.',
     difficulty: 'medium'
   },
@@ -445,11 +445,11 @@ const questions: Question[] = [
     question: 'The endoplasmic reticulum (ER) forms a network of membranous tubules and flattened sacs called cisternae, extending throughout the:',
     options: [
       'Nucleus only',
+      'Extracellular space only',
       'Cell wall only',
-      'Cytoplasm',
-      'Extracellular space only'
+      'Cytoplasm'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'The endoplasmic reticulum forms an extensive network of membranous tubules and cisternae that extend throughout the cytoplasm of the cell.',
     difficulty: 'easy'
   },
@@ -459,11 +459,11 @@ const questions: Question[] = [
     question: 'The type of endoplasmic reticulum that has ribosomes attached to its outer surface, primarily involved in protein synthesis, is called:',
     options: [
       'Smooth Endoplasmic Reticulum (SER)',
-      'Rough Endoplasmic Reticulum (RER)',
+      'Nuclear envelope exclusively',
       'Golgi apparatus',
-      'Nuclear envelope exclusively'
+      'Rough Endoplasmic Reticulum (RER)'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Rough Endoplasmic Reticulum (RER) has ribosomes attached to its outer surface, giving it a rough appearance, and is primarily involved in protein synthesis.',
     difficulty: 'easy'
   },
@@ -472,12 +472,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The type of endoplasmic reticulum that lacks ribosomes on its surface, and is primarily involved in lipid synthesis, is called:',
     options: [
-      'Rough Endoplasmic Reticulum (RER)',
-      'Golgi apparatus',
       'Lysosome',
-      'Smooth Endoplasmic Reticulum (SER)'
+      'Rough Endoplasmic Reticulum (RER)',
+      'Smooth Endoplasmic Reticulum (SER)',
+      'Golgi apparatus'
     ],
-    correctIndex: 3,
+    correctIndex: 2,
     explanation: 'Smooth Endoplasmic Reticulum (SER) lacks ribosomes and is primarily involved in the synthesis of lipids.',
     difficulty: 'easy'
   },
@@ -486,10 +486,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The outer nuclear membrane is generally continuous with a portion of the endoplasmic reticulum, specifically the:',
     options: [
-      'Smooth Endoplasmic Reticulum (SER) exclusively',
+      'Plasma membrane',
       'Golgi apparatus',
       'Rough Endoplasmic Reticulum (RER)',
-      'Plasma membrane'
+      'Smooth Endoplasmic Reticulum (SER) exclusively'
     ],
     correctIndex: 2,
     explanation: 'The outer nuclear membrane is typically continuous with the rough endoplasmic reticulum (RER), often bearing ribosomes on its outer surface as well.',
@@ -501,9 +501,9 @@ const questions: Question[] = [
     question: 'The Golgi apparatus, first described by the scientist after whom it is named, consists of a system of membrane-bound vesicles arranged in stacks called:',
     options: [
       'Cisternae',
-      'Cristae',
+      'Grana',
       'Thylakoids',
-      'Grana'
+      'Cristae'
     ],
     correctIndex: 0,
     explanation: 'The Golgi apparatus, discovered by Camillo Golgi, consists of membrane-bound sacs organised into stacks called cisternae.',
@@ -514,12 +514,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The convex face of the Golgi apparatus, oriented toward the endoplasmic reticulum, is called the:',
     options: [
-      'Trans face (maturing face)',
       'Nuclear face',
       'Cis face (forming face)',
-      'Basal face'
+      'Basal face',
+      'Trans face (maturing face)'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'The cis face (forming face) of the Golgi apparatus is convex in shape and oriented toward the endoplasmic reticulum, receiving material from it.',
     difficulty: 'medium'
   },
@@ -528,12 +528,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The concave face of the Golgi apparatus, oriented away from the endoplasmic reticulum, from which processed material is finally released, is called the:',
     options: [
-      'Trans face (maturing face)',
       'Cis face (forming face)',
-      'Nuclear face',
-      'Basal face'
+      'Trans face (maturing face)',
+      'Basal face',
+      'Nuclear face'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The trans face (maturing face) of the Golgi apparatus is concave and is where fully processed material is finally packaged and released from the organelle.',
     difficulty: 'medium'
   },
@@ -542,12 +542,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'One of the important functions of the Golgi apparatus is the chemical modification of proteins and lipids received from the endoplasmic reticulum, a process called:',
     options: [
+      'Replication',
       'Phosphorylation exclusively',
-      'Glycosylation',
       'Hydrolysis exclusively',
-      'Replication'
+      'Glycosylation'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Glycosylation, the addition of sugar groups to proteins and lipids, is a key chemical modification carried out by the Golgi apparatus.',
     difficulty: 'medium'
   },
@@ -556,12 +556,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In addition to packaging materials for secretion, the Golgi apparatus is also known to play a key role in the formation of:',
     options: [
-      'Mitochondria',
-      'Chloroplasts',
       'Ribosomes',
-      'Lysosomes'
+      'Lysosomes',
+      'Mitochondria',
+      'Chloroplasts'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'Besides its role in packaging secretory materials, the Golgi apparatus is also responsible for the formation of lysosomes.',
     difficulty: 'medium'
   },
@@ -570,12 +570,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Lysosomes, membrane-bound vesicular structures formed by the Golgi apparatus, characteristically contain a variety of enzymes called:',
     options: [
-      'Oxidative enzymes exclusively',
-      'Only enzymes involved in DNA replication',
       'Only enzymes involved in ATP synthesis',
-      'Hydrolytic enzymes (hydrolases)'
+      'Hydrolytic enzymes (hydrolases)',
+      'Only enzymes involved in DNA replication',
+      'Oxidative enzymes exclusively'
     ],
-    correctIndex: 3,
+    correctIndex: 1,
     explanation: 'Lysosomes contain hydrolytic enzymes (hydrolases), capable of breaking down carbohydrates, proteins, lipids, and nucleic acids.',
     difficulty: 'easy'
   },
@@ -584,12 +584,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The hydrolytic enzymes within lysosomes are optimally active under which pH condition?',
     options: [
-      'Strongly alkaline (basic) conditions',
       'Acidic conditions',
+      'Strongly alkaline (basic) conditions',
       'Perfectly neutral conditions only',
       'They are equally active at any pH'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Lysosomal hydrolytic enzymes function optimally under acidic conditions, reflecting the acidic internal environment of the lysosome.',
     difficulty: 'medium'
   },
@@ -599,9 +599,9 @@ const questions: Question[] = [
     question: 'When a lysosome ruptures within a cell, releasing its digestive enzymes into the cytoplasm, it can lead to the digestion of the cell\'s own components, a process called:',
     options: [
       'Autolysis (giving lysosomes the nickname \'suicide bags\')',
-      'Glycosylation',
       'Phagocytosis exclusively',
-      'Chemiosmosis'
+      'Chemiosmosis',
+      'Glycosylation'
     ],
     correctIndex: 0,
     explanation: 'Rupture of lysosomal membranes releases hydrolytic enzymes into the cytoplasm, potentially digesting the cell\'s own components, a process called autolysis, hence lysosomes are sometimes called \'suicide bags.\'',
@@ -612,8 +612,8 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Lysosomes play an important role in intracellular digestion, being capable of breaking down carbohydrates, proteins, lipids, and:',
     options: [
-      'Only water molecules',
       'Only inorganic salts',
+      'Only water molecules',
       'Nucleic acids',
       'Only gases like oxygen and carbon dioxide'
     ],
@@ -626,12 +626,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The membrane that surrounds a plant cell\'s vacuole, separating it from the surrounding cytoplasm, is called the:',
     options: [
-      'Tonoplast',
       'Sarcolemma',
+      'Tonoplast',
       'Nuclear envelope',
       'Plasmalemma exclusively'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The tonoplast is the specific membrane that encloses the vacuole in a plant cell, regulating the movement of substances into and out of it.',
     difficulty: 'medium'
   },
@@ -640,12 +640,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In mature plant cells, the vacuole may occupy up to what proportion of the total cell volume?',
     options: [
-      'Only about 5%',
       'Only about 25%',
       'As much as 90%',
-      'Exactly 50%, with no variation'
+      'Exactly 50%, with no variation',
+      'Only about 5%'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'In many mature plant cells, the central vacuole can occupy up to 90% of the total cell volume, contributing significantly to turgor pressure.',
     difficulty: 'medium'
   },
@@ -654,9 +654,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In Amoeba, the specialised vacuole responsible for maintaining osmotic balance by expelling excess water is called the:',
     options: [
-      'Food vacuole',
-      'Central vacuole, as seen in plants',
       'Tonoplast vacuole',
+      'Central vacuole, as seen in plants',
+      'Food vacuole',
       'Contractile vacuole'
     ],
     correctIndex: 3,
@@ -668,12 +668,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Mitochondria are often referred to as the \'powerhouse of the cell\' because they are the primary site of:',
     options: [
+      'Lipid storage exclusively',
       'Protein synthesis',
-      'ATP (energy) production',
       'DNA replication exclusively',
-      'Lipid storage exclusively'
+      'ATP (energy) production'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Mitochondria are called the \'powerhouse of the cell\' because they are the primary site of aerobic ATP production.',
     difficulty: 'easy'
   },
@@ -682,12 +682,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The mitochondrion is bound by how many membranes?',
     options: [
+      'No membrane at all, being naked in the cytoplasm',
       'Only a single membrane',
       'Two membranes (an outer and an inner membrane)',
-      'Three membranes',
-      'No membrane at all, being naked in the cytoplasm'
+      'Three membranes'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Mitochondria are double membrane-bound organelles, possessing both an outer and an inner membrane.',
     difficulty: 'easy'
   },
@@ -696,12 +696,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The inner membrane of the mitochondrion is characteristically folded into numerous finger-like projections called:',
     options: [
-      'Cisternae',
       'Thylakoids',
-      'Grana',
-      'Cristae'
+      'Cisternae',
+      'Cristae',
+      'Grana'
     ],
-    correctIndex: 3,
+    correctIndex: 2,
     explanation: 'The inner mitochondrial membrane forms numerous folds called cristae, which significantly increase the surface area available for biochemical reactions.',
     difficulty: 'easy'
   },
@@ -710,12 +710,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The folding of the inner mitochondrial membrane into cristae primarily serves to:',
     options: [
-      'Decrease the total surface area, conserving space',
-      'Prevent any chemical reactions from occurring',
       'Increase the surface area available for various biochemical (metabolic) reactions',
+      'Prevent any chemical reactions from occurring',
+      'Decrease the total surface area, conserving space',
       'Store excess water'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'The extensive folding of the inner mitochondrial membrane into cristae increases the surface area available for the enzymatic reactions of aerobic respiration.',
     difficulty: 'medium'
   },
@@ -724,12 +724,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The fluid matrix enclosed within the inner mitochondrial membrane, containing mitochondrial DNA, RNA, ribosomes, and enzymes for the citric acid cycle, is called the:',
     options: [
-      'Mitochondrial matrix',
       'Stroma',
+      'Mitochondrial matrix',
       'Nucleoplasm',
       'Cytosol'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The mitochondrial matrix is the fluid-filled interior space enclosed by the inner membrane, containing the organelle\'s own DNA, RNA, ribosomes, and various enzymes.',
     difficulty: 'medium'
   },
@@ -739,11 +739,11 @@ const questions: Question[] = [
     question: 'The DNA found within mitochondria is characteristically:',
     options: [
       'Linear and complexed extensively with histone proteins',
+      'Identical in every way to nuclear DNA',
       'Entirely absent, since mitochondria have no DNA of their own',
-      'Circular and naked (not associated with histone proteins)',
-      'Identical in every way to nuclear DNA'
+      'Circular and naked (not associated with histone proteins)'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'Mitochondrial DNA is circular and naked, lacking the histone proteins associated with nuclear (eukaryotic) chromatin, a feature reminiscent of prokaryotic DNA.',
     difficulty: 'medium'
   },
@@ -753,8 +753,8 @@ const questions: Question[] = [
     question: 'The ribosomes found within the mitochondrial matrix are of which sedimentation type, similar to prokaryotic ribosomes?',
     options: [
       '70S',
-      '80S',
       '60S',
+      '80S',
       '40S'
     ],
     correctIndex: 0,
@@ -766,12 +766,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Since mitochondria possess their own DNA and ribosomes, and are capable of dividing independently, they are described as:',
     options: [
+      'Semi-autonomous organelles',
       'Completely autonomous, fully independent organisms',
-      'Entirely dependent, lacking any of their own genetic material',
       'Non-functional vestigial organelles',
-      'Semi-autonomous organelles'
+      'Entirely dependent, lacking any of their own genetic material'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'Because mitochondria contain their own genetic material (DNA) and ribosomes, and can divide somewhat independently, they are termed semi-autonomous organelles.',
     difficulty: 'medium'
   },
@@ -780,12 +780,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Plastids, found in plant cells and euglenoids, are broadly classified into three types: chloroplasts, chromoplasts, and:',
     options: [
+      'Ribosomes',
       'Peroxisomes',
-      'Leucoplasts',
       'Lysosomes',
-      'Ribosomes'
+      'Leucoplasts'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Plastids are classified into three main types: chloroplasts (photosynthetic), chromoplasts (pigmented), and leucoplasts (colourless, storage).',
     difficulty: 'easy'
   },
@@ -794,12 +794,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Chloroplasts, the green-coloured plastids responsible for photosynthesis, contain the pigments chlorophyll and:',
     options: [
-      'Carotenoids',
+      'Haemoglobin',
       'Anthocyanins exclusively',
       'Melanin',
-      'Haemoglobin'
+      'Carotenoids'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Chloroplasts contain chlorophyll along with carotenoid pigments, together enabling the process of photosynthesis.',
     difficulty: 'easy'
   },
@@ -808,12 +808,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Chromoplasts, plastids containing fat-soluble pigments such as carotene and xanthophylls, are generally responsible for imparting which colours to plant parts?',
     options: [
-      'Only green colouration, identical to chloroplasts',
+      'Yellow, orange, or red colours',
       'Only white or colourless appearances',
       'Only blue or purple colouration',
-      'Yellow, orange, or red colours'
+      'Only green colouration, identical to chloroplasts'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'Chromoplasts contain fat-soluble pigments like carotene and xanthophylls, imparting yellow, orange, or red colouration to various plant parts.',
     difficulty: 'medium'
   },
@@ -822,12 +822,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Leucoplasts are colourless plastids primarily specialised for the storage of nutrients; specifically, amyloplasts store:',
     options: [
-      'Oils and fats',
       'Carbohydrates (starch)',
-      'Proteins',
-      'Water exclusively'
+      'Oils and fats',
+      'Water exclusively',
+      'Proteins'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Amyloplasts, a type of leucoplast, are specialised for the storage of carbohydrates in the form of starch.',
     difficulty: 'medium'
   },
@@ -850,12 +850,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Within the chloroplast, membrane-bound, flattened, sac-like structures organised into stacks (grana), serving as the site of the light reaction of photosynthesis, are called:',
     options: [
-      'Cristae',
       'Thylakoids',
-      'Cisternae',
-      'Nucleoids'
+      'Cristae',
+      'Nucleoids',
+      'Cisternae'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Thylakoids are flattened, membrane-bound sacs within the chloroplast, organised into stacks called grana, and serve as the site of the light-dependent reactions of photosynthesis.',
     difficulty: 'medium'
   },
@@ -865,9 +865,9 @@ const questions: Question[] = [
     question: 'The fluid matrix of the chloroplast, surrounding the grana and containing the enzymes for the dark reaction (Calvin cycle), is called the:',
     options: [
       'Mitochondrial matrix',
-      'Nucleoplasm',
+      'Cytosol',
       'Stroma',
-      'Cytosol'
+      'Nucleoplasm'
     ],
     correctIndex: 2,
     explanation: 'The stroma is the fluid-filled matrix of the chloroplast, containing the enzymes responsible for the dark reaction (carbon fixation) of photosynthesis.',
@@ -879,9 +879,9 @@ const questions: Question[] = [
     question: 'Like mitochondria, chloroplasts also possess their own DNA and ribosomes, and are therefore also classified as:',
     options: [
       'Semi-autonomous organelles',
-      'Fully autonomous, independent organisms',
       'Non-functional structures with no independent role',
-      'Part of the endomembrane system'
+      'Part of the endomembrane system',
+      'Fully autonomous, independent organisms'
     ],
     correctIndex: 0,
     explanation: 'Similar to mitochondria, chloroplasts possess their own DNA and ribosomes, allowing them to be classified as semi-autonomous organelles.',
@@ -892,12 +892,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Ribosomes found freely in the cytoplasm of a eukaryotic cell, or attached to the rough endoplasmic reticulum, are characteristically of which sedimentation type?',
     options: [
-      '70S',
+      '80S',
       '60S alone, with no smaller subunit',
-      '40S alone, with no larger subunit',
-      '80S'
+      '70S',
+      '40S alone, with no larger subunit'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'Eukaryotic cytoplasmic ribosomes are of the 80S type, composed of a 60S and a 40S subunit, distinct from the smaller 70S ribosomes of prokaryotes, mitochondria, and chloroplasts.',
     difficulty: 'medium'
   },
@@ -906,12 +906,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The 80S eukaryotic ribosome is composed of two subunits, sedimenting at:',
     options: [
-      '50S and 30S',
       '70S and 10S',
-      '80S and 20S',
-      '60S and 40S'
+      '50S and 30S',
+      '60S and 40S',
+      '80S and 20S'
     ],
-    correctIndex: 3,
+    correctIndex: 2,
     explanation: 'The 80S eukaryotic cytoplasmic ribosome is composed of a larger 60S subunit and a smaller 40S subunit.',
     difficulty: 'medium'
   },
@@ -921,9 +921,9 @@ const questions: Question[] = [
     question: 'When several ribosomes attach to a single strand of mRNA and simultaneously translate it into polypeptides, the resulting structure is called a:',
     options: [
       'Polysome (polyribosome)',
-      'Mesosome',
       'Nucleosome',
-      'Centrosome'
+      'Centrosome',
+      'Mesosome'
     ],
     correctIndex: 0,
     explanation: 'A polysome (or polyribosome) is formed when multiple ribosomes attach to and simultaneously translate a single mRNA molecule.',
@@ -934,12 +934,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The network of filamentous proteins present in the cytoplasm of a eukaryotic cell, providing mechanical support, motility, and helping maintain cell shape, is called the:',
     options: [
-      'Endomembrane system',
       'Nucleoskeleton',
       'Cytoskeleton',
+      'Endomembrane system',
       'Glycocalyx'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'The cytoskeleton is a network of protein filaments (including microtubules, microfilaments, and intermediate filaments) that provides mechanical support and enables cell motility and shape maintenance.',
     difficulty: 'medium'
   },
@@ -962,12 +962,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The characteristic microtubule arrangement found within the axoneme of cilia and flagella is described as:',
     options: [
-      'A 9+2 array (nine peripheral doublets surrounding two central singlet microtubules)',
-      'A 9+0 array, with no central microtubules at all',
+      'A completely random, unpatterned arrangement of microtubules',
       'A simple, single central microtubule with no peripheral doublets',
-      'A completely random, unpatterned arrangement of microtubules'
+      'A 9+0 array, with no central microtubules at all',
+      'A 9+2 array (nine peripheral doublets surrounding two central singlet microtubules)'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'The axoneme of cilia and flagella characteristically shows a 9+2 arrangement: nine peripheral doublet microtubules surrounding a central pair of single microtubules.',
     difficulty: 'hard'
   },
@@ -976,12 +976,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The centrosome, found in animal cells, contains two cylindrical structures involved in spindle fibre formation during cell division, called:',
     options: [
-      'Ribosomes',
-      'Peroxisomes',
       'Centrioles',
-      'Mesosomes'
+      'Mesosomes',
+      'Ribosomes',
+      'Peroxisomes'
     ],
-    correctIndex: 2,
+    correctIndex: 0,
     explanation: 'The centrosome contains a pair of centrioles, which play an important role in organising the spindle fibres during cell division.',
     difficulty: 'medium'
   },
@@ -990,12 +990,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Each centriole is structurally composed of nine peripherally arranged triplet fibrils of the protein:',
     options: [
-      'Actin',
-      'Collagen',
+      'Tubulin',
       'Keratin',
-      'Tubulin'
+      'Collagen',
+      'Actin'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'Each centriole is composed of nine peripheral triplet microtubules made of the protein tubulin, arranged in a characteristic \'cartwheel\' pattern.',
     difficulty: 'hard'
   },
@@ -1004,12 +1004,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The nucleus, generally the most prominent organelle in a eukaryotic cell, is enclosed by a double membrane structure called the:',
     options: [
-      'Nucleolus',
-      'Nuclear envelope',
       'Tonoplast',
-      'Cytoskeleton'
+      'Cytoskeleton',
+      'Nuclear envelope',
+      'Nucleolus'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'The nuclear envelope, a double membrane structure, encloses the contents of the nucleus.',
     difficulty: 'easy'
   },
@@ -1018,12 +1018,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The nuclear envelope contains numerous small openings that regulate the transport of RNA and proteins between the nucleus and cytoplasm, called:',
     options: [
-      'Plasmodesmata exclusively',
-      'Nuclear pores',
+      'Lenticels',
       'Stomata',
-      'Lenticels'
+      'Nuclear pores',
+      'Plasmodesmata exclusively'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Nuclear pores are specialised openings in the nuclear envelope that regulate the movement of RNA and protein molecules between the nucleus and the cytoplasm.',
     difficulty: 'medium'
   },
@@ -1032,12 +1032,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The dense, spherical, non-membrane-bound structure found within the nucleus, serving as the site of ribosomal RNA (rRNA) synthesis and ribosome assembly, is called the:',
     options: [
-      'Nucleolus',
       'Nuclear envelope',
+      'Nucleoid',
       'Chromatin',
-      'Nucleoid'
+      'Nucleolus'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'The nucleolus, a dense structure within the nucleus (notably lacking its own surrounding membrane), is the primary site of rRNA synthesis and ribosome assembly.',
     difficulty: 'easy'
   },
@@ -1046,12 +1046,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The loosely coiled, thread-like network of DNA and associated proteins found within the interphase nucleus is called:',
     options: [
-      'Chromosomes (in their fully condensed form)',
       'Nucleoplasm exclusively',
       'Chromatin',
-      'The nucleolus'
+      'The nucleolus',
+      'Chromosomes (in their fully condensed form)'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Chromatin refers to the loosely coiled, thread-like arrangement of DNA and its associated proteins (like histones) found within the nucleus during interphase.',
     difficulty: 'easy'
   },
@@ -1060,9 +1060,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'During cell division, the chromatin material condenses into more compact, visible structures called:',
     options: [
-      'Nucleoli',
-      'Nuclear pores',
       'Nucleoids',
+      'Nuclear pores',
+      'Nucleoli',
       'Chromosomes'
     ],
     correctIndex: 3,
@@ -1074,12 +1074,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The constricted region of a chromosome, bearing disc-shaped structures called kinetochores that serve as the site of spindle fibre attachment, is called the:',
     options: [
-      'Telomere',
+      'Centromere',
       'Nucleolus',
       'Nuclear pore',
-      'Centromere'
+      'Telomere'
     ],
-    correctIndex: 3,
+    correctIndex: 0,
     explanation: 'The centromere is the constricted region of a chromosome, bearing kinetochores where spindle fibres attach during cell division.',
     difficulty: 'medium'
   },
@@ -1088,12 +1088,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A chromosome in which the centromere is located exactly in the middle, resulting in two equal arms, is classified as:',
     options: [
-      'Sub-metacentric',
-      'Metacentric',
       'Acrocentric',
-      'Telocentric'
+      'Telocentric',
+      'Metacentric',
+      'Sub-metacentric'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'A metacentric chromosome has its centromere positioned in the middle, giving rise to two arms of roughly equal length.',
     difficulty: 'medium'
   },

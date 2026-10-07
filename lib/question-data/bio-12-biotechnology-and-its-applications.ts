@@ -6,12 +6,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Organisms whose genes have been deliberately altered or manipulated using genetic engineering techniques are called:",
     "options": [
-      "Genetically Modified Organisms (GMOs)",
       "Wild-type organisms",
-      "Mutant organisms only",
-      "Hybrid organisms"
+      "Genetically Modified Organisms (GMOs)",
+      "Hybrid organisms",
+      "Mutant organisms only"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Organisms whose genes have been deliberately altered using genetic engineering are called Genetically Modified Organisms (GMOs).",
     "difficulty": "easy"
   },
@@ -20,12 +20,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following is NOT among the general goals of developing genetically modified (GM) crops, as per NCERT?",
     "options": [
-      "Making crops more tolerant to abiotic stresses like cold, drought, and salinity",
-      "Reducing dependence on chemical pesticides through inbuilt pest resistance",
       "Increasing dependence on synthetic fertilizers for maximum yield",
-      "Enhancing the nutritional value of crops, e.g. Vitamin A-enriched rice"
+      "Reducing dependence on chemical pesticides through inbuilt pest resistance",
+      "Enhancing the nutritional value of crops, e.g. Vitamin A-enriched rice",
+      "Making crops more tolerant to abiotic stresses like cold, drought, and salinity"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "Increasing dependence on synthetic fertilizers is not a goal of GM crop development — GM crops are typically developed to reduce input dependence, improve stress tolerance, and enhance nutrition, not increase fertilizer reliance.",
     "difficulty": "medium"
   },
@@ -35,11 +35,11 @@ const questions: Question[] = [
     "question": "GM crops engineered to reduce post-harvest losses and to enable more efficient use of minerals by plants (preventing early exhaustion of soil fertility) primarily aim at improving:",
     "options": [
       "Only the visual appearance of the crop",
-      "Agricultural productivity and sustainability",
       "Only the taste of the crop",
+      "Agricultural productivity and sustainability",
       "Only the market price of the crop"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "GM crops engineered to reduce post-harvest losses and use minerals more efficiently primarily aim at improving agricultural productivity and sustainability.",
     "difficulty": "medium"
   },
@@ -48,12 +48,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Introducing a specific gene into a plant to make it resistant to a particular insect pest, without relying on external chemical pesticides, is an application of biotechnology for:",
     "options": [
-      "Molecular diagnosis",
-      "Vaccine production",
       "Gene therapy",
-      "Pest-resistant crop development"
+      "Molecular diagnosis",
+      "Pest-resistant crop development",
+      "Vaccine production"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "Introducing a gene to make a plant resistant to an insect pest without relying on chemical pesticides is an application aimed at pest-resistant crop development.",
     "difficulty": "easy"
   },
@@ -62,12 +62,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Golden Rice, a genetically modified variety of Oryza sativa, has been engineered to biosynthesise which nutrient in its edible grain, one normally absent there?",
     "options": [
-      "Vitamin C",
       "Beta-carotene (a precursor of Vitamin A)",
       "Vitamin D",
-      "Iron"
+      "Iron",
+      "Vitamin C"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Golden Rice has been engineered to biosynthesise beta-carotene, a precursor of Vitamin A, in its edible grain.",
     "difficulty": "medium"
   },
@@ -76,12 +76,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Golden Rice was primarily developed to help combat which widespread nutritional deficiency?",
     "options": [
-      "Vitamin A deficiency",
-      "Iron-deficiency anaemia",
       "Vitamin B12 deficiency",
-      "Iodine deficiency"
+      "Iodine deficiency",
+      "Vitamin A deficiency",
+      "Iron-deficiency anaemia"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Golden Rice was primarily developed to help combat widespread Vitamin A deficiency.",
     "difficulty": "medium"
   },
@@ -90,12 +90,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following techniques is commonly used to introduce a foreign gene into plant cells during the development of a transgenic crop?",
     "options": [
-      "Only classical mutation breeding",
       "Only natural cross-pollination",
-      "Agrobacterium-mediated transformation and other gene transfer methods",
-      "Only grafting of plant parts"
+      "Only classical mutation breeding",
+      "Only grafting of plant parts",
+      "Agrobacterium-mediated transformation and other gene transfer methods"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Agrobacterium-mediated transformation and other gene transfer methods are commonly used to introduce a foreign gene into plant cells for transgenic crops.",
     "difficulty": "medium"
   },
@@ -105,11 +105,11 @@ const questions: Question[] = [
     "question": "A crop plant developed to tolerate a specific herbicide, allowing farmers to control weeds without harming the crop itself, is an example of a:",
     "options": [
       "Nutritionally enhanced crop",
-      "Pest-resistant crop",
       "Herbicide-tolerant genetically modified crop",
-      "Disease-diagnostic crop"
+      "Disease-diagnostic crop",
+      "Pest-resistant crop"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "A crop engineered to tolerate a specific herbicide, letting farmers control weeds without harming the crop, is a herbicide-tolerant genetically modified crop.",
     "difficulty": "medium"
   },
@@ -118,12 +118,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Bacillus thuringiensis, the bacterium from which the Bt toxin gene is derived, produces proteins that kill certain insect larvae. These proteins are called:",
     "options": [
-      "Histone proteins",
-      "Prion proteins",
       "Antibody proteins",
-      "Cry proteins (crystal proteins)"
+      "Cry proteins (crystal proteins)",
+      "Prion proteins",
+      "Histone proteins"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Bacillus thuringiensis produces insecticidal proteins called Cry proteins (crystal proteins).",
     "difficulty": "easy"
   },
@@ -134,8 +134,8 @@ const questions: Question[] = [
     "options": [
       "Protoxin",
       "Active toxin",
-      "A zymogen exclusively",
-      "An apoenzyme"
+      "An apoenzyme",
+      "A zymogen exclusively"
     ],
     "correctIndex": 0,
     "explanation": "Bt toxin proteins exist within the bacterium in an inactive form known as protoxin.",
@@ -146,12 +146,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Bt protoxin is converted into its active, toxic form only after it is ingested by an insect, mainly due to:",
     "options": [
-      "The acidic pH of the insect's gut",
       "The alkaline pH of the insect's gut, which solubilises the toxin crystals",
-      "The insect's own body temperature",
-      "UV exposure inside the insect's gut"
+      "The acidic pH of the insect's gut",
+      "UV exposure inside the insect's gut",
+      "The insect's own body temperature"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The Bt protoxin is converted to its active form after ingestion due to the alkaline pH of the insect's gut, which solubilises the toxin crystals.",
     "difficulty": "medium"
   },
@@ -161,11 +161,11 @@ const questions: Question[] = [
     "question": "The activated Bt toxin kills susceptible insect larvae mainly by:",
     "options": [
       "Directly attacking the insect's nervous system",
-      "Binding to specific receptors on midgut epithelial cells, causing pores that lead to cell swelling and lysis",
       "Preventing the insect from breathing",
+      "Binding to specific receptors on midgut epithelial cells, causing pores that lead to cell swelling and lysis",
       "Disrupting exoskeleton formation only"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Activated Bt toxin kills susceptible larvae by binding to specific midgut epithelial receptors, causing pores that lead to cell swelling and lysis.",
     "difficulty": "medium"
   },
@@ -174,12 +174,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which specific Cry protein genes have been used to develop cotton varieties resistant to cotton bollworms?",
     "options": [
-      "cryIAc and cryIIAb",
-      "cryIAb alone",
       "cryIIIA alone",
-      "cryIC alone"
+      "cryIAb alone",
+      "cryIC alone",
+      "cryIAc and cryIIAb"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "cryIAc and cryIIAb genes have been used to develop cotton varieties resistant to cotton bollworms.",
     "difficulty": "hard"
   },
@@ -188,12 +188,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which Cry gene is specifically used to protect corn crops against the corn borer insect pest?",
     "options": [
-      "cryIAc",
-      "cryIIAb",
       "cryIC",
-      "cryIAb"
+      "cryIAb",
+      "cryIAc",
+      "cryIIAb"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "The cryIAb gene is used to protect corn against the corn borer insect pest.",
     "difficulty": "hard"
   },
@@ -202,12 +202,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Since Bt toxin genes are of bacterial origin but need to be expressed in plant cells, the gene sequence typically has to be:",
     "options": [
-      "Left completely unchanged before insertion",
-      "Suitably modified for expression in plants and introduced using appropriate vectors",
+      "Converted entirely into an RNA sequence before insertion",
       "Stripped of all its coding regions",
-      "Converted entirely into an RNA sequence before insertion"
+      "Left completely unchanged before insertion",
+      "Suitably modified for expression in plants and introduced using appropriate vectors"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Since Bt toxin genes are bacterial in origin, the sequence typically needs to be suitably modified for plant expression before insertion via appropriate vectors.",
     "difficulty": "medium"
   },
@@ -216,12 +216,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Bt cotton, one of the most widely cultivated GM crops in India, has been genetically engineered to express toxin genes derived from:",
     "options": [
-      "Escherichia coli",
       "Agrobacterium tumefaciens",
       "Bacillus thuringiensis",
-      "Saccharomyces cerevisiae"
+      "Saccharomyces cerevisiae",
+      "Escherichia coli"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Bt cotton has been engineered to express toxin genes derived from Bacillus thuringiensis.",
     "difficulty": "easy"
   },
@@ -230,12 +230,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Bt cotton primarily provides inbuilt resistance against:",
     "options": [
-      "Fungal diseases",
       "Cotton bollworm insect pests",
       "Viral diseases",
+      "Fungal diseases",
       "Nematode infestation"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Bt cotton primarily provides inbuilt resistance against cotton bollworm insect pests.",
     "difficulty": "easy"
   },
@@ -244,12 +244,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The specificity of a particular Cry toxin for a particular group of insects is largely determined by:",
     "options": [
+      "The size of the insect alone",
       "The presence of a specific receptor for that toxin on the target insect's midgut epithelial cells",
       "Random chance, with no receptor specificity involved",
-      "The colour of the insect",
-      "The size of the insect alone"
+      "The colour of the insect"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The specificity of a Cry toxin for a particular insect group is largely determined by the presence of a specific receptor for that toxin on the target insect's midgut epithelial cells.",
     "difficulty": "hard"
   },
@@ -258,12 +258,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following best explains why Bt toxin, though effective against target insect pests, is generally considered safe for humans and other non-target organisms?",
     "options": [
-      "Non-target organisms are naturally immune to all bacterial toxins",
-      "It is completely inert and is never activated under any conditions",
       "It only affects plant cells, not animal cells",
-      "It lacks the specific gut receptors/conditions required for its activation and binding in non-target organisms"
+      "It lacks the specific gut receptors/conditions required for its activation and binding in non-target organisms",
+      "Non-target organisms are naturally immune to all bacterial toxins",
+      "It is completely inert and is never activated under any conditions"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Bt toxin is considered safe for non-target organisms because they lack the specific gut receptors/conditions required for its activation and binding.",
     "difficulty": "hard"
   },
@@ -272,12 +272,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Apart from cotton, which other important Indian crop has been developed as a Bt-based, insect-resistant genetically modified variety, though its commercial release has remained controversial?",
     "options": [
-      "Brinjal (Bt brinjal)",
       "Rice",
       "Wheat",
-      "Mustard"
+      "Mustard",
+      "Brinjal (Bt brinjal)"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Brinjal (Bt brinjal) has also been developed as a Bt-based, insect-resistant GM variety in India, though its commercial release has remained controversial.",
     "difficulty": "medium"
   },
@@ -286,12 +286,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Inserting Bt toxin genes into a plant's genome via genetic engineering is a biotechnological application aimed specifically at developing:",
     "options": [
-      "Pest-resistant transgenic crops",
       "Transgenic animal models",
-      "Molecular diagnostic kits",
-      "Gene therapy vectors"
+      "Gene therapy vectors",
+      "Pest-resistant transgenic crops",
+      "Molecular diagnostic kits"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Inserting Bt toxin genes into a plant's genome is a biotechnological application aimed at developing pest-resistant transgenic crops.",
     "difficulty": "easy"
   },
@@ -300,10 +300,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Compared to conventional chemical pesticide spraying, growing Bt crops is generally considered advantageous mainly because it:",
     "options": [
+      "Requires more frequent manual pest removal",
       "Increases dependence on chemical insecticides",
-      "Has no effect on pest populations at all",
       "Reduces the need for repeated chemical pesticide application by providing inbuilt pest resistance",
-      "Requires more frequent manual pest removal"
+      "Has no effect on pest populations at all"
     ],
     "correctIndex": 2,
     "explanation": "Bt crops are advantageous mainly because they reduce the need for repeated chemical pesticide application through inbuilt pest resistance.",
@@ -314,12 +314,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "RNA interference (RNAi), a method used to develop resistance in tobacco plants against nematode infestation, is fundamentally based on a natural cellular defense mechanism found in:",
     "options": [
+      "Only fungi",
       "Only bacteria",
-      "Most eukaryotic organisms, including humans",
       "Only viruses",
-      "Only fungi"
+      "Most eukaryotic organisms, including humans"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "RNA interference (RNAi) is based on a natural cellular defense mechanism found in most eukaryotic organisms, including humans.",
     "difficulty": "medium"
   },
@@ -328,12 +328,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The natural biological role of the RNAi mechanism in most eukaryotic cells is to protect the organism from:",
     "options": [
-      "Extreme temperature stress alone",
       "Nutrient deficiency alone",
+      "Invasion by mobile genetic elements such as transposons and viruses",
       "Excess sunlight exposure alone",
-      "Invasion by mobile genetic elements such as transposons and viruses"
+      "Extreme temperature stress alone"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "The natural biological role of RNAi in eukaryotic cells is to protect the organism from invasion by mobile genetic elements such as transposons and viruses.",
     "difficulty": "medium"
   },
@@ -342,12 +342,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "RNAi-based gene silencing exploits the fact that a specific mRNA can be silenced by a complementary:",
     "options": [
-      "Single-stranded RNA (ssRNA) molecule only",
       "Double-stranded RNA (dsRNA) molecule",
-      "Protein molecule",
-      "DNA polymerase enzyme"
+      "DNA polymerase enzyme",
+      "Single-stranded RNA (ssRNA) molecule only",
+      "Protein molecule"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "RNAi-based gene silencing exploits the fact that a specific mRNA can be silenced by a complementary double-stranded RNA (dsRNA) molecule.",
     "difficulty": "medium"
   },
@@ -356,12 +356,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In the classic RNAi-based nematode-resistance approach, a nematode-specific gene was introduced into tobacco plants using which vector?",
     "options": [
-      "Agrobacterium as the vector",
-      "A retroviral vector",
       "A bacteriophage vector exclusively",
-      "Naked plasmid injection alone"
+      "Agrobacterium as the vector",
+      "Naked plasmid injection alone",
+      "A retroviral vector"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "In the classic RNAi-based nematode-resistance approach, the nematode-specific gene was introduced into tobacco plants using Agrobacterium as the vector.",
     "difficulty": "medium"
   },
@@ -372,10 +372,10 @@ const questions: Question[] = [
     "options": [
       "A single-stranded mRNA molecule with no silencing effect",
       "A stable DNA-RNA hybrid with no functional role",
-      "A double-stranded RNA (dsRNA) that triggers silencing of the nematode's own specific mRNA",
-      "No functional RNA product at all"
+      "No functional RNA product at all",
+      "A double-stranded RNA (dsRNA) that triggers silencing of the nematode's own specific mRNA"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Transcribing the introduced gene in both sense and antisense directions produced a double-stranded RNA (dsRNA) that triggers silencing of the nematode's specific mRNA.",
     "difficulty": "medium"
   },
@@ -384,12 +384,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "As a consequence of RNAi-mediated silencing of its specific mRNA inside the transgenic host plant, the parasitic nematode is unable to survive, resulting in:",
     "options": [
-      "The plant developing complete immunity to all pathogens",
-      "Increased susceptibility of the plant to the nematode",
       "The transgenic plant, and its subsequent generations, gaining specific resistance to the nematode",
+      "Increased susceptibility of the plant to the nematode",
+      "The plant developing complete immunity to all pathogens",
       "No change in the plant-nematode interaction"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "As a result of RNAi-mediated silencing, the transgenic plant, and its subsequent generations, gain specific resistance to the nematode.",
     "difficulty": "medium"
   },
@@ -398,12 +398,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Animals whose genome has been deliberately altered or manipulated to possess and express an additional (foreign) gene are known as:",
     "options": [
+      "Transgenic animals",
       "Chimeric animals",
-      "Mutant animals only",
       "Cloned animals only",
-      "Transgenic animals"
+      "Mutant animals only"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Animals whose genome has been deliberately altered to possess and express an additional foreign gene are called transgenic animals.",
     "difficulty": "easy"
   },
@@ -412,12 +412,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "One important use of transgenic animals is to study how genes are regulated and how they affect the normal physiology, development, and function of an organism. This application is broadly termed studying:",
     "options": [
+      "Biopiracy patterns",
       "Normal physiology and development",
       "Gene therapy protocols",
-      "Biopiracy patterns",
       "Vaccine safety exclusively"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Using transgenic animals to study how genes are regulated and affect normal physiology, development, and function is termed studying normal physiology and development.",
     "difficulty": "medium"
   },
@@ -426,12 +426,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Transgenic mice have been widely used as experimental models to study human diseases such as cancer, cystic fibrosis, and rheumatoid arthritis. This application of transgenic animals is broadly termed:",
     "options": [
-      "Molecular diagnosis exclusively",
       "Study of disease models",
-      "Gene therapy exclusively",
-      "Biopiracy prevention"
+      "Molecular diagnosis exclusively",
+      "Biopiracy prevention",
+      "Gene therapy exclusively"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Transgenic mice used as experimental models for human diseases like cancer, cystic fibrosis, and rheumatoid arthritis is termed study of disease models.",
     "difficulty": "medium"
   },
@@ -440,9 +440,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Transgenic sheep have been used to produce the human protein alpha-1-antitrypsin, which is used to treat:",
     "options": [
-      "Diabetes",
-      "Emphysema (a lung disorder)",
       "Haemophilia",
+      "Emphysema (a lung disorder)",
+      "Diabetes",
       "Cystic fibrosis exclusively"
     ],
     "correctIndex": 1,
@@ -455,9 +455,9 @@ const questions: Question[] = [
     "question": "Transgenic animals used for testing the safety of vaccines before human use serve as an alternative to using:",
     "options": [
       "Non-human primates such as monkeys",
-      "Human volunteers directly, without any prior testing",
+      "No testing at all before human use",
       "Only computer simulations",
-      "No testing at all before human use"
+      "Human volunteers directly, without any prior testing"
     ],
     "correctIndex": 0,
     "explanation": "Transgenic animals used for testing vaccine safety serve as an alternative to using non-human primates such as monkeys.",
@@ -468,12 +468,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Transgenic mice have been specifically developed and used to test the safety of which type of vaccine, as mentioned in NCERT?",
     "options": [
-      "Influenza vaccine exclusively",
+      "Polio vaccine",
       "Hepatitis B vaccine exclusively",
       "Rabies vaccine exclusively",
-      "Polio vaccine"
+      "Influenza vaccine exclusively"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Transgenic mice have been specifically developed to test the safety of the polio vaccine, as cited in NCERT.",
     "difficulty": "medium"
   },
@@ -482,12 +482,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The use of transgenic animals to test whether a given chemical is toxic, prior to more extensive testing, is broadly referred to as:",
     "options": [
-      "Molecular diagnosis",
-      "Chemical/toxicity safety testing",
+      "Biopiracy assessment",
       "Gene therapy",
-      "Biopiracy assessment"
+      "Chemical/toxicity safety testing",
+      "Molecular diagnosis"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Using transgenic animals to test whether a chemical is toxic is broadly referred to as chemical/toxicity safety testing.",
     "difficulty": "medium"
   },
@@ -512,8 +512,8 @@ const questions: Question[] = [
     "options": [
       "Removing the defective gene entirely with no replacement",
       "Delivering a normal, functional gene into an individual's cells/tissues to compensate for the defective gene",
-      "Preventing the individual from reproducing",
-      "Administering only supportive medication for the symptoms"
+      "Administering only supportive medication for the symptoms",
+      "Preventing the individual from reproducing"
     ],
     "correctIndex": 1,
     "explanation": "Gene therapy corrects a gene defect by delivering a normal, functional gene into an individual's cells/tissues to compensate for the defective gene.",
@@ -524,12 +524,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The first clinical case of gene therapy in the world, carried out in 1990, was administered to a four-year-old girl suffering from a deficiency of which enzyme?",
     "options": [
-      "Adenosine deaminase (ADA)",
-      "Alkaline phosphatase",
+      "Reverse transcriptase",
       "DNA polymerase",
-      "Reverse transcriptase"
+      "Alkaline phosphatase",
+      "Adenosine deaminase (ADA)"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "The first clinical gene therapy case in 1990 was administered to a four-year-old girl with a deficiency of adenosine deaminase (ADA).",
     "difficulty": "medium"
   },
@@ -539,11 +539,11 @@ const questions: Question[] = [
     "question": "Adenosine deaminase (ADA) deficiency, the condition treated in the first gene therapy case, is caused by:",
     "options": [
       "Overexpression of a tumour suppressor gene",
+      "A deletion of the gene encoding the ADA enzyme, which is critical for immune function",
       "Excess production of the ADA enzyme",
-      "A viral infection unrelated to any gene defect",
-      "A deletion of the gene encoding the ADA enzyme, which is critical for immune function"
+      "A viral infection unrelated to any gene defect"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "ADA deficiency is caused by a deletion of the gene encoding the ADA enzyme, which is critical for immune function.",
     "difficulty": "medium"
   },
@@ -552,12 +552,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In the classic ADA-deficiency gene therapy protocol, lymphocytes were first taken from the patient's blood and grown in culture outside the body, after which:",
     "options": [
-      "A functional copy of the ADA cDNA was introduced into these lymphocytes using a retroviral vector, and the cells were returned to the patient",
-      "They were discarded after study, with no further use",
+      "They were used to make a vaccine instead of treating the patient",
       "They were directly injected into the patient without any genetic modification",
-      "They were used to make a vaccine instead of treating the patient"
+      "A functional copy of the ADA cDNA was introduced into these lymphocytes using a retroviral vector, and the cells were returned to the patient",
+      "They were discarded after study, with no further use"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "In the ADA-deficiency protocol, a functional copy of the ADA cDNA was introduced into cultured lymphocytes using a retroviral vector, and the cells were returned to the patient.",
     "difficulty": "medium"
   },
@@ -566,12 +566,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A key limitation of the original ADA-deficiency gene therapy protocol, using genetically corrected lymphocytes, was that:",
     "options": [
-      "Since lymphocytes are not immortal cells, the patient required periodic infusions of genetically corrected lymphocytes",
-      "The treatment was permanent and required no further intervention",
+      "It could never be repeated under any circumstance",
       "It caused immediate immune rejection of the patient's own cells",
-      "It could never be repeated under any circumstance"
+      "Since lymphocytes are not immortal cells, the patient required periodic infusions of genetically corrected lymphocytes",
+      "The treatment was permanent and required no further intervention"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "A key limitation of the original protocol was that since lymphocytes are not immortal, the patient required periodic infusions of genetically corrected lymphocytes.",
     "difficulty": "medium"
   },
@@ -581,11 +581,11 @@ const questions: Question[] = [
     "question": "A truly permanent cure for a genetic disorder like ADA deficiency, through gene therapy, may be possible if the normal functional gene is introduced into cells at:",
     "options": [
       "A very late stage of the disease only",
-      "Only fully differentiated adult skin cells",
       "An early embryonic stage, so that the gene is present in all body cells",
-      "Only mature red blood cells"
+      "Only mature red blood cells",
+      "Only fully differentiated adult skin cells"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "A truly permanent cure may be possible if the normal gene is introduced at an early embryonic stage, so it is present in all body cells.",
     "difficulty": "medium"
   },
@@ -594,12 +594,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Gene therapy technology fundamentally relies on techniques similar to those used for creating:",
     "options": [
+      "Vaccines exclusively",
       "Antibiotics",
       "Genetically modified organisms / recombinant DNA constructs",
-      "Vaccines exclusively",
       "Monoclonal antibodies exclusively"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Gene therapy technology fundamentally relies on techniques similar to those used for creating genetically modified organisms / recombinant DNA constructs.",
     "difficulty": "medium"
   },
@@ -608,12 +608,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The type of vector commonly used to deliver a normal, functional copy of a gene into a patient's cells during gene therapy protocols is a:",
     "options": [
-      "An antibody-based carrier exclusively",
       "Bacteriophage lambda exclusively",
-      "A simple chemical carrier with no biological vector",
-      "Retroviral vector"
+      "Retroviral vector",
+      "An antibody-based carrier exclusively",
+      "A simple chemical carrier with no biological vector"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "A retroviral vector is commonly used to deliver a normal, functional copy of a gene into a patient's cells during gene therapy.",
     "difficulty": "medium"
   },
@@ -623,11 +623,11 @@ const questions: Question[] = [
     "question": "Recombinant DNA technology-based molecular diagnostic techniques, such as PCR and ELISA, are particularly valuable because they allow:",
     "options": [
       "Diagnosis only after the disease has become fully symptomatic",
-      "Early diagnosis of diseases even when the pathogen is present at very low concentrations",
+      "Prevention of all future infections permanently",
       "Treatment of diseases without any diagnosis",
-      "Prevention of all future infections permanently"
+      "Early diagnosis of diseases even when the pathogen is present at very low concentrations"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Recombinant DNA technology-based diagnostics like PCR and ELISA allow early diagnosis of diseases even when the pathogen is present at very low concentrations.",
     "difficulty": "medium"
   },
@@ -636,12 +636,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "PCR (Polymerase Chain Reaction) can detect the presence of a pathogen, such as HIV, at concentrations far too low to be detected by conventional techniques, by:",
     "options": [
-      "Amplifying a specific segment of the pathogen's DNA/RNA using appropriate primers",
-      "Directly visualising the pathogen under a light microscope",
       "Culturing the pathogen for several weeks",
-      "Measuring antibody levels in the blood exclusively"
+      "Directly visualising the pathogen under a light microscope",
+      "Measuring antibody levels in the blood exclusively",
+      "Amplifying a specific segment of the pathogen's DNA/RNA using appropriate primers"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "PCR can detect a pathogen like HIV at very low concentrations by amplifying a specific segment of the pathogen's DNA/RNA using appropriate primers.",
     "difficulty": "easy"
   },
@@ -651,11 +651,11 @@ const questions: Question[] = [
     "question": "Besides detecting pathogens, PCR-based molecular diagnostic techniques are also useful for detecting:",
     "options": [
       "Only the age of an organism",
-      "Only a person's blood group",
       "Mutations in genes in individuals suspected of having a genetic disorder, e.g. certain cancers",
-      "Only physical injuries"
+      "Only physical injuries",
+      "Only a person's blood group"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "PCR-based diagnostics are also useful for detecting mutations in genes in individuals suspected of having a genetic disorder, such as certain cancers.",
     "difficulty": "medium"
   },
@@ -665,11 +665,11 @@ const questions: Question[] = [
     "question": "Molecular diagnostic techniques using labelled DNA/RNA probes rely on:",
     "options": [
       "Complete degradation of all DNA in the sample",
+      "Physical separation based only on molecular size, with no sequence recognition",
       "Random binding with no sequence specificity",
-      "Hybridisation of the labelled probe with its complementary DNA/RNA sequence in a sample",
-      "Physical separation based only on molecular size, with no sequence recognition"
+      "Hybridisation of the labelled probe with its complementary DNA/RNA sequence in a sample"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Molecular diagnostics using labelled probes rely on hybridisation of the labelled probe with its complementary DNA/RNA sequence in a sample.",
     "difficulty": "medium"
   },
@@ -678,12 +678,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A single-stranded DNA or RNA molecule, tagged with a radioactive or other detectable label and used to detect a complementary sequence in a sample, is called a:",
     "options": [
-      "Primer",
-      "Vector",
       "Plasmid",
-      "Probe"
+      "Probe",
+      "Vector",
+      "Primer"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "A single-stranded DNA or RNA molecule tagged with a detectable label, used to detect a complementary sequence, is called a probe.",
     "difficulty": "easy"
   },
@@ -693,9 +693,9 @@ const questions: Question[] = [
     "question": "After hybridisation of a radioactively labelled probe with its target complementary DNA sequence, the location/presence of the hybrid can typically be visualised through:",
     "options": [
       "Autoradiography",
+      "Measuring its electrical conductivity",
       "Simple visual inspection under normal light",
-      "Weighing the sample",
-      "Measuring its electrical conductivity"
+      "Weighing the sample"
     ],
     "correctIndex": 0,
     "explanation": "After hybridisation with a radioactively labelled probe, the location of the hybrid can be visualised through autoradiography.",
@@ -706,12 +706,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "ELISA (Enzyme-Linked Immunosorbent Assay), a widely used molecular diagnostic technique, is fundamentally based on the principle of:",
     "options": [
-      "DNA replication",
       "Antigen-antibody interaction",
-      "Restriction enzyme digestion",
-      "RNA splicing"
+      "RNA splicing",
+      "DNA replication",
+      "Restriction enzyme digestion"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "ELISA is fundamentally based on the principle of antigen-antibody interaction.",
     "difficulty": "easy"
   },
@@ -721,11 +721,11 @@ const questions: Question[] = [
     "question": "ELISA can be used to diagnose an infection by detecting either the pathogen's antigens directly or by detecting:",
     "options": [
       "Only the patient's blood group",
+      "Only the patient's body temperature",
       "Antibodies produced by the host's immune system against the pathogen",
-      "Only the patient's white blood cell count",
-      "Only the patient's body temperature"
+      "Only the patient's white blood cell count"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "ELISA can diagnose infection by detecting the pathogen's antigens directly, or by detecting antibodies produced by the host's immune system against the pathogen.",
     "difficulty": "medium"
   },
@@ -734,12 +734,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Before genetically engineered insulin became available, insulin used to treat diabetic patients was obtained by extraction from the pancreas of:",
     "options": [
-      "Slaughtered cattle and pigs",
-      "Human cadavers exclusively",
       "Genetically engineered plants",
+      "Human cadavers exclusively",
+      "Slaughtered cattle and pigs",
       "Transgenic sheep milk"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Before genetically engineered insulin, insulin used to treat diabetics was extracted from the pancreas of slaughtered cattle and pigs.",
     "difficulty": "medium"
   },
@@ -748,12 +748,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A drawback of insulin extracted from cattle/pig pancreas, prior to the availability of human insulin, was that it:",
     "options": [
-      "Was completely ineffective at lowering blood glucose in humans",
       "Was, in every case, more effective than human insulin",
-      "Could never be manufactured at scale",
-      "Often caused allergic reactions or other immune-related side effects in some patients"
+      "Often caused allergic reactions or other immune-related side effects in some patients",
+      "Was completely ineffective at lowering blood glucose in humans",
+      "Could never be manufactured at scale"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Animal-extracted insulin often caused allergic reactions or other immune-related side effects in some patients.",
     "difficulty": "medium"
   },
@@ -763,11 +763,11 @@ const questions: Question[] = [
     "question": "Mature, functional human insulin consists of:",
     "options": [
       "A single long polypeptide chain",
-      "Two short polypeptide chains (A and B chains) linked by disulfide bridges",
       "Three separate polypeptide chains",
+      "Two short polypeptide chains (A and B chains) linked by disulfide bridges",
       "A single circular RNA molecule"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Mature, functional human insulin consists of two short polypeptide chains (A and B chains) linked by disulfide bridges.",
     "difficulty": "medium"
   },
@@ -776,12 +776,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In the human body, insulin is initially synthesised as a longer prohormone that contains an additional segment known as the:",
     "options": [
-      "A chain",
-      "B chain",
       "C peptide",
-      "D peptide"
+      "D peptide",
+      "A chain",
+      "B chain"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "Insulin is initially synthesised as a longer prohormone containing an additional segment known as the C peptide.",
     "difficulty": "medium"
   },
@@ -791,11 +791,11 @@ const questions: Question[] = [
     "question": "The additional 'C peptide' segment present in proinsulin is:",
     "options": [
       "Retained in the final, mature insulin molecule",
-      "Removed during the maturation of proinsulin into mature insulin",
+      "Never present at any stage of human insulin synthesis",
       "Converted into a third disulfide bridge",
-      "Never present at any stage of human insulin synthesis"
+      "Removed during the maturation of proinsulin into mature insulin"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The C peptide segment present in proinsulin is removed during the maturation of proinsulin into mature insulin.",
     "difficulty": "medium"
   },
@@ -805,9 +805,9 @@ const questions: Question[] = [
     "question": "The company that first prepared human insulin chains using recombinant DNA technology, by inserting DNA sequences for the A and B chains of human insulin into plasmids of E. coli, was:",
     "options": [
       "Genentech, in collaboration with Eli Lilly",
-      "Bayer",
       "Pfizer exclusively",
-      "Moderna"
+      "Moderna",
+      "Bayer"
     ],
     "correctIndex": 0,
     "explanation": "Genentech, in collaboration with Eli Lilly, first prepared human insulin chains using recombinant DNA technology by inserting the A and B chain DNA sequences into E. coli plasmids.",
@@ -818,9 +818,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In India, the body responsible for evaluating the validity of GM research and the safety of introducing genetically modified organisms for public use, including large-scale field trials, is the:",
     "options": [
-      "Bureau of Indian Standards",
       "Indian Council of Medical Research (ICMR) exclusively",
       "Central Pollution Control Board exclusively",
+      "Bureau of Indian Standards",
       "Genetic Engineering Approval Committee (GEAC)"
     ],
     "correctIndex": 3,
@@ -832,12 +832,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "'Biopiracy' refers to the practice of:",
     "options": [
-      "Multinational companies or organisations using a country's bio-resources and traditional knowledge without proper authorisation or fair compensation",
       "Legally patenting an entirely novel, human-made invention with no biological basis",
+      "Multinational companies or organisations using a country's bio-resources and traditional knowledge without proper authorisation or fair compensation",
       "Cultivating GM crops with full government approval",
       "Conducting authorised, fully compensated bio-resource research"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Biopiracy refers to multinational companies or organisations using a country's bio-resources and traditional knowledge without proper authorisation or fair compensation.",
     "difficulty": "medium"
   },
@@ -846,12 +846,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Basmati rice patent dispute, often cited as an example of biopiracy, involved a US-based company attempting to patent aspects of a rice variety that:",
     "options": [
-      "Had long been traditionally grown and used in the Indian subcontinent",
+      "Had never been cultivated anywhere before the patent application",
       "Was entirely developed by that company from scratch",
       "Was purely synthetic and had no natural origin",
-      "Had never been cultivated anywhere before the patent application"
+      "Had long been traditionally grown and used in the Indian subcontinent"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "The Basmati rice patent dispute involved a US-based company attempting to patent aspects of a rice variety long traditionally grown in the Indian subcontinent.",
     "difficulty": "medium"
   },
@@ -874,12 +874,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Neem patent case, similar to the Basmati and turmeric disputes, involved international patenting of Neem-based preparations despite Neem's:",
     "options": [
-      "Complete absence from any traditional use",
       "Long-established traditional use in India for various medicinal and pest-control purposes",
-      "Recent discovery by a European research team",
-      "Total lack of any known biological properties"
+      "Complete absence from any traditional use",
+      "Total lack of any known biological properties",
+      "Recent discovery by a European research team"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The Neem patent case involved international patenting of Neem-based preparations despite Neem's long-established traditional use in India for medicinal and pest-control purposes.",
     "difficulty": "medium"
   },
@@ -890,10 +890,10 @@ const questions: Question[] = [
     "options": [
       "Complete withdrawal from all international trade agreements",
       "Abandoning all patent-related legal action",
-      "Unilateral bans on all foreign research",
-      "The World Trade Organisation (WTO) framework"
+      "The World Trade Organisation (WTO) framework",
+      "Unilateral bans on all foreign research"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "India and other developing countries have sought stronger protection against biopiracy through the World Trade Organisation (WTO) framework.",
     "difficulty": "medium"
   },
@@ -902,12 +902,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Cartagena Protocol on Biosafety (2000), an international agreement supplementing the Convention on Biological Diversity, primarily addresses:",
     "options": [
-      "Climate change mitigation strategies",
       "The safe transboundary movement, handling, and use of living modified organisms (LMOs) resulting from modern biotechnology",
+      "Climate change mitigation strategies",
       "International trade in fossil fuels",
       "Wildlife sanctuary boundary demarcation"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The Cartagena Protocol on Biosafety (2000) addresses the safe transboundary movement, handling, and use of living modified organisms (LMOs) from modern biotechnology.",
     "difficulty": "hard"
   },
@@ -916,12 +916,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Public concern regarding the potential risks of GM crops and other genetically engineered products largely centres on issues of:",
     "options": [
-      "Biosafety, ethical issues, and potential effects on human health and the environment",
-      "Improved crop yield only, with no other consideration",
       "Only the aesthetic appearance of GM produce",
-      "Only the cost of production"
+      "Only the cost of production",
+      "Biosafety, ethical issues, and potential effects on human health and the environment",
+      "Improved crop yield only, with no other consideration"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Public concern about GM crops largely centres on issues of biosafety, ethical issues, and potential effects on human health and the environment.",
     "difficulty": "medium"
   },
@@ -930,12 +930,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following best describes the overall purpose of biosafety regulations governing genetically modified organisms?",
     "options": [
+      "To restrict genetic engineering research exclusively to private companies",
       "To completely ban all forms of genetic engineering research",
       "To promote unrestricted, unregulated use of GMOs everywhere",
-      "To ensure that GMOs and their products are assessed for safety to human health and the environment before release",
-      "To restrict genetic engineering research exclusively to private companies"
+      "To ensure that GMOs and their products are assessed for safety to human health and the environment before release"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Biosafety regulations are meant to ensure GMOs and their products are assessed for safety to human health and the environment before release.",
     "difficulty": "medium"
   },
@@ -944,10 +944,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Under the Cartagena Protocol, which mechanism is primarily responsible for facilitating the exchange of biosafety-related information on living modified organisms at the international level?",
     "options": [
-      "The World Health Organization exclusively",
+      "The World Trade Organization exclusively",
       "The International Monetary Fund",
       "The Biosafety Clearing-House",
-      "The World Trade Organization exclusively"
+      "The World Health Organization exclusively"
     ],
     "correctIndex": 2,
     "explanation": "Under the Cartagena Protocol, the Biosafety Clearing-House facilitates the exchange of biosafety-related information on living modified organisms internationally.",
@@ -958,9 +958,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Patents on biological materials and traditional knowledge, granted without recognising or compensating the original discoverers/users of that knowledge, are widely criticised because they:",
     "options": [
-      "Fairly reward all stakeholders equally",
-      "Are entirely illegal everywhere without exception",
       "Have no economic implications whatsoever",
+      "Are entirely illegal everywhere without exception",
+      "Fairly reward all stakeholders equally",
       "Can unfairly appropriate community/traditional knowledge for private commercial gain"
     ],
     "correctIndex": 3,
@@ -972,12 +972,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The overall aim of biosafety and bioethics regulation of biotechnology, as emphasised in NCERT, is to strike a balance between:",
     "options": [
-      "Enabling the benefits of biotechnological advances while safeguarding human health, the environment, and equitable access to genetic resources",
-      "Encouraging unrestricted commercial exploitation of biotechnology while ignoring safety concerns",
       "Banning biotechnology research entirely",
-      "Focusing solely on profit generation for private companies"
+      "Enabling the benefits of biotechnological advances while safeguarding human health, the environment, and equitable access to genetic resources",
+      "Focusing solely on profit generation for private companies",
+      "Encouraging unrestricted commercial exploitation of biotechnology while ignoring safety concerns"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The overall aim of biosafety and bioethics regulation, per NCERT, is to balance enabling biotechnological benefits while safeguarding health, environment, and equitable access to genetic resources.",
     "difficulty": "medium"
   },
@@ -986,12 +986,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following best summarises why Golden Rice is considered a landmark example of biotechnology addressing a public health problem?",
     "options": [
-      "It increases crop yield with no nutritional change",
-      "It was engineered to produce beta-carotene in rice grains, helping combat widespread Vitamin A deficiency, particularly in developing countries",
       "It eliminates the need for rice cultivation altogether",
-      "It was the very first genetically modified crop developed anywhere"
+      "It increases crop yield with no nutritional change",
+      "It was the very first genetically modified crop developed anywhere",
+      "It was engineered to produce beta-carotene in rice grains, helping combat widespread Vitamin A deficiency, particularly in developing countries"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Golden Rice is a landmark example because it was engineered to produce beta-carotene in rice grains, helping combat widespread Vitamin A deficiency, particularly in developing countries.",
     "difficulty": "medium"
   },
@@ -1001,11 +1001,11 @@ const questions: Question[] = [
     "question": "Bt cotton, Bt brinjal (in trials), and Golden Rice are all examples of crops modified through genetic engineering, illustrating applications broadly classified as:",
     "options": [
       "Molecular diagnostics",
-      "Genetically modified (GM) crops for agricultural or nutritional improvement",
+      "Transgenic animal models",
       "Gene therapy vectors",
-      "Transgenic animal models"
+      "Genetically modified (GM) crops for agricultural or nutritional improvement"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Bt cotton, Bt brinjal, and Golden Rice all illustrate genetically modified (GM) crops developed for agricultural or nutritional improvement.",
     "difficulty": "easy"
   },
@@ -1014,12 +1014,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Compared to traditional plant breeding methods, genetic engineering allows for the introduction of desirable traits into crop plants:",
     "options": [
-      "With much greater precision, and even across species barriers",
       "Only from within the same species",
-      "Only through random natural mutation",
-      "Only by grafting different plant parts together"
+      "Only by grafting different plant parts together",
+      "With much greater precision, and even across species barriers",
+      "Only through random natural mutation"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Genetic engineering allows introduction of desirable traits into crop plants with much greater precision, and even across species barriers, compared to traditional breeding.",
     "difficulty": "medium"
   },
@@ -1028,12 +1028,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A key ethical/regulatory concern often raised about GM crops relates to:",
     "options": [
-      "Their total lack of any economic value to farmers",
-      "Their complete absence of any nutritional value",
+      "Their impact on biodiversity and potential unintended ecological effects",
       "Their inability to grow under any conditions",
-      "Their impact on biodiversity and potential unintended ecological effects"
+      "Their complete absence of any nutritional value",
+      "Their total lack of any economic value to farmers"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "A key ethical/regulatory concern about GM crops relates to their impact on biodiversity and potential unintended ecological effects.",
     "difficulty": "medium"
   },
@@ -1042,12 +1042,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following applications of biotechnology is primarily aimed at directly treating or correcting a genetic disorder in a patient, rather than developing a new crop or diagnostic tool?",
     "options": [
-      "Bt cotton development",
-      "Gene therapy",
+      "ELISA-based diagnosis",
       "Golden Rice development",
-      "ELISA-based diagnosis"
+      "Bt cotton development",
+      "Gene therapy"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Gene therapy is primarily aimed at directly treating or correcting a genetic disorder in a patient, unlike Bt cotton or Golden Rice which are crop applications.",
     "difficulty": "easy"
   },
@@ -1056,12 +1056,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following applications of biotechnology is primarily aimed at the rapid, sensitive, and early detection of a disease-causing pathogen or genetic mutation, rather than treatment or crop improvement?",
     "options": [
-      "Gene therapy",
-      "Bt crop development",
       "Molecular diagnosis (PCR/ELISA)",
-      "Transgenic livestock development"
+      "Transgenic livestock development",
+      "Gene therapy",
+      "Bt crop development"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "Molecular diagnosis (PCR/ELISA) is primarily aimed at rapid, sensitive, and early detection of a disease-causing pathogen or genetic mutation, rather than treatment or crop improvement.",
     "difficulty": "easy"
   },
@@ -1070,12 +1070,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: Bt toxin genes, though isolated from a bacterium, must be suitably modified before being effectively expressed in a genetically modified crop plant.\nReason: Differences in genetic machinery (such as codon usage and regulatory sequences) between bacteria and plants mean that a bacterial gene may not be efficiently expressed in a plant cell without modification.\nChoose the correct option:",
     "options": [
-      "The assertion is true, but the reason is false",
       "Both assertion and reason are true, and the reason correctly explains the assertion",
       "The assertion is false, but the reason is true",
-      "Both the assertion and the reason are false"
+      "Both the assertion and the reason are false",
+      "The assertion is true, but the reason is false"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Both the assertion and reason are true and correctly linked: differences in codon usage and regulatory sequences between bacteria and plants mean a bacterial gene needs modification for efficient expression in plants.",
     "difficulty": "hard"
   },
@@ -1084,12 +1084,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: The first ADA-deficiency gene therapy patient required repeated infusions of genetically corrected cells rather than receiving a single, permanent cure.\nReason: The lymphocytes used to carry the corrected ADA gene are not immortal cells and eventually die out, necessitating repeated treatment.\nChoose the correct option:",
     "options": [
-      "Both assertion and reason are true, and the reason correctly explains the assertion",
       "The assertion is true, but the reason is false",
+      "Both the assertion and the reason are false",
       "The assertion is false, but the reason is true",
-      "Both the assertion and the reason are false"
+      "Both assertion and reason are true, and the reason correctly explains the assertion"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Both the assertion and reason are true and correctly linked: since lymphocytes are not immortal and eventually die out, repeated infusions of corrected cells were needed rather than a single permanent cure.",
     "difficulty": "hard"
   },
@@ -1098,9 +1098,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: ELISA and PCR are both considered superior to older, purely symptom-based diagnostic approaches for detecting infections like HIV.\nReason: These molecular techniques can detect the presence of a pathogen or its genetic material even when it is present in extremely low concentrations, well before overt symptoms of the disease appear.\nChoose the correct option:",
     "options": [
+      "The assertion is false, but the reason is true",
       "Both the assertion and the reason are false",
       "The assertion is true, but the reason is false",
-      "The assertion is false, but the reason is true",
       "Both assertion and reason are true, and the reason correctly explains the assertion"
     ],
     "correctIndex": 3,
@@ -1112,12 +1112,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: Patenting traditional knowledge related to bio-resources, such as in the Neem, turmeric, and Basmati cases, without consent or benefit-sharing has been strongly opposed by India and other developing nations.\nReason: Such patents can grant exclusive commercial rights over knowledge and resources that were already part of long-established traditional practice, without recognising or compensating the original community.\nChoose the correct option:",
     "options": [
-      "Both assertion and reason are true, and the reason correctly explains the assertion",
-      "The assertion is true, but the reason is false",
+      "Both the assertion and the reason are false",
       "The assertion is false, but the reason is true",
-      "Both the assertion and the reason are false"
+      "Both assertion and reason are true, and the reason correctly explains the assertion",
+      "The assertion is true, but the reason is false"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Both the assertion and reason are true and correctly linked: such patents grant exclusive commercial rights over knowledge already part of long-established traditional practice, without compensating the original community, which is why they have been strongly opposed.",
     "difficulty": "hard"
   }

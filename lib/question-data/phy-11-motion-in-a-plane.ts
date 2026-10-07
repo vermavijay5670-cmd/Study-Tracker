@@ -10,12 +10,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A scalar quantity is one that has:',
     options: [
-      'Both magnitude and direction, and obeys the laws of vector addition',
       'Only magnitude, and is specified completely by a number and a unit',
-      'Only direction, without any definite magnitude',
-      'Neither magnitude nor direction'
+      'Neither magnitude nor direction',
+      'Both magnitude and direction, and obeys the laws of vector addition',
+      'Only direction, without any definite magnitude'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'A scalar is completely specified by a magnitude (a number with a unit) alone, such as mass, temperature, or speed.',
     difficulty: 'easy'
   },
@@ -24,10 +24,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A vector quantity is one that has:',
     options: [
-      'Only magnitude',
+      'Neither magnitude nor a defined direction',
       'Magnitude and direction, and obeys the laws of vector addition',
       'Only direction, with no fixed magnitude',
-      'Neither magnitude nor a defined direction'
+      'Only magnitude'
     ],
     correctIndex: 1,
     explanation: 'Vectors are characterised by both magnitude and direction, and additionally must obey specific rules of vector addition (triangle/parallelogram law) to be classified as true vectors.',
@@ -39,9 +39,9 @@ const questions: Question[] = [
     question: 'Electric current, although it has an associated direction, is treated as a scalar quantity because:',
     options: [
       'It does not obey the laws of vector addition (parallelogram law) at a junction',
+      'It has no magnitude',
       'It is always constant in magnitude',
-      'It flows only in metals',
-      'It has no magnitude'
+      'It flows only in metals'
     ],
     correctIndex: 0,
     explanation: 'Currents at a junction add algebraically according to Kirchhoff\'s junction rule, not vectorially, so despite having a sense of direction, current is treated as a scalar.',
@@ -52,12 +52,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Which of the following is an example of a vector quantity?',
     options: [
-      'Mass',
       'Displacement',
       'Temperature',
-      'Time'
+      'Time',
+      'Mass'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Displacement has both magnitude and direction and obeys vector addition rules, making it a vector quantity, unlike mass, temperature, and time, which are scalars.',
     difficulty: 'easy'
   },
@@ -67,11 +67,11 @@ const questions: Question[] = [
     question: 'The finite rotation of a rigid body about an axis is generally NOT treated as a vector quantity because:',
     options: [
       'It has no magnitude at all',
-      'Successive finite rotations do not obey the commutative law of vector addition',
       'Rotation never has a defined axis',
-      'It always has zero magnitude'
+      'It always has zero magnitude',
+      'Successive finite rotations do not obey the commutative law of vector addition'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Although finite rotations have a magnitude (angle) and axis, they fail to satisfy the commutative property required of true vectors, so they are not classified as vectors (unlike infinitesimally small rotations).',
     difficulty: 'hard'
   },
@@ -81,11 +81,11 @@ const questions: Question[] = [
     question: 'Which of the following is a scalar quantity?',
     options: [
       'Velocity',
-      'Acceleration',
       'Speed',
+      'Acceleration',
       'Force'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Speed represents only the magnitude of the rate of motion and has no associated direction, making it a scalar, unlike velocity, acceleration, and force, which are vectors.',
     difficulty: 'easy'
   },
@@ -95,11 +95,11 @@ const questions: Question[] = [
     question: 'A vector is graphically represented by an arrow. The length of the arrow represents the __ of the vector, and the arrowhead indicates its __.',
     options: [
       'Direction; magnitude',
+      'Unit; dimension',
       'Magnitude; direction',
-      'Origin; endpoint',
-      'Unit; dimension'
+      'Origin; endpoint'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'In the graphical representation of a vector, the arrow\'s length (drawn to scale) shows the magnitude, and the arrowhead shows the direction.',
     difficulty: 'easy'
   },
@@ -108,10 +108,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Two vectors are said to be equal if they have:',
     options: [
-      'The same magnitude only, regardless of direction',
+      'The same direction only, regardless of magnitude',
       'The same magnitude and the same direction, irrespective of the position of their initial points',
-      'The same initial point only',
-      'The same direction only, regardless of magnitude'
+      'The same magnitude only, regardless of direction',
+      'The same initial point only'
     ],
     correctIndex: 1,
     explanation: 'Two vectors are equal only when both their magnitude and direction are identical; their location or initial point in space does not affect this equality, since vectors can be freely translated.',
@@ -122,12 +122,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The negative of a vector A, written as −A, has:',
     options: [
+      'Zero magnitude',
       'The same magnitude as A but points in the opposite direction',
       'A different magnitude but the same direction as A',
-      'Zero magnitude',
       'The same magnitude and same direction as A'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The negative of a vector has the same magnitude but is directed exactly opposite to the original vector.',
     difficulty: 'easy'
   },
@@ -136,12 +136,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A null (zero) vector is a vector with:',
     options: [
-      'Maximum magnitude and a fixed direction',
-      'Zero magnitude, and an arbitrary or undefined direction',
+      'Negative magnitude',
       'Unit magnitude only',
-      'Negative magnitude'
+      'Zero magnitude, and an arbitrary or undefined direction',
+      'Maximum magnitude and a fixed direction'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'A null vector has zero magnitude; since it has no definite length, its direction is not specified or is considered arbitrary.',
     difficulty: 'medium'
   },
@@ -151,11 +151,11 @@ const questions: Question[] = [
     question: 'A null vector can arise, for example, as the displacement vector of an object over a time interval during which the object:',
     options: [
       'Moves along a straight line without reversing direction',
-      'Returns exactly to its starting position',
       'Moves with uniform acceleration',
+      'Returns exactly to its starting position',
       'Moves in a perfect circle without returning to start'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'If an object returns to its exact starting point after some motion, its net displacement is a null vector, even though the path length travelled is non-zero.',
     difficulty: 'medium'
   },
@@ -164,12 +164,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When a vector A is multiplied by a positive real number λ (λ > 1), the resulting vector λA has:',
     options: [
-      'The same direction as A, but a magnitude λ times that of A',
-      'The opposite direction to A, with the same magnitude',
       'A completely random new direction',
-      'Zero magnitude regardless of λ'
+      'The opposite direction to A, with the same magnitude',
+      'Zero magnitude regardless of λ',
+      'The same direction as A, but a magnitude λ times that of A'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Multiplying a vector by a positive scalar changes only its magnitude (by that scalar factor), while keeping its direction unchanged.',
     difficulty: 'easy'
   },
@@ -178,12 +178,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When a vector A is multiplied by a negative real number (λ < 0), the resulting vector λA:',
     options: [
+      'Has an undefined direction',
       'Has the same direction as A',
-      'Has a direction opposite to that of A, and magnitude |λ| times that of A',
       'Always becomes a null vector',
-      'Has an undefined direction'
+      'Has a direction opposite to that of A, and magnitude |λ| times that of A'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Multiplying by a negative scalar reverses the direction of the vector while scaling its magnitude by the absolute value of the scalar.',
     difficulty: 'medium'
   },
@@ -192,10 +192,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'If a vector A is multiplied by the scalar zero, the result is:',
     options: [
-      'A vector with the same magnitude as A',
+      'Undefined; multiplication by zero is not allowed for vectors',
       'A null vector',
-      'A unit vector',
-      'Undefined; multiplication by zero is not allowed for vectors'
+      'A vector with the same magnitude as A',
+      'A unit vector'
     ],
     correctIndex: 1,
     explanation: 'Multiplying any vector by the scalar zero yields a null vector, having zero magnitude.',
@@ -206,10 +206,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'According to the triangle law of vector addition, if two vectors are represented in magnitude and direction by two sides of a triangle taken in the same order, their resultant is represented by:',
     options: [
-      'The third side of the triangle, taken in the same order as the first two',
+      'A vector perpendicular to the plane of the triangle',
       'The third side of the triangle, taken in the opposite order (from the tail of the first to the head of the second)',
       'The sum of the lengths of the two given sides',
-      'A vector perpendicular to the plane of the triangle'
+      'The third side of the triangle, taken in the same order as the first two'
     ],
     correctIndex: 1,
     explanation: 'The triangle law states that the resultant is given by the third side of the triangle, directed from the starting point of the first vector to the endpoint of the second vector.',
@@ -220,12 +220,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'According to the parallelogram law of vector addition, if two vectors are represented by the adjacent sides of a parallelogram drawn from a common point, the resultant is given by:',
     options: [
-      'One of the adjacent sides only',
       'The diagonal of the parallelogram passing through that same common point',
       'The diagonal of the parallelogram not passing through that point',
+      'One of the adjacent sides only',
       'The perimeter of the parallelogram'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'The parallelogram law states that the resultant vector is represented by the diagonal of the parallelogram drawn from the same point from which the two vectors originate.',
     difficulty: 'medium'
   },
@@ -234,12 +234,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'If two vectors A and B, having magnitudes A and B respectively, are inclined to each other at an angle θ, the magnitude of their resultant R using the parallelogram law is given by:',
     options: [
-      'R = A + B',
       'R = √(A² + B² + 2AB cos θ)',
       'R = √(A² + B² − 2AB cos θ)',
+      'R = A + B',
       'R = A − B'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'The magnitude of the resultant of two vectors inclined at angle θ is given by R = √(A² + B² + 2AB cos θ), derived using the parallelogram/triangle law.',
     difficulty: 'medium'
   },
@@ -262,12 +262,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The maximum possible magnitude of the resultant of two vectors A and B occurs when the angle between them is:',
     options: [
+      '180° (vectors are antiparallel)',
       '0° (vectors are parallel/in the same direction)',
       '90°',
-      '180° (vectors are antiparallel)',
       'The angle does not affect the maximum resultant'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'When two vectors point in exactly the same direction (θ = 0°), their magnitudes add up directly, giving the maximum possible resultant, R = A + B.',
     difficulty: 'medium'
   },
@@ -276,12 +276,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The minimum possible magnitude of the resultant of two vectors A and B occurs when the angle between them is:',
     options: [
-      '0°',
       '90°',
-      '180° (vectors are antiparallel), giving R = |A − B|',
-      '270°'
+      '0°',
+      '270°',
+      '180° (vectors are antiparallel), giving R = |A − B|'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'When two vectors point in exactly opposite directions (θ = 180°), their resultant is minimum, equal to the difference of their magnitudes, R = |A − B|.',
     difficulty: 'medium'
   },
@@ -291,11 +291,11 @@ const questions: Question[] = [
     question: 'Vector addition obeys the commutative law, which states that for two vectors A and B:',
     options: [
       'A + B ≠ B + A',
+      'A + B is always a null vector',
       'A + B = B + A',
-      'A + B = A − B',
-      'A + B is always a null vector'
+      'A + B = A − B'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Vector addition is commutative, meaning the order in which vectors are added does not affect the resultant: A + B = B + A.',
     difficulty: 'easy'
   },
@@ -305,9 +305,9 @@ const questions: Question[] = [
     question: 'Vector addition obeys the associative law, which states that for three vectors A, B, and C:',
     options: [
       '(A + B) + C = A + (B + C)',
-      '(A + B) + C ≠ A + (B + C)',
       'A + B + C is always zero',
-      'The associative law does not apply to vector addition'
+      'The associative law does not apply to vector addition',
+      '(A + B) + C ≠ A + (B + C)'
     ],
     correctIndex: 0,
     explanation: 'Vector addition is associative: the way in which vectors are grouped while adding does not change the final resultant.',
@@ -318,12 +318,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When several vectors are added by placing them head to tail in sequence (polygon method), and the resultant vector is drawn from the tail of the first vector to the head of the last, this represents an application of the:',
     options: [
-      'Triangle law extended to multiple vectors, i.e., the polygon law of vector addition',
+      'Null vector rule',
       'Parallelogram law only',
-      'Scalar product rule',
-      'Null vector rule'
+      'Triangle law extended to multiple vectors, i.e., the polygon law of vector addition',
+      'Scalar product rule'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'The polygon law of vector addition extends the triangle law to more than two vectors, with the resultant given by the vector closing the polygon from the start to the end point.',
     difficulty: 'medium'
   },
@@ -332,12 +332,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'If several vectors, when added head to tail, form a closed polygon (the head of the last vector coincides with the tail of the first), the resultant of these vectors is:',
     options: [
-      'Equal to the sum of their magnitudes',
-      'A null vector',
+      'Undefined',
       'Always directed along one of the original vectors',
-      'Undefined'
+      'Equal to the sum of their magnitudes',
+      'A null vector'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'When vectors added head-to-tail form a closed figure, their resultant is zero, i.e., a null vector, since the endpoint coincides with the starting point.',
     difficulty: 'medium'
   },
@@ -346,12 +346,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Vector subtraction, A − B, is carried out by:',
     options: [
-      'Adding vector A to the negative of vector B, i.e., A + (−B)',
       'Simply subtracting the magnitudes of A and B algebraically',
       'Reversing the direction of vector A only',
+      'Adding vector A to the negative of vector B, i.e., A + (−B)',
       'Multiplying A and B'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'Vector subtraction is defined as adding the negative of the vector being subtracted: A − B = A + (−B).',
     difficulty: 'medium'
   },
@@ -361,11 +361,11 @@ const questions: Question[] = [
     question: 'Given two vectors A and B of equal magnitude, inclined at 60° to each other, the magnitude of A − B is:',
     options: [
       'Equal to the magnitude of A + B',
-      'Equal to the common magnitude of A (or B)',
+      'Twice the magnitude of A',
       'Zero',
-      'Twice the magnitude of A'
+      'Equal to the common magnitude of A (or B)'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For equal vectors A and B inclined at 60°, the magnitude of the difference |A − B| = √(A² + B² − 2AB cos60°) = √(2A² − A²) = A, equal to their common magnitude.',
     difficulty: 'hard'
   },
@@ -373,7 +373,7 @@ const questions: Question[] = [
     id: 'motion-in-a-plane-27',
     type: 'mcq',
     question: 'Resolving a vector into components means:',
-    options: ['Finding a single vector that is equal in magnitude to the original vector', 'Expressing the vector as the sum of two or more vectors, usually along chosen mutually perpendicular directions', 'Reducing the vector\'s magnitude to zero', 'Rotating the vector by 90 degrees'],
+    options: ['Rotating the vector by 90 degrees', 'Expressing the vector as the sum of two or more vectors, usually along chosen mutually perpendicular directions', 'Reducing the vector\'s magnitude to zero', 'Finding a single vector that is equal in magnitude to the original vector'],
     correctIndex: 1,
     explanation: 'Resolution of a vector involves splitting it into component vectors along specified (often perpendicular) directions, such that their vector sum equals the original vector.',
     difficulty: 'easy'
@@ -383,12 +383,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A vector A, making an angle θ with the x-axis, has rectangular components Ax and Ay given respectively by:',
     options: [
-      'Ax = A sin θ, Ay = A cos θ',
-      'Ax = A cos θ, Ay = A sin θ',
       'Ax = A tan θ, Ay = A cot θ',
-      'Ax = A, Ay = A'
+      'Ax = A, Ay = A',
+      'Ax = A sin θ, Ay = A cos θ',
+      'Ax = A cos θ, Ay = A sin θ'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For a vector making angle θ with the x-axis, its x-component is A cos θ (adjacent) and its y-component is A sin θ (opposite), by simple trigonometry.',
     difficulty: 'easy'
   },
@@ -397,12 +397,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'If a vector A has rectangular components Ax and Ay, its magnitude is given by:',
     options: [
-      'A = Ax + Ay',
-      'A = √(Ax² + Ay²)',
       'A = Ax × Ay',
-      'A = Ax − Ay'
+      'A = Ax − Ay',
+      'A = Ax + Ay',
+      'A = √(Ax² + Ay²)'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'By the Pythagorean relationship, the magnitude of a vector is the square root of the sum of the squares of its rectangular components.',
     difficulty: 'easy'
   },
@@ -425,12 +425,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A vector of magnitude 10 units makes an angle of 30° with the x-axis. Its x-component is approximately:',
     options: [
-      '5 units',
       '8.66 units',
       '10 units',
+      '5 units',
       '0 units'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Ax = A cos θ = 10 × cos 30° = 10 × 0.866 ≈ 8.66 units.',
     difficulty: 'medium'
   },
@@ -439,12 +439,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When adding two or more vectors using the analytical (component) method, the resultant\'s components are found by:',
     options: [
-      'Multiplying the corresponding components of the individual vectors',
-      'Algebraically adding the corresponding x-components together and the corresponding y-components together',
+      'Taking the cross product of the vectors',
       'Adding all magnitudes directly, ignoring direction',
-      'Taking the cross product of the vectors'
+      'Algebraically adding the corresponding x-components together and the corresponding y-components together',
+      'Multiplying the corresponding components of the individual vectors'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'In the analytical method, the x-components of all vectors are summed separately, and similarly the y-components, to obtain the components of the resultant vector.',
     difficulty: 'medium'
   },
@@ -453,12 +453,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A unit vector is a vector with:',
     options: [
-      'Magnitude equal to one, used to specify a direction',
       'Magnitude equal to zero',
+      'Magnitude always greater than one',
       'An undefined magnitude',
-      'Magnitude always greater than one'
+      'Magnitude equal to one, used to specify a direction'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'A unit vector has a magnitude of exactly one and is used purely to indicate direction, without contributing any magnitude of its own.',
     difficulty: 'easy'
   },
@@ -467,12 +467,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The unit vector in the direction of a given vector A is obtained by:',
     options: [
-      'Multiplying A by its own magnitude',
-      'Dividing the vector A by its own magnitude, i.e., Â = A/|A|',
       'Adding 1 to the magnitude of A',
-      'Taking the square of A'
+      'Taking the square of A',
+      'Multiplying A by its own magnitude',
+      'Dividing the vector A by its own magnitude, i.e., Â = A/|A|'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The unit vector along A is obtained by dividing A by its magnitude, ensuring the resulting vector has magnitude 1 while preserving the original direction.',
     difficulty: 'medium'
   },
@@ -495,12 +495,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A vector A can be expressed in terms of its rectangular components and the unit vectors i and j (in two dimensions) as:',
     options: [
-      'A = Ax + Ay',
-      'A = Ax i + Ay j',
       'A = Ax/i + Ay/j',
-      'A = (Ax)(Ay)(i)(j)'
+      'A = (Ax)(Ay)(i)(j)',
+      'A = Ax i + Ay j',
+      'A = Ax + Ay'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'A two-dimensional vector is expressed as the sum of its scalar components multiplied by the respective unit vectors: A = Ax i + Ay j.',
     difficulty: 'easy'
   },
@@ -509,12 +509,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The position vector of a point in a plane, with respect to a chosen origin, is written as r = x i + y j. This vector represents:',
     options: [
-      'The velocity of the point',
       'The location of the point relative to the origin, in terms of its x and y coordinates',
+      'The speed of the point',
       'The acceleration of the point',
-      'The speed of the point'
+      'The velocity of the point'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'A position vector specifies the location of a point in space relative to a defined origin, using coordinate components along the chosen axes.',
     difficulty: 'easy'
   },
@@ -523,12 +523,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'If a particle moves from position vector r1 to r2, its displacement vector Δr is given by:',
     options: [
-      'Δr = r1 + r2',
-      'Δr = r2 − r1',
+      'Δr = r1 × r2',
       'Δr = r1 − r2',
-      'Δr = r1 × r2'
+      'Δr = r1 + r2',
+      'Δr = r2 − r1'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Displacement is the vector difference between the final and initial position vectors: Δr = r2 − r1.',
     difficulty: 'easy'
   },
@@ -537,12 +537,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For a particle moving in a plane, the average velocity over a time interval Δt is defined as:',
     options: [
+      'The acceleration multiplied by Δt',
       'The displacement vector Δr divided by Δt',
       'The path length travelled divided by Δt',
-      'The acceleration multiplied by Δt',
       'The position vector at the final instant only'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Average velocity in a plane is the displacement vector Δr divided by the time interval Δt, in the same direction as the displacement.',
     difficulty: 'medium'
   },
@@ -551,12 +551,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The instantaneous velocity of a particle moving along a curved path, at any given point, is directed:',
     options: [
-      'Perpendicular to the path at that point',
       'Tangentially to the path at that point',
-      'Always toward the origin',
-      'Along a fixed direction, regardless of the path shape'
+      'Along a fixed direction, regardless of the path shape',
+      'Perpendicular to the path at that point',
+      'Always toward the origin'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'The instantaneous velocity vector at any point on a curved path is always directed along the tangent to the path at that point.',
     difficulty: 'medium'
   },
@@ -566,9 +566,9 @@ const questions: Question[] = [
     question: 'For motion in a plane, the average acceleration over a time interval Δt is defined as:',
     options: [
       'The change in velocity vector Δv divided by Δt',
-      'The displacement divided by Δt',
+      'The position vector divided by Δt',
       'The change in speed only, divided by Δt',
-      'The position vector divided by Δt'
+      'The displacement divided by Δt'
     ],
     correctIndex: 0,
     explanation: 'Average acceleration is the vector change in velocity (Δv) divided by the time interval (Δt) over which the change occurs.',
@@ -579,12 +579,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For a particle undergoing motion in a plane with constant acceleration, the motion can be conveniently analysed by:',
     options: [
-      'Treating it as a single, inseparable two-dimensional problem that cannot be broken down further',
-      'Resolving the motion into two independent, simultaneous one-dimensional motions along two mutually perpendicular directions',
       'Ignoring the vertical component of motion entirely',
-      'Assuming the acceleration acts only along the x-axis'
+      'Assuming the acceleration acts only along the x-axis',
+      'Resolving the motion into two independent, simultaneous one-dimensional motions along two mutually perpendicular directions',
+      'Treating it as a single, inseparable two-dimensional problem that cannot be broken down further'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Motion in a plane with constant acceleration can be treated as two independent one-dimensional motions occurring simultaneously along two perpendicular axes (principle of independence of perpendicular components).',
     difficulty: 'medium'
   },
@@ -593,12 +593,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The relative velocity of object A with respect to object B, when both are moving in a plane, is given by the vector expression:',
     options: [
-      'v_AB = v_A + v_B',
       'v_AB = v_A − v_B',
       'v_AB = v_A × v_B',
-      'v_AB = v_B − v_A always'
+      'v_AB = v_B − v_A always',
+      'v_AB = v_A + v_B'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Relative velocity of A with respect to B is obtained by the vector subtraction v_AB = v_A − v_B, following the same rule as in one dimension but applied vectorially.',
     difficulty: 'medium'
   },
@@ -608,11 +608,11 @@ const questions: Question[] = [
     question: 'Two boats move with velocities that are equal in magnitude but perpendicular to each other. The magnitude of the relative velocity of one boat with respect to the other is:',
     options: [
       'Equal to the magnitude of either individual velocity',
-      'Equal to √2 times the magnitude of either individual velocity',
+      'Zero',
       'Twice the magnitude of either individual velocity',
-      'Zero'
+      'Equal to √2 times the magnitude of either individual velocity'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For two perpendicular velocity vectors of equal magnitude v, the relative velocity magnitude is √(v² + v²) = v√2.',
     difficulty: 'hard'
   },
@@ -635,12 +635,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The horizontal component of velocity during projectile motion (ignoring air resistance) remains:',
     options: [
-      'Constant throughout the motion, since no horizontal force/acceleration acts on the projectile',
       'Continuously increasing',
-      'Continuously decreasing to zero',
-      'Equal to the vertical component at all times'
+      'Constant throughout the motion, since no horizontal force/acceleration acts on the projectile',
+      'Equal to the vertical component at all times',
+      'Continuously decreasing to zero'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Since gravity acts only vertically, there is no horizontal acceleration, so the horizontal velocity component of a projectile remains constant throughout its flight.',
     difficulty: 'medium'
   },
@@ -649,12 +649,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The vertical component of velocity during projectile motion changes with time due to:',
     options: [
-      'Air resistance only',
       'The constant downward acceleration due to gravity',
-      'A varying horizontal force',
-      'The rotation of the Earth'
+      'Air resistance only',
+      'The rotation of the Earth',
+      'A varying horizontal force'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'The vertical component of a projectile\'s velocity changes continuously because of the constant downward acceleration due to gravity.',
     difficulty: 'easy'
   },
@@ -663,12 +663,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The path (trajectory) followed by a projectile launched at an angle to the horizontal, under gravity alone, is:',
     options: [
-      'A straight line',
-      'A parabola',
+      'An ellipse',
       'A circle',
-      'An ellipse'
+      'A parabola',
+      'A straight line'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'The trajectory of projectile motion is described by a parabolic equation, y = x tanθ − gx²/(2u²cos²θ), which is the equation of a parabola.',
     difficulty: 'easy'
   },
@@ -678,11 +678,11 @@ const questions: Question[] = [
     question: 'For a projectile launched with initial speed u at angle θ to the horizontal, the time of flight (total time in the air, assuming level ground) is given by:',
     options: [
       'T = u sinθ / g',
-      'T = 2u sinθ / g',
       'T = u cosθ / g',
+      'T = 2u sinθ / g',
       'T = u² sin2θ / g'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Time of flight for a projectile on level ground is T = 2u sinθ / g, derived from the vertical motion equations.',
     difficulty: 'medium'
   },
@@ -691,10 +691,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For a projectile launched with initial speed u at angle θ to the horizontal, the maximum height reached is given by:',
     options: [
-      'H = u sinθ / g',
-      'H = u² sin²θ / (2g)',
       'H = u² sin2θ / g',
-      'H = 2u sinθ / g'
+      'H = u² sin²θ / (2g)',
+      'H = 2u sinθ / g',
+      'H = u sinθ / g'
     ],
     correctIndex: 1,
     explanation: 'Maximum height of a projectile is given by H = u² sin²θ / (2g), obtained by setting the vertical velocity component to zero at the highest point.',
@@ -706,11 +706,11 @@ const questions: Question[] = [
     question: 'For a projectile launched with initial speed u at angle θ to the horizontal, the horizontal range (on level ground) is given by:',
     options: [
       'R = u² sinθ / g',
+      'R = 2u² sinθ / g',
       'R = u² sin2θ / g',
-      'R = u² cos2θ / g',
-      'R = 2u² sinθ / g'
+      'R = u² cos2θ / g'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'The horizontal range of a projectile on level ground is given by R = u² sin(2θ) / g, derived from combining the time of flight with constant horizontal velocity.',
     difficulty: 'medium'
   },
@@ -733,12 +733,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The maximum horizontal range of a projectile, launched with initial speed u at the optimum angle, is given by:',
     options: [
-      'R_max = u/g',
-      'R_max = u²/g',
       'R_max = u²/(2g)',
-      'R_max = 2u²/g'
+      'R_max = 2u²/g',
+      'R_max = u/g',
+      'R_max = u²/g'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'At θ = 45° (giving sin2θ = 1), the range formula reduces to R_max = u²/g, the maximum possible range for a given launch speed.',
     difficulty: 'medium'
   },
@@ -747,12 +747,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For two angles of projection θ and (90° − θ), with the same initial speed u, the horizontal ranges achieved are:',
     options: [
-      'Always different from each other',
       'Equal to each other, since sin2θ = sin[2(90°−θ)]',
+      'Impossible to compare without more information',
       'Related such that one is exactly double the other',
-      'Impossible to compare without more information'
+      'Always different from each other'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Since sin2θ = sin(180° − 2θ) = sin[2(90° − θ)], complementary angles of projection (θ and 90° − θ) give the same horizontal range for a given initial speed.',
     difficulty: 'hard'
   },
@@ -761,12 +761,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'At the highest point of a projectile\'s trajectory, the velocity of the projectile is:',
     options: [
-      'Zero',
-      'Purely horizontal, equal to u cosθ, since the vertical component becomes zero at that point',
+      'Equal to the initial launch speed u',
       'Purely vertical',
-      'Equal to the initial launch speed u'
+      'Zero',
+      'Purely horizontal, equal to u cosθ, since the vertical component becomes zero at that point'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'At the highest point, the vertical velocity component becomes zero, leaving only the constant horizontal component u cosθ as the velocity at that instant.',
     difficulty: 'medium'
   },
@@ -776,11 +776,11 @@ const questions: Question[] = [
     question: 'Throughout its flight (ignoring air resistance), the acceleration of a projectile is:',
     options: [
       'Zero at the highest point only',
-      'Constant, equal to g, directed vertically downward at all points including the highest point',
       'Directed along the velocity vector at every point',
-      'Continuously changing in magnitude and direction'
+      'Continuously changing in magnitude and direction',
+      'Constant, equal to g, directed vertically downward at all points including the highest point'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The acceleration acting on a projectile remains constant throughout its flight, equal to g and directed vertically downward, regardless of the projectile\'s position or velocity direction.',
     difficulty: 'medium'
   },
@@ -789,12 +789,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A ball thrown horizontally from the top of a tower undergoes projectile motion. Compared to a ball simply dropped from the same height at the same instant, the horizontally thrown ball reaches the ground:',
     options: [
-      'Earlier than the dropped ball',
       'At the same time as the dropped ball, since the vertical motion is independent of the horizontal motion',
-      'Later than the dropped ball',
-      'Only if it is thrown with a very high horizontal speed'
+      'Earlier than the dropped ball',
+      'Only if it is thrown with a very high horizontal speed',
+      'Later than the dropped ball'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Since horizontal and vertical motions are independent, both balls, having the same initial vertical velocity (zero) and the same vertical acceleration (g), take the same time to reach the ground.',
     difficulty: 'medium'
   },
@@ -803,12 +803,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Uniform circular motion refers to motion in which an object moves along a circular path with:',
     options: [
+      'Zero acceleration throughout',
       'Constantly changing speed but constant direction',
-      'Constant speed, though its velocity direction is continuously changing',
       'Both constant speed and constant velocity',
-      'Zero acceleration throughout'
+      'Constant speed, though its velocity direction is continuously changing'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'In uniform circular motion, the speed (magnitude of velocity) remains constant, but the direction of velocity changes continuously as the object moves around the circle.',
     difficulty: 'easy'
   },
@@ -817,12 +817,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Although the speed is constant in uniform circular motion, the object still has a non-zero acceleration because:',
     options: [
-      'Acceleration depends only on the magnitude of velocity, which is changing',
       'Velocity is a vector, and even though its magnitude is constant, its direction is continuously changing, producing acceleration',
+      'The radius of the circle is changing',
       'The object is moving at all, regardless of the path',
-      'The radius of the circle is changing'
+      'Acceleration depends only on the magnitude of velocity, which is changing'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Since acceleration depends on the rate of change of the velocity vector (which includes direction), even a constant-speed circular motion has acceleration because velocity direction continuously changes.',
     difficulty: 'medium'
   },
@@ -831,12 +831,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The acceleration experienced by an object in uniform circular motion, directed toward the centre of the circle, is called:',
     options: [
-      'Tangential acceleration',
-      'Centripetal acceleration',
+      'Angular acceleration',
       'Gravitational acceleration',
-      'Angular acceleration'
+      'Centripetal acceleration',
+      'Tangential acceleration'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Centripetal acceleration is the acceleration directed toward the centre of the circular path, responsible for continuously changing the direction of velocity in uniform circular motion.',
     difficulty: 'easy'
   },
@@ -846,11 +846,11 @@ const questions: Question[] = [
     question: 'The magnitude of centripetal acceleration for an object moving with speed v along a circle of radius r is given by:',
     options: [
       'a = v/r',
-      'a = v²/r',
       'a = vr',
+      'a = v²/r',
       'a = v²r'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'The centripetal acceleration is given by a = v²/r, directed radially inward toward the centre of the circular path.',
     difficulty: 'medium'
   },
@@ -859,9 +859,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The centripetal acceleration for an object in uniform circular motion can also be expressed in terms of angular speed ω and radius r as:',
     options: [
-      'a = ωr',
-      'a = ω²r',
       'a = ω/r',
+      'a = ω²r',
+      'a = ωr',
       'a = ω²/r'
     ],
     correctIndex: 1,
@@ -873,12 +873,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In uniform circular motion, the relationship between linear speed v, angular speed ω, and radius r is:',
     options: [
-      'v = ω/r',
-      'v = ωr',
       'v = ω + r',
-      'v = ω²r'
+      'v = ω²r',
+      'v = ωr',
+      'v = ω/r'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Linear speed and angular speed are related through the radius of the circular path: v = ωr.',
     difficulty: 'easy'
   },
@@ -887,12 +887,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The time period T of an object undergoing uniform circular motion is related to its angular speed ω by:',
     options: [
-      'T = 2πω',
       'T = 2π/ω',
-      'T = ω/2π',
-      'T = π/2ω'
+      'T = π/2ω',
+      'T = 2πω',
+      'T = ω/2π'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'The time period, being the time for one complete revolution (2π radians), is related to angular speed by T = 2π/ω.',
     difficulty: 'medium'
   },
@@ -901,12 +901,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The direction of the centripetal acceleration vector, relative to the instantaneous velocity vector in uniform circular motion, is always:',
     options: [
-      'Parallel to the velocity vector',
-      'Perpendicular to the velocity vector',
       'Antiparallel (exactly opposite) to the velocity vector',
-      'At an angle of 45° to the velocity vector'
+      'At an angle of 45° to the velocity vector',
+      'Perpendicular to the velocity vector',
+      'Parallel to the velocity vector'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Since velocity is always tangential to the circular path and centripetal acceleration is always radial (toward the centre), the two are always perpendicular to each other.',
     difficulty: 'medium'
   },
@@ -915,12 +915,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A stone tied to a string and whirled in a horizontal circle at constant speed has an acceleration that:',
     options: [
-      'Increases the speed of the stone continuously',
-      'Continuously changes the direction of the stone\'s velocity, keeping it moving in a circle, without changing its speed',
       'Has no effect on the stone\'s motion at all',
-      'Acts tangentially, causing the stone to speed up and slow down periodically'
+      'Acts tangentially, causing the stone to speed up and slow down periodically',
+      'Continuously changes the direction of the stone\'s velocity, keeping it moving in a circle, without changing its speed',
+      'Increases the speed of the stone continuously'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'The centripetal acceleration acts to continuously redirect the velocity vector, keeping the stone on a circular path, while its magnitude (speed) remains unchanged.',
     difficulty: 'medium'
   },
@@ -929,12 +929,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The angular speed ω of an object performing uniform circular motion is related to the frequency of revolution ν by:',
     options: [
-      'ω = ν',
       'ω = 2πν',
-      'ω = ν/2π',
-      'ω = π/ν'
+      'ω = π/ν',
+      'ω = ν',
+      'ω = ν/2π'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Angular speed is related to the frequency (revolutions per second) by ω = 2πν, since each revolution corresponds to an angle of 2π radians.',
     difficulty: 'medium'
   },
@@ -943,12 +943,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The scalar (dot) product of two vectors A and B, inclined at angle θ to each other, is given by:',
     options: [
-      'A·B = AB sinθ',
       'A·B = AB cosθ',
+      'A·B = A + B',
       'A·B = AB tanθ',
-      'A·B = A + B'
+      'A·B = AB sinθ'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'The scalar (dot) product of two vectors is defined as A·B = AB cosθ, yielding a scalar quantity.',
     difficulty: 'medium'
   },
@@ -957,12 +957,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The scalar (dot) product of two mutually perpendicular vectors is:',
     options: [
+      'Always negative',
       'Equal to the product of their magnitudes',
       'Zero, since cos90° = 0',
-      'Always negative',
       'Undefined'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'Since the dot product involves cosθ, and cos90° = 0, the scalar product of two perpendicular vectors is always zero.',
     difficulty: 'medium'
   },
@@ -985,10 +985,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Unlike the scalar product, the vector (cross) product of two vectors is NOT commutative; specifically:',
     options: [
-      'A × B = B × A',
-      'A × B = −(B × A)',
       'A × B = A·B',
-      'A × B is always zero regardless of order'
+      'A × B = −(B × A)',
+      'A × B is always zero regardless of order',
+      'A × B = B × A'
     ],
     correctIndex: 1,
     explanation: 'The vector product is anti-commutative: reversing the order of the vectors reverses the direction of the resultant vector, so A × B = −(B × A).',
@@ -999,12 +999,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The direction of the vector (cross) product A × B is determined using:',
     options: [
-      'The left-hand rule',
-      'The right-hand (thumb) rule, giving a direction perpendicular to the plane containing A and B',
+      'Always along vector B',
       'Always along vector A',
-      'Always along vector B'
+      'The left-hand rule',
+      'The right-hand (thumb) rule, giving a direction perpendicular to the plane containing A and B'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The right-hand rule is used to determine the direction of the cross product, which is always perpendicular to the plane formed by the two vectors being multiplied.',
     difficulty: 'medium'
   },
@@ -1013,12 +1013,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The vector (cross) product of two parallel (or antiparallel) vectors is:',
     options: [
-      'Equal to the product of their magnitudes',
       'A null vector, since sin0° (or sin180°) = 0',
       'Always a unit vector',
+      'Equal to the product of their magnitudes',
       'Undefined'
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation: 'Since the cross product magnitude involves sinθ, and sinθ = 0 for parallel (θ=0°) or antiparallel (θ=180°) vectors, their cross product is a null vector.',
     difficulty: 'medium'
   },
@@ -1027,12 +1027,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For the standard unit vectors i, j, and k, the value of i × j is:',
     options: [
+      'A null vector',
       'i',
-      'k',
       'j',
-      'A null vector'
+      'k'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'By the standard right-hand rule convention for Cartesian unit vectors, i × j = k.',
     difficulty: 'hard'
   },
@@ -1041,12 +1041,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Assertion: The sum of two vectors of unequal magnitude can never be zero.\nReason: For the sum of two vectors to be zero, they must be equal in magnitude and exactly opposite in direction.\nChoose the correct option:',
     options: [
-      'Both assertion and reason are true and reason correctly explains assertion',
       'Assertion is true, reason is false',
+      'Both assertion and reason are true and reason correctly explains assertion',
       'Assertion is false, reason is true',
       'Both assertion and reason are false'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Since two vectors sum to zero only when they have equal magnitudes and opposite directions, vectors of unequal magnitude can never add up to a null vector, correctly explained by the reason.',
     difficulty: 'hard'
   },
@@ -1055,12 +1055,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Assertion: In projectile motion, the horizontal and vertical motions can be analysed completely independently of each other.\nReason: The acceleration due to gravity acts only in the vertical direction and has no component along the horizontal direction.\nChoose the correct option:',
     options: [
-      'Both assertion and reason are true and reason correctly explains assertion',
+      'Both assertion and reason are false',
       'Assertion is true, reason is false',
       'Assertion is false, reason is true',
-      'Both assertion and reason are false'
+      'Both assertion and reason are true and reason correctly explains assertion'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Since gravity has no horizontal component, the horizontal velocity remains unaffected by the vertical motion, allowing the two directions to be treated as independent, one-dimensional motions - correctly explained by the reason.',
     difficulty: 'hard'
   },
@@ -1069,9 +1069,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Assertion: A particle moving with uniform circular motion has zero acceleration.\nReason: The speed of the particle remains constant throughout the motion.\nChoose the correct option:',
     options: [
-      'Both assertion and reason are true and related',
-      'Assertion is false, since the changing direction of velocity produces a non-zero centripetal acceleration, even though the reason (constant speed) is true',
       'Both assertion and reason are false',
+      'Assertion is false, since the changing direction of velocity produces a non-zero centripetal acceleration, even though the reason (constant speed) is true',
+      'Both assertion and reason are true and related',
       'Assertion is true, but reason is false'
     ],
     correctIndex: 1,
@@ -1083,12 +1083,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Which of the following statements correctly distinguishes the scalar product from the vector product of two vectors?',
     options: [
+      'The scalar product is never used in physics, unlike the vector product',
       'The scalar product yields a vector, while the vector product yields a scalar',
       'The scalar product yields a scalar quantity (using cosθ), while the vector product yields a vector quantity (using sinθ) perpendicular to both original vectors',
-      'Both products always yield the same numerical result',
-      'The scalar product is never used in physics, unlike the vector product'
+      'Both products always yield the same numerical result'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'The scalar (dot) product results in a scalar value proportional to cosθ, whereas the vector (cross) product results in a vector proportional to sinθ, directed perpendicular to the plane of the two original vectors.',
     difficulty: 'medium'
   }

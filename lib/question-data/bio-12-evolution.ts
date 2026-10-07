@@ -6,12 +6,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The theory proposing that life on earth originated spontaneously from non-living matter, as historically believed by Aristotle and others, is called the theory of:",
     "options": [
-      "Spontaneous generation",
-      "Biogenesis",
+      "Special creation",
       "Panspermia",
-      "Special creation"
+      "Biogenesis",
+      "Spontaneous generation"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "The idea that life arose spontaneously from non-living matter, historically believed by Aristotle and others before it was disproved, is called spontaneous generation.",
     "difficulty": "easy"
   },
@@ -20,12 +20,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The theory of biogenesis, which states that life arises only from pre-existing life, was experimentally established through the work of:",
     "options": [
-      "Charles Darwin",
       "Jean-Baptiste Lamarck",
-      "Louis Pasteur",
-      "Gregor Mendel"
+      "Gregor Mendel",
+      "Charles Darwin",
+      "Louis Pasteur"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Louis Pasteur's experiments experimentally disproved spontaneous generation and established biogenesis — that life arises only from pre-existing life.",
     "difficulty": "medium"
   },
@@ -34,12 +34,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "According to Oparin and Haldane's hypothesis on the origin of life, the primitive earth's atmosphere was characterised mainly by:",
     "options": [
-      "An abundance of free oxygen gas",
       "A reducing atmosphere containing gases such as methane, ammonia, hydrogen, and water vapour, with no free oxygen",
-      "A pure nitrogen atmosphere with no other gases",
-      "An atmosphere identical to today's composition"
+      "An atmosphere identical to today's composition",
+      "An abundance of free oxygen gas",
+      "A pure nitrogen atmosphere with no other gases"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Oparin and Haldane proposed that the primitive earth's atmosphere was a reducing one, containing methane, ammonia, hydrogen, and water vapour, but no free oxygen.",
     "difficulty": "medium"
   },
@@ -48,12 +48,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Oparin and Haldane proposed that under the reducing conditions of the primitive earth, simple inorganic and organic molecules could combine to form complex organic molecules, a process termed:",
     "options": [
-      "Biogenesis",
-      "Natural selection",
+      "Chemical evolution",
       "Adaptive radiation",
-      "Chemical evolution"
+      "Biogenesis",
+      "Natural selection"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Oparin and Haldane termed the formation of complex organic molecules from simpler inorganic and organic precursors under early-earth conditions as chemical evolution.",
     "difficulty": "medium"
   },
@@ -63,11 +63,11 @@ const questions: Question[] = [
     "question": "According to current scientific understanding, the universe is estimated to have originated approximately how many years ago, based on the 'Big Bang' theory?",
     "options": [
       "4.5 billion years ago",
-      "15 billion years ago",
       "10,000 years ago",
+      "15 billion years ago",
       "500 million years ago"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "The Big Bang theory places the origin of the universe at roughly 15 billion years ago.",
     "difficulty": "medium"
   },
@@ -90,12 +90,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The earliest forms of life on earth were most likely:",
     "options": [
-      "Complex, multicellular organisms",
-      "Land-dwelling plants",
       "Simple, unicellular organisms",
-      "Large vertebrate animals"
+      "Complex, multicellular organisms",
+      "Large vertebrate animals",
+      "Land-dwelling plants"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "The earliest forms of life were most likely simple, unicellular organisms.",
     "difficulty": "easy"
   },
@@ -104,12 +104,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The organisms believed to have been dominant on earth roughly 2000 million years ago, contributing significantly to the rise of atmospheric oxygen through photosynthesis, were:",
     "options": [
+      "Terrestrial insects",
       "Land plants",
       "Fungi",
-      "Blue-green algae (cyanobacteria)",
-      "Terrestrial insects"
+      "Blue-green algae (cyanobacteria)"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Blue-green algae (cyanobacteria) are believed to have been dominant around 2000 million years ago, contributing significantly to rising atmospheric oxygen via photosynthesis.",
     "difficulty": "medium"
   },
@@ -118,12 +118,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "For nearly two billion years after life first originated, evolution is believed to have taken place almost exclusively:",
     "options": [
-      "On land",
       "In the atmosphere",
-      "In freshwater lakes only",
-      "In the oceans/seas"
+      "In the oceans/seas",
+      "On land",
+      "In freshwater lakes only"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "For nearly two billion years after life originated, evolution is believed to have occurred almost exclusively in the oceans/seas.",
     "difficulty": "medium"
   },
@@ -132,12 +132,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following represents some of the oldest known fossil evidence of early life on earth, formed by layered structures built up by ancient microbial mats?",
     "options": [
-      "Stromatolites",
-      "Trilobites",
       "Ammonites",
-      "Dinosaur eggs"
+      "Stromatolites",
+      "Dinosaur eggs",
+      "Trilobites"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Stromatolites, layered structures built up by ancient microbial mats, are among the oldest known fossil evidence of early life.",
     "difficulty": "hard"
   },
@@ -147,11 +147,11 @@ const questions: Question[] = [
     "question": "The classic experiment simulating the conditions of primitive earth's atmosphere to test whether organic molecules could form spontaneously was conducted in 1953 by:",
     "options": [
       "Charles Darwin and Alfred Wallace",
-      "Stanley Miller and Harold Urey",
       "Oparin and Haldane",
-      "Louis Pasteur and Robert Koch"
+      "Louis Pasteur and Robert Koch",
+      "Stanley Miller and Harold Urey"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The classic experiment simulating primitive earth conditions to test spontaneous organic-molecule formation was conducted in 1953 by Stanley Miller and Harold Urey.",
     "difficulty": "easy"
   },
@@ -160,9 +160,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In the Miller-Urey experiment, a mixture of gases such as methane, ammonia, and hydrogen, along with water vapour, was sealed in a closed flask and subjected to:",
     "options": [
-      "Complete darkness with no energy input",
-      "An electric discharge, simulating lightning, at a high temperature",
       "Extremely low temperatures close to absolute zero",
+      "An electric discharge, simulating lightning, at a high temperature",
+      "Complete darkness with no energy input",
       "High-pressure mechanical crushing"
     ],
     "correctIndex": 1,
@@ -174,12 +174,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Miller-Urey experiment is significant in the study of the origin of life because it successfully demonstrated the spontaneous formation of:",
     "options": [
-      "Simple amino acids under simulated primitive-earth conditions",
       "Complete, functional living cells",
-      "Fully formed DNA molecules",
-      "Photosynthetic pigments"
+      "Photosynthetic pigments",
+      "Simple amino acids under simulated primitive-earth conditions",
+      "Fully formed DNA molecules"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "The Miller-Urey experiment is significant because it demonstrated the spontaneous formation of simple amino acids under simulated primitive-earth conditions.",
     "difficulty": "easy"
   },
@@ -188,12 +188,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The successful synthesis of amino acids in the Miller-Urey experiment provided strong experimental support for the idea that:",
     "options": [
-      "Life could only have been created through divine intervention",
-      "Organic molecules could never form under natural conditions",
+      "Simple organic building blocks of life could have arisen spontaneously from inorganic precursors under early earth conditions",
       "The primitive earth's atmosphere contained abundant free oxygen",
-      "Simple organic building blocks of life could have arisen spontaneously from inorganic precursors under early earth conditions"
+      "Life could only have been created through divine intervention",
+      "Organic molecules could never form under natural conditions"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "The successful synthesis of amino acids supported the idea that simple organic building blocks of life could arise spontaneously from inorganic precursors under early earth conditions.",
     "difficulty": "medium"
   },
@@ -217,11 +217,11 @@ const questions: Question[] = [
     "question": "The evolutionary progression from simple organic molecules to the first living cell is generally believed to have involved:",
     "options": [
       "An instantaneous, single-step transformation",
+      "A process entirely unrelated to chemistry",
       "No chemical intermediates of any kind",
-      "A long series of gradual chemical and molecular changes over a vast period of time",
-      "A process entirely unrelated to chemistry"
+      "A long series of gradual chemical and molecular changes over a vast period of time"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "The progression from simple organic molecules to the first living cell is believed to have involved a long series of gradual chemical and molecular changes over a vast period.",
     "difficulty": "medium"
   },
@@ -231,11 +231,11 @@ const questions: Question[] = [
     "question": "Which of the following scientists' theoretical proposal directly inspired the design of the later Miller-Urey experimental setup?",
     "options": [
       "Charles Darwin",
-      "Oparin and Haldane",
       "Gregor Mendel",
+      "Oparin and Haldane",
       "Alfred Russel Wallace"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Oparin and Haldane's theoretical proposal on chemical evolution directly inspired the design of the later Miller-Urey experimental setup.",
     "difficulty": "medium"
   },
@@ -245,9 +245,9 @@ const questions: Question[] = [
     "question": "The Miller-Urey experiment is often cited in NEET-level biology as key evidence supporting the theory of:",
     "options": [
       "Chemical evolution of life",
-      "Special creation",
+      "Lamarckian inheritance",
       "Panspermia (life arriving from outer space)",
-      "Lamarckian inheritance"
+      "Special creation"
     ],
     "correctIndex": 0,
     "explanation": "The Miller-Urey experiment is cited as key evidence supporting the theory of chemical evolution of life.",
@@ -258,12 +258,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Paleontological evidence for evolution is primarily derived from the study of:",
     "options": [
-      "Living organisms only, with no reference to the past",
-      "DNA sequences of modern species exclusively",
       "Comparative anatomy of living species only",
-      "Fossils preserved in sedimentary rock layers"
+      "Fossils preserved in sedimentary rock layers",
+      "Living organisms only, with no reference to the past",
+      "DNA sequences of modern species exclusively"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Paleontological evidence for evolution is primarily derived from the study of fossils preserved in sedimentary rock layers.",
     "difficulty": "easy"
   },
@@ -273,8 +273,8 @@ const questions: Question[] = [
     "question": "In sedimentary rock formations, fossils found in deeper layers are generally:",
     "options": [
       "Older than fossils found in layers closer to the surface",
-      "Younger than fossils found in layers closer to the surface",
       "Exactly the same age as surface fossils",
+      "Younger than fossils found in layers closer to the surface",
       "Impossible to date at all"
     ],
     "correctIndex": 0,
@@ -286,12 +286,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The age of fossils is commonly estimated using isotope-based dating methods, one of the most well-known being:",
     "options": [
+      "Measuring the fossil's weight",
       "Radiocarbon (carbon-14) dating",
       "Simple visual inspection of fossil colour",
-      "Measuring the fossil's weight",
       "Counting tree rings in nearby wood"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The age of fossils is commonly estimated using radiocarbon (carbon-14) dating, an isotope-based method.",
     "difficulty": "medium"
   },
@@ -301,11 +301,11 @@ const questions: Question[] = [
     "question": "The well-documented fossil series showing the gradual evolutionary transition from a small, multi-toed ancestor (Eohippus) to the modern, single-toed horse (Equus) is a classic example of:",
     "options": [
       "Convergent evolution",
-      "Adaptive radiation exclusively",
       "A fossil record illustrating gradual evolutionary change over time",
-      "Lamarckian inheritance"
+      "Lamarckian inheritance",
+      "Adaptive radiation exclusively"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "The fossil series showing the gradual transition from small, multi-toed Eohippus to the modern single-toed Equus is a classic fossil record illustrating gradual evolutionary change.",
     "difficulty": "medium"
   },
@@ -315,11 +315,11 @@ const questions: Question[] = [
     "question": "The evolutionary lineage of the modern horse, from Eohippus to Equus, is frequently cited in biology textbooks as strong evidence for:",
     "options": [
       "Special creation",
+      "A completely random, directionless process with no fossil support",
       "Evolution through gradual change, as documented by fossil records",
-      "Spontaneous generation",
-      "A completely random, directionless process with no fossil support"
+      "Spontaneous generation"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "The evolutionary lineage from Eohippus to Equus is frequently cited as strong evidence for evolution through gradual change, as documented by fossil records.",
     "difficulty": "medium"
   },
@@ -329,11 +329,11 @@ const questions: Question[] = [
     "question": "Which of the following best describes 'paleontological evidence' as used in the study of evolution?",
     "options": [
       "Evidence based purely on present-day observation of living species",
+      "Evidence based on the study of fossils and their distribution across geological time periods",
       "Evidence based on laboratory experiments recreating ancient conditions",
-      "Evidence based on comparing protein sequences across species",
-      "Evidence based on the study of fossils and their distribution across geological time periods"
+      "Evidence based on comparing protein sequences across species"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Paleontological evidence refers to evidence based on the study of fossils and their distribution across geological time periods.",
     "difficulty": "easy"
   },
@@ -342,12 +342,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The specific geological period in which an organism existed can often be inferred from the position of its fossil remains within:",
     "options": [
-      "A living organism's genome",
-      "Layers (strata) of sedimentary rock",
+      "Contemporary DNA databases",
       "A modern zoo enclosure",
-      "Contemporary DNA databases"
+      "Layers (strata) of sedimentary rock",
+      "A living organism's genome"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "The geological period in which an organism existed can be inferred from the position of its fossil within layers (strata) of sedimentary rock.",
     "difficulty": "medium"
   },
@@ -356,12 +356,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The gradual accumulation of fossil evidence, showing progressively more complex forms of life appearing later in geological time, provides support for the general concept of:",
     "options": [
+      "Life having no history at all",
       "Evolution as a gradual, time-dependent process",
       "Instantaneous creation of all species simultaneously",
-      "A static, unchanging natural world",
-      "Life having no history at all"
+      "A static, unchanging natural world"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The gradual accumulation of fossil evidence, showing progressively more complex life forms appearing later in geological time, supports evolution as a gradual, time-dependent process.",
     "difficulty": "medium"
   },
@@ -370,12 +370,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Organs that share the same basic structural plan and evolutionary origin, but have become adapted to perform different functions in different species, are called:",
     "options": [
-      "Analogous organs",
       "Vestigial organs exclusively",
       "Homologous organs",
+      "Analogous organs",
       "Convergent organs"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Organs sharing the same basic structural plan and evolutionary origin, but adapted for different functions in different species, are called homologous organs.",
     "difficulty": "easy"
   },
@@ -384,12 +384,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The forelimbs of a human, whale, bird, and bat all share the same underlying bone arrangement, despite performing very different functions such as grasping, swimming, and flying. These are classic examples of:",
     "options": [
-      "Analogous organs",
-      "Vestigial structures with no evolutionary significance",
       "Homologous organs",
-      "Structures with completely unrelated evolutionary origins"
+      "Structures with completely unrelated evolutionary origins",
+      "Analogous organs",
+      "Vestigial structures with no evolutionary significance"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "The forelimbs of human, whale, bird, and bat, sharing the same underlying bone arrangement despite different functions, are classic examples of homologous organs.",
     "difficulty": "easy"
   },
@@ -398,12 +398,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The presence of homologous organs across different species is considered strong evidence for:",
     "options": [
+      "Divergent evolution from a common ancestor",
       "Convergent evolution exclusively",
       "Spontaneous generation",
-      "Special creation of each species independently",
-      "Divergent evolution from a common ancestor"
+      "Special creation of each species independently"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "The presence of homologous organs across species is considered strong evidence for divergent evolution from a common ancestor.",
     "difficulty": "medium"
   },
@@ -412,12 +412,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Organs that perform a similar function in different species, but differ fundamentally in their underlying structure and evolutionary origin, are called:",
     "options": [
-      "Analogous organs",
-      "Homologous organs",
+      "Vestigial organs",
       "Primary lymphoid organs",
-      "Vestigial organs"
+      "Homologous organs",
+      "Analogous organs"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Organs performing a similar function in different species but differing fundamentally in structure and evolutionary origin are called analogous organs.",
     "difficulty": "easy"
   },
@@ -426,12 +426,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The wings of a butterfly and the wings of a bird both serve the function of flight but differ completely in their basic structure and developmental origin. These are classic examples of:",
     "options": [
+      "Embryological remnants",
       "Homologous organs",
-      "Analogous organs",
       "Vestigial structures",
-      "Embryological remnants"
+      "Analogous organs"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The wings of a butterfly and a bird both serve flight but differ completely in structure and developmental origin, making them classic examples of analogous organs.",
     "difficulty": "easy"
   },
@@ -440,12 +440,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The presence of analogous organs across unrelated species is generally attributed to:",
     "options": [
+      "Random chance with no adaptive significance",
       "Divergent evolution from a recent common ancestor",
       "Convergent evolution, in which unrelated lineages independently evolve similar adaptations to similar environmental pressures",
-      "A shared, identical genetic origin",
-      "Random chance with no adaptive significance"
+      "A shared, identical genetic origin"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Analogous organs across unrelated species are generally attributed to convergent evolution, where unrelated lineages independently evolve similar adaptations to similar pressures.",
     "difficulty": "medium"
   },
@@ -454,12 +454,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The eyes of an octopus (a mollusc) and the eyes of a mammal, though remarkably similar in overall function and some structural features, evolved independently and are considered an example of:",
     "options": [
-      "Convergent evolution, resulting in analogous organs",
-      "Divergent evolution, resulting in homologous organs",
+      "Lamarckian inheritance",
       "A shared common ancestor with identical eye structure",
-      "Lamarckian inheritance"
+      "Divergent evolution, resulting in homologous organs",
+      "Convergent evolution, resulting in analogous organs"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "The eyes of an octopus and a mammal, similar in function despite evolving independently, are considered an example of convergent evolution.",
     "difficulty": "medium"
   },
@@ -468,12 +468,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The evolutionary process that leads to the formation of homologous organs, in which a common ancestral structure diversifies to serve different functions in descendant species, is called:",
     "options": [
-      "Convergent evolution",
       "Natural selection exclusively, unrelated to common ancestry",
-      "Genetic drift exclusively",
-      "Divergent evolution"
+      "Divergent evolution",
+      "Convergent evolution",
+      "Genetic drift exclusively"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "The evolutionary process by which a common ancestral structure diversifies to serve different functions in descendant species, producing homologous organs, is called divergent evolution.",
     "difficulty": "medium"
   },
@@ -482,12 +482,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following pairs of structures is the best example of homologous organs?",
     "options": [
-      "Wings of a bird and wings of an insect",
-      "Forelimb of a horse and flipper of a whale",
+      "Sting of a bee and sting of a scorpion",
       "Eye of an octopus and eye of a human",
-      "Sting of a bee and sting of a scorpion"
+      "Wings of a bird and wings of an insect",
+      "Forelimb of a horse and flipper of a whale"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The forelimb of a horse and the flipper of a whale, sharing the same underlying bone plan despite different functions, is a classic example of homologous organs.",
     "difficulty": "medium"
   },
@@ -496,8 +496,8 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following pairs of structures is the best example of analogous organs?",
     "options": [
-      "Forelimb of a bat and forelimb of a human",
       "Wing of a bird and forelimb of a horse",
+      "Forelimb of a bat and forelimb of a human",
       "Wing of an insect and wing of a bird",
       "Flipper of a whale and forelimb of a frog"
     ],
@@ -510,12 +510,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The process by which a group of organisms originating from a common ancestor diversifies into multiple new forms, each adapted to a different habitat or way of life within the same geographical region, is called:",
     "options": [
-      "Convergent evolution",
       "Adaptive radiation",
+      "Industrial melanism",
       "Genetic drift exclusively",
-      "Industrial melanism"
+      "Convergent evolution"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The process by which a group of organisms from a common ancestor diversifies into multiple forms, each adapted to a different habitat within the same geographical region, is called adaptive radiation.",
     "difficulty": "easy"
   },
@@ -538,12 +538,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Australian marsupials, which evolved from a common ancestral stock into a wide variety of forms adapted to different ecological niches (e.g. kangaroo, marsupial mole, flying phalanger), illustrate:",
     "options": [
-      "Convergent evolution exclusively, with no common ancestry",
-      "A completely random pattern with no adaptive basis",
       "The Hardy-Weinberg principle",
-      "Adaptive radiation"
+      "Convergent evolution exclusively, with no common ancestry",
+      "Adaptive radiation",
+      "A completely random pattern with no adaptive basis"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "Australian marsupials, diversifying from a common ancestral stock into varied forms adapted to different niches, illustrate adaptive radiation.",
     "difficulty": "medium"
   },
@@ -552,12 +552,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "When adaptive radiation occurs independently on two or more separate landmasses, giving rise to superficially similar-looking but not closely related organisms occupying similar niches (e.g. Australian marsupials and placental mammals elsewhere), this phenomenon is described as an example of:",
     "options": [
-      "Convergent evolution occurring on a larger, whole-fauna scale",
       "Purely coincidental, unrelated development with no evolutionary basis",
-      "A single, shared evolutionary event",
-      "Lamarckian inheritance"
+      "Lamarckian inheritance",
+      "Convergent evolution occurring on a larger, whole-fauna scale",
+      "A single, shared evolutionary event"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "When adaptive radiation occurs independently on separate landmasses, producing similar-looking but unrelated organisms in similar niches, it is described as convergent evolution on a whole-fauna scale.",
     "difficulty": "hard"
   },
@@ -566,12 +566,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The placental wolf and the (now extinct) Tasmanian wolf (a marsupial), though not closely related, evolved striking similarities in body form due to occupying similar ecological niches in different parts of the world. This is an example of:",
     "options": [
-      "Convergent evolution",
       "Divergent evolution",
-      "Adaptive radiation from a single common ancestor",
-      "Genetic drift"
+      "Convergent evolution",
+      "Genetic drift",
+      "Adaptive radiation from a single common ancestor"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The placental wolf and the marsupial Tasmanian wolf, despite not being closely related, evolved similar body forms due to occupying similar niches — a case of convergent evolution.",
     "difficulty": "medium"
   },
@@ -580,12 +580,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Adaptive radiation typically begins from a single point of origin, from which a species radiates into different habitats within a particular geographical area, primarily driven by:",
     "options": [
-      "Random genetic drift with no environmental influence",
       "A single, unchanging environment offering no new niches",
-      "Adaptation to different available ecological niches and resources",
-      "Complete isolation with no environmental pressure at all"
+      "Complete isolation with no environmental pressure at all",
+      "Random genetic drift with no environmental influence",
+      "Adaptation to different available ecological niches and resources"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Adaptive radiation begins from a single point of origin and is primarily driven by adaptation to different available ecological niches and resources.",
     "difficulty": "medium"
   },
@@ -595,11 +595,11 @@ const questions: Question[] = [
     "question": "Which of the following best distinguishes adaptive radiation from simple convergent evolution?",
     "options": [
       "Adaptive radiation always occurs in aquatic environments; convergent evolution never does",
+      "Convergent evolution occurs faster than adaptive radiation in every case",
       "Adaptive radiation involves diversification from a single common ancestor within one region; convergent evolution involves independent lineages evolving similar traits",
-      "There is no meaningful difference between the two processes",
-      "Convergent evolution occurs faster than adaptive radiation in every case"
+      "There is no meaningful difference between the two processes"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Adaptive radiation involves diversification from a single common ancestor within one region, whereas convergent evolution involves independent lineages evolving similar traits — this distinguishes the two.",
     "difficulty": "hard"
   },
@@ -608,12 +608,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The variety of beak shapes among Darwin's finches, each suited to a different diet such as seed-crushing or insect-catching, most directly illustrates the role of which evolutionary factor in adaptive radiation?",
     "options": [
-      "Random genetic drift alone",
-      "Simple chance, with no adaptive value",
       "A single mutation with no selective advantage",
-      "Natural selection acting on variation, favouring beak shapes suited to available food sources"
+      "Random genetic drift alone",
+      "Natural selection acting on variation, favouring beak shapes suited to available food sources",
+      "Simple chance, with no adaptive value"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "The variety of beak shapes among Darwin's finches most directly illustrates natural selection acting on variation, favouring beak shapes suited to available food sources.",
     "difficulty": "medium"
   },
@@ -622,12 +622,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The theory proposing that structures used repeatedly by an organism become more developed, while unused structures gradually degenerate, and that these changes are then passed on to offspring, is known as:",
     "options": [
-      "Darwin's theory of natural selection",
       "Lamarck's theory of inheritance of acquired characters",
       "The Modern Synthetic Theory",
+      "Darwin's theory of natural selection",
       "The Hardy-Weinberg principle"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The theory proposing that used structures develop further, unused ones degenerate, and these acquired changes are inherited, is Lamarck's theory of inheritance of acquired characters.",
     "difficulty": "easy"
   },
@@ -636,12 +636,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Lamarck's classic example used to illustrate the theory of inheritance of acquired characters involves the evolution of the long neck of the:",
     "options": [
-      "Giraffe",
-      "Elephant",
+      "Galapagos finch",
       "Peppered moth",
-      "Galapagos finch"
+      "Elephant",
+      "Giraffe"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Lamarck's classic example of inheritance of acquired characters is the evolution of the long neck of the giraffe.",
     "difficulty": "easy"
   },
@@ -651,11 +651,11 @@ const questions: Question[] = [
     "question": "According to Lamarck's explanation, giraffes evolved long necks because ancestral giraffes stretched their necks to reach leaves on tall trees, and this acquired, stretched-neck characteristic was then:",
     "options": [
       "Immediately lost in the very next generation",
-      "Unrelated to any change in body structure at all",
       "Passed on directly to their offspring, leading to progressively longer necks over generations",
-      "Only observed in giraffes living in zoos"
+      "Only observed in giraffes living in zoos",
+      "Unrelated to any change in body structure at all"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "According to Lamarck, ancestral giraffes stretching their necks passed this acquired, stretched-neck trait directly on to their offspring, leading to progressively longer necks.",
     "difficulty": "medium"
   },
@@ -664,8 +664,8 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Lamarck's theory of inheritance of acquired characteristics has since been largely discredited, mainly because modern genetics has shown that:",
     "options": [
-      "Organisms never show any variation in structure",
       "All acquired characteristics are, in fact, inherited without exception",
+      "Organisms never show any variation in structure",
       "Changes acquired by an organism during its lifetime (e.g. through use or disuse) are generally not encoded in its germ cells and therefore cannot be passed on to offspring",
       "Giraffes have always had short necks throughout their evolutionary history"
     ],
@@ -678,12 +678,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The germplasm theory, which helped refute Lamarckism by distinguishing between somatic cells and reproductive (germline) cells, was proposed by:",
     "options": [
-      "Charles Darwin",
       "Gregor Mendel",
-      "Stanley Miller",
-      "August Weismann"
+      "Charles Darwin",
+      "August Weismann",
+      "Stanley Miller"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "The germplasm theory, distinguishing somatic cells from germline cells and helping refute Lamarckism, was proposed by August Weismann.",
     "difficulty": "hard"
   },
@@ -692,12 +692,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following best summarises the core flaw in Lamarck's theory, as understood in light of modern genetics?",
     "options": [
+      "Mutations never occur in any organism",
       "Only heritable changes in germ-line DNA can be passed to offspring; changes acquired by body (somatic) tissues during an organism's life generally cannot",
       "Natural selection does not exist",
-      "Fossils provide no evidence for evolution",
-      "Mutations never occur in any organism"
+      "Fossils provide no evidence for evolution"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The core flaw in Lamarck's theory, per modern genetics, is that only heritable changes in germ-line DNA can be passed to offspring, while changes acquired by body tissues generally cannot.",
     "difficulty": "medium"
   },
@@ -706,12 +706,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Charles Darwin's theory of evolution by natural selection was famously detailed in his 1859 publication titled:",
     "options": [
-      "The Descent of Man",
-      "On the Origin of Species",
       "The Voyage of the Beagle",
-      "Principles of Geology"
+      "Principles of Geology",
+      "The Descent of Man",
+      "On the Origin of Species"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Darwin detailed his theory of evolution by natural selection in his 1859 publication 'On the Origin of Species'.",
     "difficulty": "easy"
   },
@@ -720,10 +720,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Darwin's theory of natural selection was significantly influenced by his observations made during his voyage aboard the ship:",
     "options": [
-      "The Santa Maria",
+      "The Titanic",
       "HMS Beagle",
-      "The Mayflower",
-      "The Titanic"
+      "The Santa Maria",
+      "The Mayflower"
     ],
     "correctIndex": 1,
     "explanation": "Darwin's theory was significantly shaped by observations made during his voyage aboard the HMS Beagle.",
@@ -734,12 +734,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "According to Darwin's theory of natural selection, organisms generally produce far more offspring than can survive to adulthood, a phenomenon referred to as:",
     "options": [
-      "Overproduction",
-      "Genetic drift",
+      "Convergent evolution",
       "Adaptive radiation",
-      "Convergent evolution"
+      "Overproduction",
+      "Genetic drift"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Darwin observed that organisms produce far more offspring than can survive to adulthood, a phenomenon he called overproduction.",
     "difficulty": "medium"
   },
@@ -748,12 +748,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Because resources such as food and space are limited relative to the number of offspring produced, individuals within a population must compete for survival, a concept Darwin termed:",
     "options": [
+      "Struggle for existence",
       "Adaptive radiation",
-      "Genetic drift",
       "Chemical evolution",
-      "Struggle for existence"
+      "Genetic drift"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Because resources are limited relative to the offspring produced, individuals must compete for survival — a concept Darwin termed the struggle for existence.",
     "difficulty": "medium"
   },
@@ -762,12 +762,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "According to Darwin's theory, individuals within a population that possess favourable variations suited to their environment are more likely to survive and reproduce, a principle often summarised as:",
     "options": [
+      "Genetic drift",
       "Inheritance of acquired characters",
       "Survival of the fittest (natural selection)",
-      "The Hardy-Weinberg principle",
-      "Genetic drift"
+      "The Hardy-Weinberg principle"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Darwin's principle that individuals with favourable variations are more likely to survive and reproduce is often summarised as survival of the fittest (natural selection).",
     "difficulty": "easy"
   },
@@ -776,12 +776,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Charles Darwin independently arrived at the concept of evolution by natural selection alongside which other naturalist, who proposed a strikingly similar theory around the same time?",
     "options": [
-      "Jean-Baptiste Lamarck",
-      "Gregor Mendel",
       "Alfred Russel Wallace",
+      "Gregor Mendel",
+      "Jean-Baptiste Lamarck",
       "August Weismann"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "Alfred Russel Wallace independently arrived at a strikingly similar theory of evolution by natural selection around the same time as Darwin.",
     "difficulty": "medium"
   },
@@ -791,11 +791,11 @@ const questions: Question[] = [
     "question": "The classic case of 'industrial melanism' in the peppered moth (Biston betularia), often cited as direct evidence of natural selection in action, involved a population shift towards a darker (melanic) form mainly in areas where:",
     "options": [
       "Tree trunks remained light-coloured and clean",
-      "Industrial pollution had darkened tree trunks with soot, providing better camouflage for dark moths",
+      "Only light-coloured moths existed to begin with",
       "No predators were present at all",
-      "Only light-coloured moths existed to begin with"
+      "Industrial pollution had darkened tree trunks with soot, providing better camouflage for dark moths"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Industrial melanism in the peppered moth involved a shift toward the darker form mainly where industrial soot had darkened tree trunks, giving dark moths better camouflage.",
     "difficulty": "medium"
   },
@@ -805,8 +805,8 @@ const questions: Question[] = [
     "question": "In non-industrial, unpolluted areas with lighter tree trunks, the peppered moth population predominantly consisted of light-coloured moths mainly because:",
     "options": [
       "Light-coloured moths were better camouflaged against predators on the lighter, lichen-covered bark",
-      "Dark moths were incapable of surviving under any conditions",
       "No moths of any colour existed in these regions",
+      "Dark moths were incapable of surviving under any conditions",
       "Predators specifically preferred to eat light-coloured moths"
     ],
     "correctIndex": 0,
@@ -818,9 +818,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The shift in the peppered moth population's colour distribution, in response to changing environmental conditions caused by industrial pollution, exemplifies the evolutionary role of:",
     "options": [
-      "Random genetic drift with no adaptive significance",
       "Lamarckian inheritance of acquired characters",
       "Adaptive radiation into multiple ecological niches",
+      "Random genetic drift with no adaptive significance",
       "Natural selection acting on existing heritable variation within a population"
     ],
     "correctIndex": 3,
@@ -832,12 +832,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Darwin's theory of natural selection proposes that evolution occurs because advantageous heritable variations accumulate in a population over successive generations, mainly because individuals with such variations:",
     "options": [
-      "Have a better chance of survival and reproduction, passing these traits on to their offspring",
       "Are deliberately selected for breeding by human intervention in every case",
+      "Have no measurable reproductive advantage at all",
       "Always undergo spontaneous mutation at the same generation",
-      "Have no measurable reproductive advantage at all"
+      "Have a better chance of survival and reproduction, passing these traits on to their offspring"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Darwin's theory holds that advantageous heritable variations accumulate because individuals possessing them have a better chance of survival and reproduction, passing the traits on.",
     "difficulty": "easy"
   },
@@ -846,12 +846,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Modern Synthetic Theory of Evolution integrates Darwin's theory of natural selection with the principles of:",
     "options": [
+      "Chemical evolution exclusively",
       "Mendelian genetics and population genetics",
       "Lamarckian inheritance exclusively",
-      "Chemical evolution exclusively",
       "Panspermia"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The Modern Synthetic Theory integrates Darwin's natural selection with the principles of Mendelian genetics and population genetics.",
     "difficulty": "medium"
   },
@@ -861,11 +861,11 @@ const questions: Question[] = [
     "question": "According to the Modern Synthetic Theory, the main factors together responsible for driving evolutionary change in a population are gene mutation and recombination, along with:",
     "options": [
       "Spontaneous generation",
-      "Chemical evolution exclusively",
       "Natural selection",
-      "Special creation"
+      "Special creation",
+      "Chemical evolution exclusively"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "According to the Modern Synthetic Theory, gene mutation and recombination, together with natural selection, are the main drivers of evolutionary change in a population.",
     "difficulty": "medium"
   },
@@ -874,12 +874,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Hardy-Weinberg principle describes a theoretical state in which the allele and genotype frequencies in a population remain constant across generations, referred to as:",
     "options": [
-      "Rapid evolutionary change",
       "Genetic equilibrium",
       "Extinction",
+      "Rapid evolutionary change",
       "Adaptive radiation"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The Hardy-Weinberg principle describes genetic equilibrium, where allele and genotype frequencies remain constant across generations.",
     "difficulty": "medium"
   },
@@ -888,12 +888,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "According to the Hardy-Weinberg equation p² + 2pq + q² = 1, the terms 'p' and 'q' represent:",
     "options": [
-      "The number of individuals in a population",
-      "The total number of alleles in the genome",
       "The mutation rate and the migration rate, respectively",
-      "The frequencies of the two alleles of a given gene in the population"
+      "The number of individuals in a population",
+      "The frequencies of the two alleles of a given gene in the population",
+      "The total number of alleles in the genome"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "In the Hardy-Weinberg equation p² + 2pq + q² = 1, 'p' and 'q' represent the frequencies of the two alleles of a given gene in the population.",
     "difficulty": "medium"
   },
@@ -902,12 +902,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "For a population to remain in Hardy-Weinberg equilibrium, several specific conditions must be met, including random mating and the absence of:",
     "options": [
-      "Any individuals in the population at all",
-      "Mutation, migration, genetic drift, and natural selection",
+      "Any environmental variation whatsoever",
       "Any form of reproduction",
-      "Any environmental variation whatsoever"
+      "Any individuals in the population at all",
+      "Mutation, migration, genetic drift, and natural selection"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "For a population to remain in Hardy-Weinberg equilibrium, there must be random mating and an absence of mutation, migration, genetic drift, and natural selection.",
     "difficulty": "medium"
   },
@@ -916,12 +916,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "If the observed allele frequencies in a real population deviate significantly from those predicted by the Hardy-Weinberg equation, this deviation is generally interpreted as evidence that:",
     "options": [
-      "Evolutionary change (a shift in allele frequencies) is occurring in that population",
       "The population is definitely going extinct within one generation",
       "No evolution has ever occurred in that species",
-      "The population has achieved permanent genetic equilibrium"
+      "The population has achieved permanent genetic equilibrium",
+      "Evolutionary change (a shift in allele frequencies) is occurring in that population"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "A significant deviation of observed allele frequencies from Hardy-Weinberg predictions is interpreted as evidence that evolutionary change is occurring in that population.",
     "difficulty": "medium"
   },
@@ -930,12 +930,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The movement of individuals (and their genes) between different populations, potentially altering allele frequencies in the recipient population, is called:",
     "options": [
-      "Genetic drift",
-      "Natural selection",
       "Gene flow (gene migration)",
-      "Adaptive radiation"
+      "Natural selection",
+      "Adaptive radiation",
+      "Genetic drift"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "The movement of individuals, and their genes, between populations, potentially altering allele frequencies, is called gene flow (gene migration).",
     "difficulty": "easy"
   },
@@ -945,9 +945,9 @@ const questions: Question[] = [
     "question": "A random change in allele frequency in a population, occurring purely by chance rather than through natural selection, is called:",
     "options": [
       "Gene flow",
-      "Natural selection",
+      "Chemical evolution",
       "Genetic drift",
-      "Chemical evolution"
+      "Natural selection"
     ],
     "correctIndex": 2,
     "explanation": "A random change in allele frequency occurring purely by chance, rather than through selection, is called genetic drift.",
@@ -958,12 +958,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The 'founder effect', a special case of genetic drift, occurs when a small group of individuals establishes a new, isolated population that, purely by chance, has:",
     "options": [
+      "Different allele frequencies from the original population from which it was derived",
       "Exactly the same allele frequencies as the original, larger population",
-      "No genetic variation whatsoever",
       "A guaranteed higher overall fitness than the original population",
-      "Different allele frequencies from the original population from which it was derived"
+      "No genetic variation whatsoever"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "The founder effect occurs when a small group establishes a new, isolated population that, by chance, has different allele frequencies from the original population.",
     "difficulty": "hard"
   },
@@ -974,8 +974,8 @@ const questions: Question[] = [
     "options": [
       "Stabilising selection",
       "Directional selection",
-      "Disruptive selection",
-      "Genetic drift"
+      "Genetic drift",
+      "Disruptive selection"
     ],
     "correctIndex": 0,
     "explanation": "Selection favouring an average or intermediate phenotype over either extreme, reducing variation in a stable environment, is called stabilising selection.",
@@ -987,11 +987,11 @@ const questions: Question[] = [
     "question": "Humans are classified, along with monkeys and apes, within the taxonomic order:",
     "options": [
       "Carnivora",
-      "Primates",
+      "Chiroptera",
       "Rodentia",
-      "Chiroptera"
+      "Primates"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Humans, along with monkeys and apes, are classified within the taxonomic order Primates.",
     "difficulty": "easy"
   },
@@ -1000,12 +1000,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Dryopithecus and Ramapithecus, two important fossil genera in the study of human evolution, are generally described respectively as being more:",
     "options": [
-      "Man-like and ape-like",
-      "Ape-like and man-like",
       "Both entirely ape-like, with no distinguishing features",
-      "Both entirely man-like, with no distinguishing features"
+      "Man-like and ape-like",
+      "Both entirely man-like, with no distinguishing features",
+      "Ape-like and man-like"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Dryopithecus is generally described as more ape-like, while Ramapithecus is described as more man-like, among important human-evolution fossil genera.",
     "difficulty": "medium"
   },
@@ -1015,9 +1015,9 @@ const questions: Question[] = [
     "question": "Australopithecus, an early hominin that lived in the grasslands of East Africa roughly 2 million years ago, is believed to have used simple stone weapons and to have primarily eaten:",
     "options": [
       "Fruit, alongside some hunting activity",
+      "Only insects",
       "Only large game meat, with no plant matter at all",
-      "Only fish",
-      "Only insects"
+      "Only fish"
     ],
     "correctIndex": 0,
     "explanation": "Australopithecus, living in East African grasslands about 2 million years ago, is believed to have used simple stone weapons and eaten fruit alongside some hunting.",
@@ -1028,12 +1028,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Homo habilis, considered among the first tool-using human-like species, had a brain capacity in the range of approximately:",
     "options": [
-      "1400-1600 cc",
-      "200-300 cc",
       "900-1000 cc",
-      "650-800 cc"
+      "200-300 cc",
+      "650-800 cc",
+      "1400-1600 cc"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "Homo habilis, among the first tool-using human-like species, had a brain capacity of approximately 650-800 cc.",
     "difficulty": "hard"
   },
@@ -1044,8 +1044,8 @@ const questions: Question[] = [
     "options": [
       "Being entirely herbivorous, avoiding meat altogether",
       "Including meat in its diet",
-      "Having no tool-making ability whatsoever",
-      "Living exclusively in aquatic environments"
+      "Living exclusively in aquatic environments",
+      "Having no tool-making ability whatsoever"
     ],
     "correctIndex": 1,
     "explanation": "Homo erectus, with a larger brain capacity than Homo habilis, is believed to have differed from earlier hominins in also including meat in its diet.",
@@ -1072,8 +1072,8 @@ const questions: Question[] = [
     "options": [
       "Significantly smaller than that of modern humans",
       "Roughly comparable to, or even larger than, that of modern humans",
-      "Essentially non-existent, with no measurable brain capacity",
-      "Identical to that of Australopithecus"
+      "Identical to that of Australopithecus",
+      "Essentially non-existent, with no measurable brain capacity"
     ],
     "correctIndex": 1,
     "explanation": "Neanderthal man, who lived in near-glacial climates and dressed in animal fur, had a brain size roughly comparable to, or even larger than, that of modern humans.",
@@ -1084,12 +1084,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The immediate ancestors of modern humans, known as Cro-Magnon man, are notable for possessing advanced hunting skills, tool-making abilities, and evidence of early artistic expression such as:",
     "options": [
+      "Metal coins",
       "Cave paintings",
       "Written scripts",
-      "Metal coins",
       "Pottery wheels"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Cro-Magnon man, the immediate ancestor of modern humans, is notable for advanced tool-making and early artistic expression such as cave paintings.",
     "difficulty": "medium"
   },
@@ -1098,9 +1098,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The hypothesis proposing that modern Homo sapiens sapiens originated in Africa and subsequently migrated to and populated other continents is commonly known as the:",
     "options": [
-      "Multiregional hypothesis",
-      "Panspermia hypothesis",
       "Punctuated equilibrium hypothesis",
+      "Panspermia hypothesis",
+      "Multiregional hypothesis",
       "'Out of Africa' hypothesis"
     ],
     "correctIndex": 3,
@@ -1112,12 +1112,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The overall fossil record of human evolution, from early hominins like Australopithecus through Homo habilis, Homo erectus, and Neanderthals to modern Homo sapiens, generally shows a trend of:",
     "options": [
-      "Progressive increase in brain capacity and tool-use sophistication over time",
-      "A steady decrease in brain size over time",
+      "Complete absence of any tool use throughout human evolutionary history",
       "No change whatsoever in brain size across all hominin species",
-      "Complete absence of any tool use throughout human evolutionary history"
+      "Progressive increase in brain capacity and tool-use sophistication over time",
+      "A steady decrease in brain size over time"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "The overall fossil record of human evolution generally shows a trend of progressive increase in brain capacity and tool-use sophistication over time.",
     "difficulty": "easy"
   }

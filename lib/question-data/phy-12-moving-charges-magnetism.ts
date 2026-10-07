@@ -7,9 +7,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A moving electric charge produces',
     options: [
-      'only an electric field around it',
-      'both an electric field and a magnetic field around it',
       'only a magnetic field, no electric field',
+      'both an electric field and a magnetic field around it',
+      'only an electric field around it',
       'neither an electric nor a magnetic field'
     ],
     correctIndex: 1,
@@ -20,7 +20,7 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-2',
     type: 'mcq',
     question: 'The magnetic force on a moving charge q with velocity v in a magnetic field B is given by',
-    options: ['F = qE', 'F = q(v × B)', 'F = qvB (always, regardless of angle)', 'F = qB/v'],
+    options: ['F = qB/v', 'F = q(v × B)', 'F = qvB (always, regardless of angle)', 'F = qE'],
     correctIndex: 1,
     explanation: 'The magnetic (Lorentz) force on a moving charge is F = q(v × B), a cross product, meaning the force depends on the sine of the angle between v and B and is always perpendicular to both.',
     difficulty: 'easy'
@@ -30,10 +30,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The magnetic force on a moving charge is always directed',
     options: [
-      'along the direction of velocity',
       'along the direction of the magnetic field',
+      'opposite to the velocity',
       'perpendicular to both the velocity and the magnetic field',
-      'opposite to the velocity'
+      'along the direction of velocity'
     ],
     correctIndex: 2,
     explanation: 'Since F = qv × B is a cross product, the resulting force vector is always perpendicular to the plane containing both v and B.',
@@ -45,11 +45,11 @@ const questions: Question[] = [
     question: 'Because the magnetic force on a moving charge is always perpendicular to its velocity, this force',
     options: [
       'does positive work on the charge, increasing its speed',
-      'does negative work on the charge, decreasing its speed',
       'does no work on the charge; it changes only the direction of velocity, not its magnitude (speed)',
-      'always brings the charge to rest'
+      'always brings the charge to rest',
+      'does negative work on the charge, decreasing its speed'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Since the magnetic force is always perpendicular to velocity, it does zero work on the charge (W = F·d = 0 when F ⊥ v), so it cannot change the kinetic energy or speed, only the direction of motion.',
     difficulty: 'medium'
   },
@@ -58,9 +58,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A charged particle moving parallel to a magnetic field (i.e., along the field direction) experiences',
     options: [
-      'a maximum magnetic force',
-      'zero magnetic force, since sinθ = 0 when θ = 0°',
       'a force perpendicular to the field only',
+      'zero magnetic force, since sinθ = 0 when θ = 0°',
+      'a maximum magnetic force',
       'a force that increases its speed'
     ],
     correctIndex: 1,
@@ -73,11 +73,11 @@ const questions: Question[] = [
     question: 'A charged particle moving perpendicular to a uniform magnetic field experiences a force that results in',
     options: [
       'straight-line motion',
-      'circular motion in a plane perpendicular to the field, at constant speed',
       'parabolic motion',
-      'the particle coming to rest'
+      'the particle coming to rest',
+      'circular motion in a plane perpendicular to the field, at constant speed'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'When velocity is perpendicular to B, the magnetic force provides a constant-magnitude centripetal force perpendicular to velocity, resulting in uniform circular motion in the plane perpendicular to B.',
     difficulty: 'medium'
   },
@@ -86,12 +86,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A charged particle entering a uniform magnetic field at an angle (neither parallel nor perpendicular to the field) generally follows a path that is',
     options: [
-      'a straight line',
-      'a helix (helical path), combining uniform circular motion perpendicular to B with uniform linear motion along B',
       'a parabola',
-      'a perfect circle in the plane containing v and B'
+      'a perfect circle in the plane containing v and B',
+      'a straight line',
+      'a helix (helical path), combining uniform circular motion perpendicular to B with uniform linear motion along B'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The velocity component perpendicular to B produces circular motion, while the component parallel to B is unaffected (since force is zero along B), giving a combined helical trajectory.',
     difficulty: 'medium'
   },
@@ -99,8 +99,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-8',
     type: 'mcq',
     question: 'The radius of the circular path of a charged particle (mass m, charge q, speed v) moving perpendicular to a magnetic field B is given by',
-    options: ['r = mv/(qB)', 'r = qB/(mv)', 'r = mvB/q', 'r = qvB/m'],
-    correctIndex: 0,
+    options: ['r = qB/(mv)', 'r = mvB/q', 'r = mv/(qB)', 'r = qvB/m'],
+    correctIndex: 2,
     explanation: 'Equating magnetic force to the centripetal force requirement, qvB = mv²/r, gives r = mv/(qB), the radius of circular motion in a magnetic field.',
     difficulty: 'medium'
   },
@@ -108,8 +108,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-9',
     type: 'mcq',
     question: 'The Lorentz force on a charged particle moving in a region with both electric field E and magnetic field B is given by',
-    options: ['F = qE only', 'F = qv × B only', 'F = qE + q(v × B)', 'F = q(E × B)'],
-    correctIndex: 2,
+    options: ['F = q(E × B)', 'F = qv × B only', 'F = qE only', 'F = qE + q(v × B)'],
+    correctIndex: 3,
     explanation: 'The total (Lorentz) force is the vector sum of the electric force qE and the magnetic force q(v × B): F = qE + q(v × B).',
     difficulty: 'medium'
   },
@@ -118,10 +118,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A velocity selector uses perpendicular electric and magnetic fields to allow only particles of a specific velocity to pass through undeflected. This works because',
     options: [
-      'the electric force and magnetic force are always in the same direction',
+      'the magnetic field cancels the electric field itself',
       'for the right speed, the electric force and magnetic force exactly balance (cancel) each other, giving zero net force',
       'the particle\'s charge becomes zero at that speed',
-      'the magnetic field cancels the electric field itself'
+      'the electric force and magnetic force are always in the same direction'
     ],
     correctIndex: 1,
     explanation: 'In a velocity selector, E and B are arranged so the electric force qE and magnetic force qvB act in opposite directions; only particles with v = E/B experience exactly balanced forces and pass through undeflected.',
@@ -132,12 +132,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The Biot-Savart law gives the magnetic field due to',
     options: [
-      'a stationary point charge',
-      'a small current-carrying element (current element)',
       'a bar magnet only',
-      'the Earth\'s magnetic field only'
+      'a stationary point charge',
+      'the Earth\'s magnetic field only',
+      'a small current-carrying element (current element)'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The Biot-Savart law expresses the magnetic field dB produced at a point due to a small current element (I dl), analogous to how Coulomb\'s law gives the field of a point charge.',
     difficulty: 'easy'
   },
@@ -146,12 +146,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'According to the Biot-Savart law, the magnetic field due to a current element is directly proportional to',
     options: [
+      'the distance from the element (increases with distance)',
       'the current and the length of the element, and inversely proportional to the square of the distance from the element',
-      'only the current, independent of the length of the element',
       'the square of the current',
-      'the distance from the element (increases with distance)'
+      'only the current, independent of the length of the element'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'The Biot-Savart law states dB ∝ (I dl sinθ)/r², so the field is proportional to current and element length, and inversely proportional to the square of the distance, similar in form to Coulomb\'s law.',
     difficulty: 'medium'
   },
@@ -160,10 +160,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The direction of the magnetic field due to a current element, as given by the Biot-Savart law, is',
     options: [
-      'along the direction of current flow',
+      'opposite to the current direction',
       'perpendicular to both the current element and the position vector to the point (given by the cross product dl × r̂)',
-      'always vertically upward',
-      'opposite to the current direction'
+      'along the direction of current flow',
+      'always vertically upward'
     ],
     correctIndex: 1,
     explanation: 'Since dB ∝ dl × r̂ (a cross product), the resulting field is perpendicular to the plane containing the current element and the line joining it to the field point.',
@@ -175,11 +175,11 @@ const questions: Question[] = [
     question: 'At a point lying exactly on the axis of a straight current-carrying wire (i.e., collinear with the current direction), the magnetic field due to Biot-Savart law is',
     options: [
       'maximum',
-      'zero, since sinθ = 0 for a point along the direction of the current element',
+      'independent of position along the axis',
       'infinite',
-      'independent of position along the axis'
+      'zero, since sinθ = 0 for a point along the direction of the current element'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The Biot-Savart law includes a sinθ term, where θ is the angle between the current element direction and the line to the field point; along the axis (θ = 0°), sinθ = 0, giving zero field.',
     difficulty: 'medium'
   },
@@ -187,8 +187,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-15',
     type: 'mcq',
     question: 'The magnetic field at the centre of a circular current loop of radius R carrying current I is given by',
-    options: ['B = µ0I/(2R)', 'B = µ0I/(2πR)', 'B = µ0IR/2', 'B = µ0I²/(2R)'],
-    correctIndex: 0,
+    options: ['B = µ0I²/(2R)', 'B = µ0I/(2πR)', 'B = µ0I/(2R)', 'B = µ0IR/2'],
+    correctIndex: 2,
     explanation: 'Applying the Biot-Savart law and integrating over the full circular loop gives B = µ0I/(2R) at the centre, a standard NCERT result.',
     difficulty: 'medium'
   },
@@ -197,12 +197,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The direction of the magnetic field at the centre of a current-carrying circular loop can be determined using',
     options: [
-      'Fleming\'s left-hand rule',
-      'the right-hand rule (curl fingers along current direction, thumb points in the direction of B)',
       'Lenz\'s law',
-      'Kirchhoff\'s law'
+      'Kirchhoff\'s law',
+      'the right-hand rule (curl fingers along current direction, thumb points in the direction of B)',
+      'Fleming\'s left-hand rule'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'The right-hand rule (or right-hand thumb rule) is used to find the direction of the magnetic field due to a current loop: curling the fingers in the direction of current flow, the thumb points along the field direction at the centre.',
     difficulty: 'easy'
   },
@@ -211,12 +211,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Ampere\'s circuital law relates the line integral of the magnetic field around a closed loop to',
     options: [
+      'the magnetic flux through an open surface',
       'the electric field enclosed by the loop',
-      'the total current enclosed (passing through) the loop, multiplied by µ0',
       'the area of the loop',
-      'the magnetic flux through an open surface'
+      'the total current enclosed (passing through) the loop, multiplied by µ0'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Ampere\'s circuital law states ∮B·dl = µ0 Ienc, relating the closed line integral of B to the total current enclosed by the loop, analogous to Gauss\'s law for electrostatics.',
     difficulty: 'easy'
   },
@@ -225,12 +225,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Ampere\'s circuital law is most useful for calculating magnetic fields when the current distribution has',
     options: [
-      'no particular symmetry',
-      'high symmetry, such as a long straight wire, a solenoid, or a toroid',
+      'a random and irregular shape',
       'zero net current',
-      'a random and irregular shape'
+      'no particular symmetry',
+      'high symmetry, such as a long straight wire, a solenoid, or a toroid'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Like Gauss\'s law in electrostatics, Ampere\'s law becomes a powerful computational tool specifically for symmetric current configurations (infinite straight wire, solenoid, toroid), where an "Amperian loop" can be chosen to simplify the integral.',
     difficulty: 'medium'
   },
@@ -238,8 +238,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-19',
     type: 'mcq',
     question: 'The magnetic field due to a long straight current-carrying wire at perpendicular distance r from the wire is given by',
-    options: ['B = µ0I/(2πr)', 'B = µ0I/(2r)', 'B = µ0Ir/(2π)', 'B = µ0I/(4πr²)'],
-    correctIndex: 0,
+    options: ['B = µ0I/(4πr²)', 'B = µ0I/(2πr)', 'B = µ0I/(2r)', 'B = µ0Ir/(2π)'],
+    correctIndex: 1,
     explanation: 'Using Ampere\'s law with a circular Amperian loop around the wire, B = µ0I/(2πr), decreasing as 1/r with distance from the wire.',
     difficulty: 'medium'
   },
@@ -248,12 +248,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The magnetic field lines around a long straight current-carrying wire are',
     options: [
-      'straight lines radiating outward from the wire',
-      'concentric circles centred on the wire, lying in planes perpendicular to the wire',
       'parallel to the wire',
-      'randomly oriented'
+      'straight lines radiating outward from the wire',
+      'randomly oriented',
+      'concentric circles centred on the wire, lying in planes perpendicular to the wire'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The field lines due to a straight current-carrying wire form concentric circles around the wire, lying in planes perpendicular to the wire, with direction given by the right-hand thumb rule.',
     difficulty: 'easy'
   },
@@ -262,10 +262,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A solenoid is essentially',
     options: [
-      'a single circular loop of wire',
+      'a device to measure magnetic field, not to produce it',
       'a long, tightly wound helical coil of wire, used to produce a nearly uniform magnetic field inside it',
       'a straight wire only',
-      'a device to measure magnetic field, not to produce it'
+      'a single circular loop of wire'
     ],
     correctIndex: 1,
     explanation: 'A solenoid is a long coil of closely-wound turns of wire, which produces a strong and nearly uniform magnetic field within its core when current flows through it, similar to a bar magnet\'s field outside.',
@@ -275,8 +275,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-22',
     type: 'mcq',
     question: 'The magnetic field inside a long ideal solenoid (away from the ends) is given by',
-    options: ['B = µ0nI (n = number of turns per unit length)', 'B = µ0I/(2πr)', 'B = µ0I/(2R)', 'B = µ0NI²'],
-    correctIndex: 0,
+    options: ['B = µ0I/(2R)', 'B = µ0NI²', 'B = µ0I/(2πr)', 'B = µ0nI (n = number of turns per unit length)'],
+    correctIndex: 3,
     explanation: 'For a long, tightly wound solenoid, applying Ampere\'s law gives B = µ0nI, where n is the number of turns per unit length, and this field is essentially uniform inside, away from the ends.',
     difficulty: 'medium'
   },
@@ -286,11 +286,11 @@ const questions: Question[] = [
     question: 'The magnetic field outside an ideal (infinitely long) solenoid is',
     options: [
       'the same as inside',
-      'approximately zero',
       'twice the value inside',
-      'undefined'
+      'undefined',
+      'approximately zero'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For an ideal (infinitely long) solenoid, the field outside is approximately zero, with essentially all the field confined uniformly to the interior of the solenoid.',
     difficulty: 'medium'
   },
@@ -299,12 +299,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A toroid is essentially',
     options: [
-      'a straight solenoid',
-      'a solenoid bent into a closed circular (ring) shape',
       'a single circular current loop',
-      'a device unrelated to solenoids'
+      'a device unrelated to solenoids',
+      'a solenoid bent into a closed circular (ring) shape',
+      'a straight solenoid'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'A toroid is formed by bending a solenoid into a closed ring shape, so that its two ends join, producing a magnetic field confined almost entirely within the ring-shaped core.',
     difficulty: 'easy'
   },
@@ -313,12 +313,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The magnetic field outside an ideal toroid (both inside the central hole and outside the outer boundary) is',
     options: [
-      'the same as inside the toroid\'s core',
-      'zero, since the Amperian loop drawn there encloses zero net current',
+      'always equal to µ0nI regardless of location',
       'twice the field inside the core',
-      'always equal to µ0nI regardless of location'
+      'the same as inside the toroid\'s core',
+      'zero, since the Amperian loop drawn there encloses zero net current'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For an ideal toroid, choosing Amperian loops outside the core (either in the central hole or beyond the outer radius) encloses zero net current, giving zero magnetic field in those regions.',
     difficulty: 'medium'
   },
@@ -327,10 +327,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The force per unit length between two long, parallel, current-carrying wires carrying currents in the same direction is',
     options: [
-      'repulsive',
+      'perpendicular to both wires',
       'attractive',
       'always zero',
-      'perpendicular to both wires'
+      'repulsive'
     ],
     correctIndex: 1,
     explanation: 'Two parallel wires carrying current in the same direction attract each other, since the magnetic field of one wire exerts a force on the current in the other wire directed toward it.',
@@ -340,8 +340,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-27',
     type: 'mcq',
     question: 'The force per unit length between two long, parallel, current-carrying wires carrying currents in opposite directions is',
-    options: ['attractive', 'repulsive', 'zero', 'independent of the currents'],
-    correctIndex: 1,
+    options: ['attractive', 'independent of the currents', 'zero', 'repulsive'],
+    correctIndex: 3,
     explanation: 'When currents in two parallel wires flow in opposite directions, the wires repel each other, opposite to the case of currents in the same direction.',
     difficulty: 'medium'
   },
@@ -350,12 +350,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The SI unit of current, the ampere, is officially defined (in the traditional/historical definition) based on',
     options: [
-      'the force between two charged particles',
-      'the force per unit length between two long, straight, parallel current-carrying wires placed a specific distance apart',
+      'the resistance of a standard conductor',
       'the magnetic field of the Earth',
-      'the resistance of a standard conductor'
+      'the force between two charged particles',
+      'the force per unit length between two long, straight, parallel current-carrying wires placed a specific distance apart'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Historically (pre-2019 SI redefinition), the ampere was defined using the force per unit length between two infinitely long, parallel wires 1 metre apart carrying equal currents, set to produce a specific force of 2 × 10⁻⁷ N per metre.',
     difficulty: 'medium'
   },
@@ -363,8 +363,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-29',
     type: 'mcq',
     question: 'The force experienced by a straight current-carrying conductor of length L carrying current I, placed in a uniform magnetic field B, is given by',
-    options: ['F = BIL sinθ, where θ is the angle between the current direction and B', 'F = BIL always, regardless of orientation', 'F = BI/L', 'F = B/(IL)'],
-    correctIndex: 0,
+    options: ['F = B/(IL)', 'F = BIL sinθ, where θ is the angle between the current direction and B', 'F = BI/L', 'F = BIL always, regardless of orientation'],
+    correctIndex: 1,
     explanation: 'The force on a current-carrying conductor in a magnetic field is F = BIL sinθ, where θ is the angle between the direction of current flow and the magnetic field; this becomes maximum (F = BIL) when the conductor is perpendicular to B.',
     difficulty: 'medium'
   },
@@ -373,12 +373,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A current-carrying conductor placed parallel to a magnetic field (current direction along B) experiences',
     options: [
-      'a maximum force',
-      'zero force, since sinθ = 0 when θ = 0°',
       'a force perpendicular to the wire only',
-      'a torque but no force'
+      'a maximum force',
+      'a torque but no force',
+      'zero force, since sinθ = 0 when θ = 0°'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'When the current direction is parallel to B, θ = 0°, and F = BIL sinθ = 0, so the conductor experiences no magnetic force.',
     difficulty: 'medium'
   },
@@ -401,10 +401,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A current-carrying rectangular loop placed in a uniform magnetic field, with its plane parallel to the field, experiences',
     options: [
-      'zero torque',
+      'both zero torque and zero force',
       'maximum torque, tending to rotate the loop to align its plane perpendicular to the field (align magnetic moment with the field)',
-      'a net translational force but no torque',
-      'both zero torque and zero force'
+      'zero torque',
+      'a net translational force but no torque'
     ],
     correctIndex: 1,
     explanation: 'When the loop\'s plane is parallel to B (i.e., its magnetic moment is perpendicular to B), the torque τ = m × B is maximum, tending to rotate the loop until its magnetic moment aligns with the field.',
@@ -416,11 +416,11 @@ const questions: Question[] = [
     question: 'A current-carrying loop placed in a uniform magnetic field, with its magnetic moment aligned parallel to the field, experiences',
     options: [
       'maximum torque',
-      'zero torque, since the loop is in stable equilibrium',
+      'a net force pulling it out of the field',
       'zero magnetic moment',
-      'a net force pulling it out of the field'
+      'zero torque, since the loop is in stable equilibrium'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'When the magnetic moment m is parallel to B, sinθ = 0 in τ = mB sinθ, giving zero torque; this is the stable equilibrium orientation of the loop.',
     difficulty: 'medium'
   },
@@ -428,8 +428,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-34',
     type: 'mcq',
     question: 'The magnetic moment of a current-carrying loop (planar coil) of area A carrying current I is given by',
-    options: ['m = IA', 'm = I/A', 'm = I²A', 'm = IA²'],
-    correctIndex: 0,
+    options: ['m = I²A', 'm = I/A', 'm = IA', 'm = IA²'],
+    correctIndex: 2,
     explanation: 'The magnetic moment of a current loop is defined as m = IA, the product of current and the enclosed area, with direction given by the right-hand rule (perpendicular to the loop\'s plane).',
     difficulty: 'easy'
   },
@@ -437,8 +437,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-35',
     type: 'mcq',
     question: 'The SI unit of magnetic moment is',
-    options: ['ampere-metre (A·m)', 'ampere-metre² (A·m²)', 'tesla-metre', 'weber'],
-    correctIndex: 1,
+    options: ['tesla-metre', 'ampere-metre (A·m)', 'weber', 'ampere-metre² (A·m²)'],
+    correctIndex: 3,
     explanation: 'Since m = IA, with current in amperes and area in square metres, the SI unit of magnetic moment is ampere-metre² (A·m²).',
     difficulty: 'medium'
   },
@@ -446,8 +446,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-36',
     type: 'mcq',
     question: 'For a current-carrying loop with N turns instead of one, each of area A carrying current I, the total magnetic moment becomes',
-    options: ['m = IA', 'm = NIA', 'm = IA/N', 'm = N²IA'],
-    correctIndex: 1,
+    options: ['m = N²IA', 'm = IA', 'm = IA/N', 'm = NIA'],
+    correctIndex: 3,
     explanation: 'For N identical turns, the magnetic moments add up, giving a total magnetic moment m = NIA, N times that of a single turn.',
     difficulty: 'medium'
   },
@@ -456,12 +456,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A moving coil galvanometer works on the principle that',
     options: [
-      'a current-carrying coil placed in a magnetic field experiences a torque proportional to the current, causing it to deflect against a restoring (spring) torque',
       'the galvanometer measures voltage directly using a capacitor',
       'the coil moves due to gravitational force alone',
-      'current flow heats the coil, causing it to expand'
+      'current flow heats the coil, causing it to expand',
+      'a current-carrying coil placed in a magnetic field experiences a torque proportional to the current, causing it to deflect against a restoring (spring) torque'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'A moving coil galvanometer uses a current-carrying coil in a radial magnetic field; the deflecting torque (proportional to current) is balanced against the restoring torque of a spring, so the steady-state deflection is proportional to the current.',
     difficulty: 'medium'
   },
@@ -470,9 +470,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In a moving coil galvanometer, a radial magnetic field is used (rather than a simple uniform field) mainly so that',
     options: [
-      'the coil experiences no torque at all',
-      'the plane of the coil remains always parallel to the field, keeping the torque proportional to current for a wide range of deflection angles, giving a linear scale',
       'the coil rotates continuously without stopping',
+      'the plane of the coil remains always parallel to the field, keeping the torque proportional to current for a wide range of deflection angles, giving a linear scale',
+      'the coil experiences no torque at all',
       'the magnetic field becomes zero inside the coil'
     ],
     correctIndex: 1,
@@ -484,12 +484,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The current sensitivity of a galvanometer is defined as',
     options: [
+      'the voltage across the galvanometer',
       'the deflection produced per unit current passed through it',
-      'the total current the galvanometer can measure',
       'the resistance of the galvanometer coil',
-      'the voltage across the galvanometer'
+      'the total current the galvanometer can measure'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Current sensitivity is defined as the deflection (in radians or scale divisions) produced per unit current, φ/I = NAB/k, where k is the torsional constant of the spring.',
     difficulty: 'medium'
   },
@@ -498,10 +498,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'To increase the current sensitivity of a galvanometer, one could',
     options: [
-      'decrease the number of turns in the coil',
-      'increase the number of turns N, the area A, or the magnetic field B, or decrease the torsional constant k of the suspension',
       'decrease the magnetic field strength',
-      'increase the torsional constant of the spring'
+      'increase the number of turns N, the area A, or the magnetic field B, or decrease the torsional constant k of the suspension',
+      'increase the torsional constant of the spring',
+      'decrease the number of turns in the coil'
     ],
     correctIndex: 1,
     explanation: 'Since sensitivity = NAB/k, increasing N, A, or B, or decreasing the restoring torsional constant k, all increase the current sensitivity of the galvanometer.',
@@ -512,12 +512,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A galvanometer is converted into an ammeter for measuring larger currents by connecting',
     options: [
-      'a high resistance in series with the galvanometer coil',
-      'a low resistance (shunt) in parallel with the galvanometer coil',
+      'another identical galvanometer in series',
       'a capacitor in series',
-      'another identical galvanometer in series'
+      'a high resistance in series with the galvanometer coil',
+      'a low resistance (shunt) in parallel with the galvanometer coil'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'A small shunt resistance is connected in parallel with the galvanometer, allowing most of the current to bypass the delicate coil, so the combination can measure larger currents than the galvanometer alone.',
     difficulty: 'medium'
   },
@@ -526,12 +526,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A galvanometer is converted into a voltmeter for measuring potential differences by connecting',
     options: [
-      'a low resistance in parallel',
-      'a high resistance in series with the galvanometer coil',
       'a shunt resistance',
-      'a variable inductor'
+      'a low resistance in parallel',
+      'a variable inductor',
+      'a high resistance in series with the galvanometer coil'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'A large resistance is connected in series with the galvanometer so that the combination draws only a small, known current for a given voltage, allowing it to measure larger potential differences.',
     difficulty: 'medium'
   },
@@ -554,10 +554,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A cyclotron is a device used to',
     options: [
-      'measure magnetic fields',
+      'measure the charge-to-mass ratio of an electron only',
       'accelerate charged particles to high energies using a combination of electric and magnetic fields',
       'generate alternating current',
-      'measure the charge-to-mass ratio of an electron only'
+      'measure magnetic fields'
     ],
     correctIndex: 1,
     explanation: 'A cyclotron accelerates charged particles (like protons) to high speeds using an alternating electric field for repeated acceleration and a magnetic field to keep them moving in a spiral path within two "dee" shaped chambers.',
@@ -568,12 +568,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In a cyclotron, the magnetic field is used to',
     options: [
-      'accelerate the charged particle directly, increasing its speed',
-      'bend the path of the charged particle into a circular/spiral trajectory, without changing its speed',
+      'measure the particle\'s charge',
       'decelerate the particle',
-      'measure the particle\'s charge'
+      'accelerate the charged particle directly, increasing its speed',
+      'bend the path of the charged particle into a circular/spiral trajectory, without changing its speed'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The magnetic field in a cyclotron provides the centripetal force that bends the particle\'s path into a circle/spiral; since magnetic force does no work, it does not change the particle\'s speed — that role is played by the alternating electric field in the gap.',
     difficulty: 'medium'
   },
@@ -582,12 +582,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The cyclotron frequency (frequency of revolution of a charged particle in a cyclotron) is given by',
     options: [
-      'f = qB/(2πm), independent of the particle\'s speed or the radius of its path',
-      'f = mv/(qB)',
       'f = qBv',
-      'f = 2πmv/q'
+      'f = 2πmv/q',
+      'f = qB/(2πm), independent of the particle\'s speed or the radius of its path',
+      'f = mv/(qB)'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'The cyclotron frequency f = qB/(2πm) depends only on the charge, mass, and magnetic field — not on speed or radius — which is the key principle that allows a fixed-frequency alternating voltage to keep accelerating the particle as its radius grows.',
     difficulty: 'hard'
   },
@@ -596,12 +596,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A cyclotron cannot be used to accelerate electrons effectively to very high energies mainly because',
     options: [
-      'electrons have no charge',
-      'as electrons approach relativistic speeds quickly (due to their small mass), their cyclotron frequency changes, going out of sync with the fixed-frequency accelerating voltage',
       'electrons cannot move in magnetic fields',
-      'the cyclotron works only for neutral particles'
+      'electrons have no charge',
+      'the cyclotron works only for neutral particles',
+      'as electrons approach relativistic speeds quickly (due to their small mass), their cyclotron frequency changes, going out of sync with the fixed-frequency accelerating voltage'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Because electrons are very light, they reach relativistic speeds at relatively low energies, causing their mass (and hence cyclotron frequency) to change; this desynchronizes them from the fixed-frequency oscillating field, limiting the cyclotron\'s effectiveness for electrons.',
     difficulty: 'hard'
   },
@@ -625,11 +625,11 @@ const questions: Question[] = [
     question: 'Fleming\'s left-hand rule is used to determine',
     options: [
       'the direction of induced EMF',
-      'the direction of the force on a current-carrying conductor placed in a magnetic field',
+      'the direction of current flow in a circuit',
       'the direction of the magnetic field due to a current',
-      'the direction of current flow in a circuit'
+      'the direction of the force on a current-carrying conductor placed in a magnetic field'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Fleming\'s left-hand rule (thumb = force, forefinger = field, middle finger = current) is used to find the direction of the force experienced by a current-carrying conductor in a magnetic field.',
     difficulty: 'easy'
   },
@@ -637,8 +637,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-50',
     type: 'mcq',
     question: 'The permeability of free space, µ0, appears in magnetism playing a role analogous to which quantity in electrostatics?',
-    options: ['The Coulomb constant k directly', 'The permittivity of free space, ε₀', 'The charge of an electron', 'The speed of light'],
-    correctIndex: 1,
+    options: ['The speed of light', 'The Coulomb constant k directly', 'The permittivity of free space, ε₀', 'The charge of an electron'],
+    correctIndex: 2,
     explanation: 'µ0 (permeability of free space) plays a role in magnetic force laws analogous to that of ε₀ (permittivity of free space) in electrostatic force laws, both being fundamental constants of the respective fields in vacuum.',
     difficulty: 'medium'
   },
@@ -647,12 +647,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Two parallel current-carrying wires attract or repel each other. This mutual force arises because',
     options: [
+      'gravity between the wires causes the effect',
       'each wire has a net electric charge',
-      'each current-carrying wire produces its own magnetic field, and this field exerts a force on the current flowing in the neighbouring wire',
       'the wires are always at different potentials',
-      'gravity between the wires causes the effect'
+      'each current-carrying wire produces its own magnetic field, and this field exerts a force on the current flowing in the neighbouring wire'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Each current-carrying wire generates a magnetic field around itself; this field then exerts a magnetic force on the current-carrying charges in the nearby wire, resulting in the observed mutual attraction or repulsion.',
     difficulty: 'medium'
   },
@@ -661,12 +661,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The concept of "current loop as a magnetic dipole" arises because',
     options: [
-      'a current loop produces a magnetic field pattern similar to that of a bar magnet, at large distances',
-      'a current loop has no magnetic properties at all',
       'a current loop behaves exactly like a point charge',
-      'a current loop cannot experience torque in a magnetic field'
+      'a current loop cannot experience torque in a magnetic field',
+      'a current loop has no magnetic properties at all',
+      'a current loop produces a magnetic field pattern similar to that of a bar magnet, at large distances'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'At distances large compared to its size, the magnetic field of a current loop closely resembles that of a magnetic dipole (similar in form to an electric dipole\'s field), justifying the analogy between a current loop and a magnetic dipole.',
     difficulty: 'medium'
   },
@@ -674,8 +674,8 @@ const questions: Question[] = [
     id: 'moving-charges-magnetism-53',
     type: 'mcq',
     question: 'The equivalence between a current loop and a magnetic dipole (with dipole moment m = IA) means that the field on the axis of the loop, at large distances r, is proportional to',
-    options: ['1/r', '1/r²', '1/r³', 'r'],
-    correctIndex: 2,
+    options: ['r', '1/r³', '1/r²', '1/r'],
+    correctIndex: 1,
     explanation: 'Consistent with the magnetic-dipole analogy, the axial field of a current loop at large distances falls off as 1/r³, just as the field of an electric dipole does.',
     difficulty: 'hard'
   },
@@ -685,11 +685,11 @@ const questions: Question[] = [
     question: 'The torque on a current-carrying loop in a uniform magnetic field is given by τ = m × B, or in magnitude, τ = mB sinθ. This torque tends to',
     options: [
       'increase the current in the loop',
-      'align the loop\'s magnetic moment vector m with the direction of the field B',
       'destroy the loop\'s magnetic moment',
-      'have no effect on the loop\'s orientation'
+      'have no effect on the loop\'s orientation',
+      'align the loop\'s magnetic moment vector m with the direction of the field B'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The torque on a magnetic dipole (or current loop) in an external field always acts to rotate the dipole moment toward alignment with the field, analogous to the electric dipole case.',
     difficulty: 'medium'
   },
@@ -700,8 +700,8 @@ const questions: Question[] = [
     options: [
       'the same as the full loop',
       'a fraction (θ/2π) of the field due to the full loop',
-      'always twice the full loop\'s field',
-      'independent of the angle subtended'
+      'independent of the angle subtended',
+      'always twice the full loop\'s field'
     ],
     correctIndex: 1,
     explanation: 'Since the field due to a full loop (2π radians) is B = µ0I/(2R), the field due to an arc subtending angle θ is proportionally (θ/2π) times this value, as the contribution scales with the arc length/angle.',
@@ -712,12 +712,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Two long straight parallel conductors carry currents I1 and I2, separated by distance d. The force per unit length between them is given by',
     options: [
-      'F/L = µ0I1I2/(2πd)',
-      'F/L = µ0I1I2 d/(2π)',
+      'F/L = µ0I1I2/(2πd²)',
       'F/L = µ0(I1+I2)/(2πd)',
-      'F/L = µ0I1I2/(2πd²)'
+      'F/L = µ0I1I2 d/(2π)',
+      'F/L = µ0I1I2/(2πd)'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'The force per unit length between two long parallel current-carrying wires is F/L = µ0I1I2/(2πd), derived by considering the field of one wire acting on the current in the other.',
     difficulty: 'medium'
   },
@@ -726,10 +726,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A charged particle moving in a straight line through a region containing both electric and magnetic fields, with zero net force, must have',
     options: [
-      'zero charge',
+      'no relationship between the fields is required',
       'a specific speed at which the electric force and magnetic force exactly balance out',
-      'infinite mass',
-      'no relationship between the fields is required'
+      'zero charge',
+      'infinite mass'
     ],
     correctIndex: 1,
     explanation: 'For the net force to be zero with both E and B present (arranged appropriately), the particle must move at a specific speed v = E/B, so that the electric and magnetic forces exactly cancel — this is the operating principle of a velocity selector.',
@@ -740,9 +740,9 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In a mass spectrometer application of moving charges in magnetic fields, particles of different masses (but same charge and speed) moving in a uniform magnetic field will follow',
     options: [
-      'the same circular path regardless of mass',
-      'circular paths of different radii, with the radius directly proportional to mass (r = mv/qB)',
       'straight-line paths only',
+      'circular paths of different radii, with the radius directly proportional to mass (r = mv/qB)',
+      'the same circular path regardless of mass',
       'paths that spiral inward regardless of mass'
     ],
     correctIndex: 1,
@@ -754,12 +754,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The time period of revolution of a charged particle moving in a circle perpendicular to a uniform magnetic field is',
     options: [
-      'T = 2πm/(qB), independent of the particle\'s speed',
-      'T = 2πr/v, which depends strongly on speed',
+      'T = mv/(qB)',
       'T = qB/(2πm)',
-      'T = mv/(qB)'
+      'T = 2πr/v, which depends strongly on speed',
+      'T = 2πm/(qB), independent of the particle\'s speed'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Combining r = mv/(qB) with T = 2πr/v gives T = 2πm/(qB), which is independent of speed — a key result exploited in the design of the cyclotron.',
     difficulty: 'hard'
   },
@@ -770,8 +770,8 @@ const questions: Question[] = [
     options: [
       'a straight infinite wire',
       'a magnetic dipole, since at large distances the loop behaves like a dipole with moment m = IA',
-      'a solenoid',
-      'a point charge'
+      'a point charge',
+      'a solenoid'
     ],
     correctIndex: 1,
     explanation: 'For distances much larger than the loop\'s radius, the loop\'s field approximates that of a magnetic dipole with moment m = IπR², consistent with the general current-loop-as-dipole concept.',
@@ -783,11 +783,11 @@ const questions: Question[] = [
     question: 'Increasing the number of turns in a solenoid (keeping length and current constant) generally',
     options: [
       'decreases the magnetic field inside',
-      'increases the magnetic field inside, since B = µ0nI and n (turns per unit length) increases',
+      'reverses the direction of the field',
       'has no effect on the magnetic field',
-      'reverses the direction of the field'
+      'increases the magnetic field inside, since B = µ0nI and n (turns per unit length) increases'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Since B = µ0nI, increasing the number of turns per unit length n directly increases the magnetic field strength inside the solenoid for the same current.',
     difficulty: 'easy'
   },
@@ -796,12 +796,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A toroid with a large number of closely wound turns carrying current I produces a magnetic field inside its core that is approximately',
     options: [
+      'the same everywhere in space, not just inside the core',
       'B = µ0NI/(2πr), where N is the total number of turns and r is the radius of the toroid at that point',
       'B = µ0I/(2πr) only, independent of N',
-      'zero everywhere',
-      'the same everywhere in space, not just inside the core'
+      'zero everywhere'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'For a toroid, applying Ampere\'s law with a circular Amperian loop inside the core gives B = µ0NI/(2πr), where N is the total number of turns and r is the distance from the toroid\'s central axis.',
     difficulty: 'hard'
   },
@@ -810,12 +810,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The energy of a charged particle moving in a purely magnetic field (no electric field present) remains constant because',
     options: [
-      'the magnetic force does no work on the particle, since it is always perpendicular to velocity',
       'the magnetic field itself has no energy',
+      'the magnetic force does no work on the particle, since it is always perpendicular to velocity',
       'the particle loses charge over time',
       'the particle\'s mass decreases'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Since the magnetic force F = qv × B is always perpendicular to velocity, it does zero work, meaning the kinetic energy (and hence speed) of the particle remains unchanged in a purely magnetic field.',
     difficulty: 'medium'
   },
@@ -824,12 +824,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A rectangular current-carrying loop is placed in a non-uniform magnetic field. Compared to a uniform field, the loop in a non-uniform field may experience',
     options: [
-      'only a torque, never a net force',
-      'both a net force and a torque, in general',
       'neither a net force nor a torque',
-      'only a net force, never a torque'
+      'only a net force, never a torque',
+      'both a net force and a torque, in general',
+      'only a torque, never a net force'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'In a non-uniform field, the forces on different parts of the loop are unequal in magnitude, so unlike the uniform-field case (net force zero, torque possible), a non-uniform field can produce both a net force and a torque on the loop.',
     difficulty: 'hard'
   },
@@ -838,10 +838,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The magnetic field due to a straight finite current-carrying wire, at a point at perpendicular distance r from the wire, depends on',
     options: [
-      'only the current and the perpendicular distance',
+      'the resistance of the wire',
       'the current, the perpendicular distance, and the angles subtended by the ends of the wire at that point',
-      'only the length of the wire',
-      'the resistance of the wire'
+      'only the current and the perpendicular distance',
+      'only the length of the wire'
     ],
     correctIndex: 1,
     explanation: 'For a finite straight wire, the Biot-Savart law integration yields a field depending on current, perpendicular distance, and the angles subtended by the two ends of the wire at the field point (B = (µ0I/4πr)(sinθ1+sinθ2) in standard notation), unlike the simpler formula for an infinite wire.',
@@ -852,10 +852,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'For an infinitely long straight wire, the formula B = µ0I/(2πr) is obtained from the general finite-wire formula by taking the limit where',
     options: [
-      'the wire length approaches zero',
-      'both ends of the wire are taken to extend to infinity, so both subtended angles approach 90°',
       'the current approaches zero',
-      'the distance r approaches zero'
+      'both ends of the wire are taken to extend to infinity, so both subtended angles approach 90°',
+      'the distance r approaches zero',
+      'the wire length approaches zero'
     ],
     correctIndex: 1,
     explanation: 'As the wire\'s length extends to infinity in both directions, the two angles subtended at the field point both approach 90°, and the general finite-wire formula reduces to the simpler B = µ0I/(2πr).',
@@ -866,10 +866,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A charged particle moving in a magnetic field with its velocity having both a component parallel to B and a component perpendicular to B traces out a helical path. The pitch of this helix (distance advanced per revolution) depends on',
     options: [
-      'only the perpendicular component of velocity',
-      'the parallel component of velocity and the period of circular motion (which itself depends on q, B, and m)',
       'only the magnitude of the magnetic field',
-      'the total kinetic energy of the particle'
+      'the parallel component of velocity and the period of circular motion (which itself depends on q, B, and m)',
+      'the total kinetic energy of the particle',
+      'only the perpendicular component of velocity'
     ],
     correctIndex: 1,
     explanation: 'The pitch equals (parallel velocity component) × (time period of one revolution), where the period T = 2πm/(qB) is set by the perpendicular motion, so pitch = v∥ × T depends on both the parallel velocity and this period.',
@@ -880,12 +880,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The magnetic force between two moving charges (not current-carrying wires, but two individual point charges in motion) can be understood as',
     options: [
-      'purely a Coulomb force',
-      'a consequence of each moving charge producing a magnetic field that exerts a force on the other moving charge',
       'a gravitational effect',
-      'nonexistent, since single moving charges cannot produce magnetic fields'
+      'nonexistent, since single moving charges cannot produce magnetic fields',
+      'a consequence of each moving charge producing a magnetic field that exerts a force on the other moving charge',
+      'purely a Coulomb force'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'A single moving charge produces a magnetic field (as well as an electric field), and this magnetic field can exert a force on another moving charge nearby, giving rise to a velocity-dependent magnetic interaction in addition to the Coulomb force.',
     difficulty: 'medium'
   },
@@ -895,11 +895,11 @@ const questions: Question[] = [
     question: 'In the moving coil galvanometer, the restoring torque is provided by',
     options: [
       'gravity acting on the coil',
-      'a spring (or suspension wire) that twists as the coil rotates, producing a torque proportional to the deflection angle',
       'friction between the coil and its support',
+      'a spring (or suspension wire) that twists as the coil rotates, producing a torque proportional to the deflection angle',
       'the magnetic field itself, without any mechanical component'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'The restoring torque in a galvanometer comes from the elastic twisting of a spring or suspension wire, which is proportional to the angular deflection (τrestoring = kφ), balancing the magnetic deflecting torque at equilibrium.',
     difficulty: 'medium'
   },
@@ -908,12 +908,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The steady-state deflection φ of a moving coil galvanometer is related to the current I by',
     options: [
-      'φ = (NAB/k) I, i.e., deflection is directly proportional to current',
       'φ is independent of the current',
+      'φ = (NAB/k) I, i.e., deflection is directly proportional to current',
       'φ = I²/(NAB)',
       'φ decreases as current increases'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'At equilibrium, the deflecting torque NIAB equals the restoring torque kφ, giving φ = (NAB/k)I, showing that deflection is directly proportional to the current — the basis for a linear galvanometer scale.',
     difficulty: 'medium'
   },

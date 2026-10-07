@@ -8,6 +8,7 @@ import type { User } from "@supabase/supabase-js";
 import type { ChapterState, Difficulty, Goal, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 export const STORAGE_KEY = "neet_tracker_v1";
+const OWNER_KEY = "neet_tracker_owner"; // which account the local cache belongs to
 const TABLE = "user_state";
 const SYNC_DEBOUNCE_MS = 1500;
 
@@ -89,7 +90,7 @@ export function useTrackerState() {
   //    the cloud once the user + their cloud row are known. Whichever side has the more
   //    recent lastModified wins, and we push the winner to the other side to converge.
   useEffect(() => {
-    const local = loadState();
+    let local = loadState();
     setStateRaw(local);
 
     const supabase = supabaseRef.current;
@@ -103,10 +104,25 @@ export function useTrackerState() {
         return;
       }
 
+      // the local cache belongs to whoever used this browser last — never let it overwrite a different account
+      try {
+        const owner = window.localStorage.getItem(OWNER_KEY);
+        if (owner && owner !== currentUser.id) {
+          local = defaultState();
+          skipNextPushRef.current = true;
+          setStateRaw(local);
+        }
+        window.localStorage.setItem(OWNER_KEY, currentUser.id);
+      } catch {
+        /* ignore */
+      }
+
       const { data: row } = await supabase.from(TABLE).select("state").eq("user_id", currentUser.id).maybeSingle();
       const cloud = row?.state as Partial<TrackerState> | undefined;
 
-      if (cloud && (cloud.lastModified ?? 0) > local.lastModified) {
+      // cloud wins if it's newer, or if this device has nothing of its own yet (never push an empty local over real cloud data)
+      const hasCloud = cloud && Object.keys(cloud).length > 0;
+      if (hasCloud && ((cloud.lastModified ?? 0) > local.lastModified || local.lastModified === 0)) {
         const merged: TrackerState = {
           ...defaultState(),
           ...cloud,
@@ -114,6 +130,11 @@ export function useTrackerState() {
           planner: cloud.planner ?? {},
           subtopics: cloud.subtopics ?? {},
         };
+        if (merged.stopwatchSessionsDate !== todayKey()) {
+          merged.stopwatchSessions = 0;
+          merged.stopwatchSessionMs = 0;
+          merged.stopwatchSessionsDate = todayKey();
+        }
         skipNextPushRef.current = true;
         setStateRaw(merged);
         try {
@@ -163,6 +184,13 @@ export function useTrackerState() {
       await supabaseRef.current.from(TABLE).upsert({ user_id: user.id, state });
     }
     await supabaseRef.current.auth.signOut();
+    // don't leave this account's data in the browser for the next person who signs in
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+      window.localStorage.removeItem(OWNER_KEY);
+    } catch {
+      /* ignore */
+    }
   }, [user, state]);
 
   const setDailyGoalHours = useCallback((hours: number) => {
@@ -274,6 +302,7 @@ export function useTrackerState() {
   // if these were the same field, every checkpoint would visually reset the timer.
   const startStopwatch = useCallback(() => {
     setState((s) => {
+      if (s.stopwatchRunningSince != null) return s; // already running — a second Start must not reset the display or add a session
       const now = Date.now();
       const isNewDay = s.stopwatchSessionsDate !== todayKey();
       return {
@@ -453,7 +482,7 @@ export function useTrackerState() {
     [setState]
   );
 
-
+  // Commit the time since the last checkpoint into today's log, moving only stopwatchLastFlushAt
   // so the on-screen timer keeps counting up smoothly instead of jumping back on every checkpoint.
   const checkpointStopwatch = useCallback(() => {
     setState((s) => {

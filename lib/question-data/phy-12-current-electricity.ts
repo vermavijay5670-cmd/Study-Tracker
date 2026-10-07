@@ -7,12 +7,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Electric current is a scalar quantity even though it has an associated direction because',
     options: [
-      'it does not obey the laws of vector addition (parallelogram law) at a junction',
-      'it is always constant in magnitude',
       'it flows only in metals',
-      'it has no magnitude'
+      'it does not obey the laws of vector addition (parallelogram law) at a junction',
+      'it has no magnitude',
+      'it is always constant in magnitude'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'Current has magnitude and a sense of direction, but currents at a junction add algebraically (Kirchhoff\'s junction rule), not vectorially, so current is treated as a scalar.',
     difficulty: 'medium'
   },
@@ -21,12 +21,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In a metallic conductor, conventional current flows from higher to lower potential. The free electrons responsible for this current actually drift',
     options: [
-      'from lower to higher potential',
       'from higher to lower potential',
+      'perpendicular to the electric field',
       'randomly with no net drift',
-      'perpendicular to the electric field'
+      'from lower to higher potential'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Electrons carry negative charge, so they experience a force opposite to the electric field and drift from the low-potential end toward the high-potential end, opposite to conventional current.',
     difficulty: 'easy'
   },
@@ -34,8 +34,8 @@ const questions: Question[] = [
     id: 'current-electricity-3',
     type: 'mcq',
     question: 'The order of magnitude of drift velocity of electrons in a typical metallic conductor carrying current is',
-    options: ['10^5 m/s', '10^2 m/s', '10^-4 m/s', '3 x 10^8 m/s'],
-    correctIndex: 2,
+    options: ['3 x 10^8 m/s', '10^-4 m/s', '10^5 m/s', '10^2 m/s'],
+    correctIndex: 1,
     explanation: 'Drift velocity is extremely small, typically of the order of 10^-4 m/s (mm/s range), much smaller than the random thermal speeds of electrons (~10^5 m/s).',
     difficulty: 'medium'
   },
@@ -44,10 +44,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Relaxation time in the free electron theory of conduction refers to',
     options: [
-      'the time for which a battery must be connected before current flows',
-      'the average time between two successive collisions of an electron with ions/atoms',
       'the time taken by an electron to cross the conductor',
-      'the time period of oscillation of free electrons'
+      'the average time between two successive collisions of an electron with ions/atoms',
+      'the time period of oscillation of free electrons',
+      'the time for which a battery must be connected before current flows'
     ],
     correctIndex: 1,
     explanation: 'Relaxation time (τ) is the average time interval between successive collisions of a free electron with the fixed ions of the metallic lattice.',
@@ -57,8 +57,8 @@ const questions: Question[] = [
     id: 'current-electricity-5',
     type: 'mcq',
     question: 'The relation connecting drift velocity vd, electric field E and relaxation time τ for an electron of charge e and mass m is',
-    options: ['vd = eEτ/m', 'vd = eE/(mτ)', 'vd = mEτ/e', 'vd = eEm/τ'],
-    correctIndex: 0,
+    options: ['vd = eE/(mτ)', 'vd = mEτ/e', 'vd = eEτ/m', 'vd = eEm/τ'],
+    correctIndex: 2,
     explanation: 'Drift velocity arises from the average acceleration (eE/m) an electron experiences during the time τ between collisions, giving vd = eEτ/m.',
     difficulty: 'medium'
   },
@@ -67,12 +67,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Mobility of a charge carrier is defined as',
     options: [
-      'drift velocity per unit electric field',
+      'the average distance travelled between collisions',
       'drift velocity multiplied by electric field',
       'the number of carriers crossing unit area per second',
-      'the average distance travelled between collisions'
+      'drift velocity per unit electric field'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Mobility μ = vd/E, the drift velocity acquired per unit applied electric field, with SI unit m²V⁻¹s⁻¹.',
     difficulty: 'easy'
   },
@@ -82,11 +82,11 @@ const questions: Question[] = [
     question: 'Ohm\'s law is obeyed strictly by',
     options: [
       'a semiconductor diode',
-      'an electrolyte between metal electrodes',
       'a metallic conductor at constant temperature',
-      'a gas discharge tube'
+      'a gas discharge tube',
+      'an electrolyte between metal electrodes'
     ],
-    correctIndex: 2,
+    correctIndex: 1,
     explanation: 'Metallic conductors at constant temperature give a straight-line V-I graph through the origin, the defining feature of ohmic behaviour. Diodes, electrolytes and gas discharge tubes are non-ohmic.',
     difficulty: 'easy'
   },
@@ -95,12 +95,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Which of the following V-I characteristics represents a non-ohmic device?',
     options: [
-      'A straight line through the origin',
       'A straight line with a positive intercept on the V-axis',
-      'A curved graph, or one where V-I is not proportional',
-      'A straight line whose slope is independent of V'
+      'A straight line whose slope is independent of V',
+      'A straight line through the origin',
+      'A curved graph, or one where V-I is not proportional'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'Non-ohmic devices (diodes, electrolytic cells, transistors) show a non-linear V-I relationship, so their resistance is not constant.',
     difficulty: 'easy'
   },
@@ -110,8 +110,8 @@ const questions: Question[] = [
     question: 'Resistivity of a given conductor depends on',
     options: [
       'its length only',
-      'its area of cross-section only',
       'both length and area of cross-section',
+      'its area of cross-section only',
       'the material and temperature of the conductor, not on its dimensions'
     ],
     correctIndex: 3,
@@ -123,12 +123,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'As the temperature of a metallic conductor increases, its resistivity generally',
     options: [
-      'decreases because relaxation time increases',
-      'increases because relaxation time decreases due to more frequent collisions',
       'remains unchanged',
-      'first increases then decreases'
+      'decreases because relaxation time increases',
+      'first increases then decreases',
+      'increases because relaxation time decreases due to more frequent collisions'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Higher temperature increases thermal vibration of lattice ions, causing more frequent electron collisions, decreasing τ, and hence increasing resistivity (ρ = m/ne²τ).',
     difficulty: 'medium'
   },
@@ -150,8 +150,8 @@ const questions: Question[] = [
     id: 'current-electricity-12',
     type: 'mcq',
     question: 'A material with a very small (nearly zero) temperature coefficient of resistance, used for making standard resistance coils, is',
-    options: ['copper', 'nichrome', 'manganin', 'tungsten'],
-    correctIndex: 2,
+    options: ['tungsten', 'nichrome', 'copper', 'manganin'],
+    correctIndex: 3,
     explanation: 'Manganin (and constantan) have resistivity almost independent of temperature, making them ideal for standard resistors and resistance boxes.',
     difficulty: 'medium'
   },
@@ -160,12 +160,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Nichrome is preferred for heating elements in electrical appliances mainly because it has',
     options: [
-      'low resistivity and low melting point',
-      'high resistivity, high melting point, and does not oxidise readily when red hot',
+      'negative temperature coefficient of resistance',
       'zero temperature coefficient of resistance',
-      'negative temperature coefficient of resistance'
+      'low resistivity and low melting point',
+      'high resistivity, high melting point, and does not oxidise readily when red hot'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Nichrome combines high resistivity (for effective heating), a high melting point, and resistance to oxidation at high temperature, making it suitable for heating coils.',
     difficulty: 'easy'
   },
@@ -175,11 +175,11 @@ const questions: Question[] = [
     question: 'Fuse wire used for protecting household circuits is made of a material with',
     options: [
       'high melting point and low resistivity',
+      'very high melting point so it never melts',
       'low melting point and appropriate resistivity so it melts and breaks the circuit on excess current',
-      'zero resistivity',
-      'very high melting point so it never melts'
+      'zero resistivity'
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation: 'A fuse wire has a low melting point so that excessive current heats and melts it quickly, breaking the circuit and protecting the appliance.',
     difficulty: 'easy'
   },
@@ -188,12 +188,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Colour code of a resistor showing bands Brown, Black, Red, Gold in order represents',
     options: [
-      '1 kΩ ± 5%',
-      '10 kΩ ± 10%',
+      '1 MΩ ± 5%',
       '100 Ω ± 5%',
-      '1 MΩ ± 5%'
+      '10 kΩ ± 10%',
+      '1 kΩ ± 5%'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Brown = 1, Black = 0, Red = multiplier ×10², Gold = ±5% tolerance, giving 10 × 100 = 1000 Ω = 1 kΩ with 5% tolerance.',
     difficulty: 'medium'
   },
@@ -201,8 +201,8 @@ const questions: Question[] = [
     id: 'current-electricity-16',
     type: 'mcq',
     question: 'In the resistor colour code, the tolerance bands gold and silver correspond respectively to',
-    options: ['±5% and ±10%', '±10% and ±5%', '±1% and ±2%', '±20% and ±5%'],
-    correctIndex: 0,
+    options: ['±20% and ±5%', '±10% and ±5%', '±1% and ±2%', '±5% and ±10%'],
+    correctIndex: 3,
     explanation: 'By standard convention, a gold tolerance band means ±5% and a silver band means ±10%.',
     difficulty: 'easy'
   },
@@ -219,8 +219,8 @@ const questions: Question[] = [
     id: 'current-electricity-18',
     type: 'mcq',
     question: 'When several resistors are connected in parallel, which quantity is the same across each resistor?',
-    options: ['Current', 'Potential difference', 'Resistance', 'Power'],
-    correctIndex: 1,
+    options: ['Current', 'Resistance', 'Power', 'Potential difference'],
+    correctIndex: 3,
     explanation: 'In a parallel combination all resistors are connected between the same two nodes, so the potential difference across each is identical; current divides among the branches.',
     difficulty: 'easy'
   },
@@ -228,8 +228,8 @@ const questions: Question[] = [
     id: 'current-electricity-19',
     type: 'mcq',
     question: 'n identical resistors, each of resistance R, are connected first in series and then in parallel. The ratio of equivalent resistance (series : parallel) is',
-    options: ['1 : 1', 'n : 1', 'n² : 1', '1 : n²'],
-    correctIndex: 2,
+    options: ['n : 1', '1 : n²', '1 : 1', 'n² : 1'],
+    correctIndex: 3,
     explanation: 'Series equivalent = nR; parallel equivalent = R/n. Ratio = nR : R/n = n² : 1.',
     difficulty: 'medium'
   },
@@ -238,12 +238,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The equivalent resistance of a parallel combination of resistors is always',
     options: [
+      'equal to the average of the resistances',
       'greater than the largest individual resistance',
       'equal to the sum of individual resistances',
-      'less than the smallest individual resistance',
-      'equal to the average of the resistances'
+      'less than the smallest individual resistance'
     ],
-    correctIndex: 2,
+    correctIndex: 3,
     explanation: 'Since 1/Req = 1/R1 + 1/R2 + ..., adding more parallel paths always increases conductance, so Req is always smaller than the smallest resistor in the group.',
     difficulty: 'medium'
   },
@@ -252,10 +252,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The EMF of a cell is best described as',
     options: [
-      'the potential difference across its terminals when it is delivering current',
-      'the work done per unit charge by the source in driving charge around the complete circuit, measured when no current is drawn',
       'the power dissipated inside the cell',
-      'the resistance offered by the electrolyte'
+      'the work done per unit charge by the source in driving charge around the complete circuit, measured when no current is drawn',
+      'the resistance offered by the electrolyte',
+      'the potential difference across its terminals when it is delivering current'
     ],
     correctIndex: 1,
     explanation: 'EMF is the work done per unit charge by the non-electrostatic force of the cell in moving charge around the entire circuit; it equals terminal voltage only when no current flows (open circuit).',
@@ -265,8 +265,8 @@ const questions: Question[] = [
     id: 'current-electricity-22',
     type: 'mcq',
     question: 'For a cell of EMF ε and internal resistance r delivering current I to an external circuit, the terminal potential difference V is given by',
-    options: ['V = ε + Ir', 'V = ε - Ir', 'V = Ir - ε', 'V = ε/Ir'],
-    correctIndex: 1,
+    options: ['V = ε/Ir', 'V = ε + Ir', 'V = Ir - ε', 'V = ε - Ir'],
+    correctIndex: 3,
     explanation: 'While discharging, some EMF is used to overcome internal resistance, so the terminal voltage delivered to the external circuit is less than the EMF: V = ε - Ir.',
     difficulty: 'easy'
   },
@@ -274,7 +274,7 @@ const questions: Question[] = [
     id: 'current-electricity-23',
     type: 'mcq',
     question: 'While a cell is being charged by an external source, the relation between terminal voltage V and EMF ε is',
-    options: ['V = ε - Ir', 'V = ε + Ir', 'V = ε', 'V is independent of ε'],
+    options: ['V = ε - Ir', 'V = ε + Ir', 'V is independent of ε', 'V = ε'],
     correctIndex: 1,
     explanation: 'During charging, current is forced through the cell against its EMF, so the applied terminal voltage must exceed the EMF by the drop across internal resistance: V = ε + Ir.',
     difficulty: 'medium'
@@ -284,12 +284,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'n identical cells, each of EMF ε and internal resistance r, connected in series give a combination that is most effective when',
     options: [
-      'external resistance R is much greater than r',
-      'external resistance R is much smaller than r',
+      'the cells are of different EMFs',
       'R equals zero',
-      'the cells are of different EMFs'
+      'external resistance R is much smaller than r',
+      'external resistance R is much greater than r'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Series grouping of cells (net EMF = nε, net internal resistance = nr) gives maximum current when external resistance dominates over internal resistance, i.e., R >> r.',
     difficulty: 'medium'
   },
@@ -299,11 +299,11 @@ const questions: Question[] = [
     question: 'n identical cells, each of EMF ε and internal resistance r, connected in parallel are most useful when',
     options: [
       'external resistance R is much greater than internal resistance r',
-      'external resistance R is much smaller than internal resistance r',
+      'only one cell is required',
       'the cells have different EMFs and are connected with wrong polarity',
-      'only one cell is required'
+      'external resistance R is much smaller than internal resistance r'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Parallel grouping reduces the effective internal resistance to r/n while keeping EMF the same as a single cell, giving maximum current when R << r.',
     difficulty: 'medium'
   },
@@ -311,8 +311,8 @@ const questions: Question[] = [
     id: 'current-electricity-26',
     type: 'mcq',
     question: 'Kirchhoff\'s first (junction) rule is a statement of conservation of',
-    options: ['energy', 'charge', 'momentum', 'potential'],
-    correctIndex: 1,
+    options: ['energy', 'potential', 'momentum', 'charge'],
+    correctIndex: 3,
     explanation: 'The junction rule states that the algebraic sum of currents at a junction is zero, which follows directly from conservation of electric charge.',
     difficulty: 'easy'
   },
@@ -320,8 +320,8 @@ const questions: Question[] = [
     id: 'current-electricity-27',
     type: 'mcq',
     question: 'Kirchhoff\'s second (loop) rule is a statement of conservation of',
-    options: ['charge', 'mass', 'energy', 'linear momentum'],
-    correctIndex: 2,
+    options: ['mass', 'charge', 'linear momentum', 'energy'],
+    correctIndex: 3,
     explanation: 'The loop rule states that the algebraic sum of potential differences around any closed loop is zero, which is a consequence of conservation of energy.',
     difficulty: 'easy'
   },
@@ -330,10 +330,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A Wheatstone bridge is said to be balanced when',
     options: [
-      'maximum current flows through the galvanometer',
-      'no current flows through the galvanometer, i.e., P/Q = R/S',
       'all four resistances are equal',
-      'the battery is disconnected'
+      'no current flows through the galvanometer, i.e., P/Q = R/S',
+      'the battery is disconnected',
+      'maximum current flows through the galvanometer'
     ],
     correctIndex: 1,
     explanation: 'At balance, the galvanometer shows zero deflection because the potentials at its two ends are equal, which happens when the ratio of resistances in adjacent arms are equal: P/Q = R/S.',
@@ -343,8 +343,8 @@ const questions: Question[] = [
     id: 'current-electricity-29',
     type: 'mcq',
     question: 'The meter bridge is a practical application of the',
-    options: ['potentiometer principle', 'Wheatstone bridge principle', 'Kirchhoff\'s loop rule only', 'principle of a galvanometer'],
-    correctIndex: 1,
+    options: ['Kirchhoff\'s loop rule only', 'principle of a galvanometer', 'potentiometer principle', 'Wheatstone bridge principle'],
+    correctIndex: 3,
     explanation: 'The meter bridge is essentially a Wheatstone bridge in which two of the four resistance arms are replaced by segments of a uniform resistance wire.',
     difficulty: 'easy'
   },
@@ -355,8 +355,8 @@ const questions: Question[] = [
     options: [
       'it is cheaper to construct',
       'at the balance point it draws no current from the cell being measured, so it measures the true EMF',
-      'it can measure very large currents',
-      'it does not require a standard cell'
+      'it does not require a standard cell',
+      'it can measure very large currents'
     ],
     correctIndex: 1,
     explanation: 'At the null (balance) point, no current is drawn from the cell under test, so there is no potential drop due to internal resistance, allowing the potentiometer to measure the actual EMF rather than a lower terminal voltage.',
@@ -367,12 +367,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The principle of a potentiometer is that',
     options: [
-      'resistance of a wire depends on its material only',
-      'the potential drop across any length of a uniform wire carrying a constant current is directly proportional to that length',
       'current through a wire is inversely proportional to its length',
-      'EMF of a cell is proportional to its internal resistance'
+      'EMF of a cell is proportional to its internal resistance',
+      'resistance of a wire depends on its material only',
+      'the potential drop across any length of a uniform wire carrying a constant current is directly proportional to that length'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'For a wire of uniform cross-section carrying a steady current, potential drop per unit length (potential gradient) is constant, so V ∝ length — this is the basic potentiometer principle.',
     difficulty: 'medium'
   },
@@ -381,12 +381,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A potentiometer can be used to determine internal resistance of a cell by comparing',
     options: [
-      'balancing lengths obtained with the cell in open circuit and in closed circuit (across a known resistance)',
-      'the colour bands on the cell',
       'the diameter of the potentiometer wire',
-      'the resistivity of the potentiometer wire material'
+      'the resistivity of the potentiometer wire material',
+      'the colour bands on the cell',
+      'balancing lengths obtained with the cell in open circuit and in closed circuit (across a known resistance)'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Internal resistance is found from r = R(l1 - l2)/l2, where l1 is the balancing length for open-circuit EMF and l2 is the balancing length when a known resistance R is connected across the cell.',
     difficulty: 'medium'
   },
@@ -394,8 +394,8 @@ const questions: Question[] = [
     id: 'current-electricity-33',
     type: 'mcq',
     question: 'Electrical power dissipated in a resistor R carrying current I can be expressed as',
-    options: ['P = I/R', 'P = I²R', 'P = R/I²', 'P = I R²'],
-    correctIndex: 1,
+    options: ['P = R/I²', 'P = I/R', 'P = I R²', 'P = I²R'],
+    correctIndex: 3,
     explanation: 'Power dissipated as heat in a resistor is P = VI = I²R = V²/R, all equivalent forms via Ohm\'s law.',
     difficulty: 'easy'
   },
@@ -403,7 +403,7 @@ const questions: Question[] = [
     id: 'current-electricity-34',
     type: 'mcq',
     question: 'The commercial unit of electrical energy, the kilowatt-hour, is a unit of',
-    options: ['power', 'energy', 'current', 'potential difference'],
+    options: ['potential difference', 'energy', 'power', 'current'],
     correctIndex: 1,
     explanation: 'Energy = power × time, so kilowatt-hour (kW multiplied by hours) is a unit of energy, equal to 3.6 × 10⁶ joules.',
     difficulty: 'easy'
@@ -412,8 +412,8 @@ const questions: Question[] = [
     id: 'current-electricity-35',
     type: 'mcq',
     question: 'Conductance of a resistor is defined as',
-    options: ['product of resistance and current', 'reciprocal of resistance', 'reciprocal of resistivity', 'the same as resistivity'],
-    correctIndex: 1,
+    options: ['the same as resistivity', 'reciprocal of resistivity', 'reciprocal of resistance', 'product of resistance and current'],
+    correctIndex: 2,
     explanation: 'Conductance G = 1/R, with SI unit siemens (S), also historically called mho.',
     difficulty: 'easy'
   },
@@ -421,8 +421,8 @@ const questions: Question[] = [
     id: 'current-electricity-36',
     type: 'mcq',
     question: 'Electrical conductivity σ is related to resistivity ρ by',
-    options: ['σ = ρ', 'σ = 1/ρ', 'σ = ρ²', 'σ = ρ × current'],
-    correctIndex: 1,
+    options: ['σ = ρ', 'σ = ρ × current', 'σ = 1/ρ', 'σ = ρ²'],
+    correctIndex: 2,
     explanation: 'Conductivity is defined as the reciprocal of resistivity, σ = 1/ρ, with SI unit siemens per metre.',
     difficulty: 'easy'
   },
@@ -430,7 +430,7 @@ const questions: Question[] = [
     id: 'current-electricity-37',
     type: 'mcq',
     question: 'Current density J at a point in a conductor is related to drift velocity vd and number density of free electrons n (charge e) by',
-    options: ['J = ne/vd', 'J = nevd', 'J = n/(evd)', 'J = e/(nvd)'],
+    options: ['J = n/(evd)', 'J = nevd', 'J = e/(nvd)', 'J = ne/vd'],
     correctIndex: 1,
     explanation: 'Current density is defined as current per unit area; using I = nAevd and J = I/A gives J = nevd, and it is a vector along the direction of current flow.',
     difficulty: 'medium'
@@ -440,12 +440,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'Unlike current, current density is treated as a vector quantity because',
     options: [
-      'it has both magnitude and direction at every point and this direction genuinely matters point to point in a conductor of varying cross-section',
-      'it has only magnitude',
       'it never varies inside a conductor',
-      'it is independent of the electric field'
+      'it is independent of the electric field',
+      'it has only magnitude',
+      'it has both magnitude and direction at every point and this direction genuinely matters point to point in a conductor of varying cross-section'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Current density J is defined locally at each point and has a well-defined direction, which is essential when describing current distribution in three-dimensional conductors of varying cross-section, so it is treated as a vector.',
     difficulty: 'hard'
   },
@@ -454,12 +454,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A superconductor is characterised by',
     options: [
+      'infinite resistivity at all temperatures',
       'resistivity increasing sharply as temperature falls',
-      'resistivity dropping abruptly to zero below a certain critical temperature',
       'resistivity being independent of temperature',
-      'infinite resistivity at all temperatures'
+      'resistivity dropping abruptly to zero below a certain critical temperature'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Certain materials lose all electrical resistance abruptly when cooled below a characteristic critical temperature, a phenomenon called superconductivity.',
     difficulty: 'medium'
   },
@@ -470,8 +470,8 @@ const questions: Question[] = [
     options: [
       'the conductor is kept in vacuum',
       'a constant potential difference is maintained across it by a source of EMF in a closed circuit',
-      'the conductor is grounded',
-      'the conductor has zero resistance'
+      'the conductor has zero resistance',
+      'the conductor is grounded'
     ],
     correctIndex: 1,
     explanation: 'A steady current requires a closed circuit and a source (like a battery) that maintains a constant potential difference, continuously doing work to keep charges flowing against resistive forces.',
@@ -481,7 +481,7 @@ const questions: Question[] = [
     id: 'current-electricity-41',
     type: 'mcq',
     question: 'Two wires of the same material have lengths in ratio 2:1 and diameters in ratio 1:2. The ratio of their resistances (R1:R2) is',
-    options: ['1:1', '8:1', '2:1', '1:8'],
+    options: ['1:1', '8:1', '1:8', '2:1'],
     correctIndex: 1,
     explanation: 'R ∝ l/A ∝ l/d². R1/R2 = (l1/l2) × (d2/d1)² = (2/1) × (2/1)² = 2 × 4 = 8, so R1:R2 = 8:1.',
     difficulty: 'medium'
@@ -490,7 +490,7 @@ const questions: Question[] = [
     id: 'current-electricity-42',
     type: 'mcq',
     question: 'When a wire is stretched uniformly so that its length becomes n times the original (volume constant), its resistance becomes',
-    options: ['n times', 'n² times', '1/n times', '1/n² times'],
+    options: ['n times', 'n² times', '1/n² times', '1/n times'],
     correctIndex: 1,
     explanation: 'Volume V = A l is constant, so A ∝ 1/l. Then R = ρl/A ∝ l². If l becomes n times, R becomes n² times.',
     difficulty: 'medium'
@@ -499,7 +499,7 @@ const questions: Question[] = [
     id: 'current-electricity-43',
     type: 'mcq',
     question: 'The internal resistance of an ideal cell is',
-    options: ['infinite', 'zero', 'equal to external resistance', 'undefined'],
+    options: ['equal to external resistance', 'zero', 'infinite', 'undefined'],
     correctIndex: 1,
     explanation: 'An ideal cell is defined as one having zero internal resistance, so its terminal voltage always equals its EMF regardless of the current drawn.',
     difficulty: 'easy'
@@ -509,12 +509,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A galvanometer is converted into an ammeter by connecting',
     options: [
-      'a high resistance in series with it',
-      'a low resistance (shunt) in parallel with it',
       'a high resistance in parallel with it',
-      'another identical galvanometer in series'
+      'a high resistance in series with it',
+      'another identical galvanometer in series',
+      'a low resistance (shunt) in parallel with it'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'A small shunt resistance is connected in parallel with the galvanometer coil so that most of the current bypasses the sensitive coil, allowing measurement of larger currents.',
     difficulty: 'medium'
   },
@@ -523,12 +523,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A galvanometer is converted into a voltmeter by connecting',
     options: [
-      'a low resistance in parallel with it',
-      'a high resistance in series with it',
       'a shunt across it',
-      'a capacitor in series with it'
+      'a low resistance in parallel with it',
+      'a capacitor in series with it',
+      'a high resistance in series with it'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'A large resistance is connected in series with the galvanometer so that it draws negligible current from the circuit and measures potential difference accurately across a large range.',
     difficulty: 'medium'
   },
@@ -536,8 +536,8 @@ const questions: Question[] = [
     id: 'current-electricity-46',
     type: 'mcq',
     question: 'An ideal ammeter should have',
-    options: ['infinite resistance', 'zero resistance', 'resistance equal to the circuit resistance', 'variable resistance'],
-    correctIndex: 1,
+    options: ['variable resistance', 'resistance equal to the circuit resistance', 'infinite resistance', 'zero resistance'],
+    correctIndex: 3,
     explanation: 'An ideal ammeter has zero resistance so that it does not alter the current in the circuit when connected in series.',
     difficulty: 'easy'
   },
@@ -545,8 +545,8 @@ const questions: Question[] = [
     id: 'current-electricity-47',
     type: 'mcq',
     question: 'An ideal voltmeter should have',
-    options: ['zero resistance', 'infinite resistance', 'resistance equal to that of the component across it', 'negative resistance'],
-    correctIndex: 1,
+    options: ['resistance equal to that of the component across it', 'zero resistance', 'negative resistance', 'infinite resistance'],
+    correctIndex: 3,
     explanation: 'An ideal voltmeter has infinite resistance so it draws no current when connected in parallel, thus not disturbing the potential difference being measured.',
     difficulty: 'easy'
   },
@@ -555,12 +555,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The number density of free electrons in a metallic conductor',
     options: [
+      'depends only on the length of the conductor',
       'is roughly independent of temperature',
-      'increases sharply with a small rise in temperature',
       'decreases to zero at room temperature',
-      'depends only on the length of the conductor'
+      'increases sharply with a small rise in temperature'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'In metals, essentially all valence electrons are already free at ordinary temperatures, so the free electron density n is nearly independent of temperature (unlike in semiconductors).',
     difficulty: 'hard'
   },
@@ -569,12 +569,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'On increasing the potential difference across a given conductor at constant temperature, drift velocity of electrons',
     options: [
-      'increases proportionally with the potential difference',
-      'decreases proportionally',
+      'becomes zero',
       'remains constant',
-      'becomes zero'
+      'decreases proportionally',
+      'increases proportionally with the potential difference'
     ],
-    correctIndex: 0,
+    correctIndex: 3,
     explanation: 'Since vd = eEτ/m and E = V/l, drift velocity is directly proportional to the applied potential difference for a conductor obeying Ohm\'s law at constant temperature.',
     difficulty: 'medium'
   },
@@ -582,7 +582,7 @@ const questions: Question[] = [
     id: 'current-electricity-50',
     type: 'mcq',
     question: 'The SI unit of resistivity is',
-    options: ['ohm', 'ohm-metre', 'ohm per metre', 'siemens'],
+    options: ['ohm per metre', 'ohm-metre', 'siemens', 'ohm'],
     correctIndex: 1,
     explanation: 'Since ρ = RA/l, its SI unit works out to ohm × metre² / metre = ohm-metre (Ω·m).',
     difficulty: 'easy'
@@ -593,11 +593,11 @@ const questions: Question[] = [
     question: 'Which of these best explains why the resistance of an incandescent bulb filament when glowing is much higher than its cold resistance?',
     options: [
       'The filament material changes chemically',
-      'The high operating temperature increases resistivity of the metal filament',
       'The filament length decreases when hot',
-      'The current decreases the resistance'
+      'The current decreases the resistance',
+      'The high operating temperature increases resistivity of the metal filament'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The tungsten filament reaches a very high temperature when glowing, and since metallic resistivity increases with temperature, the hot resistance is significantly higher than the cold resistance.',
     difficulty: 'medium'
   },
@@ -605,7 +605,7 @@ const questions: Question[] = [
     id: 'current-electricity-52',
     type: 'mcq',
     question: 'A carbon resistor generally has a temperature coefficient of resistance that is',
-    options: ['positive, like most metals', 'zero always', 'negative, unlike typical metals', 'infinite'],
+    options: ['infinite', 'zero always', 'negative, unlike typical metals', 'positive, like most metals'],
     correctIndex: 2,
     explanation: 'Carbon behaves somewhat like a semiconductor; its resistance decreases as temperature rises because more charge carriers become available, giving it a negative temperature coefficient.',
     difficulty: 'medium'
@@ -615,10 +615,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'In the free electron (Drude) picture of conduction, in the absence of an electric field, the free electrons in a metal',
     options: [
-      'are stationary',
+      'do not exist',
       'move randomly in all directions with high thermal speeds, giving zero net drift',
-      'move in one fixed direction',
-      'do not exist'
+      'are stationary',
+      'move in one fixed direction'
     ],
     correctIndex: 1,
     explanation: 'In the absence of an applied field, free electrons undergo random thermal motion in all directions with high average speed, so their net average velocity (and hence net current) is zero.',
@@ -629,10 +629,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'When an electric field is applied to a conductor, free electrons acquire',
     options: [
-      'only random thermal motion',
+      'a velocity equal to the speed of light',
       'a small net drift velocity superimposed on their random thermal motion',
-      'infinite acceleration',
-      'a velocity equal to the speed of light'
+      'only random thermal motion',
+      'infinite acceleration'
     ],
     correctIndex: 1,
     explanation: 'The applied field causes a small additional drift superimposed on the much larger random thermal velocities, and this net drift constitutes the electric current.',
@@ -642,8 +642,8 @@ const questions: Question[] = [
     id: 'current-electricity-55',
     type: 'mcq',
     question: 'For a given conductor, if the potential difference is doubled while temperature is kept constant, the current (assuming Ohm\'s law holds) becomes',
-    options: ['half', 'double', 'four times', 'unchanged'],
-    correctIndex: 1,
+    options: ['half', 'unchanged', 'double', 'four times'],
+    correctIndex: 2,
     explanation: 'By Ohm\'s law V = IR, at constant R, current is directly proportional to potential difference, so doubling V doubles I.',
     difficulty: 'easy'
   },
@@ -666,12 +666,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'A jockey is used in a meter bridge or potentiometer experiment to',
     options: [
-      'supply current to the circuit',
-      'make sliding contact with the wire at any point to locate the balance/null point',
+      'increase the EMF of the cell',
       'measure resistance directly',
-      'increase the EMF of the cell'
+      'supply current to the circuit',
+      'make sliding contact with the wire at any point to locate the balance/null point'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'The jockey is a sliding contact used to touch the bridge/potentiometer wire at different points to find the position where the galvanometer shows zero deflection.',
     difficulty: 'easy'
   },
@@ -682,8 +682,8 @@ const questions: Question[] = [
     options: [
       'The 100 W bulb, because it has lower resistance and more current flows through it',
       'The 60 W bulb, because it has higher resistance and dissipates more power in series',
-      'Both glow equally',
-      'Neither glows since they are in series'
+      'Neither glows since they are in series',
+      'Both glow equally'
     ],
     correctIndex: 1,
     explanation: 'In series, current is the same in both bulbs. Resistance of a bulb R = V²/Prated, so the 60 W bulb has higher resistance. Since P = I²R and I is same, the bulb with higher resistance (60 W rated) dissipates more power and glows brighter.',
@@ -695,11 +695,11 @@ const questions: Question[] = [
     question: 'Two bulbs of ratings mentioned above, if connected in parallel across 220 V, would show',
     options: [
       'the 60 W bulb glowing brighter',
-      'the 100 W bulb glowing brighter, since it draws more power at rated voltage',
+      'both bulbs would fuse',
       'equal brightness',
-      'both bulbs would fuse'
+      'the 100 W bulb glowing brighter, since it draws more power at rated voltage'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'In parallel, each bulb gets the full rated voltage, so each dissipates its rated power; the 100 W bulb converts more electrical energy to light and heat per second, so it glows brighter.',
     difficulty: 'medium'
   },
@@ -708,12 +708,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The main reason electrical appliances in homes are connected in parallel rather than in series is that parallel connection ensures',
     options: [
-      'lower total power consumption',
-      'each appliance gets the full line voltage and operates independently, so one failing does not stop the others',
+      'appliances need less insulation',
       'less current is drawn from the mains',
-      'appliances need less insulation'
+      'lower total power consumption',
+      'each appliance gets the full line voltage and operates independently, so one failing does not stop the others'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Parallel wiring allows each appliance to receive the full supply voltage and to be switched on/off independently, so the malfunction of one appliance does not affect the others.',
     difficulty: 'medium'
   },
@@ -722,10 +722,10 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'The heating effect of current (Joule heating) is given by H = I²Rt. This heat generated is due to',
     options: [
-      'work done by the external electric field on free electrons',
+      'chemical reactions inside the conductor',
       'collisions of drifting electrons with the lattice ions, transferring kinetic energy as heat',
       'radiation emitted by the wire',
-      'chemical reactions inside the conductor'
+      'work done by the external electric field on free electrons'
     ],
     correctIndex: 1,
     explanation: 'As electrons drift under the field, they repeatedly collide with the vibrating lattice ions and transfer energy to them, which appears macroscopically as heat — this is the microscopic origin of Joule heating.',
@@ -735,8 +735,8 @@ const questions: Question[] = [
     id: 'current-electricity-62',
     type: 'mcq',
     question: 'In a circuit containing a battery of EMF ε and internal resistance r connected to an external resistance R, the current drawn is maximum when',
-    options: ['R = 0 (short circuit)', 'R = r', 'R is very large', 'R = infinity'],
-    correctIndex: 0,
+    options: ['R = r', 'R = 0 (short circuit)', 'R is very large', 'R = infinity'],
+    correctIndex: 1,
     explanation: 'Current I = ε/(R+r) is maximum when R = 0, i.e., when the cell is short-circuited, giving I = ε/r (though this is not desirable in practice as it can damage the cell).',
     difficulty: 'medium'
   },
@@ -744,8 +744,8 @@ const questions: Question[] = [
     id: 'current-electricity-63',
     type: 'mcq',
     question: 'The power delivered to the external resistance R by a cell of EMF ε and internal resistance r is maximum when',
-    options: ['R = 0', 'R = r', 'R = infinity', 'R = 2r'],
-    correctIndex: 1,
+    options: ['R = 0', 'R = infinity', 'R = 2r', 'R = r'],
+    correctIndex: 3,
     explanation: 'By the maximum power transfer condition, power delivered to external R, P = I²R = ε²R/(R+r)², is maximum when R = r.',
     difficulty: 'hard'
   },
@@ -754,12 +754,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'If two cells of different EMFs and internal resistances are connected in series aiding each other, the equivalent EMF is',
     options: [
+      'the average of the two EMFs',
       'the sum of the two EMFs',
       'the difference of the two EMFs',
-      'the average of the two EMFs',
       'always equal to the larger EMF'
     ],
-    correctIndex: 0,
+    correctIndex: 1,
     explanation: 'When cells are connected with like terminals in series (aiding), their EMFs add up: εeq = ε1 + ε2, and internal resistances also add: req = r1 + r2.',
     difficulty: 'medium'
   },
@@ -767,8 +767,8 @@ const questions: Question[] = [
     id: 'current-electricity-65',
     type: 'mcq',
     question: 'When a wire of resistance R is cut into n equal parts and all parts are connected in parallel, the new equivalent resistance is',
-    options: ['R', 'nR', 'R/n', 'R/n²'],
-    correctIndex: 3,
+    options: ['R/n', 'R/n²', 'nR', 'R'],
+    correctIndex: 1,
     explanation: 'Each part has resistance R/n. For n such equal resistors in parallel, equivalent resistance = (R/n)/n = R/n².',
     difficulty: 'medium'
   },
@@ -778,11 +778,11 @@ const questions: Question[] = [
     question: 'A potential gradient along a potentiometer wire is defined as',
     options: [
       'total EMF of the driver cell',
-      'fall of potential per unit length of the wire',
+      'current flowing through the wire',
       'resistance per unit length of the wire',
-      'current flowing through the wire'
+      'fall of potential per unit length of the wire'
     ],
-    correctIndex: 1,
+    correctIndex: 3,
     explanation: 'Potential gradient (k) is the potential drop per unit length of the potentiometer wire, k = V/L, and forms the basis of all potentiometer measurements.',
     difficulty: 'medium'
   },
@@ -791,12 +791,12 @@ const questions: Question[] = [
     type: 'mcq',
     question: 'To increase the sensitivity of a potentiometer (smaller potential gradient), one should',
     options: [
-      'increase the length of the potentiometer wire for the same driver EMF',
-      'decrease the length of the wire',
+      'decrease the resistance of the wire',
       'increase the current through the wire',
-      'decrease the resistance of the wire'
+      'increase the length of the potentiometer wire for the same driver EMF',
+      'decrease the length of the wire'
     ],
-    correctIndex: 0,
+    correctIndex: 2,
     explanation: 'Since potential gradient k = V/L, increasing the wire length L for the same total potential drop V decreases k, making the potentiometer more sensitive to small EMF differences.',
     difficulty: 'hard'
   },
@@ -804,8 +804,8 @@ const questions: Question[] = [
     id: 'current-electricity-68',
     type: 'mcq',
     question: 'A device that converts chemical energy into electrical energy through non-electrostatic (chemical) forces acting inside it is',
-    options: ['a resistor', 'a capacitor', 'a cell (battery)', 'an inductor'],
-    correctIndex: 2,
+    options: ['an inductor', 'a capacitor', 'a resistor', 'a cell (battery)'],
+    correctIndex: 3,
     explanation: 'A cell maintains a potential difference and drives current using chemical reactions inside it that do work on charges against the electrostatic field, converting chemical energy to electrical energy.',
     difficulty: 'easy'
   },
@@ -816,8 +816,8 @@ const questions: Question[] = [
     options: [
       'from the positive terminal to the negative terminal',
       'from the negative terminal to the positive terminal, driven by the non-electrostatic (chemical) force',
-      'it does not move inside the cell',
-      'randomly with no net direction'
+      'randomly with no net direction',
+      'it does not move inside the cell'
     ],
     correctIndex: 1,
     explanation: 'Inside the cell, the non-electrostatic force does work against the internal electric field to move positive charge from the negative to the positive terminal, maintaining the potential difference.',
@@ -827,8 +827,8 @@ const questions: Question[] = [
     id: 'current-electricity-70',
     type: 'mcq',
     question: 'Which combination of resistors would you use to get the maximum possible equivalent resistance from three given resistors R1, R2 and R3?',
-    options: ['All three in parallel', 'All three in series', 'Any two in parallel, third in series', 'It does not matter'],
-    correctIndex: 1,
+    options: ['It does not matter', 'All three in parallel', 'Any two in parallel, third in series', 'All three in series'],
+    correctIndex: 3,
     explanation: 'Series combination always gives the maximum possible resistance (Req = R1+R2+R3), since each additional resistor in series only adds to the total obstruction to current flow.',
     difficulty: 'easy'
   },

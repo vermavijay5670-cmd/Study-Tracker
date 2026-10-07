@@ -6,12 +6,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Algae are broadly classified into three classes mainly on the basis of:",
     "options": [
+      "Presence or absence of roots",
       "Habitat alone",
       "Type of pigments, chemical nature of stored food, and cell wall composition",
-      "Size of the thallus only",
-      "Presence or absence of roots"
+      "Size of the thallus only"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "The three algal classes - Chlorophyceae, Phaeophyceae, and Rhodophyceae - are distinguished mainly by pigments, stored food, and cell wall composition.",
     "difficulty": "medium"
   },
@@ -20,9 +20,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Green algae (Chlorophyceae) store their food mainly in the form of:",
     "options": [
-      "Mannitol",
-      "Starch",
       "Floridean starch",
+      "Starch",
+      "Mannitol",
       "Laminarin"
     ],
     "correctIndex": 1,
@@ -34,12 +34,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The chloroplast pigments present in Chlorophyceae are:",
     "options": [
+      "Chlorophyll a and d",
       "Chlorophyll a and c",
       "Chlorophyll a and b",
-      "Chlorophyll a and d",
       "Fucoxanthin only"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Green algae possess chlorophyll a and b as their main photosynthetic pigments, giving them their grass-green colour.",
     "difficulty": "medium"
   },
@@ -62,12 +62,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following is NOT an example of Chlorophyceae?",
     "options": [
-      "Chlamydomonas",
       "Volvox",
       "Ectocarpus",
-      "Spirogyra"
+      "Spirogyra",
+      "Chlamydomonas"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Ectocarpus belongs to Phaeophyceae (brown algae), while the rest are green algae (Chlorophyceae).",
     "difficulty": "medium"
   },
@@ -76,12 +76,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Chara, a common green alga, is characterised by which unique feature?",
     "options": [
-      "Highly differentiated thallus with nodes and internodes bearing sex organs surrounded by sterile jacket cells",
-      "Complete absence of a cell wall",
       "Unicellular flagellated body",
-      "Presence of floridean starch"
+      "Presence of floridean starch",
+      "Highly differentiated thallus with nodes and internodes bearing sex organs surrounded by sterile jacket cells",
+      "Complete absence of a cell wall"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Chara shows advanced differentiation, with the plant body having nodes and internodes, and sex organs surrounded by sterile jacket cells.",
     "difficulty": "hard"
   },
@@ -90,12 +90,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Brown algae (Phaeophyceae) owe their colour mainly to the pigment:",
     "options": [
-      "Phycoerythrin",
       "Fucoxanthin",
       "Chlorophyll b",
+      "Phycoerythrin",
       "Anthocyanin"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Fucoxanthin, along with chlorophyll a and c, gives Phaeophyceae members their characteristic brown colour.",
     "difficulty": "medium"
   },
@@ -104,12 +104,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The stored food reserves in Phaeophyceae are mainly in the form of:",
     "options": [
+      "Glycogen",
       "Starch",
       "Mannitol and laminarin",
-      "Floridean starch",
-      "Glycogen"
+      "Floridean starch"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Phaeophyceae store food as complex carbohydrates such as mannitol and laminarin.",
     "difficulty": "medium"
   },
@@ -118,12 +118,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The cell wall of brown algae is usually made up of cellulose along with:",
     "options": [
-      "Algin",
       "Chitin",
-      "Peptidoglycan",
-      "Silica"
+      "Silica",
+      "Algin",
+      "Peptidoglycan"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "In addition to cellulose, the cell wall of Phaeophyceae is often covered on the outside by a gelatinous coating of algin.",
     "difficulty": "medium"
   },
@@ -132,12 +132,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In many brown algae, the plant body is differentiated into a holdfast, a stipe, and a frond; this structure is called the:",
     "options": [
-      "Rhizome",
       "Thallus",
+      "Rhizome",
       "Root system",
       "Mycelium"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The undifferentiated to well-differentiated body of brown algae, showing holdfast/stipe/frond, is termed a thallus.",
     "difficulty": "medium"
   },
@@ -146,12 +146,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Flagellated cells in brown algae typically show:",
     "options": [
-      "Two flagella of equal length inserted apically",
-      "Two flagella of unequal length, laterally inserted (heterokont)",
+      "No flagella at any stage",
       "A single posterior flagellum",
-      "No flagella at any stage"
+      "Two flagella of equal length inserted apically",
+      "Two flagella of unequal length, laterally inserted (heterokont)"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Phaeophyceae show heterokont flagellation - two laterally inserted flagella of unequal length.",
     "difficulty": "hard"
   },
@@ -160,10 +160,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Kelps, some of the largest known algae, belong to class:",
     "options": [
-      "Chlorophyceae",
-      "Phaeophyceae",
       "Rhodophyceae",
-      "None; kelps are fungi"
+      "Phaeophyceae",
+      "None; kelps are fungi",
+      "Chlorophyceae"
     ],
     "correctIndex": 1,
     "explanation": "Kelps such as Laminaria and Macrocystis are large brown algae belonging to Phaeophyceae.",
@@ -174,12 +174,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Red algae (Rhodophyceae) derive their colour mainly from the pigment:",
     "options": [
-      "Fucoxanthin",
-      "Phycoerythrin",
+      "Xanthophyll",
       "Chlorophyll b",
-      "Xanthophyll"
+      "Fucoxanthin",
+      "Phycoerythrin"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The red colour of Rhodophyceae is due to the dominance of the pigment phycoerythrin over chlorophyll a and d.",
     "difficulty": "medium"
   },
@@ -188,12 +188,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The stored food in red algae (Rhodophyceae) is:",
     "options": [
-      "Starch",
-      "Mannitol",
       "Floridean starch",
-      "Laminarin"
+      "Starch",
+      "Laminarin",
+      "Mannitol"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "Rhodophyceae store food reserves as floridean starch, structurally similar to amylopectin and glycogen.",
     "difficulty": "medium"
   },
@@ -203,11 +203,11 @@ const questions: Question[] = [
     "question": "Which of the following classes of algae almost completely lacks flagellated reproductive structures?",
     "options": [
       "Chlorophyceae",
+      "None; all algal classes have flagellated stages",
       "Phaeophyceae",
-      "Rhodophyceae",
-      "None; all algal classes have flagellated stages"
+      "Rhodophyceae"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Rhodophyceae members are unique among algae in that they generally lack flagella at any stage in their life cycle.",
     "difficulty": "hard"
   },
@@ -217,11 +217,11 @@ const questions: Question[] = [
     "question": "Polysiphonia, Porphyra, and Gracilaria are common examples of algae belonging to:",
     "options": [
       "Chlorophyceae",
-      "Phaeophyceae",
       "Rhodophyceae",
+      "Phaeophyceae",
       "Bryophyta"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Polysiphonia, Porphyra, and Gracilaria are commonly cited red algae (Rhodophyceae).",
     "difficulty": "medium"
   },
@@ -230,12 +230,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Most members of red algae (Rhodophyceae) are found in which habitat?",
     "options": [
-      "Freshwater ponds",
       "Marine waters",
-      "Moist soil",
-      "Inside animal bodies"
+      "Freshwater ponds",
+      "Inside animal bodies",
+      "Moist soil"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Rhodophyceae are predominantly marine, found in both well-lit and deeper regions of the sea.",
     "difficulty": "easy"
   },
@@ -245,11 +245,11 @@ const questions: Question[] = [
     "question": "Range of thallus organisation in algae extends from:",
     "options": [
       "Only multicellular filamentous forms",
-      "Unicellular forms to colonial and filamentous forms",
       "Only tree-like differentiated forms",
+      "Unicellular forms to colonial and filamentous forms",
       "Only microscopic spherical colonies"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Algal thallus ranges from unicellular (Chlamydomonas) to colonial (Volvox) and filamentous forms (Ulothrix, Spirogyra).",
     "difficulty": "medium"
   },
@@ -258,10 +258,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In sexual reproduction of algae, fusion of two morphologically similar and physiologically similar gametes is called:",
     "options": [
-      "Anisogamy",
+      "Conjugation",
       "Isogamy",
-      "Oogamy",
-      "Conjugation"
+      "Anisogamy",
+      "Oogamy"
     ],
     "correctIndex": 1,
     "explanation": "Isogamous reproduction involves the fusion of two gametes similar in structure and behaviour, whether flagellated or non-flagellated.",
@@ -272,12 +272,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Sexual reproduction in algae involving fusion of a large, non-motile female gamete with a smaller, motile male gamete is called:",
     "options": [
-      "Isogamy",
       "Anisogamy",
-      "Oogamy",
-      "Conjugation"
+      "Conjugation",
+      "Isogamy",
+      "Oogamy"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Oogamous reproduction is the fusion of a large, non-motile female gamete (egg) with a smaller, motile male gamete.",
     "difficulty": "medium"
   },
@@ -286,12 +286,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Agar, widely used to grow microorganisms and in the preparation of ice creams and jellies, is obtained from:",
     "options": [
-      "Sargassum and Laminaria",
       "Gelidium and Gracilaria",
+      "Chara",
       "Chlamydomonas",
-      "Chara"
+      "Sargassum and Laminaria"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The red algae Gelidium and Gracilaria are the primary commercial sources of agar.",
     "difficulty": "medium"
   },
@@ -301,11 +301,11 @@ const questions: Question[] = [
     "question": "Porphyra and Laminaria are algae used mainly for the purpose of:",
     "options": [
       "Ornamentation",
-      "Food",
       "Building material",
+      "Food",
       "Fuel production only"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Certain marine brown and red algae, like Laminaria and Porphyra, are consumed as food, particularly in Japan.",
     "difficulty": "medium"
   },
@@ -314,12 +314,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Chlorella and Spirulina, unicellular/simple algae, are important sources of:",
     "options": [
-      "Fossil fuel",
       "Protein-rich food supplements",
       "Antibiotics",
-      "Rubber"
+      "Rubber",
+      "Fossil fuel"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Chlorella and Spirulina are cultured commercially and used as protein-rich food supplements even for space explorations.",
     "difficulty": "medium"
   },
@@ -328,10 +328,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Bryophytes are commonly called the 'amphibians of the plant kingdom' because:",
     "options": [
-      "They live only in aquatic habitats",
-      "They can live in soil but are dependent on water for sexual reproduction",
       "They have both plant and animal characteristics",
-      "They have no vascular tissue"
+      "They can live in soil but are dependent on water for sexual reproduction",
+      "They have no vascular tissue",
+      "They live only in aquatic habitats"
     ],
     "correctIndex": 1,
     "explanation": "Bryophytes grow in soil (terrestrial) but require external water for the transport of male gametes to reach the egg, hence the analogy with amphibians.",
@@ -342,12 +342,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In the life cycle of bryophytes, the dominant, photosynthetic plant body represents the:",
     "options": [
+      "Both generations equally",
       "Sporophyte generation",
-      "Gametophyte generation",
       "Neither generation",
-      "Both generations equally"
+      "Gametophyte generation"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "In bryophytes, the free-living, photosynthetic plant body is the gametophyte, which is the dominant phase.",
     "difficulty": "medium"
   },
@@ -356,9 +356,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The main plant body of bryophytes lacks true roots and instead anchors itself using:",
     "options": [
-      "True roots",
-      "Rhizoids",
       "Root hairs like angiosperms",
+      "Rhizoids",
+      "True roots",
       "Haustoria"
     ],
     "correctIndex": 1,
@@ -370,12 +370,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The sporophyte in bryophytes is:",
     "options": [
-      "Free-living and independent",
       "Differentiated into a foot, seta, and capsule, and remains at least partially dependent on the gametophyte",
-      "Absent altogether",
-      "The dominant photosynthetic phase"
+      "Free-living and independent",
+      "The dominant photosynthetic phase",
+      "Absent altogether"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The bryophyte sporophyte, differentiated into foot, seta, and capsule, is attached to and nutritionally dependent on the gametophyte.",
     "difficulty": "medium"
   },
@@ -384,12 +384,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Liverworts typically grow in which habitat?",
     "options": [
+      "Inside animal bodies",
       "Deep marine waters",
       "Moist, shady habitats such as banks of streams, marshy places and damp soil",
-      "Deserts",
-      "Inside animal bodies"
+      "Deserts"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Liverworts (e.g., Marchantia) commonly grow in moist, shady habitats.",
     "difficulty": "easy"
   },
@@ -398,12 +398,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In liverworts such as Marchantia, asexual reproduction commonly occurs by the formation of small, multicellular structures called:",
     "options": [
-      "Conidia",
       "Gemmae, produced in gemma cups",
+      "Basidiospores",
       "Zoospores",
-      "Basidiospores"
+      "Conidia"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Vegetative/asexual reproduction in liverworts commonly occurs via gemmae, produced in cup-shaped structures called gemma cups, that detach and germinate into new plants.",
     "difficulty": "medium"
   },
@@ -426,12 +426,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Sphagnum, a moss also known as peat moss, is economically important because it:",
     "options": [
-      "Is used as a fuel and packing material, and yields peat",
       "Is used in the manufacture of paper",
+      "Is used as a fuel and packing material, and yields peat",
       "Produces agar",
       "Produces rubber"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Sphagnum is used as a packing material for trans-shipment of living plants and forms peat, used as a fuel in some regions.",
     "difficulty": "medium"
   },
@@ -440,9 +440,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Funaria and Polytrichum are common examples of:",
     "options": [
-      "Liverworts",
-      "Mosses",
       "Pteridophytes",
+      "Mosses",
+      "Liverworts",
       "Gymnosperms"
     ],
     "correctIndex": 1,
@@ -456,8 +456,8 @@ const questions: Question[] = [
     "options": [
       "They are the primary colonisers, helping in soil formation",
       "They fix atmospheric nitrogen exclusively",
-      "They can survive without water at all stages",
-      "They produce large seeds"
+      "They produce large seeds",
+      "They can survive without water at all stages"
     ],
     "correctIndex": 0,
     "explanation": "Bryophytes act as pioneer colonisers on bare rocks, contributing to soil formation, thereby aiding ecological succession.",
@@ -469,11 +469,11 @@ const questions: Question[] = [
     "question": "Bryophytes hold ecological importance in preventing soil erosion mainly due to their:",
     "options": [
       "Deep tap root system",
-      "Ability to form dense mats that bind soil particles together",
       "Woody stems",
+      "Ability to form dense mats that bind soil particles together",
       "Large seed production"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "The dense growth pattern of bryophytes helps in binding the soil, reducing surface run-off and soil erosion.",
     "difficulty": "medium"
   },
@@ -482,12 +482,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In bryophytes, the male sex organ that produces flagellated male gametes is called:",
     "options": [
+      "Ovary",
       "Antheridium",
-      "Archegonium",
       "Anther",
-      "Ovary"
+      "Archegonium"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Antheridia are the multicellular male sex organs in bryophytes and pteridophytes that produce biflagellate/multiflagellate male gametes (antherozoids).",
     "difficulty": "medium"
   },
@@ -496,12 +496,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Pteridophytes are considered the first plants to possess specialised tissues for conduction of water and food; these tissues are:",
     "options": [
+      "Cortex and epidermis",
       "Vessels and sieve cells only",
-      "Xylem and phloem",
       "Rhizoids and hyphae",
-      "Cortex and epidermis"
+      "Xylem and phloem"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Pteridophytes are the first true vascular plants, possessing well-differentiated xylem and phloem.",
     "difficulty": "easy"
   },
@@ -510,12 +510,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In pteridophytes, the dominant and independent phase in the plant life cycle is the:",
     "options": [
+      "Neither; there is no alternation of generation",
       "Gametophyte",
-      "Sporophyte",
       "Both are equally dominant",
-      "Neither; there is no alternation of generation"
+      "Sporophyte"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Unlike bryophytes, the main plant body of pteridophytes is the diploid, differentiated sporophyte.",
     "difficulty": "medium"
   },
@@ -525,9 +525,9 @@ const questions: Question[] = [
     "question": "The leaves of pteridophytes that bear sporangia are called:",
     "options": [
       "Sporophylls",
+      "Fronds only, never bearing sporangia",
       "Gametophylls",
-      "Rhizoids",
-      "Fronds only, never bearing sporangia"
+      "Rhizoids"
     ],
     "correctIndex": 0,
     "explanation": "Sporangia-bearing leaves in pteridophytes are termed sporophylls; in some cases, they form distinct cone-like structures (strobili).",
@@ -538,12 +538,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In ferns, clusters of sporangia found on the undersurface of sporophylls are called:",
     "options": [
-      "Cones",
-      "Sori",
       "Gemma cups",
-      "Nodules"
+      "Nodules",
+      "Sori",
+      "Cones"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Sori are clusters of sporangia typically found on the lower surface of fern sporophylls.",
     "difficulty": "medium"
   },
@@ -552,12 +552,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Pteridophytes are classified into four classes; which of these is NOT one of them?",
     "options": [
-      "Psilopsida",
-      "Lycopsida",
       "Bryopsida",
-      "Pteropsida"
+      "Pteropsida",
+      "Lycopsida",
+      "Psilopsida"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "The four classes of pteridophytes are Psilopsida, Lycopsida, Sphenopsida, and Pteropsida; Bryopsida is a class of mosses (Bryophyta), not pteridophytes.",
     "difficulty": "hard"
   },
@@ -567,11 +567,11 @@ const questions: Question[] = [
     "question": "Selaginella and Salvinia are examples of pteridophytes that are:",
     "options": [
       "Homosporous",
-      "Heterosporous, producing microspores and megaspores",
       "Non-vascular",
+      "Heterosporous, producing microspores and megaspores",
       "Devoid of sporophylls"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Selaginella and Salvinia are heterosporous pteridophytes, producing two kinds of spores - microspores and megaspores.",
     "difficulty": "medium"
   },
@@ -580,10 +580,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Heterospory in pteridophytes is considered significant because it is regarded as a precursor to the evolution of:",
     "options": [
-      "Vascular tissue",
+      "Photosynthesis",
       "The seed habit",
       "True roots",
-      "Photosynthesis"
+      "Vascular tissue"
     ],
     "correctIndex": 1,
     "explanation": "Heterospory, where the megaspore is retained on the parent sporophyte, is considered the evolutionary precursor to seed formation.",
@@ -594,10 +594,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In heterosporous pteridophytes, the female gametophytes develop within the megaspore wall and remain:",
     "options": [
-      "Independent and free-living",
-      "Retained on the parent sporophyte for variable periods, similar to seed plants",
       "Completely absent",
-      "Motile and dispersed by wind"
+      "Retained on the parent sporophyte for variable periods, similar to seed plants",
+      "Motile and dispersed by wind",
+      "Independent and free-living"
     ],
     "correctIndex": 1,
     "explanation": "The zygotes in heterosporous pteridophytes develop into young embryos while retained on the female gametophyte still attached to the parent sporophyte - a condition analogous to seed formation.",
@@ -609,11 +609,11 @@ const questions: Question[] = [
     "question": "Which of the following is a homosporous pteridophyte producing only one kind of spore?",
     "options": [
       "Selaginella",
+      "None; all pteridophytes are heterosporous",
       "Salvinia",
-      "Pteris",
-      "None; all pteridophytes are heterosporous"
+      "Pteris"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Pteris (a fern) is homosporous, producing only one type of spore, unlike Selaginella and Salvinia.",
     "difficulty": "medium"
   },
@@ -622,12 +622,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Equisetum, a common pteridophyte, belongs to which class?",
     "options": [
+      "Pteropsida",
       "Psilopsida",
       "Lycopsida",
-      "Sphenopsida",
-      "Pteropsida"
+      "Sphenopsida"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Equisetum, characterised by jointed, hollow stems, belongs to class Sphenopsida.",
     "difficulty": "medium"
   },
@@ -650,8 +650,8 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Dryopteris and Adiantum are common examples of the pteridophyte class:",
     "options": [
-      "Psilopsida",
       "Lycopsida",
+      "Psilopsida",
       "Sphenopsida",
       "Pteropsida"
     ],
@@ -665,9 +665,9 @@ const questions: Question[] = [
     "question": "The seeds of gymnosperms are described as 'naked' because they:",
     "options": [
       "Are not enclosed by any fruit wall",
+      "Do not develop from ovules",
       "Lack an embryo",
-      "Lack a seed coat entirely",
-      "Do not develop from ovules"
+      "Lack a seed coat entirely"
     ],
     "correctIndex": 0,
     "explanation": "In gymnosperms, ovules are not enclosed by an ovary wall, so the seeds that develop remain exposed/naked, unlike in angiosperms.",
@@ -678,12 +678,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The vascular tissue of gymnosperms, unlike most angiosperms, generally lacks:",
     "options": [
-      "Xylem",
-      "Vessels in xylem and companion cells in phloem",
       "Any conducting tissue",
-      "Sieve tubes"
+      "Sieve tubes",
+      "Vessels in xylem and companion cells in phloem",
+      "Xylem"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Gymnosperm xylem consists mainly of tracheids (no vessels, except in Gnetum), and phloem lacks companion cells.",
     "difficulty": "medium"
   },
@@ -692,9 +692,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Needle-like leaves in conifers help the plant primarily by:",
     "options": [
-      "Increasing photosynthesis rate",
-      "Reducing surface area to minimise water loss, aided by sunken stomata and a thick cuticle",
       "Attracting pollinators",
+      "Reducing surface area to minimise water loss, aided by sunken stomata and a thick cuticle",
+      "Increasing photosynthesis rate",
       "Increasing rate of transpiration"
     ],
     "correctIndex": 1,
@@ -707,11 +707,11 @@ const questions: Question[] = [
     "question": "Gymnosperms are heterosporous, and their microspores and megaspores are produced within:",
     "options": [
       "Flowers",
-      "Cones or strobili",
+      "Gemma cups",
       "Fruits",
-      "Gemma cups"
+      "Cones or strobili"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "In gymnosperms, the two kinds of spores are produced within separate male and female cones (strobili).",
     "difficulty": "medium"
   },
@@ -720,12 +720,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In gymnosperms, pollen grains are carried to the female cone/ovule and, after germination, the pollen tube discharges male gametes near the mouth of the:",
     "options": [
-      "Stigma",
-      "Micropyle",
+      "Anther",
       "Style",
-      "Anther"
+      "Micropyle",
+      "Stigma"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Since gymnosperms lack a stigma, the pollen grain is directly transferred to the micropyle of the ovule (direct pollination).",
     "difficulty": "hard"
   },
@@ -734,10 +734,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Cycas and Pinus are examples of:",
     "options": [
-      "Bryophytes",
+      "Angiosperms",
       "Pteridophytes",
       "Gymnosperms",
-      "Angiosperms"
+      "Bryophytes"
     ],
     "correctIndex": 2,
     "explanation": "Cycas and Pinus are classic examples of gymnosperms used in NEET question banks.",
@@ -749,11 +749,11 @@ const questions: Question[] = [
     "question": "Sequoia, one of the tallest tree species known, belongs to which plant group?",
     "options": [
       "Bryophyta",
-      "Pteridophyta",
       "Gymnosperms",
+      "Pteridophyta",
       "Algae"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Sequoia, famous for being among the tallest trees in the world, is a gymnosperm.",
     "difficulty": "medium"
   },
@@ -763,11 +763,11 @@ const questions: Question[] = [
     "question": "In gymnosperms, the male and female gametophytes:",
     "options": [
       "Are free-living and fully independent structures",
+      "Are dominant over the sporophyte generation",
       "Do not have an independent free-living existence and remain within the sporangia retained on the sporophyte",
-      "Are absent altogether",
-      "Are dominant over the sporophyte generation"
+      "Are absent altogether"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "In gymnosperms, gametophytes have lost their independent existence and remain within the sporangia retained on the sporophytes.",
     "difficulty": "hard"
   },
@@ -776,12 +776,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Endosperm in gymnosperm seeds is:",
     "options": [
+      "Diploid, derived from the sporophyte directly",
       "Triploid, formed after double fertilisation",
       "Haploid, and represents the female gametophyte tissue",
-      "Diploid, derived from the sporophyte directly",
       "Absent in gymnosperm seeds"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Gymnosperm endosperm is haploid female gametophytic tissue, unlike the triploid endosperm formed after double fertilisation in angiosperms.",
     "difficulty": "hard"
   },
@@ -791,11 +791,11 @@ const questions: Question[] = [
     "question": "Gnetum is unique among gymnosperms because it shows certain features linking it to:",
     "options": [
       "Bryophytes",
-      "Angiosperms, such as presence of vessel elements in xylem",
       "Algae",
-      "Fungi"
+      "Fungi",
+      "Angiosperms, such as presence of vessel elements in xylem"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Gnetum exhibits several advanced features similar to angiosperms, including the presence of vessels in xylem.",
     "difficulty": "hard"
   },
@@ -804,12 +804,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Angiosperms are also known as flowering plants, and their seeds are:",
     "options": [
-      "Naked, as in gymnosperms",
-      "Enclosed within a fruit that develops from the ovary",
       "Absent altogether",
-      "Produced only asexually"
+      "Produced only asexually",
+      "Naked, as in gymnosperms",
+      "Enclosed within a fruit that develops from the ovary"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "In angiosperms, seeds develop from ovules and are covered by fruits that develop from the ovary wall, unlike gymnosperm seeds.",
     "difficulty": "easy"
   },
@@ -818,12 +818,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The characteristic reproductive event unique to angiosperms, involving the fusion of one male gamete with the egg and another with the polar nuclei, is called:",
     "options": [
-      "Isogamy",
       "Double fertilisation",
       "Oogamy",
+      "Isogamy",
       "Vegetative propagation"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Double fertilisation - fusion of one male gamete with the egg (syngamy) and the other with polar nuclei (triple fusion) - is unique to angiosperms.",
     "difficulty": "medium"
   },
@@ -832,12 +832,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Angiosperms are classified into two broad classes: Monocotyledonae and Dicotyledonae, mainly based on:",
     "options": [
-      "Height of the plant",
       "Number of cotyledons in the seed",
       "Colour of the flower",
+      "Height of the plant",
       "Presence of chlorophyll"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Number of cotyledons - one in monocots and two in dicots - is the primary basis of this classification, along with other associated features like venation and root type.",
     "difficulty": "easy"
   },
@@ -847,11 +847,11 @@ const questions: Question[] = [
     "question": "Dicotyledonous plants generally show which type of leaf venation?",
     "options": [
       "Parallel venation",
-      "Reticulate venation",
       "No venation",
+      "Reticulate venation",
       "Radial venation"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Dicots typically show reticulate (net-like) venation in their leaves, whereas monocots show parallel venation.",
     "difficulty": "easy"
   },
@@ -860,10 +860,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In angiosperms, the xylem is well developed with the presence of:",
     "options": [
-      "Only tracheids",
-      "Vessel elements",
       "No conducting cells",
-      "Only sieve cells"
+      "Vessel elements",
+      "Only sieve cells",
+      "Only tracheids"
     ],
     "correctIndex": 1,
     "explanation": "Vessel elements, along with tracheids, are present in angiosperm xylem, making conduction more efficient than in gymnosperms.",
@@ -874,10 +874,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In angiosperms, phloem contains companion cells associated with sieve tube elements; this feature is:",
     "options": [
-      "Also seen in all gymnosperms",
+      "Found only in pteridophytes",
       "Absent in gymnosperms, which have only sieve cells without companion cells",
-      "Absent in angiosperms too",
-      "Found only in pteridophytes"
+      "Also seen in all gymnosperms",
+      "Absent in angiosperms too"
     ],
     "correctIndex": 1,
     "explanation": "Companion cells with sieve tube elements are a distinguishing feature of angiosperm phloem, absent in gymnosperm phloem.",
@@ -889,11 +889,11 @@ const questions: Question[] = [
     "question": "In a haplontic life cycle, the dominant, photosynthetic phase is:",
     "options": [
       "Diploid sporophyte",
-      "Haploid gametophyte, with the diploid zygote being the only diploid stage",
+      "Neither; there is no gametophyte",
       "Both phases equally diploid",
-      "Neither; there is no gametophyte"
+      "Haploid gametophyte, with the diploid zygote being the only diploid stage"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "In haplontic life cycles (e.g., many algae like Chlamydomonas), meiosis occurs in the zygote (zygotic meiosis) and the gametophytic (haploid) phase is the dominant, free-living form.",
     "difficulty": "medium"
   },
@@ -902,12 +902,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A life cycle in which meiosis occurs in the zygote is termed:",
     "options": [
-      "Gametic meiosis",
-      "Zygotic meiosis",
+      "Somatic meiosis",
       "Sporic meiosis",
-      "Somatic meiosis"
+      "Zygotic meiosis",
+      "Gametic meiosis"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Zygotic meiosis occurs immediately after fertilisation, restoring the haploid condition, typical of a haplontic life cycle.",
     "difficulty": "medium"
   },
@@ -916,12 +916,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In a diplontic life cycle, such as that of angiosperms, the dominant phase is the:",
     "options": [
-      "Haploid gametophyte",
       "Diploid sporophyte, with meiosis occurring during gamete formation (gametic meiosis)",
-      "Both are haploid",
-      "There is no dominant phase"
+      "Haploid gametophyte",
+      "There is no dominant phase",
+      "Both are haploid"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "In diplontic life cycles, the diploid sporophyte is dominant, photosynthetic and independent; meiosis occurs at the time of gamete formation.",
     "difficulty": "medium"
   },
@@ -930,8 +930,8 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A life cycle pattern showing two distinct, multicellular, differing generations - a haploid gametophyte and a diploid sporophyte - which alternate with each other is called:",
     "options": [
-      "Haplontic life cycle",
       "Diplontic life cycle",
+      "Haplontic life cycle",
       "Haplo-diplontic life cycle",
       "Aplontic life cycle"
     ],
@@ -944,12 +944,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In a haplo-diplontic life cycle, meiosis occurs at the time of spore formation; this type of meiosis is called:",
     "options": [
-      "Zygotic meiosis",
-      "Gametic meiosis",
       "Sporic meiosis",
-      "Somatic meiosis"
+      "Gametic meiosis",
+      "Somatic meiosis",
+      "Zygotic meiosis"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "Sporic meiosis occurs in the sporophyte during spore formation, producing haploid spores that germinate to form the gametophyte, typical of the haplo-diplontic pattern.",
     "difficulty": "medium"
   },
@@ -959,11 +959,11 @@ const questions: Question[] = [
     "question": "Among algae, which of the following is an example of a genus showing the haplo-diplontic life cycle?",
     "options": [
       "Chlamydomonas",
-      "Ectocarpus and Polysiphonia",
+      "Spirogyra only",
       "Volvox only",
-      "Spirogyra only"
+      "Ectocarpus and Polysiphonia"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Ectocarpus and Polysiphonia are examples of algae that exhibit the haplo-diplontic type of life cycle, unlike the mostly haplontic Chlamydomonas.",
     "difficulty": "hard"
   },
@@ -973,8 +973,8 @@ const questions: Question[] = [
     "question": "Which group of plants shows the haplo-diplontic type of life cycle where the sporophyte is dependent on the gametophyte?",
     "options": [
       "Bryophytes",
-      "Angiosperms",
       "Fungi",
+      "Angiosperms",
       "Bacteria"
     ],
     "correctIndex": 0,
@@ -987,11 +987,11 @@ const questions: Question[] = [
     "question": "In gymnosperms and angiosperms (diplontic life cycle), gametes are produced by the process of:",
     "options": [
       "Mitosis of haploid cells",
-      "Meiosis, from specialised cells of the diploid plant body",
+      "Binary fission",
       "Fragmentation",
-      "Binary fission"
+      "Meiosis, from specialised cells of the diploid plant body"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "In diplontic organisms, specialised cells of the diploid sporophyte undergo meiosis to directly produce haploid gametes.",
     "difficulty": "medium"
   },
@@ -1000,12 +1000,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: Bryophytes are restricted to small sizes and prostrate or semi-erect forms.\nReason: Bryophytes lack specialised vascular tissue for the transport of water and food.\nChoose the correct option:",
     "options": [
-      "Both assertion and reason are true and reason correctly explains assertion",
+      "Both are false",
       "Assertion is true, reason is false",
       "Assertion is false, reason is true",
-      "Both are false"
+      "Both assertion and reason are true and reason correctly explains assertion"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "The absence of vascular tissue limits the height and complexity of bryophytes, correctly explaining their small size and prostrate growth form.",
     "difficulty": "hard"
   },
@@ -1014,12 +1014,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: Heterospory in pteridophytes is considered evolutionarily significant.\nReason: The megaspore in heterosporous pteridophytes is retained on the parent sporophyte, a trend leading towards seed habit.\nChoose the correct option:",
     "options": [
+      "Both are false",
       "Both assertion and reason are true and reason correctly explains assertion",
       "Assertion is true, reason is false",
-      "Assertion is false, reason is true",
-      "Both are false"
+      "Assertion is false, reason is true"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "The retention of the megaspore/female gametophyte on the parent sporophyte in heterosporous pteridophytes is exactly why heterospory is regarded as a precursor to seed formation.",
     "difficulty": "hard"
   },
@@ -1028,12 +1028,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Assertion: All algae exhibit a haplontic life cycle.\nReason: The zygote is the only diploid stage in the algal life cycle in all cases.\nChoose the correct option:",
     "options": [
-      "Both assertion and reason are true",
       "Assertion is false, since some algae like Ectocarpus and Polysiphonia show haplo-diplontic life cycles, and Fucus even shows a diplontic cycle",
       "Assertion is true but reason is false",
+      "Both assertion and reason are true",
       "Both are false but unrelated"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Not all algae are haplontic; algae show all three types of life cycle patterns - haplontic, haplo-diplontic (e.g., Ectocarpus), and even diplontic (e.g., Fucus).",
     "difficulty": "hard"
   },
@@ -1043,9 +1043,9 @@ const questions: Question[] = [
     "question": "Volvox, a colonial green alga, is an example belonging to class:",
     "options": [
       "Chlorophyceae",
-      "Phaeophyceae",
       "Rhodophyceae",
-      "Bryopsida"
+      "Bryopsida",
+      "Phaeophyceae"
     ],
     "correctIndex": 0,
     "explanation": "Volvox is a well-known colonial member of Chlorophyceae, often cited in NEET as an example of colonial thallus organisation.",
@@ -1056,12 +1056,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Ulothrix and Spirogyra represent which type of thallus organisation in algae?",
     "options": [
-      "Unicellular",
-      "Colonial",
+      "Parenchymatous",
       "Filamentous",
-      "Parenchymatous"
+      "Colonial",
+      "Unicellular"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Ulothrix and Spirogyra are common examples of filamentous green algae.",
     "difficulty": "easy"
   },
@@ -1071,11 +1071,11 @@ const questions: Question[] = [
     "question": "The archegonium, the female sex organ in bryophytes and pteridophytes, is:",
     "options": [
       "Unicellular and produces many eggs",
-      "Flask-shaped and multicellular, producing a single egg",
       "Absent in bryophytes",
-      "Found only in angiosperms"
+      "Found only in angiosperms",
+      "Flask-shaped and multicellular, producing a single egg"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The archegonium is a flask-shaped, multicellular female sex organ that produces a single egg, found in bryophytes, pteridophytes, and gymnosperms.",
     "difficulty": "medium"
   },
@@ -1084,12 +1084,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Among the following, which shows the correct increasing order of structural complexity/evolutionary advancement as typically presented in the plant kingdom?",
     "options": [
-      "Angiosperms \u2192 Gymnosperms \u2192 Pteridophytes \u2192 Bryophytes \u2192 Algae",
-      "Algae \u2192 Bryophytes \u2192 Pteridophytes \u2192 Gymnosperms \u2192 Angiosperms",
       "Bryophytes \u2192 Algae \u2192 Gymnosperms \u2192 Pteridophytes \u2192 Angiosperms",
-      "Pteridophytes \u2192 Algae \u2192 Bryophytes \u2192 Angiosperms \u2192 Gymnosperms"
+      "Pteridophytes \u2192 Algae \u2192 Bryophytes \u2192 Angiosperms \u2192 Gymnosperms",
+      "Angiosperms \u2192 Gymnosperms \u2192 Pteridophytes \u2192 Bryophytes \u2192 Algae",
+      "Algae \u2192 Bryophytes \u2192 Pteridophytes \u2192 Gymnosperms \u2192 Angiosperms"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "The plant kingdom is conventionally presented in increasing order of complexity: Algae, Bryophytes, Pteridophytes, Gymnosperms, and finally Angiosperms.",
     "difficulty": "medium"
   }

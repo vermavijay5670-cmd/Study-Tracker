@@ -6,12 +6,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Gregor Mendel conducted his classic hybridization experiments primarily using which plant?",
     "options": [
-      "Garden pea (Pisum sativum)",
       "Maize",
-      "Fruit fly (Drosophila)",
-      "Tobacco plant"
+      "Garden pea (Pisum sativum)",
+      "Tobacco plant",
+      "Fruit fly (Drosophila)"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Gregor Mendel conducted his classic hybridisation experiments primarily using the garden pea, Pisum sativum.",
     "difficulty": "easy"
   },
@@ -20,12 +20,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Mendel chose the garden pea for his experiments largely because it showed several easily distinguishable, contrasting traits, referred to as:",
     "options": [
-      "Recessive traits only",
-      "Codominant traits",
       "Contrasting/discrete characters",
-      "Polygenic traits"
+      "Polygenic traits",
+      "Codominant traits",
+      "Recessive traits only"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "Mendel selected the garden pea because it displayed several easily distinguishable, contrasting (discrete) characters, making inheritance patterns easy to track.",
     "difficulty": "medium"
   },
@@ -34,10 +34,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In a monohybrid cross between a true-breeding tall pea plant and a true-breeding dwarf pea plant, all the F1 offspring were:",
     "options": [
-      "Dwarf",
+      "Half tall and half dwarf",
       "Tall",
-      "Intermediate in height",
-      "Half tall and half dwarf"
+      "Dwarf",
+      "Intermediate in height"
     ],
     "correctIndex": 1,
     "explanation": "In a monohybrid cross between true-breeding tall and dwarf pea plants, all F1 offspring were tall, since tallness is the dominant trait.",
@@ -48,12 +48,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Mendel's Law of Dominance states that, in a heterozygous individual, one allele of a gene pair:",
     "options": [
-      "Blends completely with the other allele",
+      "Masks the expression of the other, recessive allele",
       "Has no effect on the phenotype",
       "Is expressed only in alternate generations",
-      "Masks the expression of the other, recessive allele"
+      "Blends completely with the other allele"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Mendel's Law of Dominance states that in a heterozygote, one allele (the dominant one) masks the expression of the other, recessive allele.",
     "difficulty": "easy"
   },
@@ -63,11 +63,11 @@ const questions: Question[] = [
     "question": "When Mendel self-pollinated the F1 tall plants (from a tall x dwarf cross), the F2 generation showed a phenotypic ratio of tall to dwarf plants of approximately:",
     "options": [
       "1:1",
-      "3:1",
       "9:3:3:1",
+      "3:1",
       "1:2:1"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "When F1 tall plants were self-pollinated, the F2 generation showed a phenotypic ratio of approximately 3 tall : 1 dwarf.",
     "difficulty": "easy"
   },
@@ -76,12 +76,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The reappearance of the recessive dwarf trait in the F2 generation, after being completely masked in F1, led Mendel to propose his:",
     "options": [
-      "Law of Segregation",
+      "Chromosomal theory of inheritance",
       "Law of Independent Assortment",
-      "Law of Dominance exclusively",
-      "Chromosomal theory of inheritance"
+      "Law of Segregation",
+      "Law of Dominance exclusively"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "The reappearance of the recessive dwarf trait in F2, after being fully masked in F1, showed that hereditary factors remain distinct rather than blending, leading Mendel to his Law of Segregation.",
     "difficulty": "medium"
   },
@@ -91,11 +91,11 @@ const questions: Question[] = [
     "question": "Mendel's Law of Segregation states that the two alleles of a gene pair:",
     "options": [
       "Always blend together in the gametes",
+      "Never separate under any circumstances",
       "Are both always expressed simultaneously",
-      "Separate from each other during gamete formation, so that each gamete receives only one allele",
-      "Never separate under any circumstances"
+      "Separate from each other during gamete formation, so that each gamete receives only one allele"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Mendel's Law of Segregation states that the two alleles of a gene pair separate from each other during gamete formation, so each gamete carries only one allele.",
     "difficulty": "easy"
   },
@@ -106,10 +106,10 @@ const questions: Question[] = [
     "options": [
       "In a manner completely dependent on the segregation of the other gene pair",
       "Only when both genes are located on the same chromosome",
-      "Independently of the alleles of the other gene pair",
-      "Only in the F1 generation, never in F2"
+      "Only in the F1 generation, never in F2",
+      "Independently of the alleles of the other gene pair"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Mendel's Law of Independent Assortment states that when two gene pairs are combined in a hybrid, the alleles of one gene segregate independently of the alleles of the other gene.",
     "difficulty": "medium"
   },
@@ -118,12 +118,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In Mendel's classic dihybrid cross involving seed shape (round/wrinkled) and seed colour (yellow/green), the F2 generation showed a characteristic phenotypic ratio of:",
     "options": [
-      "3:1",
-      "1:1",
       "1:2:1",
-      "9:3:3:1"
+      "3:1",
+      "9:3:3:1",
+      "1:1"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "In Mendel's classic dihybrid cross for seed shape and seed colour, the F2 generation showed the characteristic 9:3:3:1 phenotypic ratio.",
     "difficulty": "easy"
   },
@@ -132,12 +132,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A cross between an individual of unknown genotype (showing the dominant phenotype) and a homozygous recessive individual, used to determine whether the unknown individual is homozygous or heterozygous, is called a:",
     "options": [
-      "Test cross",
       "Back cross exclusively, with no other purpose",
+      "Dihybrid cross exclusively",
       "Reciprocal cross",
-      "Dihybrid cross exclusively"
+      "Test cross"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "A cross between an individual of unknown genotype and a homozygous recessive individual, used to reveal whether the unknown is homozygous or heterozygous, is called a test cross.",
     "difficulty": "medium"
   },
@@ -160,12 +160,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The set of alleles present at a given gene locus in an individual, without reference to the outward physical expression, is called the individual's:",
     "options": [
-      "Phenotype",
       "Genotype",
+      "Phenotype",
       "Karyotype",
       "Pedigree"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The set of alleles present at a gene locus in an individual, independent of its outward expression, is called the genotype.",
     "difficulty": "easy"
   },
@@ -174,12 +174,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The observable physical or biochemical characteristics of an organism, resulting from the interaction of its genotype with the environment, are collectively called its:",
     "options": [
-      "Phenotype",
-      "Genotype exclusively",
+      "Pedigree",
       "Karyotype",
-      "Pedigree"
+      "Phenotype",
+      "Genotype exclusively"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "The observable physical or biochemical characteristics resulting from the interaction of genotype with environment are collectively called the phenotype.",
     "difficulty": "easy"
   },
@@ -189,11 +189,11 @@ const questions: Question[] = [
     "question": "An individual possessing two identical alleles for a given gene (e.g. TT or tt) is described as being:",
     "options": [
       "Heterozygous",
-      "Hemizygous",
       "Polygenic",
-      "Homozygous"
+      "Homozygous",
+      "Hemizygous"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "An individual with two identical alleles for a gene (e.g. TT or tt) is described as homozygous.",
     "difficulty": "easy"
   },
@@ -202,12 +202,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "An individual possessing two different alleles for a given gene (e.g. Tt) is described as being:",
     "options": [
-      "Homozygous",
       "Heterozygous",
       "Hemizygous",
+      "Homozygous",
       "Polygenic"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "An individual with two different alleles for a gene (e.g. Tt) is described as heterozygous.",
     "difficulty": "easy"
   },
@@ -216,12 +216,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A graphical, grid-based method commonly used to predict the possible genotypes and phenotypes of offspring from a given genetic cross is called a:",
     "options": [
-      "Pedigree chart",
       "Karyotype chart",
-      "Punnett square",
-      "Linkage map"
+      "Pedigree chart",
+      "Linkage map",
+      "Punnett square"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "A grid-based method used to predict possible genotypes and phenotypes of offspring from a genetic cross is called a Punnett square.",
     "difficulty": "easy"
   },
@@ -230,12 +230,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In a standard monohybrid cross between two heterozygous individuals (Tt x Tt), the expected genotypic ratio in the offspring is:",
     "options": [
-      "3:1",
-      "1:2:1",
       "9:3:3:1",
-      "1:1"
+      "1:1",
+      "3:1",
+      "1:2:1"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "In a monohybrid cross between two heterozygotes (Tt x Tt), the expected genotypic ratio is 1:2:1 (TT:Tt:tt).",
     "difficulty": "medium"
   },
@@ -245,8 +245,8 @@ const questions: Question[] = [
     "question": "In a dihybrid cross between two individuals heterozygous for two independently assorting genes (e.g. RrYy x RrYy), the expected phenotypic ratio in the offspring, assuming complete dominance, is:",
     "options": [
       "9:3:3:1",
-      "3:1",
       "1:1:1:1",
+      "3:1",
       "1:2:1"
     ],
     "correctIndex": 0,
@@ -258,12 +258,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A test cross between a dihybrid individual (RrYy) and a double homozygous recessive individual (rryy) is expected to produce offspring in which genotypic and phenotypic ratio?",
     "options": [
-      "9:3:3:1",
-      "3:1",
       "1:2:1",
-      "1:1:1:1"
+      "9:3:3:1",
+      "1:1:1:1",
+      "3:1"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "A test cross between a dihybrid (RrYy) and a double homozygous recessive (rryy) is expected to give offspring in a 1:1:1:1 ratio.",
     "difficulty": "hard"
   },
@@ -272,12 +272,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The physical location of a specific gene on a chromosome is referred to as its:",
     "options": [
-      "Locus",
-      "Allele",
       "Genotype",
-      "Phenotype"
+      "Phenotype",
+      "Locus",
+      "Allele"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "The physical location of a specific gene on a chromosome is called its locus.",
     "difficulty": "easy"
   },
@@ -286,12 +286,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Different forms of the same gene, occupying the same locus on homologous chromosomes but potentially producing different phenotypic effects, are called:",
     "options": [
+      "Karyotypes",
       "Alleles",
       "Loci",
-      "Genotypes exclusively",
-      "Karyotypes"
+      "Genotypes exclusively"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Different forms of the same gene, occupying the same locus on homologous chromosomes but potentially producing different phenotypic effects, are called alleles.",
     "difficulty": "easy"
   },
@@ -300,8 +300,8 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The observation that F1 hybrids in Mendel's experiments consistently resembled one of the two parents (in terms of the dominant trait), while the recessive trait reappeared unaltered in F2, indicated that hereditary factors are:",
     "options": [
-      "Blended and never separated",
       "Permanently lost after F1",
+      "Blended and never separated",
       "Discrete, particulate units that retain their identity across generations",
       "Entirely dependent on environmental conditions"
     ],
@@ -314,12 +314,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In Mirabilis jalapa (the four o'clock plant), a cross between red-flowered and white-flowered plants produces F1 offspring with pink flowers, an intermediate phenotype. This is an example of:",
     "options": [
-      "Complete dominance",
       "Incomplete dominance",
       "Codominance",
+      "Complete dominance",
       "Multiple allelism"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "In Mirabilis jalapa, a red x white flower cross producing pink (intermediate) F1 offspring is a classic example of incomplete dominance.",
     "difficulty": "easy"
   },
@@ -328,12 +328,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In cases of incomplete dominance, since the heterozygote shows a distinct, intermediate phenotype, the F2 phenotypic ratio typically becomes identical to the genotypic ratio of:",
     "options": [
-      "3:1",
+      "1:2:1",
       "9:3:3:1",
       "1:1",
-      "1:2:1"
+      "3:1"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "In incomplete dominance, because the heterozygote is distinctly intermediate, the F2 phenotypic ratio becomes identical to the genotypic ratio of 1:2:1.",
     "difficulty": "medium"
   },
@@ -342,10 +342,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Codominance is a phenomenon in which, unlike incomplete dominance, both alleles of a heterozygous individual are:",
     "options": [
-      "Completely masked, with neither being expressed",
+      "Expressed only in alternating generations",
       "Fully and independently expressed in the phenotype, with neither dominating the other",
-      "Blended to form an intermediate phenotype",
-      "Expressed only in alternating generations"
+      "Completely masked, with neither being expressed",
+      "Blended to form an intermediate phenotype"
     ],
     "correctIndex": 1,
     "explanation": "Codominance is when both alleles of a heterozygote are fully and independently expressed in the phenotype, with neither masking the other.",
@@ -356,12 +356,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The classic example of codominance discussed in the context of human genetics is the inheritance pattern of the:",
     "options": [
-      "ABO blood group system",
-      "Rh blood group system exclusively",
+      "Height trait",
       "Eye colour trait",
-      "Height trait"
+      "Rh blood group system exclusively",
+      "ABO blood group system"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "The classic human example of codominance discussed in NCERT is the inheritance of the ABO blood group system.",
     "difficulty": "easy"
   },
@@ -370,12 +370,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The ABO blood group system in humans is controlled by a single gene with three different alleles, IA, IB, and i, illustrating the phenomenon of:",
     "options": [
-      "Incomplete dominance exclusively",
-      "Pleiotropy",
       "Multiple allelism",
-      "Polygenic inheritance"
+      "Polygenic inheritance",
+      "Incomplete dominance exclusively",
+      "Pleiotropy"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "The ABO blood group system, controlled by a single gene with three alleles (IA, IB, i), illustrates multiple allelism.",
     "difficulty": "medium"
   },
@@ -384,10 +384,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In the ABO blood group system, an individual with the genotype IA IB expresses both A and B antigens on their red blood cells simultaneously, illustrating:",
     "options": [
-      "Incomplete dominance",
+      "Polygenic inheritance",
       "Pleiotropy",
       "Codominance between the IA and IB alleles",
-      "Polygenic inheritance"
+      "Incomplete dominance"
     ],
     "correctIndex": 2,
     "explanation": "An individual with genotype IA IB expresses both A and B antigens simultaneously, illustrating codominance between the IA and IB alleles.",
@@ -400,10 +400,10 @@ const questions: Question[] = [
     "options": [
       "Codominant with both IA and IB",
       "Dominant over both IA and IB",
-      "Dominant over IA but recessive to IB",
-      "Recessive to both IA and IB"
+      "Recessive to both IA and IB",
+      "Dominant over IA but recessive to IB"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "In the ABO system, the allele 'i' is recessive to both IA and IB.",
     "difficulty": "medium"
   },
@@ -426,12 +426,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The concept of 'multiple alleles' refers to a situation in which a single gene locus has:",
     "options": [
+      "No allelic variation at all",
       "Only two possible allelic forms, with no exceptions",
       "More than two allelic forms within a population, though any individual carries only two of them",
-      "No allelic variation at all",
       "A completely different structure in every individual"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Multiple alleles refers to a gene locus having more than two allelic forms within a population, though any individual carries only two of them.",
     "difficulty": "medium"
   },
@@ -440,12 +440,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following best distinguishes multiple allelism from codominance?",
     "options": [
-      "They are identical concepts with no distinction",
-      "Multiple allelism refers to the existence of more than two alleles for a gene at the population level, while codominance refers to the simultaneous expression of two alleles in a single heterozygous individual",
       "Multiple allelism only applies to plants; codominance only applies to animals",
-      "Codominance requires exactly three alleles at a locus"
+      "They are identical concepts with no distinction",
+      "Codominance requires exactly three alleles at a locus",
+      "Multiple allelism refers to the existence of more than two alleles for a gene at the population level, while codominance refers to the simultaneous expression of two alleles in a single heterozygous individual"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Multiple allelism refers to more than two alleles existing for a gene at the population level, while codominance refers to simultaneous expression of two alleles within a single heterozygous individual — distinct but related concepts.",
     "difficulty": "hard"
   },
@@ -454,12 +454,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A single gene that influences multiple, seemingly unrelated phenotypic traits simultaneously is said to exhibit:",
     "options": [
-      "Pleiotropy",
-      "Codominance",
       "Incomplete dominance",
-      "Multiple allelism"
+      "Multiple allelism",
+      "Pleiotropy",
+      "Codominance"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "A single gene influencing multiple, seemingly unrelated phenotypic traits simultaneously is said to exhibit pleiotropy.",
     "difficulty": "medium"
   },
@@ -468,12 +468,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The genetic disorder phenylketonuria (PKU) in humans, in which a single mutated gene affects the level of phenylalanine, causing multiple symptoms including mental retardation and pigmentation defects, is often cited as a classic example of:",
     "options": [
+      "Pleiotropy",
       "Codominance",
       "Incomplete dominance",
-      "Multiple allelism",
-      "Pleiotropy"
+      "Multiple allelism"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Phenylketonuria, where a single mutated gene affects phenylalanine levels causing multiple symptoms including mental retardation and pigmentation defects, is a classic example of pleiotropy.",
     "difficulty": "medium"
   },
@@ -482,12 +482,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Traits controlled by the combined, additive effect of multiple genes, rather than a single gene, are said to show:",
     "options": [
+      "Multiple allelism",
       "Pleiotropy",
-      "Polygenic inheritance",
       "Codominance",
-      "Multiple allelism"
+      "Polygenic inheritance"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Traits controlled by the combined, additive effect of multiple genes are said to show polygenic inheritance.",
     "difficulty": "easy"
   },
@@ -496,12 +496,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Human skin colour, which shows a continuous range of variation rather than a small number of discrete categories, is a classic example of a trait controlled by:",
     "options": [
-      "A single gene with complete dominance",
       "A single gene with codominance",
-      "Polygenic inheritance, involving the additive effects of multiple genes",
-      "A single sex-linked gene"
+      "A single sex-linked gene",
+      "A single gene with complete dominance",
+      "Polygenic inheritance, involving the additive effects of multiple genes"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Human skin colour, showing continuous variation rather than discrete categories, is a classic example of polygenic inheritance.",
     "difficulty": "medium"
   },
@@ -510,12 +510,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Polygenic traits, unlike simple Mendelian traits, are typically characterised by:",
     "options": [
-      "Sharp, discrete phenotypic categories with no intermediate forms",
       "A continuous range of phenotypic variation influenced by multiple genes and often the environment",
+      "Being controlled by a single dominant allele",
       "Complete independence from environmental influence",
-      "Being controlled by a single dominant allele"
+      "Sharp, discrete phenotypic categories with no intermediate forms"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Polygenic traits are characterised by a continuous range of phenotypic variation, influenced by multiple genes and often the environment.",
     "difficulty": "medium"
   },
@@ -538,12 +538,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Chromosomal Theory of Inheritance, proposing that genes are located on chromosomes, was independently put forward by:",
     "options": [
-      "Mendel alone",
       "Watson and Crick",
+      "Sutton and Boveri",
       "Griffith and Avery",
-      "Sutton and Boveri"
+      "Mendel alone"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "The Chromosomal Theory of Inheritance, proposing that genes are located on chromosomes, was independently proposed by Sutton and Boveri.",
     "difficulty": "medium"
   },
@@ -552,12 +552,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The Chromosomal Theory of Inheritance was experimentally validated through detailed studies on the fruit fly (Drosophila melanogaster) conducted primarily by:",
     "options": [
-      "Thomas Hunt Morgan and his colleagues",
-      "Gregor Mendel",
       "Alfred Hershey and Martha Chase",
-      "Barbara McClintock exclusively"
+      "Barbara McClintock exclusively",
+      "Gregor Mendel",
+      "Thomas Hunt Morgan and his colleagues"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "The Chromosomal Theory of Inheritance was experimentally validated through detailed Drosophila studies conducted primarily by Thomas Hunt Morgan and colleagues.",
     "difficulty": "medium"
   },
@@ -566,12 +566,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Genes that are located on the same chromosome and therefore tend to be inherited together, rather than assorting independently, are said to show:",
     "options": [
-      "Linkage",
-      "Codominance",
       "Polygenic inheritance",
-      "Multiple allelism"
+      "Linkage",
+      "Multiple allelism",
+      "Codominance"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Genes located on the same chromosome, tending to be inherited together rather than assorting independently, are said to show linkage.",
     "difficulty": "easy"
   },
@@ -580,12 +580,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Morgan's experiments on Drosophila found that genes located close together on the same chromosome showed a lower frequency of recombination compared to genes that were:",
     "options": [
-      "Located on entirely different chromosomes",
       "Also located very close together on the same chromosome",
       "Located far apart on the same chromosome",
-      "Not present in the genome at all"
+      "Not present in the genome at all",
+      "Located on entirely different chromosomes"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Morgan's Drosophila experiments found that genes located close together showed lower recombination frequency than genes located farther apart on the same chromosome.",
     "difficulty": "medium"
   },
@@ -594,12 +594,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "The exchange of genetic material between homologous chromosomes during meiosis, which can produce new combinations of linked genes, is called:",
     "options": [
-      "Mutation",
       "Recombination (crossing over)",
+      "Mutation",
       "Codominance",
       "Independent assortment exclusively, with no crossing over involved"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "The exchange of genetic material between homologous chromosomes during meiosis, producing new combinations of linked genes, is called recombination (crossing over).",
     "difficulty": "medium"
   },
@@ -608,12 +608,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "According to Morgan's studies, the frequency of recombination between two linked genes is generally:",
     "options": [
-      "Completely unrelated to the physical distance between them",
-      "Higher for genes located very close together on a chromosome",
+      "Lower for genes located close together, and higher for genes located farther apart on the same chromosome",
       "Constant, regardless of the distance between the genes",
-      "Lower for genes located close together, and higher for genes located farther apart on the same chromosome"
+      "Higher for genes located very close together on a chromosome",
+      "Completely unrelated to the physical distance between them"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Recombination frequency between two linked genes is generally lower for genes located close together and higher for genes located farther apart on the same chromosome.",
     "difficulty": "medium"
   },
@@ -622,9 +622,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Genes located very close together on the same chromosome show a very ___ recombination frequency, and are said to be tightly linked.",
     "options": [
-      "High",
-      "Low",
       "Exactly 50%",
+      "Low",
+      "High",
       "Completely random"
     ],
     "correctIndex": 1,
@@ -637,8 +637,8 @@ const questions: Question[] = [
     "question": "The recombination frequency between two genes can be used to estimate the relative distance between them on a chromosome, forming the basis for constructing a:",
     "options": [
       "Genetic (linkage) map",
-      "Karyotype",
       "Pedigree chart",
+      "Karyotype",
       "Punnett square"
     ],
     "correctIndex": 0,
@@ -650,12 +650,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In humans, biological sex is determined by a pair of chromosomes referred to as the:",
     "options": [
-      "Autosomes",
-      "Homologous chromosomes exclusively",
       "Sex chromosomes (X and Y)",
-      "Barr bodies"
+      "Homologous chromosomes exclusively",
+      "Barr bodies",
+      "Autosomes"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "In humans, biological sex is determined by a pair of chromosomes called the sex chromosomes (X and Y).",
     "difficulty": "easy"
   },
@@ -664,10 +664,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In humans, a typical female has two X chromosomes (XX), while a typical male has one X and one Y chromosome, a system of sex determination referred to as:",
     "options": [
-      "ZW type",
+      "Haplodiploidy",
       "XO type",
       "XY type",
-      "Haplodiploidy"
+      "ZW type"
     ],
     "correctIndex": 2,
     "explanation": "In humans, females have two X chromosomes (XX) and males have one X and one Y, a system called the XY type of sex determination.",
@@ -679,11 +679,11 @@ const questions: Question[] = [
     "question": "In humans, the sex of an offspring is primarily determined by which parent's gamete, since this parent produces two types of gametes with respect to the sex chromosome?",
     "options": [
       "The mother, since she produces both X and Y bearing eggs",
-      "Neither parent, since sex is determined randomly",
       "Both parents equally and identically",
-      "The father, since he produces both X-bearing and Y-bearing sperm"
+      "The father, since he produces both X-bearing and Y-bearing sperm",
+      "Neither parent, since sex is determined randomly"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "In humans, since the father produces both X-bearing and Y-bearing sperm, the sex of the offspring is primarily determined by the paternal gamete.",
     "difficulty": "medium"
   },
@@ -692,12 +692,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In certain insects, such as grasshoppers, males have only a single sex chromosome (X) and no corresponding partner, a sex-determination system referred to as the:",
     "options": [
-      "XO type",
-      "XY type",
       "ZW type",
-      "Haplodiploid type"
+      "Haplodiploid type",
+      "XY type",
+      "XO type"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "In insects such as grasshoppers, males have only a single X chromosome with no partner, a system called the XO type.",
     "difficulty": "medium"
   },
@@ -720,12 +720,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In the honeybee, sex determination follows a unique system in which fertilised (diploid) eggs develop into females, while unfertilised (haploid) eggs develop into males. This system is called:",
     "options": [
+      "The XO type",
       "The XY type",
       "Haplodiploidy",
-      "The ZW type",
-      "The XO type"
+      "The ZW type"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "In honeybees, fertilised (diploid) eggs develop into females and unfertilised (haploid) eggs develop into males — a system called haplodiploidy.",
     "difficulty": "medium"
   },
@@ -734,12 +734,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In the haplodiploid sex-determination system seen in honeybees, male bees (drones) are notable for being:",
     "options": [
-      "Haploid, developing from unfertilised eggs",
       "Diploid, just like the females",
+      "Haploid, developing from unfertilised eggs",
       "Triploid",
       "Entirely without any genetic material"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "In the haplodiploid system of honeybees, male drones are notable for being haploid, developing from unfertilised eggs.",
     "difficulty": "medium"
   },
@@ -748,12 +748,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In humans, since a mother (XX) can only contribute an X chromosome to her offspring, while the father can contribute either an X or a Y chromosome, the sex ratio in the human population is generally expected to be approximately:",
     "options": [
-      "All male",
       "All female",
-      "3 males to 1 female",
-      "1:1 (equal numbers of males and females)"
+      "1:1 (equal numbers of males and females)",
+      "All male",
+      "3 males to 1 female"
     ],
-    "correctIndex": 3,
+    "correctIndex": 1,
     "explanation": "Since the mother can only contribute an X chromosome while the father contributes either X or Y with equal probability, the human sex ratio is generally expected to be approximately 1:1.",
     "difficulty": "medium"
   },
@@ -763,11 +763,11 @@ const questions: Question[] = [
     "question": "Human sex chromosomes, in addition to determining sex, also carry other genes unrelated to sex determination, some of which are responsible for certain hereditary disorders, referred to as:",
     "options": [
       "Autosomal disorders exclusively",
-      "Sex-linked (X-linked or Y-linked) disorders",
       "Polygenic disorders exclusively",
+      "Sex-linked (X-linked or Y-linked) disorders",
       "Chromosomal aneuploidies exclusively"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
     "explanation": "Genes on the sex chromosomes unrelated to sex determination, some of which cause hereditary disorders, are referred to as sex-linked (X-linked or Y-linked) disorders.",
     "difficulty": "medium"
   },
@@ -776,12 +776,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Since males in humans possess only a single X chromosome, any recessive allele present on their X chromosome will be:",
     "options": [
-      "Always masked by a corresponding dominant allele on their Y chromosome",
-      "Never expressed under any circumstances",
       "Directly expressed in the phenotype, since there is no second allele to mask it",
+      "Never expressed under any circumstances",
+      "Always masked by a corresponding dominant allele on their Y chromosome",
       "Automatically converted into a dominant allele"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "explanation": "Since males have only a single X chromosome, any recessive allele on it is directly expressed in the phenotype, since there's no second allele to mask it.",
     "difficulty": "medium"
   },
@@ -790,9 +790,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Haemophilia, a Mendelian disorder characterised by excessive bleeding due to a defect in the blood clotting mechanism, is inherited as a(n):",
     "options": [
-      "Autosomal dominant trait",
-      "X-linked recessive trait",
       "Y-linked trait exclusively",
+      "X-linked recessive trait",
+      "Autosomal dominant trait",
       "Polygenic trait"
     ],
     "correctIndex": 1,
@@ -804,12 +804,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Because haemophilia is X-linked recessive, this disorder is observed much more frequently in:",
     "options": [
-      "Males",
       "Females",
+      "Males",
       "Equally in males and females",
       "Neither sex, since it is extremely rare overall"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Because haemophilia is X-linked recessive, it is observed much more frequently in males.",
     "difficulty": "medium"
   },
@@ -818,12 +818,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Red-green colour blindness in humans, another classic example of an X-linked recessive Mendelian disorder, results from a defect in one or more of the genes responsible for:",
     "options": [
-      "Rod cell function in the retina",
+      "Cone cell pigments in the retina responsible for colour vision",
       "The lens of the eye",
       "The optic nerve exclusively",
-      "Cone cell pigments in the retina responsible for colour vision"
+      "Rod cell function in the retina"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Red-green colour blindness, another classic X-linked recessive disorder, results from a defect in cone cell pigment genes responsible for colour vision.",
     "difficulty": "medium"
   },
@@ -832,12 +832,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Sickle cell anaemia, an autosomal recessive Mendelian disorder, is caused by a single point mutation that alters the structure of which protein?",
     "options": [
-      "Haemoglobin",
       "Insulin",
-      "Keratin",
-      "Collagen"
+      "Collagen",
+      "Haemoglobin",
+      "Keratin"
     ],
-    "correctIndex": 0,
+    "correctIndex": 2,
     "explanation": "Sickle cell anaemia, an autosomal recessive disorder, is caused by a point mutation that alters the structure of haemoglobin.",
     "difficulty": "easy"
   },
@@ -846,12 +846,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In sickle cell anaemia, the mutated haemoglobin causes red blood cells to become abnormally shaped, particularly under conditions of low oxygen tension, adopting a characteristic:",
     "options": [
-      "Elongated, sickle-like shape",
-      "Perfectly spherical shape",
       "Flattened, disc shape identical to normal cells",
-      "Star-like shape"
+      "Star-like shape",
+      "Perfectly spherical shape",
+      "Elongated, sickle-like shape"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "In sickle cell anaemia, mutated haemoglobin causes red blood cells to adopt an abnormal, elongated sickle-like shape, particularly under low oxygen tension.",
     "difficulty": "easy"
   },
@@ -860,12 +860,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Thalassemia, another autosomal recessive Mendelian blood disorder, results from a quantitative defect, specifically a reduced rate of synthesis of one or more:",
     "options": [
-      "Blood clotting factors",
       "White blood cell types",
-      "Globin chains that make up the haemoglobin molecule",
-      "Platelet precursor cells"
+      "Platelet precursor cells",
+      "Blood clotting factors",
+      "Globin chains that make up the haemoglobin molecule"
     ],
-    "correctIndex": 2,
+    "correctIndex": 3,
     "explanation": "Thalassemia is caused by a reduced rate of synthesis of one or more globin chains that make up the haemoglobin molecule.",
     "difficulty": "medium"
   },
@@ -874,12 +874,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Phenylketonuria (PKU), an autosomal recessive Mendelian metabolic disorder, results from the individual's inability to properly convert the amino acid phenylalanine into:",
     "options": [
-      "Glucose",
       "Tyrosine",
-      "Glycine",
-      "Lactose"
+      "Lactose",
+      "Glucose",
+      "Glycine"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "explanation": "Phenylketonuria results from an inability to properly convert phenylalanine into tyrosine.",
     "difficulty": "medium"
   },
@@ -889,8 +889,8 @@ const questions: Question[] = [
     "question": "If untreated, the accumulation of phenylalanine and its by-products in individuals with phenylketonuria can lead to serious harm, particularly to the:",
     "options": [
       "Skeletal system exclusively",
-      "Skin exclusively",
       "Digestive system exclusively",
+      "Skin exclusively",
       "Central nervous system, resulting in mental retardation"
     ],
     "correctIndex": 3,
@@ -902,9 +902,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Sickle cell anaemia is inherited in an autosomal recessive manner, meaning that an individual must inherit the mutated allele from:",
     "options": [
-      "Only their father",
-      "Both parents, in order to show the disease",
       "Only their mother",
+      "Both parents, in order to show the disease",
+      "Only their father",
       "Neither parent; it always arises spontaneously"
     ],
     "correctIndex": 1,
@@ -916,12 +916,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following Mendelian disorders is inherited as an X-linked recessive trait, rather than an autosomal recessive trait?",
     "options": [
-      "Haemophilia",
       "Sickle cell anaemia",
       "Thalassemia",
-      "Phenylketonuria"
+      "Phenylketonuria",
+      "Haemophilia"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Among the listed Mendelian disorders, haemophilia is inherited as an X-linked recessive trait, unlike the other autosomal recessive disorders.",
     "difficulty": "easy"
   },
@@ -930,12 +930,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Chromosomal disorders arise mainly due to an abnormal number of chromosomes (aneuploidy) or structural changes within chromosomes, in contrast to Mendelian disorders which typically result from mutations in a:",
     "options": [
-      "Whole chromosome set",
       "Group of unrelated chromosomes",
       "Single gene",
-      "Cytoplasmic organelle"
+      "Cytoplasmic organelle",
+      "Whole chromosome set"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
     "explanation": "Chromosomal disorders result from an abnormal chromosome number or structure, whereas Mendelian disorders typically arise from mutations in a single gene.",
     "difficulty": "easy"
   },
@@ -944,10 +944,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Down syndrome, one of the most common chromosomal disorders in humans, results from the presence of an extra copy of chromosome number:",
     "options": [
-      "18",
+      "23",
       "13",
       "21",
-      "23"
+      "18"
     ],
     "correctIndex": 2,
     "explanation": "Down syndrome results from the presence of an extra copy of chromosome number 21.",
@@ -958,12 +958,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Because Down syndrome involves three copies of chromosome 21 instead of the usual two, it is described as a case of:",
     "options": [
-      "Monosomy",
-      "Haploidy",
+      "Trisomy",
       "Polyploidy",
-      "Trisomy"
+      "Haploidy",
+      "Monosomy"
     ],
-    "correctIndex": 3,
+    "correctIndex": 0,
     "explanation": "Since Down syndrome involves three copies of chromosome 21 instead of two, it is described as a case of trisomy.",
     "difficulty": "medium"
   },
@@ -972,12 +972,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Turner syndrome, a chromosomal disorder affecting females, results from the presence of only a single X chromosome, with the sex chromosome constitution written as:",
     "options": [
-      "45, X (XO)",
-      "47, XXY",
       "47, XXX",
-      "46, XY"
+      "47, XXY",
+      "46, XY",
+      "45, X (XO)"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Turner syndrome, resulting from a single X chromosome in females, has the sex chromosome constitution 45, X (XO).",
     "difficulty": "medium"
   },
@@ -1000,12 +1000,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Individuals with Klinefelter syndrome (47, XXY) typically show overall body features that are:",
     "options": [
-      "Entirely typical of an unaffected male, with no distinguishing features",
-      "Predominantly male, though often with some feminised characteristics such as gynecomastia",
+      "Impossible to characterise in any way",
       "Predominantly female in every respect",
-      "Impossible to characterise in any way"
+      "Entirely typical of an unaffected male, with no distinguishing features",
+      "Predominantly male, though often with some feminised characteristics such as gynecomastia"
     ],
-    "correctIndex": 1,
+    "correctIndex": 3,
     "explanation": "Individuals with Klinefelter syndrome (47, XXY) typically show predominantly male body features, though often with some feminised characteristics such as gynecomastia.",
     "difficulty": "medium"
   },
@@ -1014,12 +1014,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Individuals with Turner syndrome (45, X) are generally characterised by underdeveloped ovaries and:",
     "options": [
-      "Short stature and a webbed neck, among other features",
       "Excessively tall stature, well above the population average",
-      "A completely normal reproductive system with full fertility",
-      "An extra Y chromosome"
+      "Short stature and a webbed neck, among other features",
+      "An extra Y chromosome",
+      "A completely normal reproductive system with full fertility"
     ],
-    "correctIndex": 0,
+    "correctIndex": 1,
     "explanation": "Individuals with Turner syndrome (45, X) are generally characterised by underdeveloped ovaries, short stature, and a webbed neck, among other features.",
     "difficulty": "medium"
   },
@@ -1042,9 +1042,9 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "A diagrammatic representation of the inheritance of a particular trait across several generations of a family, commonly used to trace the pattern of a hereditary disorder, is called a:",
     "options": [
-      "Karyotype",
-      "Pedigree chart",
       "Punnett square",
+      "Pedigree chart",
+      "Karyotype",
       "Genetic linkage map"
     ],
     "correctIndex": 1,
@@ -1056,10 +1056,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Pedigree analysis is a particularly valuable tool in human genetics mainly because, unlike with experimental organisms such as pea plants or fruit flies, researchers studying humans cannot:",
     "options": [
-      "Observe any hereditary patterns at all",
+      "Access any historical family records",
       "Study large family groups",
       "Perform controlled experimental crosses on human subjects",
-      "Access any historical family records"
+      "Observe any hereditary patterns at all"
     ],
     "correctIndex": 2,
     "explanation": "Pedigree analysis is valuable in human genetics because, unlike with pea plants or fruit flies, researchers cannot perform controlled experimental crosses on human subjects.",
@@ -1070,10 +1070,10 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "In a standard pedigree chart, a filled (shaded) symbol is generally used to represent an individual who:",
     "options": [
-      "Is entirely unaffected by the trait being studied",
-      "Is affected by the trait/disorder being studied",
       "Has not yet been tested for the trait",
-      "Is deceased, regardless of their phenotype"
+      "Is affected by the trait/disorder being studied",
+      "Is deceased, regardless of their phenotype",
+      "Is entirely unaffected by the trait being studied"
     ],
     "correctIndex": 1,
     "explanation": "In a standard pedigree chart, a filled (shaded) symbol generally represents an individual who is affected by the trait/disorder being studied.",
@@ -1084,12 +1084,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Which of the following disorders would be expected to show an inheritance pattern in a pedigree chart consistent with X-linked recessive inheritance, i.e. affecting males much more frequently than females?",
     "options": [
-      "Haemophilia",
-      "Down syndrome",
+      "Klinefelter syndrome",
       "Turner syndrome",
-      "Klinefelter syndrome"
+      "Down syndrome",
+      "Haemophilia"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "Haemophilia would be expected to show an X-linked recessive inheritance pattern in a pedigree, affecting males much more frequently than females.",
     "difficulty": "easy"
   },
@@ -1099,11 +1099,11 @@ const questions: Question[] = [
     "question": "Which of the following disorders would be expected to show an inheritance pattern in a pedigree chart consistent with autosomal recessive inheritance, potentially affecting both males and females roughly equally?",
     "options": [
       "Klinefelter syndrome",
-      "Turner syndrome",
       "Haemophilia",
-      "Sickle cell anaemia"
+      "Sickle cell anaemia",
+      "Turner syndrome"
     ],
-    "correctIndex": 3,
+    "correctIndex": 2,
     "explanation": "Sickle cell anaemia would be expected to show an autosomal recessive inheritance pattern, potentially affecting males and females roughly equally.",
     "difficulty": "easy"
   },
@@ -1112,12 +1112,12 @@ const questions: Question[] = [
     "type": "mcq",
     "question": "Overall, the combined study of Mendelian genetics, chromosomal theory, sex determination, and pedigree analysis provides the conceptual foundation for understanding:",
     "options": [
-      "How traits, including inherited disorders, are passed from parents to offspring across generations",
       "Only plant classification",
       "Only the structure of proteins",
-      "Only the process of photosynthesis"
+      "Only the process of photosynthesis",
+      "How traits, including inherited disorders, are passed from parents to offspring across generations"
     ],
-    "correctIndex": 0,
+    "correctIndex": 3,
     "explanation": "The combined study of Mendelian genetics, chromosomal theory, sex determination, and pedigree analysis together provides the conceptual foundation for understanding how traits, including inherited disorders, are passed from parents to offspring across generations.",
     "difficulty": "medium"
   }
