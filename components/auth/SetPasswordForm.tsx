@@ -5,9 +5,22 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, Lock, AlertCircle, CheckCircle2 } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { migrateLocalDataToAccount } from "@/lib/localMigration";
-import { AuthShell } from "@/components/auth/AuthForm";
+import {
+  AuthShell,
+  authButtonCls,
+  authErrorCls,
+  authFieldCls,
+  authIconCls,
+  authInputCls,
+  authLabelCls,
+} from "@/components/auth/AuthForm";
 
-export function SetPasswordForm() {
+interface SetPasswordFormProps {
+  /** "confirm" = just verified email on sign-up; "reset" = arrived from a forgot-password email. */
+  mode?: "confirm" | "reset";
+}
+
+export function SetPasswordForm({ mode = "confirm" }: SetPasswordFormProps) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,12 +36,12 @@ export function SetPasswordForm() {
     const supabase = createSupabaseBrowserClient();
     supabase.auth.getUser().then(({ data }) => {
       if (!data.user) {
-        router.replace("/login");
+        router.replace(mode === "reset" ? "/forgot-password" : "/login");
         return;
       }
       setChecking(false);
     });
-  }, [router]);
+  }, [router, mode]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -56,22 +69,22 @@ export function SetPasswordForm() {
   if (checking) {
     return (
       <AuthShell>
-        <div className="py-6 text-center text-[13.5px] text-white/40">Confirming your email…</div>
+        <div className="py-6 text-center text-[13.5px] text-slate-500">{mode === "reset" ? "Verifying your reset link…" : "Confirming your email…"}</div>
       </AuthShell>
     );
   }
 
   return (
     <AuthShell>
-      <CheckCircle2 size={26} strokeWidth={1.5} className="mb-4 text-[#D8B4FE]" />
-      <h1 className="text-[24px] font-semibold text-[#F6F4FF]">Email confirmed</h1>
-      <p className="mt-1.5 text-[13.5px] text-white/50">Now create a password to finish setting up your account.</p>
+      <CheckCircle2 size={26} strokeWidth={1.5} className="mb-4 text-violet-600" />
+      <h1 className="text-[24px] font-semibold text-slate-900">{mode === "reset" ? "Choose a new password" : "Email confirmed"}</h1>
+      <p className="mt-1.5 text-[13.5px] text-slate-500">{mode === "reset" ? "Pick a new password for your account." : "Now create a password to finish setting up your account."}</p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <label className="block">
-          <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Password</span>
-          <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
-            <Lock size={15} strokeWidth={1.75} className="text-white/30" />
+          <span className={authLabelCls}>Password</span>
+          <div className={authFieldCls}>
+            <Lock size={15} strokeWidth={1.75} className={authIconCls} />
             <input
               type="password"
               required
@@ -81,15 +94,15 @@ export function SetPasswordForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="At least 6 characters"
-              className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
+              className={authInputCls}
             />
           </div>
         </label>
 
         <label className="block">
-          <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Confirm password</span>
-          <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
-            <Lock size={15} strokeWidth={1.75} className="text-white/30" />
+          <span className={authLabelCls}>Confirm password</span>
+          <div className={authFieldCls}>
+            <Lock size={15} strokeWidth={1.75} className={authIconCls} />
             <input
               type="password"
               required
@@ -98,13 +111,13 @@ export function SetPasswordForm() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Re-enter your password"
-              className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
+              className={authInputCls}
             />
           </div>
         </label>
 
         {error && (
-          <div className="flex items-start gap-2 rounded-xl border border-red-400/25 bg-red-500/10 px-3.5 py-2.5 text-[12.5px] text-red-300">
+          <div className={authErrorCls}>
             <AlertCircle size={14} strokeWidth={1.75} className="mt-0.5 flex-shrink-0" />
             {error}
           </div>
@@ -113,9 +126,9 @@ export function SetPasswordForm() {
         <button
           type="submit"
           disabled={loading}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#F6F4FF] px-6 py-3.5 text-[15px] font-medium text-black transition-transform hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100"
+          className={authButtonCls}
         >
-          {loading ? "Please wait…" : "Set password & continue"}
+          {loading ? "Please wait…" : mode === "reset" ? "Update password" : "Set password & continue"}
           {!loading && <ArrowRight size={16} strokeWidth={2} />}
         </button>
       </form>

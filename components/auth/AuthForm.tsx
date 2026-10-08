@@ -70,13 +70,13 @@ export function AuthForm({ mode }: AuthFormProps) {
     return (
       <AuthShell>
         <div className="text-center">
-          <Mail size={28} strokeWidth={1.5} className="mx-auto mb-4 text-[#D8B4FE]" />
-          <h1 className="text-[22px] font-semibold text-[#F6F4FF]">Check your inbox</h1>
-          <p className="mt-2 text-[13.5px] text-white/50">
-            We&apos;ve sent a confirmation link to <span className="text-white/80">{email}</span>. Click it to
+          <Mail size={28} strokeWidth={1.5} className="mx-auto mb-4 text-violet-600" />
+          <h1 className="text-[22px] font-semibold text-slate-900">Check your inbox</h1>
+          <p className="mt-2 text-[13.5px] text-slate-500">
+            We&apos;ve sent a confirmation link to <span className="text-slate-800">{email}</span>. Click it to
             confirm your email and you&apos;ll be logged straight in.
           </p>
-          <Link href="/login" className="mt-6 inline-block text-[13px] text-[#D8B4FE] hover:underline">
+          <Link href="/login" className={`mt-6 inline-block text-[13px] ${authLinkCls}`}>
             Back to log in
           </Link>
         </div>
@@ -86,8 +86,8 @@ export function AuthForm({ mode }: AuthFormProps) {
 
   return (
     <AuthShell>
-      <h1 className="text-[24px] font-semibold text-[#F6F4FF]">{mode === "signup" ? "Create your account" : "Welcome back"}</h1>
-      <p className="mt-1.5 text-[13.5px] text-white/50">
+      <h1 className="text-[24px] font-semibold text-slate-900">{mode === "signup" ? "Create your account" : "Welcome back"}</h1>
+      <p className="mt-1.5 text-[13.5px] text-slate-500">
         {mode === "signup"
           ? "Enter your email and choose a password — we'll send a confirmation link to verify it's you."
           : "Log in to pick up where you left off."}
@@ -95,9 +95,9 @@ export function AuthForm({ mode }: AuthFormProps) {
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <label className="block">
-          <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Email</span>
-          <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
-            <Mail size={15} strokeWidth={1.75} className="text-white/30" />
+          <span className={authLabelCls}>Email</span>
+          <div className={authFieldCls}>
+            <Mail size={15} strokeWidth={1.75} className={authIconCls} />
             <input
               type="email"
               required
@@ -105,15 +105,22 @@ export function AuthForm({ mode }: AuthFormProps) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
+              className={authInputCls}
             />
           </div>
         </label>
 
         <label className="block">
-          <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Password</span>
-          <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
-            <Lock size={15} strokeWidth={1.75} className="text-white/30" />
+          <div className="mb-1.5 flex items-center justify-between">
+            <span className="block text-[11px] font-medium uppercase tracking-wide text-slate-500">Password</span>
+            {mode === "login" && (
+              <Link href="/forgot-password" className="text-[12px] text-violet-600 hover:underline">
+                Forgot password?
+              </Link>
+            )}
+          </div>
+          <div className={authFieldCls}>
+            <Lock size={15} strokeWidth={1.75} className={authIconCls} />
             <input
               type="password"
               required
@@ -122,16 +129,16 @@ export function AuthForm({ mode }: AuthFormProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="At least 6 characters"
-              className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
+              className={authInputCls}
             />
           </div>
         </label>
 
         {mode === "signup" && (
           <label className="block">
-            <span className="mb-1.5 block text-[11px] uppercase tracking-wide text-white/40">Confirm password</span>
-            <div className="flex items-center gap-2 rounded-xl border border-white/15 bg-black/25 px-4 py-3 focus-within:border-[#D8B4FE]/50">
-              <Lock size={15} strokeWidth={1.75} className="text-white/30" />
+            <span className={authLabelCls}>Confirm password</span>
+            <div className={authFieldCls}>
+              <Lock size={15} strokeWidth={1.75} className={authIconCls} />
               <input
                 type="password"
                 required
@@ -140,14 +147,14 @@ export function AuthForm({ mode }: AuthFormProps) {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Re-enter your password"
-                className="w-full bg-transparent text-[15px] text-white outline-none placeholder:text-white/25"
+                className={authInputCls}
               />
             </div>
           </label>
         )}
 
         {error && (
-          <div className="flex items-start gap-2 rounded-xl border border-red-400/25 bg-red-500/10 px-3.5 py-2.5 text-[12.5px] text-red-300">
+          <div className={authErrorCls}>
             <AlertCircle size={14} strokeWidth={1.75} className="mt-0.5 flex-shrink-0" />
             {error}
           </div>
@@ -156,25 +163,25 @@ export function AuthForm({ mode }: AuthFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#F6F4FF] px-6 py-3.5 text-[15px] font-medium text-black transition-transform hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100"
+          className={authButtonCls}
         >
           {loading ? "Please wait…" : mode === "signup" ? "Send confirmation link" : "Log in"}
           {!loading && <ArrowRight size={16} strokeWidth={2} />}
         </button>
       </form>
 
-      <p className="mt-6 text-center text-[13px] text-white/40">
+      <p className="mt-6 text-center text-[13px] text-slate-500">
         {mode === "signup" ? (
           <>
             Already have an account?{" "}
-            <Link href="/login" className="text-[#D8B4FE] hover:underline">
+            <Link href="/login" className={authLinkCls}>
               Log in
             </Link>
           </>
         ) : (
           <>
             New here?{" "}
-            <Link href="/signup" className="text-[#D8B4FE] hover:underline">
+            <Link href="/signup" className={authLinkCls}>
               Create an account
             </Link>
           </>
@@ -184,19 +191,37 @@ export function AuthForm({ mode }: AuthFormProps) {
   );
 }
 
+// Shared light-theme styles for every auth screen (login, signup, forgot / reset password).
+export const authLabelCls = "mb-1.5 block text-[11px] font-medium uppercase tracking-wide text-slate-500";
+export const authFieldCls =
+  "flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 transition-colors focus-within:border-violet-500 focus-within:ring-2 focus-within:ring-violet-500/15";
+export const authInputCls = "w-full bg-transparent text-[15px] text-slate-900 outline-none placeholder:text-slate-400";
+export const authIconCls = "text-slate-400";
+export const authButtonCls =
+  "flex w-full items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3.5 text-[15px] font-medium text-white transition-transform hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100";
+export const authErrorCls =
+  "flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-3.5 py-2.5 text-[12.5px] text-red-700";
+export const authLinkCls = "text-violet-600 hover:underline";
+
+/**
+ * Auth screens are always light, whatever theme the person picked inside the app
+ * (there's no theme toggle before logging in, so we don't depend on one).
+ */
 export function AuthShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-16">
+    <div
+      className="flex min-h-screen items-center justify-center px-4 py-16"
+      style={{
+        background:
+          "radial-gradient(900px 500px at 15% 10%, rgba(196,181,253,0.45), transparent 60%), radial-gradient(800px 500px at 90% 90%, rgba(251,207,232,0.4), transparent 60%), #F7F6FB",
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-[420px] overflow-hidden rounded-[28px] border border-white/[0.15] p-8 sm:p-10"
-        style={{
-          background: "rgba(255,255,255,0.07)",
-          backdropFilter: "blur(30px) saturate(160%)",
-          boxShadow: "0 10px 50px rgba(168,85,247,0.18), 0 0 30px rgba(192,132,252,0.2), inset 0 1px 1px rgba(255,255,255,0.3)",
-        }}
+        className="w-full max-w-[420px] overflow-hidden rounded-[28px] border border-slate-200 bg-white p-8 sm:p-10"
+        style={{ boxShadow: "0 10px 40px rgba(76,29,149,0.08), 0 2px 8px rgba(15,23,42,0.05)" }}
       >
         {children}
       </motion.div>

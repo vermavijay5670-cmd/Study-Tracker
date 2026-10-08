@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import { SetPasswordForm } from "@/components/auth/SetPasswordForm";
 
-export default function SetPasswordPage() {
+export default function ResetPasswordPage() {
   return (
     <Suspense>
-      <SetPasswordForm mode="confirm" />
+      <SetPasswordForm mode="reset" />
     </Suspense>
   );
 }
