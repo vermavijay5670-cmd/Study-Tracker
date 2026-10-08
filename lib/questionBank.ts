@@ -77,6 +77,7 @@ const REGISTRY: Record<string, () => Promise<Question[]>> = {
   phy_12_4: () => import("./question-data/phy-12-magnetism-and-matter").then((m) => m.default),
   phy_12_5: () => import("./question-data/phy-12-electromagnetic-induction").then((m) => m.default),
   phy_12_6: () => import("./question-data/phy-12-alternating-current").then((m) => m.default),
+  phy_12_8: () => import("./question-data/phy-12-ray-optics").then((m) => m.default), 
   bio_12_0: () => import("./question-data/bio-12-sexual-reproduction-plants").then((m) => m.default),
   bio_12_1: () => import("./question-data/bio-12-human-reproduction").then((m) => m.default),
   bio_12_2: () => import("./question-data/bio-12-reproductive-health").then((m) => m.default),
