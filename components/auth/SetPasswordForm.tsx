@@ -69,16 +69,16 @@ export function SetPasswordForm({ mode = "confirm" }: SetPasswordFormProps) {
   if (checking) {
     return (
       <AuthShell>
-        <div className="py-6 text-center text-[13.5px] text-slate-500">{mode === "reset" ? "Verifying your reset link…" : "Confirming your email…"}</div>
+        <div className="py-6 text-center text-[13.5px] auth-muted">{mode === "reset" ? "Verifying your reset link…" : "Confirming your email…"}</div>
       </AuthShell>
     );
   }
 
   return (
     <AuthShell>
-      <CheckCircle2 size={26} strokeWidth={1.5} className="mb-4 text-violet-600" />
-      <h1 className="text-[24px] font-semibold text-slate-900">{mode === "reset" ? "Choose a new password" : "Email confirmed"}</h1>
-      <p className="mt-1.5 text-[13.5px] text-slate-500">{mode === "reset" ? "Pick a new password for your account." : "Now create a password to finish setting up your account."}</p>
+      <CheckCircle2 size={26} strokeWidth={1.5} className="mb-4 auth-accent" />
+      <h1 className="text-[24px] font-semibold auth-title">{mode === "reset" ? "Choose a new password" : "Email confirmed"}</h1>
+      <p className="mt-1.5 text-[13.5px] auth-muted">{mode === "reset" ? "Pick a new password for your account." : "Now create a password to finish setting up your account."}</p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
         <label className="block">

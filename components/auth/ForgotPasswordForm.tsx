@@ -41,10 +41,10 @@ export function ForgotPasswordForm() {
     return (
       <AuthShell>
         <div className="text-center">
-          <Mail size={28} strokeWidth={1.5} className="mx-auto mb-4 text-violet-600" />
-          <h1 className="text-[22px] font-semibold text-slate-900">Check your inbox</h1>
-          <p className="mt-2 text-[13.5px] text-slate-500">
-            If an account exists for <span className="text-slate-800">{email}</span>, we&apos;ve sent a link to reset your
+          <Mail size={28} strokeWidth={1.5} className="mx-auto mb-4 auth-accent" />
+          <h1 className="text-[22px] font-semibold auth-title">Check your inbox</h1>
+          <p className="mt-2 text-[13.5px] auth-muted">
+            If an account exists for <span className="auth-strong">{email}</span>, we&apos;ve sent a link to reset your
             password. Open it in this same browser.
           </p>
           <Link href="/login" className={`mt-6 inline-block text-[13px] ${authLinkCls}`}>
@@ -57,8 +57,8 @@ export function ForgotPasswordForm() {
 
   return (
     <AuthShell>
-      <h1 className="text-[24px] font-semibold text-slate-900">Forgot your password?</h1>
-      <p className="mt-1.5 text-[13.5px] text-slate-500">
+      <h1 className="text-[24px] font-semibold auth-title">Forgot your password?</h1>
+      <p className="mt-1.5 text-[13.5px] auth-muted">
         Enter the email you signed up with and we&apos;ll send you a link to choose a new password.
       </p>
 
@@ -93,7 +93,7 @@ export function ForgotPasswordForm() {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-[13px] text-slate-500">
+      <p className="mt-6 text-center text-[13px] auth-muted">
         Remembered it?{" "}
         <Link href="/login" className={authLinkCls}>
           Log in

@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowRight, Lock, Mail, AlertCircle } from "lucide-react";
+import { AlertCircle, ArrowRight, Lock, Mail, Moon, Sun } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { migrateLocalDataToAccount } from "@/lib/localMigration";
+import { useTheme } from "@/lib/ThemeContext";
+import "./auth.css";
 
 interface AuthFormProps {
   mode: "login" | "signup";
@@ -70,10 +72,10 @@ export function AuthForm({ mode }: AuthFormProps) {
     return (
       <AuthShell>
         <div className="text-center">
-          <Mail size={28} strokeWidth={1.5} className="mx-auto mb-4 text-violet-600" />
-          <h1 className="text-[22px] font-semibold text-slate-900">Check your inbox</h1>
-          <p className="mt-2 text-[13.5px] text-slate-500">
-            We&apos;ve sent a confirmation link to <span className="text-slate-800">{email}</span>. Click it to
+          <Mail size={28} strokeWidth={1.5} className="mx-auto mb-4 auth-accent" />
+          <h1 className="text-[22px] font-semibold auth-title">Check your inbox</h1>
+          <p className="mt-2 text-[13.5px] auth-muted">
+            We&apos;ve sent a confirmation link to <span className="auth-strong">{email}</span>. Click it to
             confirm your email and you&apos;ll be logged straight in.
           </p>
           <Link href="/login" className={`mt-6 inline-block text-[13px] ${authLinkCls}`}>
@@ -86,8 +88,8 @@ export function AuthForm({ mode }: AuthFormProps) {
 
   return (
     <AuthShell>
-      <h1 className="text-[24px] font-semibold text-slate-900">{mode === "signup" ? "Create your account" : "Welcome back"}</h1>
-      <p className="mt-1.5 text-[13.5px] text-slate-500">
+      <h1 className="text-[24px] font-semibold auth-title">{mode === "signup" ? "Create your account" : "Welcome back"}</h1>
+      <p className="mt-1.5 text-[13.5px] auth-muted">
         {mode === "signup"
           ? "Enter your email and choose a password — we'll send a confirmation link to verify it's you."
           : "Log in to pick up where you left off."}
@@ -112,9 +114,9 @@ export function AuthForm({ mode }: AuthFormProps) {
 
         <label className="block">
           <div className="mb-1.5 flex items-center justify-between">
-            <span className="block text-[11px] font-medium uppercase tracking-wide text-slate-500">Password</span>
+            <span className="auth-label !mb-0">Password</span>
             {mode === "login" && (
-              <Link href="/forgot-password" className="text-[12px] text-violet-600 hover:underline">
+              <Link href="/forgot-password" className="auth-link text-[12px]">
                 Forgot password?
               </Link>
             )}
@@ -170,7 +172,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-[13px] text-slate-500">
+      <p className="mt-6 text-center text-[13px] auth-muted">
         {mode === "signup" ? (
           <>
             Already have an account?{" "}
@@ -191,37 +193,60 @@ export function AuthForm({ mode }: AuthFormProps) {
   );
 }
 
-// Shared light-theme styles for every auth screen (login, signup, forgot / reset password).
-export const authLabelCls = "mb-1.5 block text-[11px] font-medium uppercase tracking-wide text-slate-500";
-export const authFieldCls =
-  "flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-3 transition-colors focus-within:border-violet-500 focus-within:ring-2 focus-within:ring-violet-500/15";
-export const authInputCls = "w-full bg-transparent text-[15px] text-slate-900 outline-none placeholder:text-slate-400";
-export const authIconCls = "text-slate-400";
-export const authButtonCls =
-  "flex w-full items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3.5 text-[15px] font-medium text-white transition-transform hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100";
-export const authErrorCls =
-  "flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-3.5 py-2.5 text-[12.5px] text-red-700";
-export const authLinkCls = "text-violet-600 hover:underline";
+// Shared class names for every auth screen (styles live in ./auth.css).
+export const authLabelCls = "auth-label";
+export const authFieldCls = "auth-field";
+export const authInputCls = "auth-input";
+export const authIconCls = "auth-icon";
+export const authButtonCls = "auth-btn";
+export const authErrorCls = "auth-error";
+export const authLinkCls = "auth-link";
 
 /**
- * Auth screens are always light, whatever theme the person picked inside the app
- * (there's no theme toggle before logging in, so we don't depend on one).
+ * Auth screens: neumorphic in light mode, glassmorphic in dark mode. They start in light mode
+ * unless this device already has a saved dark preference; the corner button switches (and saves)
+ * the choice the same way the in-app theme setting does.
  */
 export function AuthShell({ children }: { children: React.ReactNode }) {
+  const { setTheme } = useTheme();
+  const [mode, setMode] = useState<"light" | "dark">("light");
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem("st_theme") === "dark") setMode("dark");
+    } catch {
+      // localStorage unavailable — stay light.
+    }
+    setReady(true);
+  }, []);
+
+  function toggle() {
+    const next = mode === "light" ? "dark" : "light";
+    setMode(next);
+    setTheme(next);
+  }
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center px-4 py-16"
-      style={{
-        background:
-          "radial-gradient(900px 500px at 15% 10%, rgba(196,181,253,0.45), transparent 60%), radial-gradient(800px 500px at 90% 90%, rgba(251,207,232,0.4), transparent 60%), #F7F6FB",
-      }}
-    >
+    <div className="auth-root" data-theme={mode}>
+      <span className="auth-blob auth-blob-1" aria-hidden />
+      <span className="auth-blob auth-blob-2" aria-hidden />
+      <span className="auth-blob auth-blob-3" aria-hidden />
+
+      <button
+        type="button"
+        onClick={toggle}
+        className="auth-toggle"
+        aria-label={mode === "light" ? "Switch to dark mode" : "Switch to light mode"}
+      >
+        {mode === "light" ? <Moon size={17} strokeWidth={1.75} /> : <Sun size={17} strokeWidth={1.75} />}
+      </button>
+
       <motion.div
         initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-[420px] overflow-hidden rounded-[28px] border border-slate-200 bg-white p-8 sm:p-10"
-        style={{ boxShadow: "0 10px 40px rgba(76,29,149,0.08), 0 2px 8px rgba(15,23,42,0.05)" }}
+        className="auth-card"
       >
         {children}
       </motion.div>
