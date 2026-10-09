@@ -812,4 +812,4 @@ const questions: Question[] = [
     difficulty: 'medium'
   }
 ];
-export default waveOpticsQuestions;
+export default questions;

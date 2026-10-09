@@ -842,4 +842,4 @@ const questions: Question[] = [
     difficulty: 'easy'
   }
 ];
-export default semiconductorQuestions;
+export default questions;

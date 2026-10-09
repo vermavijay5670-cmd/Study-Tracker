@@ -813,4 +813,4 @@ const questions: Question[] = [
     difficulty: 'easy'
   }
 ];
-export default nucleiQuestions;
+export default questions;

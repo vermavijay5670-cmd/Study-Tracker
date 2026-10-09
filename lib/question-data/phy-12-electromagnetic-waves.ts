@@ -1125,4 +1125,4 @@ const questions: Question[] = [
     difficulty: 'medium'
   },
 ];
-export default electromagneticWavesQuestions;
+export default questions;
