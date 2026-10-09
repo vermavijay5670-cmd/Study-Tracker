@@ -832,4 +832,4 @@ const questions: Question[] = [
     difficulty: 'easy'
   }
 ];
-export default dualNatureQuestions;
+export default questions;
