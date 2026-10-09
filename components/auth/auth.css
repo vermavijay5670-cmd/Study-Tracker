@@ -1,4 +1,4 @@
-/* Auth screens: neumorphism in light mode, glassmorphism in dark mode.
+/* Auth screens: neumorphism in light mode, minimal flat-dark (no card, underline fields) in dark mode.
    Everything is scoped under .auth-root[data-theme] so it can't leak into the app. */
 
 .auth-root {
@@ -26,13 +26,13 @@
   background: var(--a-neu-bg);
 }
 .auth-root[data-theme="dark"] {
-  --a-title: #f6f4ff;
-  --a-strong: rgba(255, 255, 255, 0.8);
-  --a-muted: rgba(255, 255, 255, 0.5);
-  --a-label: rgba(255, 255, 255, 0.4);
-  --a-accent: #d8b4fe;
+  --a-title: #f2f2f2;
+  --a-strong: rgba(255, 255, 255, 0.85);
+  --a-muted: rgba(255, 255, 255, 0.45);
+  --a-label: rgba(255, 255, 255, 0.38);
+  --a-accent: #ffffff;
   --a-icon: rgba(255, 255, 255, 0.3);
-  background: #090912;
+  background: #131313;
 }
 
 .auth-title { color: var(--a-title); }
@@ -52,13 +52,6 @@
   color: var(--a-label);
 }
 
-/* ───────── decorative blobs (glass needs something to blur) ───────── */
-.auth-blob { position: absolute; border-radius: 9999px; filter: blur(70px); pointer-events: none; display: none; }
-.auth-root[data-theme="dark"] .auth-blob { display: block; }
-.auth-blob-1 { width: 380px; height: 380px; left: 8%; top: 10%; background: rgba(139, 92, 246, 0.55); }
-.auth-blob-2 { width: 340px; height: 340px; right: 6%; bottom: 8%; background: rgba(59, 130, 246, 0.4); }
-.auth-blob-3 { width: 280px; height: 280px; right: 28%; top: 6%; background: rgba(236, 72, 153, 0.3); }
-
 /* ───────── card ───────── */
 .auth-card {
   position: relative;
@@ -73,15 +66,6 @@
   border-radius: 32px;
   background: var(--a-neu-bg);
   box-shadow: 14px 14px 30px var(--a-neu-dark), -14px -14px 30px var(--a-neu-light);
-}
-.auth-root[data-theme="dark"] .auth-card {
-  border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.07);
-  -webkit-backdrop-filter: blur(30px) saturate(160%);
-  backdrop-filter: blur(30px) saturate(160%);
-  box-shadow: 0 10px 50px rgba(168, 85, 247, 0.18), 0 0 30px rgba(192, 132, 252, 0.2),
-    inset 0 1px 1px rgba(255, 255, 255, 0.3);
 }
 
 /* ───────── input fields ───────── */
@@ -110,15 +94,6 @@
 .auth-root[data-theme="light"] .auth-input { color: #1e293b; }
 .auth-root[data-theme="light"] .auth-input::placeholder { color: #94a3b8; }
 
-.auth-root[data-theme="dark"] .auth-field {
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.25);
-}
-.auth-root[data-theme="dark"] .auth-field:focus-within { border-color: rgba(216, 180, 254, 0.5); }
-.auth-root[data-theme="dark"] .auth-input { color: #fff; }
-.auth-root[data-theme="dark"] .auth-input::placeholder { color: rgba(255, 255, 255, 0.25); }
-
 /* ───────── primary button ───────── */
 .auth-btn {
   display: flex;
@@ -131,7 +106,7 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
 }
 .auth-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .auth-root[data-theme="light"] .auth-btn {
@@ -146,13 +121,6 @@
 .auth-root[data-theme="light"] .auth-btn:active:not(:disabled) {
   box-shadow: inset 4px 4px 8px var(--a-neu-dark), inset -4px -4px 8px var(--a-neu-light);
 }
-.auth-root[data-theme="dark"] .auth-btn {
-  border: none;
-  background: #f6f4ff;
-  color: #000;
-}
-.auth-root[data-theme="dark"] .auth-btn:hover:not(:disabled) { transform: scale(1.02); }
-
 /* ───────── error box ───────── */
 .auth-error {
   display: flex;
@@ -166,12 +134,6 @@
   background: var(--a-neu-bg);
   color: #b91c1c;
   box-shadow: inset 3px 3px 6px var(--a-neu-dark), inset -3px -3px 6px var(--a-neu-light);
-}
-.auth-root[data-theme="dark"] .auth-error {
-  border-radius: 12px;
-  border: 1px solid rgba(248, 113, 113, 0.25);
-  background: rgba(239, 68, 68, 0.1);
-  color: #fca5a5;
 }
 
 /* ───────── light/dark toggle ───────── */
@@ -198,10 +160,94 @@
 .auth-root[data-theme="light"] .auth-toggle:active {
   box-shadow: inset 3px 3px 6px var(--a-neu-dark), inset -3px -3px 6px var(--a-neu-light);
 }
-.auth-root[data-theme="dark"] .auth-toggle {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
-  color: #e9d5ff;
-  -webkit-backdrop-filter: blur(16px);
-  backdrop-filter: blur(16px);
+
+/* ───────── dark mode: minimal flat style ───────── */
+.auth-wordmark { display: none; }
+
+/* big soft sphere behind the form */
+.auth-root[data-theme="dark"]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(820px, 135vw);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.045);
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015) 55%, transparent 72%);
+  box-shadow: inset 0 0 90px rgba(255, 255, 255, 0.025);
 }
+
+.auth-root[data-theme="dark"] .auth-card {
+  max-width: 340px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+.auth-root[data-theme="dark"] .auth-wordmark {
+  display: block;
+  margin: 0 0 2.75rem;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  color: #e8e8e8;
+}
+.auth-root[data-theme="dark"] .auth-card h1 { font-size: 18px; font-weight: 500; }
+
+/* fields: just an underline, small muted label above */
+.auth-root[data-theme="dark"] .auth-label {
+  margin-bottom: 0.125rem;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+.auth-root[data-theme="dark"] .auth-field {
+  gap: 0;
+  padding: 0.375rem 0 0.625rem;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  background: transparent;
+}
+.auth-root[data-theme="dark"] .auth-field:focus-within { border-bottom-color: rgba(255, 255, 255, 0.55); }
+.auth-root[data-theme="dark"] .auth-field .auth-icon { display: none; }
+.auth-root[data-theme="dark"] .auth-input { color: #fff; font-size: 14px; }
+.auth-root[data-theme="dark"] .auth-input::placeholder { color: rgba(255, 255, 255, 0.22); }
+
+/* flat dark button */
+.auth-root[data-theme="dark"] .auth-btn {
+  border: none;
+  border-radius: 10px;
+  background: #262626;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 1rem 1.5rem;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.auth-root[data-theme="dark"] .auth-btn svg { display: none; }
+.auth-root[data-theme="dark"] .auth-btn:hover:not(:disabled) { background: #303030; color: #fff; }
+.auth-root[data-theme="dark"] .auth-link { font-weight: 600; }
+
+.auth-root[data-theme="dark"] .auth-error {
+  border-radius: 8px;
+  border: 1px solid rgba(248, 113, 113, 0.22);
+  background: rgba(239, 68, 68, 0.08);
+  color: #fca5a5;
+}
+.auth-root[data-theme="dark"] .auth-toggle {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+}
+.auth-root[data-theme="dark"] .auth-link-sm { font-weight: 400; color: var(--a-muted); }
+.auth-root[data-theme="dark"] .auth-link-sm:hover { color: #fff; }

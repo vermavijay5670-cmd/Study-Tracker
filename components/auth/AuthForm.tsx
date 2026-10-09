@@ -116,7 +116,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           <div className="mb-1.5 flex items-center justify-between">
             <span className="auth-label !mb-0">Password</span>
             {mode === "login" && (
-              <Link href="/forgot-password" className="auth-link text-[12px]">
+              <Link href="/forgot-password" className="auth-link auth-link-sm text-[12px]">
                 Forgot password?
               </Link>
             )}
@@ -203,7 +203,7 @@ export const authErrorCls = "auth-error";
 export const authLinkCls = "auth-link";
 
 /**
- * Auth screens: neumorphic in light mode, glassmorphic in dark mode. They start in light mode
+ * Auth screens: neumorphic in light mode, minimal flat-dark in dark mode. They start in light mode
  * unless this device already has a saved dark preference; the corner button switches (and saves)
  * the choice the same way the in-app theme setting does.
  */
@@ -229,9 +229,6 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="auth-root" data-theme={mode}>
-      <span className="auth-blob auth-blob-1" aria-hidden />
-      <span className="auth-blob auth-blob-2" aria-hidden />
-      <span className="auth-blob auth-blob-3" aria-hidden />
 
       <button
         type="button"
@@ -248,6 +245,9 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
         transition={{ duration: 0.5 }}
         className="auth-card"
       >
+        <p className="auth-wordmark" aria-hidden>
+          STUDY TRACKER
+        </p>
         {children}
       </motion.div>
     </div>
