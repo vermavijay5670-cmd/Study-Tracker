@@ -12,6 +12,21 @@ export interface ChapterState {
   assignmentsDone?: boolean; // Biology: assignments completed
 }
 
+export interface CustomChapter {
+  id: number; // stable id — never reused, so deleting/reordering chapters can't mix up saved progress
+  name: string;
+}
+
+/** A subject the person added themselves in Settings (e.g. "Mathematics"). Progress lives in `planner` under `${id}_11_${chapter.id}`. */
+export interface CustomSubject {
+  id: string; // "cs…" — see CUSTOM_ID_RE in dataTransfer
+  name: string;
+  chapters: CustomChapter[];
+  nextChapterId: number;
+}
+
+export type PracticeSubject = Subject | "custom";
+
 export type PracticeKey = "practiceDone" | "neetAdvDone" | "assignmentsDone";
 
 export interface Goal {
@@ -33,7 +48,8 @@ export interface TrackerState {
   studentName: string;
   targetExam: string;
   log: Record<string, number>; // date -> hours
-  planner: Record<string, ChapterState>; // "phy_11_0" -> state
+  planner: Record<string, ChapterState>; // "phy_11_0" -> state (custom subjects: "cs1abc_11_<chapterId>")
+  customSubjects: CustomSubject[]; // subjects the person added in Settings
   subtopics: Record<string, boolean>; // "phy_11_0_2" -> done
   dailyGoals: Record<string, Goal[]>; // date -> that day's goal checklist
   customThoughts: string[]; // user-added positive thoughts, added to the daily rotation pool

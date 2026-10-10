@@ -19,6 +19,7 @@ import {
 import { todayKey } from "@/lib/date-utils";
 import { getSoundEnabled, playPreview, setSoundEnabled, stopAlarm, subscribeAlarm, unlockAudio } from "@/lib/timerAlarm";
 import type { TrackerState } from "@/lib/types";
+import { SubjectsManager } from "./SubjectsManager";
 import "./settings.css";
 
 const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
@@ -81,7 +82,7 @@ export function SettingsDialog({ open, onClose, kineticAvailable }: { open: bool
       if (e.key !== "Tab" || !panelRef.current) return;
       // only genuinely tabbable controls (the hidden file input has tabindex -1)
       const f = Array.from(
-        panelRef.current.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), [href], [tabindex]:not([tabindex="-1"])')
+        panelRef.current.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), textarea:not(:disabled), [href], [tabindex]:not([tabindex="-1"])')
       ).filter((el) => el.tabIndex >= 0 && el.getClientRects().length > 0);
       if (f.length === 0) return;
       const first = f[0];
@@ -190,6 +191,8 @@ export function SettingsDialog({ open, onClose, kineticAvailable }: { open: bool
               />
             </div>
           </section>
+
+          <SubjectsManager />
 
           <section className="sd-section" aria-label="Timer">
             <div className="sd-label">Focus timer</div>

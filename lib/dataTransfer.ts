@@ -1,6 +1,6 @@
 import { STORAGE_KEY, defaultState } from "./useTrackerState";
 import { todayKey } from "./date-utils";
-import type { ChapterState, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
+import type { ChapterState, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
 
 /** Marker written into every export so imports can recognise the file. */
 export const EXPORT_APP = "neet-study-tracker";
@@ -27,7 +27,8 @@ export interface ImportSummary {
 export type ImportMode = "replace" | "merge";
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-const CHAPTER_RE = /^(phy|chem|bio)_(11|12)_\d+$/;
+const CHAPTER_RE = /^(?:phy|chem|bio|cs[a-z0-9]{3,14})_(11|12)_\d+$/;
+const CUSTOM_ID_RE = /^cs[a-z0-9]{3,14}$/;
 const SUBTOPIC_RE = /^(phy|chem|bio)_(11|12)_\d+_\d+$/;
 
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
@@ -36,6 +37,33 @@ const num = (v: unknown, min: number, max: number, fallback: number): number =>
   typeof v === "number" && Number.isFinite(v) ? Math.min(max, Math.max(min, v)) : fallback;
 
 /** Read the tracker data currently saved on this device (the app's source of truth). */
+function sanitizeCustomSubjects(v: unknown): CustomSubject[] {
+  if (!Array.isArray(v)) return [];
+  const out: CustomSubject[] = [];
+  const seen = new Set<string>();
+  for (const raw of v.slice(0, 50)) {
+    if (!isObj(raw) || typeof raw.id !== "string" || !CUSTOM_ID_RE.test(raw.id) || seen.has(raw.id)) continue;
+    const name = str(raw.name, 60).trim();
+    if (!name) continue;
+    seen.add(raw.id);
+    const chapters: CustomChapter[] = [];
+    const ids = new Set<number>();
+    if (Array.isArray(raw.chapters)) {
+      for (const c of raw.chapters.slice(0, 500)) {
+        if (!isObj(c)) continue;
+        const cname = str(c.name, 120).trim();
+        if (typeof c.id !== "number" || !Number.isInteger(c.id) || c.id < 0 || c.id > 1_000_000 || ids.has(c.id) || !cname) continue;
+        ids.add(c.id);
+        chapters.push({ id: c.id, name: cname });
+      }
+    }
+    const maxId = chapters.reduce((m, c) => Math.max(m, c.id), -1);
+    const next = typeof raw.nextChapterId === "number" && Number.isInteger(raw.nextChapterId) ? Math.max(raw.nextChapterId, maxId + 1) : maxId + 1;
+    out.push({ id: raw.id, name, chapters, nextChapterId: Math.min(next, 1_000_001) });
+  }
+  return out;
+}
+
 export function readLocalState(): TrackerState {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -147,6 +175,7 @@ export function sanitizeState(input: unknown): TrackerState {
     targetExam: str(src.targetExam, 80),
     log,
     planner,
+    customSubjects: sanitizeCustomSubjects(src.customSubjects),
     subtopics,
     dailyGoals,
     customThoughts,
@@ -260,8 +289,26 @@ export function mergeStates(current: TrackerState, incoming: TrackerState): { st
     }
   }
 
+  const customSubjects: CustomSubject[] = current.customSubjects.map((c) => ({ ...c, chapters: [...c.chapters] }));
+  for (const inc of incoming.customSubjects) {
+    const ex = customSubjects.find((c) => c.id === inc.id);
+    if (!ex) {
+      customSubjects.push({ ...inc, chapters: [...inc.chapters] });
+      added++;
+      continue;
+    }
+    for (const ch of inc.chapters) {
+      if (!ex.chapters.some((c) => c.id === ch.id)) {
+        ex.chapters.push(ch);
+        ex.nextChapterId = Math.max(ex.nextChapterId, ch.id + 1);
+        added++;
+      }
+    }
+  }
+
   const state: TrackerState = {
     ...current,
+    customSubjects,
     startDate: incoming.startDate < current.startDate ? incoming.startDate : current.startDate,
     examDate: current.examDate || incoming.examDate,
     studentName: current.studentName || incoming.studentName,

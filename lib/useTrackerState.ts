@@ -10,6 +10,8 @@ import type { ChapterState, Difficulty, Goal, PracticeKey, QuizProgress, Subject
 export const STORAGE_KEY = "neet_tracker_v1";
 const OWNER_KEY = "neet_tracker_owner"; // which account the local cache belongs to
 const TABLE = "user_state";
+/** Fired on window whenever one hook instance (or Settings) changes the saved state, so every other live instance adopts it. */
+export const STATE_EVENT = "tracker:state";
 const SYNC_DEBOUNCE_MS = 1500;
 
 const DEFAULT_TIMER_MS = 25 * 60_000;
@@ -23,6 +25,7 @@ export function defaultState(): TrackerState {
     targetExam: "",
     log: {},
     planner: {},
+    customSubjects: [],
     subtopics: {},
     dailyGoals: {},
     customThoughts: [],
@@ -41,7 +44,7 @@ export function defaultState(): TrackerState {
   };
 }
 
-function loadState(): TrackerState {
+export function loadState(): TrackerState {
   if (typeof window === "undefined") return defaultState();
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -52,6 +55,7 @@ function loadState(): TrackerState {
       ...parsed,
       log: parsed.log ?? {},
       planner: parsed.planner ?? {},
+      customSubjects: Array.isArray(parsed.customSubjects) ? parsed.customSubjects : [],
       subtopics: parsed.subtopics ?? {},
       dailyGoals: parsed.dailyGoals ?? {},
       customThoughts: parsed.customThoughts ?? [],
@@ -72,6 +76,21 @@ function loadState(): TrackerState {
   }
 }
 
+/**
+ * Change the saved state from outside a hook instance (Settings → Subjects). Writes the local cache,
+ * then tells every live hook instance to adopt it; one of them pushes it to the cloud.
+ */
+export function mutateStoredState(fn: (s: TrackerState) => TrackerState): TrackerState {
+  const next: TrackerState = { ...fn(loadState()), lastModified: Date.now() };
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  } catch {
+    /* storage may be unavailable — live instances still get the change below */
+  }
+  window.dispatchEvent(new CustomEvent(STATE_EVENT, { detail: { from: "external", state: next, needsPush: true } }));
+  return next;
+}
+
 export function useTrackerState() {
   const [state, setStateRaw] = useState<TrackerState>(defaultState);
   const [hydrated, setHydrated] = useState(false);
@@ -79,6 +98,10 @@ export function useTrackerState() {
   const supabaseRef = useRef(createSupabaseBrowserClient());
   const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const skipNextPushRef = useRef(false); // true right after we adopt cloud data, so we don't immediately echo it back
+  const instanceId = useRef(Math.random().toString(36).slice(2));
+  const stateRef = useRef(state);
+  const hydratedRef = useRef(false);
+  const adoptedRef = useRef<TrackerState | null>(null); // the state object we last adopted from elsewhere (don't re-broadcast it)
 
   // Every mutator function below calls setState(updater) — wrapping the raw setter here
   // means all of them automatically stamp lastModified, without editing each one individually.
@@ -128,6 +151,7 @@ export function useTrackerState() {
           ...cloud,
           log: cloud.log ?? {},
           planner: cloud.planner ?? {},
+          customSubjects: Array.isArray(cloud.customSubjects) ? cloud.customSubjects : [],
           subtopics: cloud.subtopics ?? {},
         };
         if (merged.stopwatchSessionsDate !== todayKey()) {
@@ -151,6 +175,45 @@ export function useTrackerState() {
     })();
   }, []);
 
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
+  useEffect(() => {
+    hydratedRef.current = hydrated;
+  }, [hydrated]);
+
+  // Other hook instances on the page (and other tabs) each hold their own copy of the state. Adopt any
+  // newer copy so a change made in one place (e.g. adding a subject in Settings) shows up everywhere
+  // and an out-of-date instance can never write its old copy back over it.
+  useEffect(() => {
+    const adopt = (incoming: TrackerState, push: boolean) => {
+      if (!hydratedRef.current) return;
+      if ((incoming.lastModified ?? 0) <= stateRef.current.lastModified) return;
+      adoptedRef.current = incoming;
+      skipNextPushRef.current = !push;
+      setStateRaw(incoming);
+    };
+    const onEvent = (e: Event) => {
+      const d = (e as CustomEvent<{ from: string; state: TrackerState; needsPush?: boolean }>).detail;
+      if (!d || d.from === instanceId.current) return;
+      adopt(d.state, Boolean(d.needsPush));
+    };
+    const onStorage = (e: StorageEvent) => {
+      if (e.key !== STORAGE_KEY || !e.newValue) return;
+      try {
+        adopt({ ...defaultState(), ...JSON.parse(e.newValue) }, false);
+      } catch {
+        /* ignore a malformed value */
+      }
+    };
+    window.addEventListener(STATE_EVENT, onEvent);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener(STATE_EVENT, onEvent);
+      window.removeEventListener("storage", onStorage);
+    };
+  }, []);
+
   // 2) Whenever state changes: always mirror to the local cache immediately (fast, resilient),
   //    and debounce a push to Supabase so we're not writing on every keystroke.
   useEffect(() => {
@@ -159,6 +222,9 @@ export function useTrackerState() {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
       /* storage may be unavailable — fail silently */
+    }
+    if (adoptedRef.current !== state) {
+      window.dispatchEvent(new CustomEvent(STATE_EVENT, { detail: { from: instanceId.current, state } }));
     }
 
     if (skipNextPushRef.current) {
@@ -227,13 +293,13 @@ export function useTrackerState() {
   }, [setState]);
 
   const getChapterState = useCallback(
-    (subj: Subject, cls: 11 | 12, i: number): ChapterState => {
+    (subj: string, cls: 11 | 12, i: number): ChapterState => {
       return state.planner[`${subj}_${cls}_${i}`] ?? {};
     },
     [state.planner]
   );
 
-  const setChapterState = useCallback((subj: Subject, cls: 11 | 12, i: number, patch: Partial<ChapterState>) => {
+  const setChapterState = useCallback((subj: string, cls: 11 | 12, i: number, patch: Partial<ChapterState>) => {
     setState((s) => {
       const key = `${subj}_${cls}_${i}`;
       return { ...s, planner: { ...s.planner, [key]: { ...s.planner[key], ...patch } } };
@@ -241,7 +307,7 @@ export function useTrackerState() {
   }, [setState]);
 
   const toggleDone = useCallback(
-    (subj: Subject, cls: 11 | 12, i: number) => {
+    (subj: string, cls: 11 | 12, i: number) => {
       const cur = getChapterState(subj, cls, i);
       setChapterState(subj, cls, i, { done: !cur.done });
     },
@@ -249,7 +315,7 @@ export function useTrackerState() {
   );
 
   const togglePractice = useCallback(
-    (subj: Subject, cls: 11 | 12, i: number, key: PracticeKey) => {
+    (subj: string, cls: 11 | 12, i: number, key: PracticeKey) => {
       setState((s) => {
         const ck = `${subj}_${cls}_${i}`;
         const cur = s.planner[ck] ?? {};
@@ -260,7 +326,7 @@ export function useTrackerState() {
   );
 
   const bumpRevision = useCallback(
-    (subj: Subject, cls: 11 | 12, i: number) => {
+    (subj: string, cls: 11 | 12, i: number) => {
       const cur = getChapterState(subj, cls, i);
       setChapterState(subj, cls, i, { revCount: (cur.revCount ?? 0) + 1, lastRevised: todayKey() });
     },
@@ -268,14 +334,14 @@ export function useTrackerState() {
   );
 
   const resetRevision = useCallback(
-    (subj: Subject, cls: 11 | 12, i: number) => {
+    (subj: string, cls: 11 | 12, i: number) => {
       setChapterState(subj, cls, i, { revCount: 0, lastRevised: null });
     },
     [setChapterState]
   );
 
   const cycleDifficulty = useCallback(
-    (subj: Subject, cls: 11 | 12, i: number) => {
+    (subj: string, cls: 11 | 12, i: number) => {
       const order: Difficulty[] = [null, "easy", "medium", "hard"];
       const cur = getChapterState(subj, cls, i);
       const next = order[(order.indexOf(cur.diff ?? null) + 1) % order.length];
@@ -285,7 +351,7 @@ export function useTrackerState() {
   );
 
   const setChapterNote = useCallback(
-    (subj: Subject, cls: 11 | 12, i: number, note: string) => {
+    (subj: string, cls: 11 | 12, i: number, note: string) => {
       setChapterState(subj, cls, i, { note });
     },
     [setChapterState]

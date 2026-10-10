@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronDown, Play } from "lucide-react";
-import type { ChapterState, Difficulty, PracticeKey, Subject } from "@/lib/types";
+import type { ChapterState, Difficulty, PracticeKey, PracticeSubject } from "@/lib/types";
 import { getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { SoftPracticePanel, SoftPracticeToggle } from "./ChapterPractice";
 
@@ -16,7 +16,7 @@ const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
 interface SoftChapterRowProps {
   index: number;
   name: string;
-  subject: Subject;
+  subject: PracticeSubject;
   state: ChapterState;
   onTogglePractice: (key: PracticeKey) => void;
   isNext?: boolean;

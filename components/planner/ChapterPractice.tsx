@@ -1,9 +1,10 @@
 "use client";
 
 import { Check, ChevronDown } from "lucide-react";
-import type { ChapterState, PracticeKey, Subject } from "@/lib/types";
+import type { ChapterState, PracticeKey, PracticeSubject } from "@/lib/types";
 
-export const PRACTICE_ITEMS: Record<Subject, { key: PracticeKey; label: string }[]> = {
+export const PRACTICE_ITEMS: Record<PracticeSubject, { key: PracticeKey; label: string }[]> = {
+  custom: [{ key: "practiceDone", label: "Question practice" }],
   phy: [{ key: "practiceDone", label: "Question practice" }],
   chem: [{ key: "practiceDone", label: "Question practice" }],
   bio: [
@@ -15,14 +16,14 @@ export const PRACTICE_ITEMS: Record<Subject, { key: PracticeKey; label: string }
 const RED = "#EF4444";
 const GREEN = "#22C55E";
 
-export function getPracticeProgress(subject: Subject, state: ChapterState) {
+export function getPracticeProgress(subject: PracticeSubject, state: ChapterState) {
   const items = PRACTICE_ITEMS[subject];
   const done = items.filter((it) => Boolean(state[it.key])).length;
   return { done, total: items.length, complete: done === items.length };
 }
 
 interface PracticeToggleProps {
-  subject: Subject;
+  subject: PracticeSubject;
   state: ChapterState;
   open: boolean;
   onToggle: () => void;
@@ -64,7 +65,7 @@ export function PracticeToggle({ subject, state, open, onToggle, className = "" 
 }
 
 interface PracticePanelProps {
-  subject: Subject;
+  subject: PracticeSubject;
   state: ChapterState;
   onTogglePractice: (key: PracticeKey) => void;
 }

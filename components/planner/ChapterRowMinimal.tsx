@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import type { ChapterState, PracticeKey, Subject } from "@/lib/types";
+import type { ChapterState, PracticeKey, PracticeSubject } from "@/lib/types";
 import { CHAPTER_STATUS_STYLE, getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { ChapterNoteToggle, ChapterNotePanel } from "./ChapterNote";
 import { PracticePanel, PracticeToggle } from "./ChapterPractice";
@@ -11,7 +11,7 @@ import { PracticePanel, PracticeToggle } from "./ChapterPractice";
 interface ChapterRowMinimalProps {
   index: number;
   name: string;
-  subject: Subject;
+  subject: PracticeSubject;
   state: ChapterState;
   accentHex?: string;
   onTogglePractice: (key: PracticeKey) => void;
