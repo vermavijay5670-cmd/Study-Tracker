@@ -6,7 +6,7 @@ import { ChapterRowBet } from "./ChapterRowBet";
 import { ChapterRowMinimal } from "./ChapterRowMinimal";
 import { ChapterRowLeaderboard } from "./ChapterRowLeaderboard";
 import { CHAPTERS, SUBTOPICS, SUBJECT_ACCENT, SUBJECT_NAME, ACCENT_HEX } from "@/lib/data";
-import type { Subject } from "@/lib/types";
+import type { PracticeKey, Subject } from "@/lib/types";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard } from "@/components/ui/soft/SoftUI";
 import { SoftChapterRow } from "./SoftChapterRow";
@@ -17,7 +17,7 @@ interface SubjectCardProps {
 }
 
 export function SubjectCard({ subject }: SubjectCardProps) {
-  const { getChapterState, toggleDone, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubjectStats, isSubtopicDone, toggleSubtopic } =
+  const { getChapterState, toggleDone, togglePractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubjectStats, isSubtopicDone, toggleSubtopic } =
     useTrackerState();
 
   const { theme } = useTheme();
@@ -102,7 +102,9 @@ export function SubjectCard({ subject }: SubjectCardProps) {
                       key={i}
                       index={i}
                       name={name}
+                      subject={subject}
                       state={chState}
+                      onTogglePractice={(key) => togglePractice(subject, cls, i, key)}
                       isNext={subject === "chem" && nextKey === `${cls}_${i}`}
                       subtopics={subtopics}
                       isSubtopicDone={subtopics ? (subIdx) => isSubtopicDone(subject, cls, i, subIdx) : undefined}
@@ -173,6 +175,8 @@ export function SubjectCard({ subject }: SubjectCardProps) {
               {CHAPTERS[subject][cls].map((name, i) => {
                 const chState = getChapterState(subject, cls, i);
                 const handlers = {
+                  subject,
+                  onTogglePractice: (key: PracticeKey) => togglePractice(subject, cls, i, key),
                   onToggleDone: () => toggleDone(subject, cls, i),
                   onBumpRevision: () => bumpRevision(subject, cls, i),
                   onResetRevision: () => resetRevision(subject, cls, i),

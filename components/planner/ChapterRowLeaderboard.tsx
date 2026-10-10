@@ -3,16 +3,19 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, FlaskConical } from "lucide-react";
-import type { ChapterState, Difficulty } from "@/lib/types";
+import type { ChapterState, Difficulty, PracticeKey, Subject } from "@/lib/types";
 import { CHAPTER_STATUS_STYLE, getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { ChapterNoteToggle, ChapterNotePanel } from "./ChapterNote";
+import { PracticePanel, PracticeToggle } from "./ChapterPractice";
 
 interface ChapterRowLeaderboardProps {
   index: number;
   name: string;
+  subject: Subject;
   state: ChapterState;
   isNext: boolean;
   accentHex?: string;
+  onTogglePractice: (key: PracticeKey) => void;
   onToggleDone: () => void;
   onBumpRevision: () => void;
   onResetRevision: () => void;
@@ -39,9 +42,11 @@ const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
 export function ChapterRowLeaderboard({
   index,
   name,
+  subject,
   state,
   isNext,
   accentHex,
+  onTogglePractice,
   onToggleDone,
   onBumpRevision,
   onResetRevision,
@@ -52,6 +57,7 @@ export function ChapterRowLeaderboard({
   const diff = state.diff ?? null;
   const avatar = AVATAR_GRADIENTS[index % AVATAR_GRADIENTS.length];
   const [noteOpen, setNoteOpen] = useState(false);
+  const [practiceOpen, setPracticeOpen] = useState(false);
   const status = getChapterStatus(state);
   const s = CHAPTER_STATUS_STYLE[status];
   const statusLabel = getChapterStatusLabel(state);
@@ -138,6 +144,14 @@ export function ChapterRowLeaderboard({
           +{revCount}
         </button>
 
+        <PracticeToggle
+          subject={subject}
+          state={state}
+          open={practiceOpen}
+          onToggle={() => setPracticeOpen((v) => !v)}
+          className="relative z-10"
+        />
+
         <ChapterNoteToggle
           open={noteOpen}
           onToggle={() => setNoteOpen((v) => !v)}
@@ -159,6 +173,12 @@ export function ChapterRowLeaderboard({
           {state.done && <Check size={12} strokeWidth={2.5} className="text-[#6FB37A]" />}
         </button>
       </motion.div>
+
+      {practiceOpen && (
+        <div className="mx-4 mt-1 rounded-2xl border border-white/[0.06] bg-[#15151d]">
+          <PracticePanel subject={subject} state={state} onTogglePractice={onTogglePractice} />
+        </div>
+      )}
 
       {noteOpen && <ChapterNotePanel note={state.note} onSave={onSaveNote} accentHex={accentHex} />}
     </motion.div>

@@ -3,15 +3,18 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import type { ChapterState } from "@/lib/types";
+import type { ChapterState, PracticeKey, Subject } from "@/lib/types";
 import { CHAPTER_STATUS_STYLE, getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { ChapterNoteToggle, ChapterNotePanel } from "./ChapterNote";
+import { PracticePanel, PracticeToggle } from "./ChapterPractice";
 
 interface ChapterRowMinimalProps {
   index: number;
   name: string;
+  subject: Subject;
   state: ChapterState;
   accentHex?: string;
+  onTogglePractice: (key: PracticeKey) => void;
   onToggleDone: () => void;
   onBumpRevision: () => void;
   onResetRevision: () => void;
@@ -22,8 +25,10 @@ interface ChapterRowMinimalProps {
 export function ChapterRowMinimal({
   index,
   name,
+  subject,
   state,
   accentHex,
+  onTogglePractice,
   onToggleDone,
   onBumpRevision,
   onResetRevision,
@@ -33,6 +38,7 @@ export function ChapterRowMinimal({
   const revCount = state.revCount ?? 0;
   const diff = state.diff ?? null;
   const [noteOpen, setNoteOpen] = useState(false);
+  const [practiceOpen, setPracticeOpen] = useState(false);
   const status = getChapterStatus(state);
   const s = CHAPTER_STATUS_STYLE[status];
   const statusLabel = getChapterStatusLabel(state);
@@ -98,6 +104,7 @@ export function ChapterRowMinimal({
           >
             {diff ?? "Difficulty"}
           </button>
+          <PracticeToggle subject={subject} state={state} open={practiceOpen} onToggle={() => setPracticeOpen((v) => !v)} />
           <ChapterNoteToggle
             open={noteOpen}
             onToggle={() => setNoteOpen((v) => !v)}
@@ -106,6 +113,12 @@ export function ChapterRowMinimal({
           />
         </div>
       </div>
+
+      {practiceOpen && (
+        <div className="relative z-10 mt-3 border-t border-white/[0.06]">
+          <PracticePanel subject={subject} state={state} onTogglePractice={onTogglePractice} />
+        </div>
+      )}
 
       {noteOpen && (
         <div className="relative z-10">

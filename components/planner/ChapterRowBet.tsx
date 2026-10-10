@@ -3,15 +3,18 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronDown, Dna } from "lucide-react";
-import type { ChapterState, Difficulty } from "@/lib/types";
+import type { ChapterState, Difficulty, PracticeKey, Subject } from "@/lib/types";
 import { CHAPTER_STATUS_STYLE, getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { ChapterNoteToggle, ChapterNotePanel } from "./ChapterNote";
+import { PracticePanel, PracticeToggle } from "./ChapterPractice";
 
 interface ChapterRowBetProps {
   index: number;
   name: string;
+  subject: Subject;
   state: ChapterState;
   accentHex?: string;
+  onTogglePractice: (key: PracticeKey) => void;
   onToggleDone: () => void;
   onBumpRevision: () => void;
   onResetRevision: () => void;
@@ -41,8 +44,10 @@ const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
 export function ChapterRowBet({
   index,
   name,
+  subject,
   state,
   accentHex,
+  onTogglePractice,
   onToggleDone,
   onBumpRevision,
   onResetRevision,
@@ -54,6 +59,7 @@ export function ChapterRowBet({
 }: ChapterRowBetProps) {
   const [expanded, setExpanded] = useState(false);
   const [noteOpen, setNoteOpen] = useState(false);
+  const [practiceOpen, setPracticeOpen] = useState(false);
   const revCount = state.revCount ?? 0;
   const diff = state.diff ?? null;
   const status = getChapterStatus(state);
@@ -150,6 +156,15 @@ export function ChapterRowBet({
           {state.done ? <Check size={13} strokeWidth={2.5} className="text-[#6FB37A]" /> : <Dna size={12} strokeWidth={1.75} className="text-white/25" />}
         </button>
 
+        {/* question-practice dropdown (NEET Advance + Assignments) */}
+        <PracticeToggle
+          subject={subject}
+          state={state}
+          open={practiceOpen}
+          onToggle={() => setPracticeOpen((v) => !v)}
+          className="relative z-10"
+        />
+
         {/* note toggle */}
         <ChapterNoteToggle
           open={noteOpen}
@@ -210,6 +225,20 @@ export function ChapterRowBet({
                 );
               })}
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence initial={false}>
+        {practiceOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-white/[0.05] bg-black/20"
+          >
+            <PracticePanel subject={subject} state={state} onTogglePractice={onTogglePractice} />
           </motion.div>
         )}
       </AnimatePresence>

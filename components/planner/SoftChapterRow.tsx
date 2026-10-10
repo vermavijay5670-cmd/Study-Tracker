@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronDown, Play } from "lucide-react";
-import type { ChapterState, Difficulty } from "@/lib/types";
+import type { ChapterState, Difficulty, PracticeKey, Subject } from "@/lib/types";
 import { getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
+import { SoftPracticePanel, SoftPracticeToggle } from "./ChapterPractice";
 
 const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
   easy: "#5fa86a",
@@ -15,7 +16,9 @@ const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
 interface SoftChapterRowProps {
   index: number;
   name: string;
+  subject: Subject;
   state: ChapterState;
+  onTogglePractice: (key: PracticeKey) => void;
   isNext?: boolean;
   subtopics?: string[];
   isSubtopicDone?: (subIdx: number) => boolean;
@@ -49,7 +52,9 @@ function SoftNote({ note, onSave }: { note?: string; onSave: (note: string) => v
 export function SoftChapterRow({
   index,
   name,
+  subject,
   state,
+  onTogglePractice,
   isNext = false,
   subtopics,
   isSubtopicDone,
@@ -62,6 +67,7 @@ export function SoftChapterRow({
 }: SoftChapterRowProps) {
   const [noteOpen, setNoteOpen] = useState(false);
   const [subOpen, setSubOpen] = useState(false);
+  const [practiceOpen, setPracticeOpen] = useState(false);
   const revCount = state.revCount ?? 0;
   const diff = state.diff ?? null;
   const status = getChapterStatus(state);
@@ -144,6 +150,7 @@ export function SoftChapterRow({
               <ChevronDown size={13} strokeWidth={2.4} style={{ transform: subOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }} />
             </button>
           )}
+          <SoftPracticeToggle subject={subject} state={state} open={practiceOpen} onToggle={() => setPracticeOpen((v) => !v)} />
           <button
             type="button"
             className={`sf-chev ${state.note ? "has-note" : ""}`}
@@ -184,6 +191,18 @@ export function SoftChapterRow({
                 );
               })}
             </div>
+          </motion.div>
+        )}
+        {practiceOpen && (
+          <motion.div
+            key="practice"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            <SoftPracticePanel subject={subject} state={state} onTogglePractice={onTogglePractice} />
           </motion.div>
         )}
         {noteOpen && (

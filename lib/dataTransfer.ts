@@ -73,6 +73,9 @@ export function sanitizeState(input: unknown): TrackerState {
       else if (v.lastRevised === null) ch.lastRevised = null;
       if (v.diff === "easy" || v.diff === "medium" || v.diff === "hard" || v.diff === null) ch.diff = v.diff as Difficulty;
       if (typeof v.note === "string") ch.note = v.note.slice(0, 5000);
+      if (typeof v.practiceDone === "boolean") ch.practiceDone = v.practiceDone;
+      if (typeof v.neetAdvDone === "boolean") ch.neetAdvDone = v.neetAdvDone;
+      if (typeof v.assignmentsDone === "boolean") ch.assignmentsDone = v.assignmentsDone;
       planner[k] = ch;
     }
   }

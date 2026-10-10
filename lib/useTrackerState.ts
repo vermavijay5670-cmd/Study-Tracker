@@ -5,7 +5,7 @@ import { CHAPTERS } from "./data";
 import { addDays, daysBetween, dateKey, parseKey, todayKey } from "./date-utils";
 import { createSupabaseBrowserClient } from "./supabase/client";
 import type { User } from "@supabase/supabase-js";
-import type { ChapterState, Difficulty, Goal, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
+import type { ChapterState, Difficulty, Goal, PracticeKey, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 export const STORAGE_KEY = "neet_tracker_v1";
 const OWNER_KEY = "neet_tracker_owner"; // which account the local cache belongs to
@@ -246,6 +246,17 @@ export function useTrackerState() {
       setChapterState(subj, cls, i, { done: !cur.done });
     },
     [getChapterState, setChapterState]
+  );
+
+  const togglePractice = useCallback(
+    (subj: Subject, cls: 11 | 12, i: number, key: PracticeKey) => {
+      setState((s) => {
+        const ck = `${subj}_${cls}_${i}`;
+        const cur = s.planner[ck] ?? {};
+        return { ...s, planner: { ...s.planner, [ck]: { ...cur, [key]: !cur[key] } } };
+      });
+    },
+    [setState]
   );
 
   const bumpRevision = useCallback(
@@ -721,6 +732,7 @@ export function useTrackerState() {
     addLogHours,
     getChapterState,
     toggleDone,
+    togglePractice,
     bumpRevision,
     resetRevision,
     cycleDifficulty,

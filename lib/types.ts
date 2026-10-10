@@ -7,7 +7,12 @@ export interface ChapterState {
   lastRevised?: string | null; // YYYY-MM-DD
   diff?: Difficulty;
   note?: string;
+  practiceDone?: boolean; // Physics / Chemistry: question practice completed
+  neetAdvDone?: boolean; // Biology: NEET Advance questions completed
+  assignmentsDone?: boolean; // Biology: assignments completed
 }
+
+export type PracticeKey = "practiceDone" | "neetAdvDone" | "assignmentsDone";
 
 export interface Goal {
   id: string;
