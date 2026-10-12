@@ -163,20 +163,22 @@ export function Stopwatch({
   }
 
   return (
-    <NmCard delay={0.08}>
-      <div className="flex items-center gap-3">
-        <NmBadge>
-          <Gauge size={17} strokeWidth={1.8} />
-        </NmBadge>
-        <span className="nm-cap">Study session</span>
-      </div>
-      <h2 className="nm-title mt-4">Stopwatch</h2>
-      <div className="mt-2">
-        <NmStatus state={running ? "live" : "idle"}>{running ? "Session running" : "Ready to start"}</NmStatus>
+    <NmCard delay={0.08} className="nm-card--fit">
+      <div className="flex items-start justify-between gap-3">
+        <div className="nm-head">
+          <NmBadge>
+            <Gauge size={17} strokeWidth={1.8} />
+          </NmBadge>
+          <div className="min-w-0">
+            <span className="nm-cap">Study session</span>
+            <h2 className="nm-title">Stopwatch</h2>
+          </div>
+        </div>
+        <NmStatus state={running ? "live" : "idle"}>{running ? "Running" : "Ready"}</NmStatus>
       </div>
 
-      <div className="my-7 flex justify-center">
-        <NmDial pct={goalPct} running={running} size={236} label={`${Math.round(goalPct)}% of today's goal`}>
+      <div className="flex flex-1 items-center justify-center py-5">
+        <NmDial pct={goalPct} running={running} label={`${Math.round(goalPct)}% of today's goal`}>
           <div className="nm-dial__time">
             {hh}:{mm}:{ss}
           </div>
@@ -184,12 +186,12 @@ export function Stopwatch({
         </NmDial>
       </div>
 
-      <div className="nm-sub mb-5 flex justify-between">
+      <div className="nm-sub mb-4 flex justify-between">
         <span>Today: {fmtHrs(liveHours)}</span>
         <span>Sessions: {stopwatchSessions}</span>
       </div>
 
-      <div className="mb-6 flex items-center gap-3">
+      <div className="mb-5 flex items-center gap-3">
         <NmWell>
           <NmPill tone={running ? "red" : "cyan"} onClick={running ? onPause : onStart}>
             {running ? <Pause size={15} strokeWidth={2.2} /> : <Play size={15} strokeWidth={2.2} fill="currentColor" />}

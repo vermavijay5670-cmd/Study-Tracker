@@ -3,10 +3,10 @@
 import { useMemo, useState } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 import { ArrowUpRight, ArrowDownRight, Clock } from "lucide-react";
-import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { addDays, dateKey, parseKey } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard, SoftSeg } from "@/components/ui/soft/SoftUI";
+import { NmBadge, NmCard, NmSeg } from "@/components/today/nm/NmUI";
 
 interface BalanceChartProps {
   log: Record<string, number>;
@@ -82,12 +82,12 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
         dotFill: "#fff",
       }
     : {
-        line: "#C084FC",
-        fillTop: "#C084FC",
-        tick: "rgba(255,255,255,0.35)",
-        cursor: "rgba(255,255,255,0.2)",
-        tip: { background: "#171224", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 14, fontSize: 12, color: "#F6F4FF" },
-        dotFill: "#F6F4FF",
+        line: "#ff7a7a", // Today's colour in the sidebar (study hours are tracked on Today)
+        fillTop: "#ff7a7a",
+        tick: "rgba(231,233,239,0.4)",
+        cursor: "rgba(255,122,122,0.35)",
+        tip: { background: "#1c1e24", border: "none", borderRadius: 14, fontSize: 12, color: "#e7e9ef", boxShadow: "6px 6px 14px rgba(3,4,7,.6)" },
+        dotFill: "#1f2127",
       };
 
   const chart = (
@@ -159,48 +159,32 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
   }
 
   return (
-    <PaperTiltCard>
+    <NmCard accent="red">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-[14px] font-medium text-white/60">Total study hours</h2>
-          <div className="mt-1 flex items-baseline gap-2">
-            <span className="font-tabular text-[34px] font-bold text-[#F6F4FF]">
-              {totalHoursLogged.toFixed(1)}h
-            </span>
-            <span
-              className={`flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[11px] font-medium ${
-                up ? "bg-[#6FB37A]/15 text-[#8FC998]" : "bg-white/10 text-white/50"
-              }`}
-            >
-              {up ? <ArrowUpRight size={12} strokeWidth={2} /> : <ArrowDownRight size={12} strokeWidth={2} />}
+          <div className="flex items-center gap-3">
+            <NmBadge>
+              <Clock size={17} strokeWidth={1.9} />
+            </NmBadge>
+            <span className="nm-cap">Total study hours</span>
+          </div>
+          <div className="mt-4 flex items-center gap-3">
+            <span className="nm-bignum">{totalHoursLogged.toFixed(1)}h</span>
+            <span className={`nm-trend ${up ? "is-up" : ""}`}>
+              {up ? <ArrowUpRight size={13} strokeWidth={2.4} /> : <ArrowDownRight size={13} strokeWidth={2.4} />}
               {Math.abs(pct).toFixed(1)}%
             </span>
           </div>
         </div>
-
-        <div className="flex gap-1 rounded-full border border-white/10 bg-black/20 p-1">
-          {RANGES.map((r) => (
-            <button
-              key={r.key}
-              onClick={() => setRange(r.key)}
-              className={`rounded-full px-3 py-1.5 text-[11px] font-medium transition-colors ${
-                range === r.key ? "bg-white text-black" : "text-white/50 hover:text-white/80"
-              }`}
-            >
-              {r.label}
-            </button>
-          ))}
-        </div>
+        <NmSeg value={range} onChange={setRange} label="Chart range" options={RANGES.map((r) => ({ key: r.key, label: r.label }))} />
       </div>
 
       {chart}
 
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-[11px] text-white/40">
-        <span>Average pace &nbsp;{avgPerDay.toFixed(1)}h / day</span>
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-sm bg-[#C084FC]" /> Cumulative hours logged
-        </span>
+      <div className="nm-sub mt-3 flex flex-wrap items-center justify-between gap-2">
+        <span>Average pace · {avgPerDay.toFixed(1)}h / day</span>
+        <span>Cumulative hours logged</span>
       </div>
-    </PaperTiltCard>
+    </NmCard>
   );
 }

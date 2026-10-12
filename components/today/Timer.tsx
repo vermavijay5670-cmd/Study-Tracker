@@ -281,33 +281,33 @@ export function Timer({
   }
 
   return (
-    <NmCard delay={0.16}>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+    <NmCard delay={0.16} className="nm-card--fit">
+      <div className="flex items-start justify-between gap-3">
+        <div className="nm-head">
           <NmBadge>
             <TimerReset size={17} strokeWidth={1.8} />
           </NmBadge>
-          <span className="nm-cap">Focus timer</span>
+          <div className="min-w-0">
+            <span className="nm-cap">Focus timer</span>
+            <h2 className="nm-title">Timer</h2>
+          </div>
         </div>
-        <NmRound
-          size="sm"
-          onClick={toggleSound}
-          aria-pressed={soundOn}
-          aria-label={soundOn ? "Alarm sound on — click to mute" : "Alarm sound off — click to turn on"}
-          title={soundOn ? "Alarm sound on" : "Alarm sound off"}
-        >
-          {soundOn ? <Volume2 size={15} strokeWidth={1.9} /> : <VolumeX size={15} strokeWidth={1.9} />}
-        </NmRound>
-      </div>
-      <h2 className="nm-title mt-4">Timer</h2>
-      <div className="mt-2">
-        <NmStatus state={completed ? "done" : running ? "live" : "idle"}>
-          {completed ? "Time's up" : running ? "Counting down" : "Ready to start"}
-        </NmStatus>
+        <div className="flex items-center gap-2">
+          <NmStatus state={completed ? "done" : running ? "live" : "idle"}>{completed ? "Done" : running ? "Running" : "Ready"}</NmStatus>
+          <NmRound
+            size="sm"
+            onClick={toggleSound}
+            aria-pressed={soundOn}
+            aria-label={soundOn ? "Alarm sound on — click to mute" : "Alarm sound off — click to turn on"}
+            title={soundOn ? "Alarm sound on" : "Alarm sound off"}
+          >
+            {soundOn ? <Volume2 size={15} strokeWidth={1.9} /> : <VolumeX size={15} strokeWidth={1.9} />}
+          </NmRound>
+        </div>
       </div>
 
-      <div className="my-7 flex justify-center">
-        <NmDial pct={completed ? 100 : pct} running={running} tone={completed ? "green" : "cyan"} size={236} label={`${Math.round(pct)}% of the timer elapsed`}>
+      <div className="flex flex-1 items-center justify-center py-5">
+        <NmDial pct={completed ? 100 : pct} running={running} tone={completed ? "green" : "cyan"} label={`${Math.round(pct)}% of the timer elapsed`}>
           <div className="nm-dial__time">
             {hh}:{mm}:{ss}
           </div>
@@ -315,7 +315,7 @@ export function Timer({
         </NmDial>
       </div>
 
-      <div className="mb-4 flex flex-wrap items-center gap-2.5">
+      <div className="mb-4 flex flex-wrap items-center gap-2">
         {PRESETS_MIN.map((min) => (
           <NmChip key={min} active={timerDurationMs === min * 60_000} onClick={() => applyDuration(min * 60_000)} disabled={running}>
             {min}m
@@ -327,7 +327,7 @@ export function Timer({
       </div>
 
       {showCustom && !running && (
-        <div className="mb-5 flex items-end gap-3">
+        <div className="mb-4 flex items-end gap-3">
           <label className="flex flex-col gap-1.5">
             <span className="nm-cap">Hrs</span>
             <input type="number" min="0" max="12" placeholder="0" value={customHrs} onChange={(e) => setCustomHrs(e.target.value)} className="nm-input nm-input--num" />

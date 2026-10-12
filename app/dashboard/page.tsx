@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { DashboardSection } from "@/components/dashboard/DashboardSection";
-import { SoftBackground } from "@/components/ui/soft/SoftBackground";
+import { DashboardBackground } from "@/components/dashboard/DashboardBackground";
 
 export default function DashboardPage() {
   return (
-    <SoftBackground>
-      <PageShell>
+    <DashboardBackground>
+      <PageShell wide>
         <DashboardSection />
       </PageShell>
-    </SoftBackground>
+    </DashboardBackground>
   );
 }

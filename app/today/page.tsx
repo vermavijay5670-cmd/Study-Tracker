@@ -5,7 +5,7 @@ import { TodayBackground } from "@/components/today/TodayBackground";
 export default function TodayPage() {
   return (
     <TodayBackground>
-      <PageShell>
+      <PageShell wide>
         <TodaySection />
       </PageShell>
     </TodayBackground>

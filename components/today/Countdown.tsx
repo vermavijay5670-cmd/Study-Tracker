@@ -107,30 +107,32 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
   }
 
   return (
-    <NmCard delay={0}>
-      <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+    <NmCard delay={0} className="nm-card--fit">
+      <div className="nm-head">
+        <NmBadge>
+          <Target size={17} strokeWidth={1.8} />
+        </NmBadge>
         <div className="min-w-0">
-          <div className="flex items-center gap-3">
-            <NmBadge>
-              <Target size={17} strokeWidth={1.8} />
-            </NmBadge>
-            <span className="nm-cap">Target exam</span>
-          </div>
-          <h2 className="nm-title mt-4">NEET UG Countdown</h2>
-          <label className="mt-3 flex flex-wrap items-center gap-3">
-            <span className="nm-cap">Exam date</span>
-            <input type="date" value={examDate} onChange={(e) => onSetExamDate(e.target.value)} className="nm-input nm-input--date" />
-          </label>
-          <div className="mt-6 flex flex-wrap items-end gap-x-4 gap-y-1">
-            <span className="nm-hero">{days}</span>
-            <span className="nm-hero-lbl">{label}</span>
-          </div>
+          <span className="nm-cap">Target exam</span>
+          <h2 className="nm-title">NEET UG Countdown</h2>
         </div>
+      </div>
 
-        <div className="flex flex-col gap-6 sm:min-w-[300px]">
-          <NmTiles hh={hh} mm={mm} ss={ss} />
-          <NmTrack pct={pct} label="Time elapsed since you started" />
+      <label className="mt-4 flex flex-wrap items-center gap-3">
+        <span className="nm-cap">Exam date</span>
+        <input type="date" value={examDate} onChange={(e) => onSetExamDate(e.target.value)} className="nm-input nm-input--date" />
+      </label>
+
+      <div className="flex flex-1 items-center py-6">
+        <div className="flex flex-wrap items-end gap-x-4 gap-y-1">
+          <span className="nm-hero nm-hero--fit">{days}</span>
+          <span className="nm-hero-lbl">{label}</span>
         </div>
+      </div>
+
+      <div className="flex flex-col gap-5">
+        <NmTiles hh={hh} mm={mm} ss={ss} />
+        <NmTrack pct={pct} label="Time elapsed since you started" />
       </div>
     </NmCard>
   );

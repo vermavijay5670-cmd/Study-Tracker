@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from "react";
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { addDays, dateKey, parseKey } from "@/lib/date-utils";
 import type { ChapterState, Subject } from "@/lib/types";
 import { CHAPTERS } from "@/lib/data";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard, SoftSeg } from "@/components/ui/soft/SoftUI";
+import { NmCard, NmSeg } from "@/components/today/nm/NmUI";
 
 interface RevisionBarChartProps {
   getChapterState: (subj: Subject, cls: 11 | 12, i: number) => ChapterState;
@@ -65,11 +65,11 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
         lo: "rgba(134,171,87,0.4)",
       }
     : {
-        tick: "rgba(255,255,255,0.35)",
+        tick: "rgba(231,233,239,0.4)",
         cursor: "rgba(255,255,255,0.04)",
-        tip: { background: "#171224", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 14, fontSize: 12, color: "#F6F4FF" },
-        hi: "#C084FC",
-        lo: "rgba(192,132,252,0.28)",
+        tip: { background: "#1c1e24", border: "none", borderRadius: 14, fontSize: 12, color: "#e7e9ef", boxShadow: "6px 6px 14px rgba(3,4,7,.6)" },
+        hi: "#c98bff", // Planner's colour in the sidebar
+        lo: "rgba(201,139,255,0.28)",
       };
 
   const chart = (
@@ -119,31 +119,26 @@ export function RevisionBarChart({ getChapterState }: RevisionBarChartProps) {
   }
 
   return (
-    <PaperTiltCard delay={0.12}>
+    <NmCard delay={0.1} accent="purple">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-[14px] font-medium text-white/60">Revision activity</h2>
-          <div className="mt-1 flex items-baseline gap-1.5">
-            <span className="font-tabular text-[22px] font-bold text-[#F6F4FF]">{totalThisPeriod}</span>
-            <span className="text-[11px] text-white/40">this {period}</span>
+          <h2 className="nm-title" style={{ fontSize: 20 }}>Revision activity</h2>
+          <div className="mt-1.5 flex items-baseline gap-2">
+            <span className="nm-bignum" style={{ fontSize: 30 }}>{totalThisPeriod}</span>
+            <span className="nm-sub" style={{ letterSpacing: 0 }}>this {period}</span>
           </div>
         </div>
-        <div className="flex gap-1 rounded-full border border-white/10 bg-black/20 p-1">
-          {(["week", "month"] as Period[]).map((p) => (
-            <button
-              key={p}
-              onClick={() => setPeriod(p)}
-              className={`rounded-full px-3 py-1.5 text-[11px] font-medium capitalize transition-colors ${
-                period === p ? "bg-white text-black" : "text-white/50 hover:text-white/80"
-              }`}
-            >
-              {p}ly
-            </button>
-          ))}
-        </div>
+        <NmSeg
+          value={period}
+          onChange={setPeriod}
+          label="Revision period"
+          options={[
+            { key: "week", label: "Weekly" },
+            { key: "month", label: "Monthly" },
+          ]}
+        />
       </div>
-
       {chart}
-    </PaperTiltCard>
+    </NmCard>
   );
 }

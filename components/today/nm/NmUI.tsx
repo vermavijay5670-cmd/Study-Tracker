@@ -1,17 +1,31 @@
 "use client";
 
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import Link from "next/link";
+import type { ButtonHTMLAttributes, ComponentProps, ReactNode } from "react";
 import { motion } from "framer-motion";
 import "./nm.css";
 
 /** Raised card (soft shadows, no border) — the dark-mode Today surface. */
-export function NmCard({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
+export type NmAccent = "red" | "amber" | "purple" | "green" | "blue" | "pink" | "teal";
+
+export function NmCard({
+  children,
+  delay = 0,
+  className = "",
+  accent,
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+  /** Section colour (same as that section's colour in the sidebar). Omit for the default Today cyan. */
+  accent?: NmAccent;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 260, damping: 26, delay }}
-      className={`nm-card ${className}`}
+      className={`nm-card ${accent ? `nm-acc-${accent}` : ""} ${className}`}
     >
       {children}
     </motion.div>
@@ -70,17 +84,15 @@ export function NmTrack({ pct, label }: { pct: number; label: string }) {
 
 const TICKS = 60;
 
-/** Round dial: a raised bezel with 60 ticks that light up with progress, around a pressed well holding the readout. */
+/** Round dial (size comes from --nm-dial): a raised bezel with 60 ticks that light up with progress, around a pressed well holding the readout. */
 export function NmDial({
   pct,
-  size = 240,
   running = false,
   tone = "cyan",
   label,
   children,
 }: {
   pct: number;
-  size?: number;
   running?: boolean;
   tone?: "cyan" | "green";
   label: string;
@@ -95,7 +107,7 @@ export function NmDial({
     return { i, x1: Math.cos(a) * r1, y1: Math.sin(a) * r1, x2: Math.cos(a) * r2, y2: Math.sin(a) * r2, on: i < lit };
   });
   return (
-    <div className="nm-dial" style={{ width: size, height: size }} data-run={running} data-tone={tone} role="img" aria-label={label}>
+    <div className="nm-dial" data-run={running} data-tone={tone} role="img" aria-label={label}>
       <svg viewBox="-100 -100 200 200" aria-hidden>
         <g>
           {ticks.filter((t) => !t.on).map((t) => (
@@ -130,4 +142,32 @@ export function NmRound({ size = "md", className = "", type = "button", ...rest 
 
 export function NmChip({ active, className = "", type = "button", ...rest }: ButtonHTMLAttributes<HTMLButtonElement> & { active?: boolean }) {
   return <button type={type} aria-pressed={Boolean(active)} className={`nm-chip ${className}`} {...rest} />;
+}
+
+/** Pressed-in segmented switch with a raised, accent-coloured selected segment. */
+export function NmSeg<T extends string>({
+  value,
+  options,
+  onChange,
+  label,
+}: {
+  value: T;
+  options: { key: T; label: string }[];
+  onChange: (v: T) => void;
+  label: string;
+}) {
+  return (
+    <div className="nm-seg" role="group" aria-label={label}>
+      {options.map((o) => (
+        <button key={o.key} type="button" aria-pressed={value === o.key} className={`nm-seg__btn ${value === o.key ? "is-on" : ""}`} onClick={() => onChange(o.key)}>
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/** Next.js link styled like the pill buttons. */
+export function NmLink({ tone = "plain", className = "", ...rest }: ComponentProps<typeof Link> & { tone?: "cyan" | "plain" }) {
+  return <Link className={`nm-pill nm-pill--${tone} nm-pill--link ${className}`} {...rest} />;
 }

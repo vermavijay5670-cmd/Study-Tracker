@@ -1,20 +1,13 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { SectionBackground } from "@/components/ui/SectionBackground";
-import { DeskBackdrop } from "@/components/ui/DeskBackdrop";
+import { SoftBackground } from "@/components/ui/soft/SoftBackground";
 import { useTheme } from "@/lib/ThemeContext";
+import "@/components/today/nm/nm.css";
 
-/** Light mode: the walnut study desk. Dark mode: the usual section background. */
+/** Light mode: the soft pale backdrop. Dark mode: flat charcoal with the dark-neumorphism look (same as the Today page). */
 export function DashboardBackground({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
-  if (theme === "light") {
-    return (
-      <div className="relative min-h-screen w-full">
-        <DeskBackdrop />
-        {children}
-      </div>
-    );
-  }
-  return <SectionBackground>{children}</SectionBackground>;
+  if (theme === "light") return <SoftBackground>{children}</SoftBackground>;
+  return <div className="nm-scope">{children}</div>;
 }

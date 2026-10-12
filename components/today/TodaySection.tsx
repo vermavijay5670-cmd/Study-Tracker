@@ -39,11 +39,8 @@ export function TodaySection() {
 
   const todayHours = state.log[todayKey()] ?? 0;
 
-  return (
-    <div className={isLight ? "grid gap-6" : "grid gap-5"}>
-      <Countdown examDate={state.examDate} startDate={state.startDate} onSetExamDate={setExamDate} />
-
-      <div className={isLight ? "sf-grid2" : "grid gap-5 sm:grid-cols-2"}>
+  const countdown = <Countdown examDate={state.examDate} startDate={state.startDate} onSetExamDate={setExamDate} />;
+  const stopwatch = (
         <Stopwatch
           todayHours={todayHours}
           dailyGoalHours={state.dailyGoalHours}
@@ -58,6 +55,8 @@ export function TodaySection() {
           onFlushOnUnmount={flushStopwatchOnUnmount}
           onSetGoal={setDailyGoalHours}
         />
+  );
+  const timer = (
         <Timer
           timerDurationMs={state.timerDurationMs}
           timerRemainingMs={state.timerRemainingMs}
@@ -69,6 +68,25 @@ export function TodaySection() {
           onComplete={completeTimer}
           onAddHours={addLogHours}
         />
+  );
+
+  // Dark mode: three cards side by side that always fit one screen on laptops/desktops (stacked on phones).
+  if (!isLight) {
+    return (
+      <div className="nm-fit-grid grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {countdown}
+        {stopwatch}
+        {timer}
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid gap-6">
+      {countdown}
+      <div className="sf-grid2">
+        {stopwatch}
+        {timer}
       </div>
     </div>
   );

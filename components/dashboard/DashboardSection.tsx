@@ -22,7 +22,7 @@ export function DashboardSection() {
     return isLight ? (
       <div className="sf-loading">Loading…</div>
     ) : (
-      <div className="py-24 text-center text-sm text-white/50">Loading…</div>
+      <div className="nm-sub py-24 text-center">Loading…</div>
     );
   }
 
@@ -30,19 +30,19 @@ export function DashboardSection() {
   const totalDone = perSubject.reduce((a, s) => a + s.done, 0);
 
   return (
-    <div className={`grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_340px] ${isLight ? "gap-6" : "gap-5"}`}>
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
       {/* ---- left column ---- */}
-      <div className={isLight ? "space-y-6" : "space-y-5"}>
+      <div className="space-y-6">
         <BalanceChart log={state.log} startDate={state.startDate} totalHoursLogged={totalHoursLogged} totalDays={totalDays} />
 
-        <div className={`grid grid-cols-1 sm:grid-cols-[260px_minmax(0,1fr)] ${isLight ? "gap-6" : "gap-5"}`}>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-[260px_minmax(0,1fr)]">
           <StreakPromoCard currentStreak={streaks.current} bestStreak={streaks.best} totalDone={totalDone} />
           <RevisionBarChart getChapterState={getChapterState} />
         </div>
       </div>
 
       {/* ---- right column ---- */}
-      <div className={isLight ? "space-y-6" : "space-y-5"}>
+      <div className="space-y-6">
         <SubjectCardsPanel perSubject={perSubject} />
         <RecentActivityList activity={getRecentActivity(6)} />
       </div>

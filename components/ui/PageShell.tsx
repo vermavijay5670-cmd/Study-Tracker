@@ -36,7 +36,8 @@ const NAV: NavItem[] = [
 
 const HOME_URL = "https://neetstudy-tracker.lovable.app/";
 
-export function PageShell({ children }: { children: React.ReactNode }) {
+/** `wide` gives dark mode the same 1320px content width light mode already uses (Today and Dashboard). */
+export function PageShell({ children, wide = false }: { children: React.ReactNode; wide?: boolean }) {
   const pathname = usePathname();
   const router = useRouter();
   const { state, hydrated, user, signOut } = useTrackerState();
@@ -143,7 +144,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
       {/* Main content */}
       <div className="min-w-0 flex-1">
-        <main className={`mx-auto px-4 py-6 sm:px-6 sm:py-10 md:px-12 md:py-[48px] ${isLight ? "max-w-[1320px]" : "max-w-[1040px]"}`}>{children}</main>
+        <main className={`mx-auto px-4 py-6 sm:px-6 sm:py-10 md:px-12 md:py-[48px] ${isLight || wide ? "max-w-[1320px]" : "max-w-[1040px]"}`}>{children}</main>
       </div>
     </div>
   );

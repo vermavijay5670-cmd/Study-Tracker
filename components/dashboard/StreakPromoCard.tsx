@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { Flame } from "lucide-react";
-import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
 import type { Subject } from "@/lib/types";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard, SoftLink } from "@/components/ui/soft/SoftUI";
+import { NmBadge, NmCard, NmLink } from "@/components/today/nm/NmUI";
 
 interface StreakPromoCardProps {
   currentStreak: number;
@@ -59,47 +58,40 @@ export function StreakPromoCard({ currentStreak, bestStreak, totalDone }: Streak
   }
 
   return (
-    <PaperTiltCard delay={0.1} className="flex h-full flex-col justify-between">
-      <div>
-        <span className="mb-3 inline-flex items-center justify-center rounded-full bg-[#A855F7]/20 p-2">
-          <Flame size={16} strokeWidth={1.75} className="text-[#D8B4FE]" />
-        </span>
-        <h2 className="text-[17px] font-medium leading-snug text-[#F6F4FF]">
-          {currentStreak > 0 ? `${currentStreak}-day streak` : "Start a streak"}
-        </h2>
-        <p className="mt-1.5 text-[11px] leading-relaxed text-white/45">
-          {currentStreak > 0
-            ? `Keep it going — your best run so far is ${bestStreak} days.`
-            : "Log some study time today to kick one off."}
-        </p>
-      </div>
-
-      <div>
-        <div className="my-4 flex -space-x-2.5">
-          {SUBJECTS.map((s) => {
-            const hex = ACCENT_HEX[SUBJECT_ACCENT[s]];
-            return (
-              <span
-                key={s}
-                className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#171224] text-[11px] font-semibold text-black"
-                style={{ background: hex }}
-              >
-                {INITIAL[s]}
-              </span>
-            );
-          })}
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#171224] bg-white/10 text-[10px] font-medium text-white/70">
-            +{totalDone}
-          </span>
+    <NmCard delay={0.05} accent="teal" className="h-full">
+      <div className="flex h-full flex-col justify-between">
+        <div>
+          <div className="mb-4">
+            <NmBadge>
+              <Flame size={19} strokeWidth={1.9} />
+            </NmBadge>
+          </div>
+          <h2 className="nm-title" style={{ fontSize: 22 }}>
+            {currentStreak > 0 ? `${currentStreak}-day streak` : "Start a streak"}
+          </h2>
+          <p className="nm-sub mt-2" style={{ lineHeight: 1.5, letterSpacing: 0 }}>
+            {currentStreak > 0
+              ? `Keep it going — your best run so far is ${bestStreak} days.`
+              : "Log some study time today to kick one off."}
+          </p>
         </div>
 
-        <Link
-          href="/planner"
-          className="flex w-full items-center justify-center rounded-full bg-[#F6F4FF] px-4 py-2.5 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
-        >
-          Open planner
-        </Link>
+        <div>
+          <div className="nm-seals">
+            {SUBJECTS.map((s) => (
+              <span key={s} className="nm-seal" style={{ "--seal": ACCENT_HEX[SUBJECT_ACCENT[s]] } as React.CSSProperties}>
+                {INITIAL[s]}
+              </span>
+            ))}
+            <span className="nm-seal" style={{ "--seal": "rgba(231,233,239,0.5)" } as React.CSSProperties}>
+              +{totalDone}
+            </span>
+          </div>
+          <NmLink href="/planner" tone="cyan" className="w-full">
+            Open planner
+          </NmLink>
+        </div>
       </div>
-    </PaperTiltCard>
+    </NmCard>
   );
 }
