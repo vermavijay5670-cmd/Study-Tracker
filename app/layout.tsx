@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/components/ui/ServiceWorkerRegister";
 import { KineticGridProvider } from "@/lib/KineticGridContext";
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </SidebarProvider>
           </KineticGridProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

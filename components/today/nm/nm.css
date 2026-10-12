@@ -2,10 +2,10 @@
    Everything hangs off .nm-scope (set by TodayBackground in dark mode). */
 
 .nm-scope {
-  --nm-bg: #2b2d36;
-  --nm-card-a: #30323c;
-  --nm-card-b: #272931;
-  --nm-shadow: rgba(8, 9, 13, 0.55);
+  --nm-bg: #1f2127;
+  --nm-card-a: #272930;
+  --nm-card-b: #1f2127;
+  --nm-shadow: rgba(3, 4, 7, 0.6);
   --nm-hi: rgba(255, 255, 255, 0.04);
   --nm-cyan: #1cf2e6;
   --nm-cyan-glow: rgba(28, 242, 230, 0.55);
@@ -16,7 +16,7 @@
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background: radial-gradient(1200px 700px at 20% -10%, #32343f 0%, transparent 60%), var(--nm-bg);
+  background: radial-gradient(1200px 700px at 20% -10%, #1d1f25 0%, transparent 60%), var(--nm-bg);
 }
 
 /* ── surfaces ── */
@@ -32,11 +32,11 @@
 
 .nm-inset {
   border-radius: 18px;
-  background: #272931;
+  background: #1c1e24;
   box-shadow: inset 6px 6px 12px var(--nm-shadow), inset -5px -5px 11px var(--nm-hi);
 }
 .nm-raised {
-  background: linear-gradient(145deg, #30323c, #2a2c34);
+  background: linear-gradient(145deg, #272930, #22242a);
   box-shadow: 7px 7px 14px var(--nm-shadow), -5px -5px 12px var(--nm-hi);
 }
 
@@ -69,9 +69,9 @@
 .nm-status[data-state="done"] i { background: var(--nm-green); box-shadow: 0 0 10px rgba(111, 227, 160, 0.6); }
 
 /* ── dial ── */
-.nm-dial { position: relative; flex: none; border-radius: 50%; background: linear-gradient(145deg, #31333d, #272931); box-shadow: 14px 14px 30px var(--nm-shadow), -10px -10px 26px var(--nm-hi); }
+.nm-dial { position: relative; flex: none; border-radius: 50%; background: linear-gradient(145deg, #282a32, #1c1e24); box-shadow: 14px 14px 30px var(--nm-shadow), -10px -10px 26px var(--nm-hi); }
 .nm-dial svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.nm-dial__well { position: absolute; inset: 17%; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(145deg, #292b33, #2f313b); box-shadow: inset 7px 7px 14px var(--nm-shadow), inset -6px -6px 12px var(--nm-hi); text-align: center; }
+.nm-dial__well { position: absolute; inset: 17%; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(145deg, #1d1f25, #25272e); box-shadow: inset 7px 7px 14px var(--nm-shadow), inset -6px -6px 12px var(--nm-hi); text-align: center; }
 .nm-dial__time { font-size: 27px; font-weight: 300; letter-spacing: 0.02em; color: var(--nm-cyan); font-variant-numeric: tabular-nums; text-shadow: 0 0 16px rgba(28, 242, 230, 0.35); }
 .nm-dial[data-tone="green"] .nm-dial__time { color: var(--nm-green); text-shadow: 0 0 16px rgba(111, 227, 160, 0.35); }
 .nm-dial__sub { margin-top: 4px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--nm-mute); }
@@ -90,22 +90,22 @@
 .nm-pill--cyan:hover:not(:disabled) { filter: brightness(1.08); }
 .nm-pill--red { background: var(--nm-red); color: #fff; box-shadow: 0 0 16px rgba(255, 90, 95, 0.28); }
 .nm-pill--red:hover:not(:disabled) { filter: brightness(1.08); }
-.nm-pill--plain { color: var(--nm-text); background: linear-gradient(145deg, #30323c, #2a2c34); box-shadow: 6px 6px 12px var(--nm-shadow), -4px -4px 10px var(--nm-hi); }
+.nm-pill--plain { color: var(--nm-text); background: linear-gradient(145deg, #272930, #22242a); box-shadow: 6px 6px 12px var(--nm-shadow), -4px -4px 10px var(--nm-hi); }
 
-.nm-round { display: inline-flex; flex: none; align-items: center; justify-content: center; border: 0; border-radius: 50%; cursor: pointer; color: var(--nm-text); background: linear-gradient(145deg, #30323c, #2a2c34); box-shadow: 6px 6px 12px var(--nm-shadow), -4px -4px 10px var(--nm-hi); transition: box-shadow 0.15s ease, color 0.15s ease; }
+.nm-round { display: inline-flex; flex: none; align-items: center; justify-content: center; border: 0; border-radius: 50%; cursor: pointer; color: var(--nm-text); background: linear-gradient(145deg, #272930, #22242a); box-shadow: 6px 6px 12px var(--nm-shadow), -4px -4px 10px var(--nm-hi); transition: box-shadow 0.15s ease, color 0.15s ease; }
 .nm-round:hover { color: var(--nm-cyan); }
 .nm-round:active, .nm-round[aria-pressed="true"] { box-shadow: inset 4px 4px 9px var(--nm-shadow), inset -3px -3px 8px var(--nm-hi); }
 .nm-round[aria-pressed="true"] { color: var(--nm-cyan); }
 .nm-round--md { width: 50px; height: 50px; }
 .nm-round--sm { width: 36px; height: 36px; }
 
-.nm-chip { padding: 8px 16px; border: 0; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 500; line-height: 1; letter-spacing: 0.04em; color: var(--nm-mute); background: linear-gradient(145deg, #30323c, #2a2c34); box-shadow: 5px 5px 10px var(--nm-shadow), -4px -4px 9px var(--nm-hi); transition: color 0.15s ease; }
+.nm-chip { padding: 8px 16px; border: 0; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 500; line-height: 1; letter-spacing: 0.04em; color: var(--nm-mute); background: linear-gradient(145deg, #272930, #22242a); box-shadow: 5px 5px 10px var(--nm-shadow), -4px -4px 9px var(--nm-hi); transition: color 0.15s ease; }
 .nm-chip:hover:not(:disabled) { color: var(--nm-text); }
 .nm-chip:disabled { opacity: 0.4; cursor: not-allowed; }
-.nm-chip[aria-pressed="true"], .nm-chip[aria-pressed="true"]:hover:not(:disabled) { color: var(--nm-cyan); background: #272931; box-shadow: inset 4px 4px 9px var(--nm-shadow), inset -3px -3px 8px var(--nm-hi); }
+.nm-chip[aria-pressed="true"], .nm-chip[aria-pressed="true"]:hover:not(:disabled) { color: var(--nm-cyan); background: #1c1e24; box-shadow: inset 4px 4px 9px var(--nm-shadow), inset -3px -3px 8px var(--nm-hi); }
 
 /* ── inputs ── */
-.nm-input { padding: 9px 14px; border: 0; border-radius: 14px; outline: none; font-family: inherit; font-size: 13px; font-weight: 500; line-height: 1; color: var(--nm-text); background: #272931; box-shadow: inset 5px 5px 10px var(--nm-shadow), inset -4px -4px 9px var(--nm-hi); font-variant-numeric: tabular-nums; }
+.nm-input { padding: 9px 14px; border: 0; border-radius: 14px; outline: none; font-family: inherit; font-size: 13px; font-weight: 500; line-height: 1; color: var(--nm-text); background: #1c1e24; box-shadow: inset 5px 5px 10px var(--nm-shadow), inset -4px -4px 9px var(--nm-hi); font-variant-numeric: tabular-nums; }
 .nm-input:focus { box-shadow: inset 5px 5px 10px var(--nm-shadow), inset -4px -4px 9px var(--nm-hi), 0 0 0 2px rgba(28, 242, 230, 0.4); }
 .nm-input--num { width: 70px; text-align: center; color: var(--nm-cyan); }
 .nm-input--date { color-scheme: dark; }
