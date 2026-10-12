@@ -1,11 +1,11 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { CrumpledPaperBackdrop } from "@/components/ui/CrumpledPaperBackdrop";
 import { SoftBackdrop } from "@/components/ui/soft/SoftUI";
 import { useTheme } from "@/lib/ThemeContext";
+import "./nm/nm.css";
 
-/** Light mode: the soft pale backdrop. Dark mode: the crumpled-paper backdrop (unchanged). */
+/** Light mode: the soft pale backdrop. Dark mode: flat charcoal with the dark-neumorphism (cyan) look. */
 export function TodayBackground({ children }: { children: ReactNode }) {
   const { theme } = useTheme();
   if (theme === "light") {
@@ -16,10 +16,5 @@ export function TodayBackground({ children }: { children: ReactNode }) {
       </div>
     );
   }
-  return (
-    <>
-      <CrumpledPaperBackdrop />
-      {children}
-    </>
-  );
+  return <div className="nm-scope">{children}</div>;
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CalendarClock, Target } from "lucide-react";
-import { PaperCard } from "@/components/ui/PaperCard";
+import { Target } from "lucide-react";
+import { NmBadge, NmCard, NmTiles, NmTrack } from "./nm/NmUI";
 import { parseKey, pad } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard, SoftTiles } from "@/components/ui/soft/SoftUI";
@@ -28,7 +28,7 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
     return isLight ? (
       <div className="sf-card" style={{ minHeight: 240 }} />
     ) : (
-      <PaperCard delay={0} className="min-h-[220px]"><span /></PaperCard>
+      <NmCard delay={0} className="min-h-[220px]"><span /></NmCard>
     );
   }
 
@@ -107,61 +107,31 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
   }
 
   return (
-    <PaperCard delay={0}>
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
-        {/* left: label + big day count */}
+    <NmCard delay={0}>
+      <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
         <div className="min-w-0">
-          <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#FFD64D]/30 bg-[#FFD64D]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#FFD64D]">
-            <CalendarClock size={11} strokeWidth={1.75} /> target exam
-          </span>
-          <h2 className="text-[16px] font-medium text-[#F7F2E7]">NEET UG Countdown</h2>
-          <label className="mt-1 flex items-center gap-2 text-[10px] uppercase tracking-wide text-white/40">
-            exam date
-            <input
-              type="date"
-              value={examDate}
-              onChange={(e) => onSetExamDate(e.target.value)}
-              className="rounded border-0 border-b border-dashed border-white/30 bg-transparent px-1 py-0.5 text-[11px] text-white/70 outline-none focus:border-[#FFD64D]"
-            />
+          <div className="flex items-center gap-3">
+            <NmBadge>
+              <Target size={17} strokeWidth={1.8} />
+            </NmBadge>
+            <span className="nm-cap">Target exam</span>
+          </div>
+          <h2 className="nm-title mt-4">NEET UG Countdown</h2>
+          <label className="mt-3 flex flex-wrap items-center gap-3">
+            <span className="nm-cap">Exam date</span>
+            <input type="date" value={examDate} onChange={(e) => onSetExamDate(e.target.value)} className="nm-input nm-input--date" />
           </label>
-
-          <div className="mt-4 flex items-end gap-3">
-            <span
-              className="font-tabular text-[64px] font-bold leading-none text-[#F7F2E7] sm:text-[76px]"
-              style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
-            >
-              {days}
-            </span>
-            <span className="mb-2 text-[10px] uppercase tracking-[0.25em] text-white/40">{label}</span>
+          <div className="mt-6 flex flex-wrap items-end gap-x-4 gap-y-1">
+            <span className="nm-hero">{days}</span>
+            <span className="nm-hero-lbl">{label}</span>
           </div>
         </div>
 
-        {/* right: hh:mm:ss + progress */}
-        <div className="flex flex-col gap-4 sm:min-w-[260px]">
-          <div className="flex items-center justify-center gap-0 sm:justify-end">
-            {[
-              { v: hh, u: "hrs" },
-              { v: mm, u: "min" },
-              { v: ss, u: "sec" },
-            ].map((b, i) => (
-              <div key={b.u} className="flex items-center">
-                <div className="flex min-w-[58px] flex-col items-center">
-                  <span className="font-tabular text-[26px] font-bold text-[#FFD64D]">{b.v}</span>
-                  <span className="mt-0.5 text-[8px] uppercase tracking-wide text-white/40">{b.u}</span>
-                </div>
-                {i < 2 && <span className="pb-3 text-lg text-[#FFD64D]/50">:</span>}
-              </div>
-            ))}
-          </div>
-
-          <div className="h-1 w-full overflow-hidden rounded-full border border-white/10 bg-black/25">
-            <div
-              className="h-full rounded-full transition-[width] duration-500"
-              style={{ width: `${pct}%`, background: "linear-gradient(90deg,#7A4E0A,#FFD64D)" }}
-            />
-          </div>
+        <div className="flex flex-col gap-6 sm:min-w-[300px]">
+          <NmTiles hh={hh} mm={mm} ss={ss} />
+          <NmTrack pct={pct} label="Time elapsed since you started" />
         </div>
       </div>
-    </PaperCard>
+    </NmCard>
   );
 }

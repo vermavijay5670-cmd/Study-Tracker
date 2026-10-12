@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play, Pause, RotateCcw, Gauge, BookOpen } from "lucide-react";
-import { PaperCard } from "@/components/ui/PaperCard";
-import { CapsuleButton } from "@/components/ui/CapsuleButton";
+import { NmBadge, NmCard, NmDial, NmPill, NmRound, NmStatus, NmTrack, NmWell } from "./nm/NmUI";
 import { fmtHrs, pad } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard, SoftTiles, SoftStatus } from "@/components/ui/soft/SoftUI";
@@ -164,90 +163,62 @@ export function Stopwatch({
   }
 
   return (
-    <PaperCard delay={0.08}>
-      <span className="mb-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#FFD64D]/30 bg-[#FFD64D]/15 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#FFD64D]">
-        <Gauge size={11} strokeWidth={1.75} /> study session
-      </span>
-      <h2 className="text-[16px] font-medium text-[#F7F2E7]">Stopwatch</h2>
-
-      <div className="mb-4 mt-1 flex items-center gap-1.5 text-[9px] uppercase tracking-wide text-white/40">
-        <span
-          className="h-1.5 w-1.5 rounded-full"
-          style={{
-            background: running ? "#FFC93D" : "rgba(255,201,61,0.25)",
-            boxShadow: running ? "0 0 8px rgba(255,201,61,0.85)" : "none",
-            animation: running ? "pulse 1.1s ease-in-out infinite" : "none",
-          }}
-        />
-        {running ? "session running" : "ready to start"}
+    <NmCard delay={0.08}>
+      <div className="flex items-center gap-3">
+        <NmBadge>
+          <Gauge size={17} strokeWidth={1.8} />
+        </NmBadge>
+        <span className="nm-cap">Study session</span>
+      </div>
+      <h2 className="nm-title mt-4">Stopwatch</h2>
+      <div className="mt-2">
+        <NmStatus state={running ? "live" : "idle"}>{running ? "Session running" : "Ready to start"}</NmStatus>
       </div>
 
-      <div className="my-2 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-
-      <div className="mb-1 flex items-end gap-0">
-        {[
-          { v: hh, u: "hrs" },
-          { v: mm, u: "min" },
-          { v: ss, u: "sec" },
-        ].map((b, i) => (
-          <div key={b.u} className="flex items-end">
-            <div className="flex min-w-[58px] flex-col items-center">
-              <span
-                className="font-tabular text-[34px] font-bold leading-none text-[#F7F2E7]"
-                style={{ textShadow: "0 2px 10px rgba(0,0,0,0.35)" }}
-              >
-                {b.v}
-              </span>
-              <span className="mt-1 text-[8px] uppercase tracking-wide text-white/40">{b.u}</span>
-            </div>
-            {i < 2 && <span className="pb-3.5 text-2xl text-[#FFD64D]/50">:</span>}
+      <div className="my-7 flex justify-center">
+        <NmDial pct={goalPct} running={running} size={236} label={`${Math.round(goalPct)}% of today's goal`}>
+          <div className="nm-dial__time">
+            {hh}:{mm}:{ss}
           </div>
-        ))}
-        <span className="pb-1.5 pl-1 font-tabular text-[16px] font-medium text-[#FFC93D]/60">.{centis}</span>
+          <div className="nm-dial__sub">.{centis} · {Math.round(goalPct)}% of goal</div>
+        </NmDial>
       </div>
 
-      <div className="mb-3 mt-2 flex justify-between text-[10px] uppercase tracking-wide text-white/40">
-        <span>today: {fmtHrs(liveHours)}</span>
-        <span>sessions: {stopwatchSessions}</span>
+      <div className="nm-sub mb-5 flex justify-between">
+        <span>Today: {fmtHrs(liveHours)}</span>
+        <span>Sessions: {stopwatchSessions}</span>
       </div>
 
-      <div className="mb-4 flex gap-2">
-        <CapsuleButton onClick={running ? onPause : onStart} accent="gold" variant="solid" className="flex-1 rounded-full">
-          {running ? (
-            <>
-              <Pause size={14} strokeWidth={1.75} /> Pause
-            </>
-          ) : (
-            <>
-              <Play size={14} strokeWidth={1.75} /> Start
-            </>
-          )}
-        </CapsuleButton>
-        <CapsuleButton onClick={onReset} className="flex-1 rounded-full">
-          <RotateCcw size={14} strokeWidth={1.75} /> Reset
-        </CapsuleButton>
+      <div className="mb-6 flex items-center gap-3">
+        <NmWell>
+          <NmPill tone={running ? "red" : "cyan"} onClick={running ? onPause : onStart}>
+            {running ? <Pause size={15} strokeWidth={2.2} /> : <Play size={15} strokeWidth={2.2} fill="currentColor" />}
+            {running ? "Pause" : "Start"}
+          </NmPill>
+        </NmWell>
+        <NmRound size="md" onClick={onReset} aria-label="Reset session count" title="Reset">
+          <RotateCcw size={18} strokeWidth={2} />
+        </NmRound>
       </div>
 
-      <div className="flex items-center justify-between text-[9px] uppercase tracking-wide text-white/40">
-        <span>daily goal</span>
-        <span className="flex items-center gap-1 font-tabular text-[#FFD64D]">
+      <div className="flex items-center justify-between">
+        <span className="nm-cap">Daily goal</span>
+        <span className="flex items-center gap-2">
           <input
             type="number"
             step="0.5"
             min="0"
+            aria-label="Daily goal in hours"
             value={dailyGoalHours}
             onChange={(e) => onSetGoal(parseFloat(e.target.value))}
-            className="w-10 border-0 border-b border-dashed border-[#FFD64D]/45 bg-transparent text-right outline-none"
+            className="nm-input nm-input--num"
           />
-          h
+          <span className="nm-sub">h</span>
         </span>
       </div>
-      <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full border border-white/10 bg-black/25">
-        <div
-          className="h-full rounded-full transition-[width] duration-500"
-          style={{ width: `${goalPct}%`, background: "linear-gradient(90deg,#7A4E0A,#FFE38A)" }}
-        />
+      <div className="mt-3">
+        <NmTrack pct={goalPct} label="Daily goal progress" />
       </div>
-    </PaperCard>
+    </NmCard>
   );
 }
