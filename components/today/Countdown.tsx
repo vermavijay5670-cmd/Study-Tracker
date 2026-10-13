@@ -107,30 +107,29 @@ export function Countdown({ examDate, startDate, onSetExamDate }: CountdownProps
   }
 
   return (
-    <NmCard delay={0} className="nm-card--fit">
-      <div className="nm-head">
-        <NmBadge>
-          <Target size={17} strokeWidth={1.8} />
-        </NmBadge>
-        <div className="min-w-0">
-          <span className="nm-cap">Target exam</span>
-          <h2 className="nm-title">NEET UG Countdown</h2>
+    <NmCard delay={0} className="nm-card--fit nm-card--top">
+      <div className="min-w-0">
+        <div className="nm-head">
+          <NmBadge>
+            <Target size={17} strokeWidth={1.8} />
+          </NmBadge>
+          <div className="min-w-0">
+            <span className="nm-cap">Target exam</span>
+            <h2 className="nm-title">NEET UG Countdown</h2>
+          </div>
         </div>
+        <label className="mt-4 flex flex-wrap items-center gap-3">
+          <span className="nm-cap">Exam date</span>
+          <input type="date" value={examDate} onChange={(e) => onSetExamDate(e.target.value)} className="nm-input nm-input--date" />
+        </label>
       </div>
 
-      <label className="mt-4 flex flex-wrap items-center gap-3">
-        <span className="nm-cap">Exam date</span>
-        <input type="date" value={examDate} onChange={(e) => onSetExamDate(e.target.value)} className="nm-input nm-input--date" />
-      </label>
-
-      <div className="flex flex-1 items-center py-6">
-        <div className="flex flex-wrap items-end gap-x-4 gap-y-1">
-          <span className="nm-hero nm-hero--fit">{days}</span>
-          <span className="nm-hero-lbl">{label}</span>
-        </div>
+      <div className="flex flex-wrap items-end gap-x-4 gap-y-1">
+        <span className="nm-hero nm-hero--fit">{days}</span>
+        <span className="nm-hero-lbl">{label}</span>
       </div>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 lg:w-[310px] lg:flex-none">
         <NmTiles hh={hh} mm={mm} ss={ss} />
         <NmTrack pct={pct} label="Time elapsed since you started" />
       </div>

@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import type { ButtonHTMLAttributes, ComponentProps, ReactNode } from "react";
+import type { ButtonHTMLAttributes, ComponentProps, ComponentType, ReactNode } from "react";
 import { motion } from "framer-motion";
+import { useCountUp } from "@/lib/useCountUp";
 import "./nm.css";
 
 /** Raised card (soft shadows, no border) — the dark-mode Today surface. */
@@ -170,4 +171,45 @@ export function NmSeg<T extends string>({
 /** Next.js link styled like the pill buttons. */
 export function NmLink({ tone = "plain", className = "", ...rest }: ComponentProps<typeof Link> & { tone?: "cyan" | "plain" }) {
   return <Link className={`nm-pill nm-pill--${tone} nm-pill--link ${className}`} {...rest} />;
+}
+
+/** Stat card: small label + icon badge on top, big number, short caption. */
+export function NmStat({
+  label,
+  value,
+  sub,
+  icon: Icon,
+  delay = 0,
+  accent,
+}: {
+  label: string;
+  value: string;
+  sub?: string;
+  icon: ComponentType<{ size?: number; strokeWidth?: number }>;
+  delay?: number;
+  accent?: NmAccent;
+}) {
+  return (
+    <NmCard delay={delay} accent={accent} className="nm-stat">
+      <div className="flex items-start justify-between gap-2">
+        <span className="nm-cap pt-1">{label}</span>
+        <NmBadge>
+          <Icon size={19} strokeWidth={1.9} />
+        </NmBadge>
+      </div>
+      <div className="nm-bignum mt-3">{value}</div>
+      {sub && (
+        <div className="nm-sub mt-1.5" style={{ letterSpacing: 0 }}>
+          {sub}
+        </div>
+      )}
+    </NmCard>
+  );
+}
+
+/** NmStat whose number counts up to its value. */
+export function NmCountStat({ value, decimals = 0, suffix = "", ...rest }: { label: string; value: number; decimals?: number; suffix?: string; sub?: string; icon: ComponentType<{ size?: number; strokeWidth?: number }>; delay?: number; accent?: NmAccent }) {
+  const animated = useCountUp(Number.isFinite(value) ? value : 0);
+  const shown = decimals > 0 ? animated.toFixed(decimals) : Math.round(animated).toString();
+  return <NmStat {...rest} value={`${shown}${suffix}`} />;
 }

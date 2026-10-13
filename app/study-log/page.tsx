@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { StudyLogSection } from "@/components/study-log/StudyLogSection";
-import { SoftBackground } from "@/components/ui/soft/SoftBackground";
+import { DashboardBackground } from "@/components/dashboard/DashboardBackground";
 
 export default function StudyLogPage() {
   return (
-    <SoftBackground>
-      <PageShell>
+    <DashboardBackground>
+      <PageShell wide>
         <StudyLogSection />
       </PageShell>
-    </SoftBackground>
+    </DashboardBackground>
   );
 }

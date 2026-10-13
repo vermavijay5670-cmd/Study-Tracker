@@ -70,11 +70,11 @@ export function TodaySection() {
         />
   );
 
-  // Dark mode: three cards side by side that always fit one screen on laptops/desktops (stacked on phones).
+  // Dark mode: same layout as light — one wide card on top, two below — and it always fits one screen on laptops/desktops.
   if (!isLight) {
     return (
-      <div className="nm-fit-grid grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {countdown}
+      <div className="nm-fit-grid grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="md:col-span-2">{countdown}</div>
         {stopwatch}
         {timer}
       </div>

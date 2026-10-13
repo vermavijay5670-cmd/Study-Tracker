@@ -306,72 +306,76 @@ export function Timer({
         </div>
       </div>
 
-      <div className="flex flex-1 items-center justify-center py-5">
-        <NmDial pct={completed ? 100 : pct} running={running} tone={completed ? "green" : "cyan"} label={`${Math.round(pct)}% of the timer elapsed`}>
-          <div className="nm-dial__time">
-            {hh}:{mm}:{ss}
+      <div className="nm-split">
+        <div className="nm-split__dial">
+          <NmDial pct={completed ? 100 : pct} running={running} tone={completed ? "green" : "cyan"} label={`${Math.round(pct)}% of the timer elapsed`}>
+            <div className="nm-dial__time">
+              {hh}:{mm}:{ss}
+            </div>
+            <div className="nm-dial__sub">{completed ? "complete" : "remaining"}</div>
+          </NmDial>
+        </div>
+
+        <div className="nm-split__ctl">
+          <div className="mb-4 flex flex-wrap items-center gap-2">
+            {PRESETS_MIN.map((min) => (
+              <NmChip key={min} active={timerDurationMs === min * 60_000} onClick={() => applyDuration(min * 60_000)} disabled={running}>
+                {min}m
+              </NmChip>
+            ))}
+            <NmChip active={showCustom} onClick={() => setShowCustom((v) => !v)} disabled={running}>
+              Custom
+            </NmChip>
           </div>
-          <div className="nm-dial__sub">{completed ? "complete" : "remaining"}</div>
-        </NmDial>
+
+          {showCustom && !running && (
+            <div className="mb-4 flex items-end gap-3">
+              <label className="flex flex-col gap-1.5">
+                <span className="nm-cap">Hrs</span>
+                <input type="number" min="0" max="12" placeholder="0" value={customHrs} onChange={(e) => setCustomHrs(e.target.value)} className="nm-input nm-input--num" />
+              </label>
+              <label className="flex flex-col gap-1.5">
+                <span className="nm-cap">Min</span>
+                <input type="number" min="0" max="59" placeholder="0" value={customMin} onChange={(e) => setCustomMin(e.target.value)} className="nm-input nm-input--num" />
+              </label>
+              <NmPill tone="plain" onClick={applyCustom} className="!flex-none">
+                <Check size={14} strokeWidth={2.2} /> Set
+              </NmPill>
+            </div>
+          )}
+
+          {ringing && (
+            <div className="mb-3">
+              <NmPill tone="red" onClick={stopAlarm} className="w-full">
+                <BellOff size={15} strokeWidth={2} /> Stop alarm
+              </NmPill>
+            </div>
+          )}
+
+          {completed ? (
+            <NmWell>
+              <NmPill tone="plain" onClick={handleReset}>
+                <RotateCcw size={15} strokeWidth={2} /> Restart
+              </NmPill>
+              <NmPill tone="cyan" onClick={logSession} disabled={logged}>
+                <Plus size={15} strokeWidth={2.2} /> {logged ? "Logged" : `Log ${fmtDurationLabel(timerDurationMs)}`}
+              </NmPill>
+            </NmWell>
+          ) : (
+            <div className="flex items-center gap-3">
+              <NmWell>
+                <NmPill tone={running ? "red" : "cyan"} onClick={running ? onPause : handleStart}>
+                  {running ? <Pause size={15} strokeWidth={2.2} /> : <Play size={15} strokeWidth={2.2} fill="currentColor" />}
+                  {running ? "Pause" : "Start"}
+                </NmPill>
+              </NmWell>
+              <NmRound size="md" onClick={handleReset} aria-label="Reset timer" title="Reset">
+                <RotateCcw size={18} strokeWidth={2} />
+              </NmRound>
+            </div>
+          )}
+        </div>
       </div>
-
-      <div className="mb-4 flex flex-wrap items-center gap-2">
-        {PRESETS_MIN.map((min) => (
-          <NmChip key={min} active={timerDurationMs === min * 60_000} onClick={() => applyDuration(min * 60_000)} disabled={running}>
-            {min}m
-          </NmChip>
-        ))}
-        <NmChip active={showCustom} onClick={() => setShowCustom((v) => !v)} disabled={running}>
-          Custom
-        </NmChip>
-      </div>
-
-      {showCustom && !running && (
-        <div className="mb-4 flex items-end gap-3">
-          <label className="flex flex-col gap-1.5">
-            <span className="nm-cap">Hrs</span>
-            <input type="number" min="0" max="12" placeholder="0" value={customHrs} onChange={(e) => setCustomHrs(e.target.value)} className="nm-input nm-input--num" />
-          </label>
-          <label className="flex flex-col gap-1.5">
-            <span className="nm-cap">Min</span>
-            <input type="number" min="0" max="59" placeholder="0" value={customMin} onChange={(e) => setCustomMin(e.target.value)} className="nm-input nm-input--num" />
-          </label>
-          <NmPill tone="plain" onClick={applyCustom} className="!flex-none">
-            <Check size={14} strokeWidth={2.2} /> Set
-          </NmPill>
-        </div>
-      )}
-
-      {ringing && (
-        <div className="mb-3">
-          <NmPill tone="red" onClick={stopAlarm} className="w-full">
-            <BellOff size={15} strokeWidth={2} /> Stop alarm
-          </NmPill>
-        </div>
-      )}
-
-      {completed ? (
-        <NmWell>
-          <NmPill tone="plain" onClick={handleReset}>
-            <RotateCcw size={15} strokeWidth={2} /> Restart
-          </NmPill>
-          <NmPill tone="cyan" onClick={logSession} disabled={logged}>
-            <Plus size={15} strokeWidth={2.2} /> {logged ? "Logged" : `Log ${fmtDurationLabel(timerDurationMs)}`}
-          </NmPill>
-        </NmWell>
-      ) : (
-        <div className="flex items-center gap-3">
-          <NmWell>
-            <NmPill tone={running ? "red" : "cyan"} onClick={running ? onPause : handleStart}>
-              {running ? <Pause size={15} strokeWidth={2.2} /> : <Play size={15} strokeWidth={2.2} fill="currentColor" />}
-              {running ? "Pause" : "Start"}
-            </NmPill>
-          </NmWell>
-          <NmRound size="md" onClick={handleReset} aria-label="Reset timer" title="Reset">
-            <RotateCcw size={18} strokeWidth={2} />
-          </NmRound>
-        </div>
-      )}
     </NmCard>
   );
 }

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { addDays, dateKey, parseKey, fmtHrs } from "@/lib/date-utils";
-import { ACCENT_HEX } from "@/lib/data";
 import { useTheme } from "@/lib/ThemeContext";
 
 interface HeatmapProps {
@@ -20,13 +19,10 @@ function levelFor(hours: number, goal: number): number {
   return 3;
 }
 
-const LEVEL_OPACITY = [0.06, 0.28, 0.6, 1];
-
 export function Heatmap({ log, startDate, dailyGoalHours, weeks = 16 }: HeatmapProps) {
   const { theme } = useTheme();
   const today = new Date();
   const start = parseKey(startDate);
-  const accent = ACCENT_HEX.lime;
 
   const columns = Array.from({ length: weeks }, (_, wFromLeft) => {
     const w = weeks - 1 - wFromLeft;
@@ -78,43 +74,36 @@ export function Heatmap({ log, startDate, dailyGoalHours, weeks = 16 }: HeatmapP
   }
 
   return (
-    <div className="overflow-x-auto pb-1">
-      <div className="flex gap-[3px]">
-        {columns.map((col, ci) => (
-          <div key={ci} className="flex flex-col gap-[3px]">
-            {col.map((cell, ri) =>
-              cell.inRange ? (
-                <motion.div
-                  key={cell.key}
-                  title={`${cell.key}: ${fmtHrs(cell.hours)}`}
-                  initial={{ opacity: 0, scale: 0.4 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: (ci * 7 + ri) * 0.003, type: "spring", stiffness: 300, damping: 20 }}
-                  whileHover={{ scale: 1.35 }}
-                  className="h-[12px] w-[12px] rounded-[3px]"
-                  style={{
-                    background: cell.level > 0 ? accent : "rgba(255,255,255,0.05)",
-                    opacity: cell.level > 0 ? LEVEL_OPACITY[cell.level] : 1,
-                    boxShadow: cell.level === 3 ? `0 0 6px ${accent}88` : "none",
-                  }}
-                />
-              ) : (
-                <div key={`${ci}-${ri}`} className="h-[12px] w-[12px]" />
-              )
-            )}
-          </div>
-        ))}
+    <div className="overflow-x-auto p-2 pb-3">
+      <div className="nm-heat">
+        {columns
+          .filter((col) => col.some((c) => c.inRange))
+          .map((col, ci) => (
+            <div key={ci} className="nm-heat__col">
+              {col.map((cell, ri) =>
+                cell.inRange ? (
+                  <motion.div
+                    key={cell.key}
+                    title={`${cell.key}: ${fmtHrs(cell.hours)}`}
+                    initial={{ opacity: 0, scale: 0.4 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: (ci * 7 + ri) * 0.003, type: "spring", stiffness: 300, damping: 20 }}
+                    className={`nm-cell nm-cell--${cell.level}`}
+                  />
+                ) : (
+                  <div key={`${ci}-${ri}`} className="nm-cell" style={{ visibility: "hidden" }} />
+                )
+              )}
+            </div>
+          ))}
       </div>
-      <div className="mt-3 flex items-center gap-1.5 text-[10px] uppercase tracking-wide text-[#a3a3a3]">
-        <span>less</span>
-        {LEVEL_OPACITY.map((op, i) => (
-          <span
-            key={i}
-            className="h-[10px] w-[10px] rounded-[2px]"
-            style={{ background: i === 0 ? "rgba(255,255,255,0.05)" : accent, opacity: i === 0 ? 1 : op }}
-          />
+      <div className="nm-legend">
+        <span>Less</span>
+        {[0, 1, 2, 3].map((l) => (
+          <span key={l} className={`nm-cell nm-cell--${l}`} />
         ))}
-        <span>more &nbsp;·&nbsp; each column = 1 week, ending today</span>
+        <span>More</span>
+        <span>·&nbsp; Each column = 1 week, ending today</span>
       </div>
     </div>
   );

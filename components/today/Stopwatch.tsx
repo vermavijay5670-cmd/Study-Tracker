@@ -177,49 +177,53 @@ export function Stopwatch({
         <NmStatus state={running ? "live" : "idle"}>{running ? "Running" : "Ready"}</NmStatus>
       </div>
 
-      <div className="flex flex-1 items-center justify-center py-5">
-        <NmDial pct={goalPct} running={running} label={`${Math.round(goalPct)}% of today's goal`}>
-          <div className="nm-dial__time">
-            {hh}:{mm}:{ss}
+      <div className="nm-split">
+        <div className="nm-split__dial">
+          <NmDial pct={goalPct} running={running} label={`${Math.round(goalPct)}% of today's goal`}>
+            <div className="nm-dial__time">
+              {hh}:{mm}:{ss}
+            </div>
+            <div className="nm-dial__sub">.{centis} · {Math.round(goalPct)}% of goal</div>
+          </NmDial>
+        </div>
+
+        <div className="nm-split__ctl">
+          <div className="nm-sub mb-4 flex justify-between">
+            <span>Today: {fmtHrs(liveHours)}</span>
+            <span>Sessions: {stopwatchSessions}</span>
           </div>
-          <div className="nm-dial__sub">.{centis} · {Math.round(goalPct)}% of goal</div>
-        </NmDial>
-      </div>
 
-      <div className="nm-sub mb-4 flex justify-between">
-        <span>Today: {fmtHrs(liveHours)}</span>
-        <span>Sessions: {stopwatchSessions}</span>
-      </div>
+          <div className="mb-5 flex items-center gap-3">
+            <NmWell>
+              <NmPill tone={running ? "red" : "cyan"} onClick={running ? onPause : onStart}>
+                {running ? <Pause size={15} strokeWidth={2.2} /> : <Play size={15} strokeWidth={2.2} fill="currentColor" />}
+                {running ? "Pause" : "Start"}
+              </NmPill>
+            </NmWell>
+            <NmRound size="md" onClick={onReset} aria-label="Reset session count" title="Reset">
+              <RotateCcw size={18} strokeWidth={2} />
+            </NmRound>
+          </div>
 
-      <div className="mb-5 flex items-center gap-3">
-        <NmWell>
-          <NmPill tone={running ? "red" : "cyan"} onClick={running ? onPause : onStart}>
-            {running ? <Pause size={15} strokeWidth={2.2} /> : <Play size={15} strokeWidth={2.2} fill="currentColor" />}
-            {running ? "Pause" : "Start"}
-          </NmPill>
-        </NmWell>
-        <NmRound size="md" onClick={onReset} aria-label="Reset session count" title="Reset">
-          <RotateCcw size={18} strokeWidth={2} />
-        </NmRound>
-      </div>
-
-      <div className="flex items-center justify-between">
-        <span className="nm-cap">Daily goal</span>
-        <span className="flex items-center gap-2">
-          <input
-            type="number"
-            step="0.5"
-            min="0"
-            aria-label="Daily goal in hours"
-            value={dailyGoalHours}
-            onChange={(e) => onSetGoal(parseFloat(e.target.value))}
-            className="nm-input nm-input--num"
-          />
-          <span className="nm-sub">h</span>
-        </span>
-      </div>
-      <div className="mt-3">
-        <NmTrack pct={goalPct} label="Daily goal progress" />
+          <div className="flex items-center justify-between">
+            <span className="nm-cap">Daily goal</span>
+            <span className="flex items-center gap-2">
+              <input
+                type="number"
+                step="0.5"
+                min="0"
+                aria-label="Daily goal in hours"
+                value={dailyGoalHours}
+                onChange={(e) => onSetGoal(parseFloat(e.target.value))}
+                className="nm-input nm-input--num"
+              />
+              <span className="nm-sub">h</span>
+            </span>
+          </div>
+          <div className="mt-3">
+            <NmTrack pct={goalPct} label="Daily goal progress" />
+          </div>
+        </div>
       </div>
     </NmCard>
   );

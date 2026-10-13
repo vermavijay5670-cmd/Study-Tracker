@@ -4,8 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { addDays, dateKey, daysBetween, parseKey, weekdayShort } from "@/lib/date-utils";
-import { CapsuleButton } from "@/components/ui/CapsuleButton";
 import { useTheme } from "@/lib/ThemeContext";
+import { NmPill } from "@/components/today/nm/NmUI";
 
 interface LedgerProps {
   log: Record<string, number>;
@@ -99,64 +99,61 @@ export function Ledger({ log, startDate, dailyGoalHours, onChange }: LedgerProps
 
   return (
     <div>
-      <div className="mb-4 flex flex-wrap items-center gap-2.5">
+      <div className="mb-4 flex flex-wrap items-center gap-3">
         <input
           type="date"
+          aria-label="Date to log"
           value={manualDate}
           onChange={(e) => setManualDate(e.target.value)}
-          className="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-[#e5e5e5] outline-none focus:border-white/20"
+          className="nm-input nm-input--date"
         />
         <input
           type="number"
           step="0.1"
           min="0"
           placeholder="hrs"
+          aria-label="Hours studied"
           value={manualHours}
           onChange={(e) => setManualHours(e.target.value)}
-          className="w-20 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-xs text-[#e5e5e5] outline-none focus:border-white/20"
+          className="nm-input w-24"
         />
-        <CapsuleButton onClick={submitManual} accent="gold" variant="solid">
-          <Plus size={14} strokeWidth={1.75} /> Log this date
-        </CapsuleButton>
+        <NmPill tone="cyan" onClick={submitManual} disabled={!manualDate || manualHours === ""} className="!flex-none">
+          <Plus size={15} strokeWidth={2.2} /> Log this date
+        </NmPill>
       </div>
 
-      <div className="max-h-[380px] overflow-auto rounded-2xl border border-white/[0.05] bg-black/20">
+      <div className="nm-ledger nm-inset">
         {rows.map((d, i) => {
           const key = dateKey(d);
           const hours = log[key];
           const hit = hours !== undefined && dailyGoalHours > 0 && hours >= dailyGoalHours;
           const pct = dailyGoalHours > 0 ? Math.min(100, ((hours ?? 0) / dailyGoalHours) * 100) : hours ? 100 : 0;
-
           return (
             <motion.div
               key={key}
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: Math.min(i, 20) * 0.015 }}
-              className={`flex min-w-[260px] items-center gap-2 border-b border-white/[0.04] px-3 py-2 last:border-b-0 sm:gap-3 sm:px-4 ${
-                i === 0 ? "bg-[#FFD64D]/[0.04]" : ""
-              }`}
+              className={`nm-row ${i === 0 ? "is-today" : ""}`}
             >
-              <span className="min-w-[68px] flex-shrink-0 font-tabular text-xs text-[#e5e5e5]">{key}</span>
-              <span className="min-w-[26px] flex-shrink-0 text-[10px] uppercase text-[#a3a3a3]">{weekdayShort(d)}</span>
-              <span
-                className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                style={{ background: hit ? "#6FB37A" : "rgba(255,255,255,0.08)", boxShadow: hit ? "0 0 6px #6FB37A88" : "none" }}
-              />
-              <div className="h-[5px] min-w-[24px] flex-[2] overflow-hidden rounded-full bg-white/[0.05]">
-                <div className="h-full rounded-full bg-[#FFD64D]" style={{ width: `${pct}%` }} />
+              <span className="min-w-[78px] flex-shrink-0 text-[13px] font-medium tabular-nums">{key}</span>
+              <span className="nm-cap min-w-[28px] flex-shrink-0" style={{ fontSize: 10 }}>{weekdayShort(d)}</span>
+              <span className={`nm-dot ${hit ? "is-hit" : ""}`} />
+              <div className="nm-mini">
+                <i style={{ width: `${pct}%` }} />
               </div>
               <input
                 type="number"
                 step="0.1"
                 min="0"
                 placeholder="—"
+                aria-label={`Hours on ${key}`}
                 defaultValue={hours ?? ""}
                 onBlur={(e) => {
                   const v = e.target.value;
                   onChange(key, v === "" ? null : parseFloat(v));
                 }}
-                className="w-[58px] flex-shrink-0 rounded-lg border border-white/[0.06] bg-white/[0.03] px-2 py-1 text-right font-tabular text-xs text-[#FFD64D] outline-none focus:border-white/20"
+                className="nm-cellinput"
               />
             </motion.div>
           );
