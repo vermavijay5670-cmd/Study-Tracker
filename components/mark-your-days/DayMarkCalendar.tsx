@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Check, X, CalendarCheck, StickyNote } from "lucide-react";
-import { PaperTiltCard } from "@/components/ui/PaperTiltCard";
 import { dateKey, todayKey } from "@/lib/date-utils";
 import { useTheme } from "@/lib/ThemeContext";
 import { S } from "@/lib/softClass";
 import { SoftCard } from "@/components/ui/soft/SoftUI";
+import { NmBadge, NmCard, NmRound } from "@/components/today/nm/NmUI";
 
 interface DayMarkCalendarProps {
   marks: Record<string, "tick" | "cross">;
@@ -82,7 +82,7 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.15 }}
-        className={`fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-sm ${soft ? "bg-[#5b686e]/35" : "bg-black/60"}`}
+        className={`fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-sm ${soft ? "bg-[#5b686e]/35" : "bg-black/65 nm-acc-teal"}`}
         onClick={closeDay}
       >
         <motion.div
@@ -91,12 +91,12 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.2 }}
           onClick={(e) => e.stopPropagation()}
-          className={`relative w-full max-w-[300px] rounded-2xl p-6 text-center ${soft ? "sf-card" : "border border-white/12 bg-[#161618] shadow-2xl"}`}
+          className={soft ? "relative w-full max-w-[300px] rounded-2xl p-6 text-center sf-card" : "nm-dialog"}
         >
           <button
             onClick={closeDay}
             aria-label="Close"
-            className={S("absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full text-white/30 transition-colors hover:bg-white/[0.06] hover:text-white/70", soft)}
+            className={soft ? S("absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full text-white/30 transition-colors hover:bg-white/[0.06] hover:text-white/70", soft) : "nm-round nm-round--sm absolute right-3 top-3"}
           >
             <X size={14} strokeWidth={2} />
           </button>
@@ -109,22 +109,18 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
             <button
               onClick={() => onMark(openDay, "tick")}
               aria-label="Mark as tick"
-              className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#6FB37A] transition-transform hover:scale-105"
-              style={{
-                background: "#6FB37A18",
-                boxShadow: openMark === "tick" ? "0 0 0 2px #6FB37Aaa" : "none",
-              }}
+              aria-pressed={openMark === "tick"}
+              className={soft ? "flex h-16 w-16 items-center justify-center rounded-2xl text-[#6FB37A] transition-transform hover:scale-105" : "nm-markbtn nm-markbtn--tick"}
+              style={soft ? { background: "#6FB37A18", boxShadow: openMark === "tick" ? "0 0 0 2px #6FB37Aaa" : "none" } : undefined}
             >
               <Check size={28} strokeWidth={2.5} />
             </button>
             <button
               onClick={() => onMark(openDay, "cross")}
               aria-label="Mark as cross"
-              className="flex h-16 w-16 items-center justify-center rounded-2xl text-[#E0766B] transition-transform hover:scale-105"
-              style={{
-                background: "#E0766B18",
-                boxShadow: openMark === "cross" ? "0 0 0 2px #E0766Baa" : "none",
-              }}
+              aria-pressed={openMark === "cross"}
+              className={soft ? "flex h-16 w-16 items-center justify-center rounded-2xl text-[#E0766B] transition-transform hover:scale-105" : "nm-markbtn nm-markbtn--cross"}
+              style={soft ? { background: "#E0766B18", boxShadow: openMark === "cross" ? "0 0 0 2px #E0766Baa" : "none" } : undefined}
             >
               <X size={28} strokeWidth={2.5} />
             </button>
@@ -138,7 +134,7 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
             </button>
           )}
 
-          <div className={S("mt-5 border-t border-white/10 pt-4 text-left", soft)}>
+          <div className={soft ? S("mt-5 border-t border-white/10 pt-4 text-left", soft) : "nm-rule-top mt-5 pt-4 text-left"}>
             <label className={S("mb-1.5 flex items-center gap-1.5 text-[10px] uppercase tracking-wide text-white/40", soft)}>
               <StickyNote size={11} strokeWidth={1.75} /> note
             </label>
@@ -151,7 +147,7 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
               }}
               placeholder="What happened today?"
               rows={3}
-              className={S("w-full resize-none rounded-xl border border-white/12 bg-black/30 px-3 py-2 text-[12.5px] leading-relaxed text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-[#6FA8A3]/45", soft)}
+              className={soft ? S("w-full resize-none rounded-xl border border-white/12 bg-black/30 px-3 py-2 text-[12.5px] leading-relaxed text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-[#6FA8A3]/45", soft) : "nm-note resize-none"}
             />
           </div>
         </motion.div>
@@ -160,8 +156,9 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
   </AnimatePresence>
   );
 
+  const weekdays = ["S", "M", "T", "W", "T", "F", "S"];
+
   if (soft) {
-    const weekdays = ["S", "M", "T", "W", "T", "F", "S"];
     return (
       <>
         <SoftCard>
@@ -228,43 +225,40 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
     );
   }
 
+  // Dark: the light layout in the dark theme (Mark Your Days' sidebar colour: teal).
   return (
     <>
-      <PaperTiltCard>
-        <div className="mb-4 flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#6FA8A3]/30 bg-[#6FA8A3]/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.14em] text-[#6FA8A3]">
-            <CalendarCheck size={11} strokeWidth={1.75} /> mark your days
-          </span>
-          <span className="text-[10px] text-white/40">
-            <span className="text-[#6FB37A]">{tickCount} good</span> · <span className="text-[#E0766B]">{crossCount} bad</span>
-          </span>
+      <NmCard accent="teal">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <NmBadge>
+              <CalendarCheck size={17} strokeWidth={1.9} />
+            </NmBadge>
+            <span className="nm-cap">Mark your days</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="nm-trend is-up">{tickCount} good</span>
+            <span className="nm-trend is-down">{crossCount} bad</span>
+          </div>
         </div>
 
-        <div className="mb-4 flex items-center justify-between">
-          <button
-            onClick={goPrev}
-            aria-label="Previous month"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-white/50 transition-colors hover:text-white"
-          >
-            <ChevronLeft size={15} strokeWidth={1.75} />
-          </button>
-          <span className="text-[14px] font-medium text-white">{monthLabel}</span>
-          <button
-            onClick={goNext}
-            aria-label="Next month"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-white/50 transition-colors hover:text-white"
-          >
-            <ChevronRight size={15} strokeWidth={1.75} />
-          </button>
+        <div className="mb-6 mt-5 grid grid-cols-[auto_1fr_auto] items-center gap-3">
+          <NmRound size="md" onClick={goPrev} aria-label="Previous month">
+            <ChevronLeft size={20} strokeWidth={2} />
+          </NmRound>
+          <h2 className="nm-title text-center" style={{ fontSize: 22 }} aria-live="polite">{monthLabel}</h2>
+          <NmRound size="md" onClick={goNext} aria-label="Next month">
+            <ChevronRight size={20} strokeWidth={2} />
+          </NmRound>
         </div>
 
-        <div className="mb-1.5 grid grid-cols-7 gap-1.5 text-center text-[10px] text-white/35">
-          {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
+        <div className="nm-week" aria-hidden>
+          {weekdays.map((d, i) => (
             <div key={i}>{d}</div>
           ))}
         </div>
 
-        <div className="grid grid-cols-7 gap-1.5">
+        <div className="nm-days">
           {cells.map((day, i) => {
             if (day === null) return <div key={i} />;
             const key = dateKey(new Date(viewYear, viewMonth, day));
@@ -275,37 +269,18 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
               <button
                 key={i}
                 onClick={() => setOpenDay(key)}
-                className="relative flex h-9 w-full items-center justify-center rounded-lg border text-[12.5px] font-medium transition-transform hover:scale-105"
-                style={{
-                  borderColor:
-                    mark === "tick" ? "#6FB37A66" : mark === "cross" ? "#E0766B66" : isToday ? "#6FA8A355" : "rgba(255,255,255,0.08)",
-                  background:
-                    mark === "tick" ? "#6FB37A18" : mark === "cross" ? "#E0766B18" : isToday ? "#6FA8A312" : "rgba(255,255,255,0.02)",
-                  color: mark === "tick" ? "#A9D8AE" : mark === "cross" ? "#F0AFA6" : "rgba(255,255,255,0.75)",
-                }}
+                aria-label={`${key}${mark ? (mark === "tick" ? ", marked good" : ", marked bad") : ""}${hasNote ? ", has a note" : ""}`}
+                aria-current={isToday ? "date" : undefined}
+                className={`nm-day ${isToday ? "is-today" : ""} ${mark === "tick" ? "is-tick" : ""} ${mark === "cross" ? "is-cross" : ""}`}
               >
-                {mark === "tick" ? (
-                  <Check size={14} strokeWidth={2.5} />
-                ) : mark === "cross" ? (
-                  <X size={14} strokeWidth={2.5} />
-                ) : (
-                  day
-                )}
-                {hasNote && (
-                  <span
-                    aria-hidden
-                    className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full"
-                    style={{ background: "#FFD64D" }}
-                  />
-                )}
+                {mark === "tick" ? <Check size={20} strokeWidth={2.6} /> : mark === "cross" ? <X size={20} strokeWidth={2.6} /> : day}
+                {hasNote && <span aria-hidden className="nm-day__note" />}
               </button>
             );
           })}
         </div>
-      </PaperTiltCard>
+      </NmCard>
 
-      {/* Rendered as a sibling, not nested inside PaperTiltCard — its tilt transform would
-          otherwise turn this fixed overlay into a clipped, mis-positioned element. */}
       {dayDialog}
     </>
   );

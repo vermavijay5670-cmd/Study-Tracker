@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { DailyGoalsSection } from "@/components/daily-goals/DailyGoalsSection";
-import { SoftBackground } from "@/components/ui/soft/SoftBackground";
+import { DashboardBackground } from "@/components/dashboard/DashboardBackground";
 
 export default function DailyGoalsPage() {
   return (
-    <SoftBackground>
-      <PageShell>
+    <DashboardBackground>
+      <PageShell wide>
         <DailyGoalsSection />
       </PageShell>
-    </SoftBackground>
+    </DashboardBackground>
   );
 }

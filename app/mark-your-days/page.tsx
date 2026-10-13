@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { MarkYourDaysSection } from "@/components/mark-your-days/MarkYourDaysSection";
-import { SoftBackground } from "@/components/ui/soft/SoftBackground";
+import { DashboardBackground } from "@/components/dashboard/DashboardBackground";
 
 export default function MarkYourDaysPage() {
   return (
-    <SoftBackground>
-      <PageShell>
+    <DashboardBackground>
+      <PageShell wide>
         <MarkYourDaysSection />
       </PageShell>
-    </SoftBackground>
+    </DashboardBackground>
   );
 }
