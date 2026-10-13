@@ -7,9 +7,9 @@ import type { Question } from "@/lib/questionBank";
 import type { QuizProgress } from "@/lib/types";
 
 const DIFFICULTY_COLOR: Record<Question["difficulty"], string> = {
-  easy: "#6FB37A",
-  medium: "#FFD64D",
-  hard: "#E0766B",
+  easy: "#6fe3a0",
+  medium: "#fbbf24",
+  hard: "#ff7a7a",
 };
 
 const TYPE_LABEL: Record<Question["type"], string> = {
@@ -24,9 +24,9 @@ const TYPE_LABEL: Record<Question["type"], string> = {
 const DIFF_SOFT: Record<Question["difficulty"], string> = { easy: "#3b7d45", medium: "#a8841a", hard: "#c0392b" };
 
 const DARK_C = {
-  opt: { borderColor: "rgba(255,255,255,0.12)" } as React.CSSProperties,
-  correct: { borderColor: "#6FB37A66", background: "#6FB37A14", color: "#A9D8AE" } as React.CSSProperties,
-  wrong: { borderColor: "#E0766B66", background: "#E0766B14", color: "#F0AFA6" } as React.CSSProperties,
+  opt: {} as React.CSSProperties,
+  correct: { color: "#b4f5d0", boxShadow: "inset 4px 4px 9px rgba(3,4,7,.5), 0 0 0 1px rgba(111,227,160,.5)" } as React.CSSProperties,
+  wrong: { color: "#ffb4b4", boxShadow: "inset 4px 4px 9px rgba(3,4,7,.5), 0 0 0 1px rgba(255,122,122,.5)" } as React.CSSProperties,
 };
 const SOFT_C = {
   opt: { borderColor: "#cfd7da", background: "#f1f4f5" } as React.CSSProperties,
@@ -34,7 +34,7 @@ const SOFT_C = {
   wrong: { borderColor: "#e2685f99", background: "#fbe6e3", color: "#b0392e" } as React.CSSProperties,
 };
 
-const GLASS = "backdrop-blur-md bg-white/[0.06] border-white/12 shadow-[0_8px_30px_rgba(0,0,0,0.35)]";
+const GLASS = "nm-qpanel";
 
 interface QuizRunnerProps {
   questions: Question[];
@@ -68,6 +68,9 @@ export function QuizRunner({
   const soft = useSoft();
   const glass = soft ? "sf-qcard" : GLASS;
   const C = soft ? SOFT_C : DARK_C;
+  const accBtn: React.CSSProperties = soft
+    ? { background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }
+    : { background: accentHex, color: "#06150c", border: "none", boxShadow: `0 0 16px ${accentHex}55` };
   const DIFF = soft ? DIFF_SOFT : DIFFICULTY_COLOR;
 
   function persist(nextIndex: number, nextSelections: Record<string, number>) {
@@ -92,7 +95,7 @@ export function QuizRunner({
               setResolved(true);
             }}
             className="rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:scale-105"
-            style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
+            style={accBtn}
           >
             Continue
           </button>
@@ -173,7 +176,7 @@ export function QuizRunner({
             <X size={13} strokeWidth={2} /> Back to results
           </button>
         </div>
-        <div className={S("mb-6 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]", soft)}>
+        <div className={S("mb-6 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]", soft) + (soft ? "" : " nm-qtrack")}>
           <div
             className="h-full rounded-full transition-all duration-300"
             style={{ width: `${((reviewIndex + 1) / questions.length) * 100}%`, background: accentHex }}
@@ -221,18 +224,18 @@ export function QuizRunner({
               return (
                 <div
                   key={oi}
-                  className={S("flex w-full items-center justify-between gap-3 rounded-xl border bg-black/15 px-4 py-2.5 text-left text-[13.5px] text-white/75", soft)}
+                  className={S("flex w-full items-center justify-between gap-3 rounded-xl border bg-black/15 px-4 py-2.5 text-left text-[13.5px] text-white/75", soft) + (soft ? "" : " nm-opt")}
                   style={style}
                 >
                   {opt}
-                  {isCorrect && <Check size={15} strokeWidth={2} className="flex-shrink-0 text-[#6FB37A]" />}
-                  {isChosen && !isCorrect && <X size={15} strokeWidth={2} className="flex-shrink-0 text-[#E0766B]" />}
+                  {isCorrect && <Check size={15} strokeWidth={2} className="flex-shrink-0 text-[#6fe3a0]" />}
+                  {isChosen && !isCorrect && <X size={15} strokeWidth={2} className="flex-shrink-0 text-[#ff7a7a]" />}
                 </div>
               );
             })}
           </div>
 
-          <div className={S("mt-4 rounded-xl border border-white/8 bg-black/25 p-3.5 text-[12.5px] leading-relaxed text-white/55", soft)}>
+          <div className={S("mt-4 rounded-xl border border-white/8 bg-black/25 p-3.5 text-[12.5px] leading-relaxed text-white/55", soft) + (soft ? "" : " nm-expl")}>
             {rq.explanation}
           </div>
         </div>
@@ -250,7 +253,7 @@ export function QuizRunner({
             <button
               onClick={() => setReviewing(false)}
               className="flex items-center gap-1 rounded-full px-5 py-2 text-[13px] font-medium transition-transform hover:scale-105"
-              style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
+              style={accBtn}
             >
               Done
             </button>
@@ -258,7 +261,7 @@ export function QuizRunner({
             <button
               onClick={() => setReviewIndex((i) => Math.min(questions.length - 1, i + 1))}
               className="flex items-center gap-1 rounded-full px-5 py-2 text-[13px] font-medium transition-transform hover:scale-105"
-              style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
+              style={accBtn}
             >
               Next <ChevronRight size={15} strokeWidth={1.75} />
             </button>
@@ -291,7 +294,7 @@ export function QuizRunner({
               setReviewing(true);
             }}
             className="flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:scale-105"
-            style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
+            style={accBtn}
           >
             <ListChecks size={14} strokeWidth={1.75} /> Review answers
           </button>
@@ -317,7 +320,7 @@ export function QuizRunner({
           Score so far: <span style={{ color: accentHex }}>{score}</span>/{answeredCount}
         </span>
       </div>
-      <div className={S("mb-6 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]", soft)}>
+      <div className={S("mb-6 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]", soft) + (soft ? "" : " nm-qtrack")}>
         <div
           className="h-full rounded-full transition-all duration-300"
           style={{ width: `${((index + 1) / questions.length) * 100}%`, background: accentHex }}
@@ -356,19 +359,19 @@ export function QuizRunner({
                 key={oi}
                 onClick={() => choose(oi)}
                 disabled={revealed}
-                className={S("flex w-full items-center justify-between gap-3 rounded-xl border bg-black/15 px-4 py-2.5 text-left text-[13.5px] text-white/75 transition-colors disabled:cursor-default", soft) + (soft ? " sf-option" : "")}
+                className={S("flex w-full items-center justify-between gap-3 rounded-xl border bg-black/15 px-4 py-2.5 text-left text-[13.5px] text-white/75 transition-colors disabled:cursor-default", soft) + (soft ? " sf-option" : " nm-opt")}
                 style={style}
               >
                 {opt}
-                {revealed && isCorrect && <Check size={15} strokeWidth={2} className="flex-shrink-0 text-[#6FB37A]" />}
-                {revealed && isChosen && !isCorrect && <X size={15} strokeWidth={2} className="flex-shrink-0 text-[#E0766B]" />}
+                {revealed && isCorrect && <Check size={15} strokeWidth={2} className="flex-shrink-0 text-[#6fe3a0]" />}
+                {revealed && isChosen && !isCorrect && <X size={15} strokeWidth={2} className="flex-shrink-0 text-[#ff7a7a]" />}
               </button>
             );
           })}
         </div>
 
         {revealed && (
-          <div className={S("mt-4 rounded-xl border border-white/8 bg-black/25 p-3.5 text-[12.5px] leading-relaxed text-white/55", soft)}>
+          <div className={S("mt-4 rounded-xl border border-white/8 bg-black/25 p-3.5 text-[12.5px] leading-relaxed text-white/55", soft) + (soft ? "" : " nm-expl")}>
             {q.explanation}
           </div>
         )}
@@ -386,7 +389,7 @@ export function QuizRunner({
           onClick={goNext}
           disabled={!revealed}
           className="flex items-center gap-1 rounded-full px-5 py-2 text-[13px] font-medium transition-transform enabled:hover:scale-105 disabled:opacity-30"
-          style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
+          style={accBtn}
         >
           {isLast ? "Finish" : "Next"} <ChevronRight size={15} strokeWidth={1.75} />
         </button>

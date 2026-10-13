@@ -152,3 +152,40 @@ export function SoftPracticePanel({ subject, state, onTogglePractice }: Practice
     </div>
   );
 }
+
+/* ───────── dark (neumorphic) versions ───────── */
+
+export function NmPracticeToggle({ subject, state, open, onToggle }: Omit<PracticeToggleProps, "className">) {
+  const { done, total, complete } = getPracticeProgress(subject, state);
+  return (
+    <button
+      type="button"
+      className="nm-chip nm-chip--badge"
+      aria-expanded={open}
+      aria-label={`Question practice: ${done} of ${total} completed. ${open ? "Hide" : "Show"} practice list`}
+      onClick={onToggle}
+    >
+      Practice
+      {total > 1 && <span style={{ opacity: 0.55 }}>{done}/{total}</span>}
+      <ChevronDown size={13} strokeWidth={2.4} style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform .2s" }} />
+      <span className="nm-pbadge" data-ok={complete} aria-hidden />
+    </button>
+  );
+}
+
+export function NmPracticePanel({ subject, state, onTogglePractice }: PracticePanelProps) {
+  return (
+    <div className="nm-panel">
+      {PRACTICE_ITEMS[subject].map(({ key, label }) => {
+        const done = Boolean(state[key]);
+        return (
+          <button key={key} type="button" aria-pressed={done} onClick={() => onTogglePractice(key)} className={`nm-pitem ${done ? "is-done" : ""}`}>
+            <span className="nm-pmark">{done ? <Check size={12} strokeWidth={3.4} /> : <i />}</span>
+            <span>{label}</span>
+            <span className="nm-pstat">{done ? "Completed" : "Not done"}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}

@@ -3,28 +3,25 @@
 import { useState, useEffect, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ChevronRight, Atom, Dna, FlaskConical, BookOpen, ListChecks, GraduationCap } from "lucide-react";
-import { PaperTextureCard } from "@/components/ui/PaperTextureCard";
-import { CHAPTERS, SUBJECT_NAME, SUBJECT_ACCENT, ACCENT_HEX } from "@/lib/data";
+import { CHAPTERS, SUBJECT_NAME } from "@/lib/data";
 import { getChapterQuestions, hasChapterQuestions, type Question } from "@/lib/questionBank";
 import { useTrackerState } from "@/lib/useTrackerState";
 import { QuizRunner } from "./QuizRunner";
 import { ReadOnlyList } from "./ReadOnlyList";
 import { S, useSoft } from "@/lib/softClass";
+import { NmBadge } from "@/components/today/nm/NmUI";
+import "@/components/today/nm/nm.css";
 import type { Subject } from "@/lib/types";
 
 const SUBJECTS: Subject[] = ["phy", "chem", "bio"];
 const SUBJECT_ICON: Record<Subject, typeof Atom> = { phy: Atom, chem: FlaskConical, bio: Dna };
 const EASE = [0.4, 0, 0.2, 1] as const;
 const SOFT_ACCENT = "#5d8838";
+const NM_ACCENT = "#4ade80"; // Question Practice's colour in the sidebar (green)
 
-/** Subject picker card: paper texture in dark mode, raised soft card in light mode. */
-function PickCard({ soft, delay, className, children }: { soft: boolean; delay: number; className: string; children: React.ReactNode }) {
-  if (soft) return <div className={`sf-card sf-pickcard ${className}`}>{children}</div>;
-  return (
-    <PaperTextureCard delay={delay} className={className}>
-      {children}
-    </PaperTextureCard>
-  );
+/** Subject picker card: raised soft card in light mode, neumorphic card in dark mode. */
+function PickCard({ soft, className, children }: { soft: boolean; delay?: number; className: string; children: React.ReactNode }) {
+  return <div className={`${soft ? "sf-card sf-pickcard" : "nm-pickcard"} ${className}`}>{children}</div>;
 }
 
 type View =
@@ -34,6 +31,7 @@ type View =
   | { step: "questions"; subject: Subject; cls: 11 | 12; chapterIndex: number };
 
 export function QuestionPracticeSection() {
+  const soft = useSoft();
   const [view, setView] = useState<View>({ step: "grid" });
   const [lifting, setLifting] = useState<Subject | null>(null);
 
@@ -47,7 +45,7 @@ export function QuestionPracticeSection() {
   }
 
   return (
-    <div className="relative min-h-[420px]">
+    <div className={`relative min-h-[420px] ${soft ? "" : "nm-q nm-acc-green"}`}>
       <AnimatePresence mode="wait">
         {view.step === "grid" && (
           <motion.div
@@ -126,8 +124,7 @@ function SubjectGrid({ lifting, onSelect }: { lifting: Subject | null; onSelect:
   return (
     <div className="grid grid-cols-1 gap-5">
       {SUBJECTS.map((subject, i) => {
-        const accent = SUBJECT_ACCENT[subject];
-        const accentHex = soft ? SOFT_ACCENT : ACCENT_HEX[accent];
+              const accentHex = soft ? SOFT_ACCENT : NM_ACCENT;
         const Icon = SUBJECT_ICON[subject];
         const chapterCount = CHAPTERS[subject][11].length + CHAPTERS[subject][12].length;
 
@@ -144,18 +141,21 @@ function SubjectGrid({ lifting, onSelect }: { lifting: Subject | null; onSelect:
           >
             <PickCard soft={soft} delay={i * 0.05} className="flex min-h-[176px] flex-col gap-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
               <div className="flex items-center gap-4">
-                <span
-                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl"
-                  style={{ background: `${accentHex}1a` }}
-                >
-                  <Icon size={22} strokeWidth={1.75} style={{ color: accentHex }} />
-                </span>
+                {soft ? (
+                  <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl" style={{ background: `${accentHex}1a` }}>
+                    <Icon size={22} strokeWidth={1.75} style={{ color: accentHex }} />
+                  </span>
+                ) : (
+                  <NmBadge>
+                    <Icon size={19} strokeWidth={1.8} />
+                  </NmBadge>
+                )}
                 <div>
                   <div className="flex items-center gap-2.5">
                     <h2 className={S("text-[18px] font-medium text-white", soft)}>{SUBJECT_NAME[subject]}</h2>
                     <span
-                      className="rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide"
-                      style={{ background: `${accentHex}1a`, color: accentHex }}
+                      className={soft ? "rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide" : "nm-trend is-up"}
+                      style={soft ? { background: `${accentHex}1a`, color: accentHex } : undefined}
                     >
                       {chapterCount} chapters
                     </span>
@@ -167,8 +167,8 @@ function SubjectGrid({ lifting, onSelect }: { lifting: Subject | null; onSelect:
               </div>
 
               <span
-                className="flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium transition-colors sm:flex-shrink-0"
-                style={{ background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` }}
+                className={soft ? "flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium transition-colors sm:flex-shrink-0" : "nm-pill nm-pill--cyan !flex-none sm:flex-shrink-0"}
+                style={soft ? { background: `${accentHex}1f`, color: accentHex, border: `1px solid ${accentHex}55` } : undefined}
               >
                 Browse chapters
               </span>
@@ -199,7 +199,7 @@ function BackBar({
       <button
         onClick={onBack}
         aria-label="Back"
-        className={soft ? "sf-round-btn" : "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/60 transition-colors hover:border-white/20 hover:text-white"}
+        className={soft ? "sf-round-btn" : "nm-round nm-round--sm"}
       >
         <ArrowLeft size={16} strokeWidth={1.75} />
       </button>
@@ -239,8 +239,7 @@ function ClassFlowchart({
   onSelectClass: (cls: 11 | 12) => void;
 }) {
   const soft = useSoft();
-  const accent = SUBJECT_ACCENT[subject];
-  const accentHex = soft ? SOFT_ACCENT : ACCENT_HEX[accent];
+  const accentHex = soft ? SOFT_ACCENT : NM_ACCENT;
   const Icon = SUBJECT_ICON[subject];
   const rawId = useId().replace(/[^a-zA-Z0-9]/g, "");
   const filterId = `rough-${rawId}`;
@@ -255,8 +254,8 @@ function ClassFlowchart({
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, ease: EASE }}
-          className="flex items-center gap-2 rounded-full border px-4 py-2"
-          style={{ borderColor: `${accentHex}55`, background: `${accentHex}1a` }}
+          className={soft ? "flex items-center gap-2 rounded-full border px-4 py-2" : "nm-raised flex items-center gap-2 rounded-full px-4 py-2"}
+          style={soft ? { borderColor: `${accentHex}55`, background: `${accentHex}1a` } : undefined}
         >
           <Icon size={16} strokeWidth={1.75} style={{ color: accentHex }} />
           <span className={S("text-[13px] font-medium text-white", soft)}>{SUBJECT_NAME[subject]}</span>
@@ -289,8 +288,7 @@ function ClassFlowchart({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: EASE, delay: 0.35 + i * 0.08 }}
               whileHover={{ y: -3 }}
-              className={soft ? "sf-card sf-pickcard flex flex-col items-center gap-1.5 !px-4 !py-6 text-center" : "flex flex-col items-center gap-1.5 rounded-2xl border bg-white/[0.03] px-4 py-6 text-center transition-colors hover:bg-white/[0.06]"}
-              style={soft ? undefined : { borderColor: `${accentHex}40` }}
+              className={soft ? "sf-card sf-pickcard flex flex-col items-center gap-1.5 !px-4 !py-6 text-center" : "nm-qcard flex flex-col items-center gap-1.5 !px-4 !py-6 text-center"}
             >
               <span className={S("text-[22px] font-semibold text-white", soft)}>Class {cls}</span>
               <span className={S("text-[11.5px] text-white/40", soft)}>{CHAPTERS[subject][cls].length} chapters</span>
@@ -316,8 +314,7 @@ function ChapterFlowchart({
   onSelectChapter: (chapterIndex: number) => void;
 }) {
   const soft = useSoft();
-  const accent = SUBJECT_ACCENT[subject];
-  const accentHex = soft ? SOFT_ACCENT : ACCENT_HEX[accent];
+  const accentHex = soft ? SOFT_ACCENT : NM_ACCENT;
   const chapters = CHAPTERS[subject][cls];
   const rawId = useId().replace(/[^a-zA-Z0-9]/g, "");
   const spineFilterId = `spine-${rawId}`;
@@ -355,7 +352,7 @@ function ChapterFlowchart({
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.28, ease: EASE, delay: idx * 0.025 }}
-              className={soft ? "sf-qcard sf-pickcard relative flex w-full items-center gap-3 rounded-2xl px-4 py-3.5 text-left" : "relative flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-left transition-colors hover:border-white/20 hover:bg-white/[0.06]"}
+              className={soft ? "sf-qcard sf-pickcard relative flex w-full items-center gap-3 rounded-2xl px-4 py-3.5 text-left" : "nm-qcard relative flex w-full items-center gap-3 px-4 py-3.5 text-left"}
             >
               {/* branch arrow reaching from the spine into this row */}
               <svg
@@ -421,8 +418,7 @@ function QuestionBankView({
   onBack: () => void;
 }) {
   const soft = useSoft();
-  const accent = SUBJECT_ACCENT[subject];
-  const accentHex = soft ? SOFT_ACCENT : ACCENT_HEX[accent];
+  const accentHex = soft ? SOFT_ACCENT : NM_ACCENT;
   const title = CHAPTERS[subject][cls][chapterIndex];
 
   const { state, hydrated, saveQuizProgress, clearQuizProgress } = useTrackerState();
@@ -450,7 +446,7 @@ function QuestionBankView({
         <BackBar label={title} sub={`${SUBJECT_NAME[subject]} — Class ${cls}`} accentHex={accentHex} onBack={onBack} />
 
         {!loading && questions.length > 0 && (
-          <div className={soft ? "sf-seg" : "flex rounded-full border border-white/10 bg-white/[0.03] p-1"}>
+          <div className={soft ? "sf-seg" : "nm-seg"}>
             <ModeButton active={mode === "quiz"} onClick={() => setMode("quiz")} icon={GraduationCap} label="Quiz" accentHex={accentHex} />
             <ModeButton active={mode === "read"} onClick={() => setMode("read")} icon={ListChecks} label="Read-only" accentHex={accentHex} />
           </div>
@@ -460,7 +456,7 @@ function QuestionBankView({
       {loading || !hydrated ? (
         <div className={S("mt-10 flex items-center justify-center py-16 text-[13px] text-white/35", soft)}>Loading questions…</div>
       ) : questions.length === 0 ? (
-        <div className={S("mt-8 flex flex-col items-center rounded-3xl border border-dashed border-white/12 bg-white/[0.02] px-6 py-16 text-center", soft)}>
+        <div className={S("mt-8 flex flex-col items-center rounded-3xl border border-dashed border-white/12 bg-white/[0.02] px-6 py-16 text-center", soft) + (soft ? "" : " nm-dashed")}>
           <BookOpen size={26} strokeWidth={1.5} className={S("text-white/20", soft)} />
           <p className={S("mt-4 max-w-sm text-[14px] leading-relaxed text-white/45", soft)}>
             The question bank for <span className={S("text-white/75", soft)}>{title}</span> hasn&apos;t been added yet.
@@ -488,7 +484,6 @@ function ModeButton({
   onClick,
   icon: Icon,
   label,
-  accentHex,
 }: {
   active: boolean;
   onClick: () => void;
@@ -501,8 +496,7 @@ function ModeButton({
     <button
       onClick={onClick}
       aria-pressed={active}
-      className={soft ? `sf-seg__btn flex items-center gap-1.5 ${active ? "is-on" : ""}` : "flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[12.5px] font-medium transition-colors"}
-      style={soft ? undefined : active ? { background: `${accentHex}1f`, color: accentHex } : { color: "rgba(255,255,255,0.4)" }}
+      className={soft ? `sf-seg__btn flex items-center gap-1.5 ${active ? "is-on" : ""}` : `nm-seg__btn flex items-center gap-1.5 ${active ? "is-on" : ""}`}
     >
       <Icon size={13} strokeWidth={1.75} />
       {label}

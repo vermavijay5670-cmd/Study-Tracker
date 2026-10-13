@@ -1,12 +1,11 @@
 "use client";
 
-import { RadialBar, RadialBarChart, PolarAngleAxis } from "recharts";
-import { FlatCard } from "@/components/ui/FlatCard";
 import { SoftCard } from "@/components/ui/soft/SoftUI";
-import { ChapterRowMinimal } from "./ChapterRowMinimal";
+import { NmCard, NmTrack } from "@/components/today/nm/NmUI";
+import { NmChapterRow } from "./NmChapterRow";
 import { SoftChapterRow } from "./SoftChapterRow";
 import { customChapterKey } from "@/lib/customSubjects";
-import { ACCENT_HEX, type Accent } from "@/lib/data";
+import type { Accent } from "@/lib/data";
 import { useSidebar } from "@/lib/SidebarContext";
 import { useTheme } from "@/lib/ThemeContext";
 import { useTrackerState } from "@/lib/useTrackerState";
@@ -16,15 +15,15 @@ export const CUSTOM_ACCENTS: Accent[] = ["gold", "lime", "purple", "cyan"];
 
 interface CustomSubjectCardProps {
   subject: CustomSubject;
-  accent: Accent;
+  /** Kept for the light/old call sites; the dark card always uses Planner purple. */
+  accent?: Accent;
 }
 
 /** Planner card for a subject the person added in Settings — same chapter controls as the built-in subjects. */
-export function CustomSubjectCard({ subject, accent }: CustomSubjectCardProps) {
+export function CustomSubjectCard({ subject }: CustomSubjectCardProps) {
   const { state, toggleDone, togglePractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote } = useTrackerState();
   const { theme } = useTheme();
   const { openSettings } = useSidebar();
-  const accentHex = ACCENT_HEX[accent];
 
   const total = subject.chapters.length;
   let done = 0;
@@ -52,7 +51,7 @@ export function CustomSubjectCard({ subject, accent }: CustomSubjectCardProps) {
     return theme === "light" ? (
       <SoftChapterRow key={ch.id} index={i} name={ch.name} state={st} {...handlers} />
     ) : (
-      <ChapterRowMinimal key={ch.id} index={i} name={ch.name} state={st} accentHex={accentHex} {...handlers} />
+      <NmChapterRow key={ch.id} index={i} name={ch.name} state={st} {...handlers} />
     );
   });
 
@@ -107,39 +106,47 @@ export function CustomSubjectCard({ subject, accent }: CustomSubjectCardProps) {
     );
   }
 
+  const R = 46;
+  const C = 2 * Math.PI * R;
   return (
-    <FlatCard accent={accent}>
-      <div className="flex flex-wrap items-center justify-between gap-4">
+    <NmCard accent="purple">
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
-          <span className="text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: accentHex }}>
-            chapter tracker
-          </span>
-          <h2 className="mt-1 break-words text-[18px] font-medium text-white">{subject.name}</h2>
-          <p className="text-[11px] text-[#a3a3a3]">Your subject · {total} {total === 1 ? "chapter" : "chapters"}</p>
+          <span className="nm-cap">Chapter tracker</span>
+          <h2 className="nm-title mt-2 break-words" style={{ fontSize: 26 }}>{subject.name}</h2>
+          <p className="nm-sub mt-1.5" style={{ letterSpacing: 0 }}>Your subject · {total} {total === 1 ? "chapter" : "chapters"}</p>
         </div>
-
-        <div className="relative h-[92px] w-[92px]">
-          <RadialBarChart width={92} height={92} innerRadius={34} outerRadius={44} data={[{ name: "done", value: donePct, fill: accentHex }]} startAngle={90} endAngle={-270}>
-            <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
-            <RadialBar background={{ fill: "rgba(255,255,255,0.06)" }} dataKey="value" cornerRadius={8} angleAxisId={0} />
-          </RadialBarChart>
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-tabular text-[16px] font-semibold text-white">{donePct}%</span>
-            <span className="text-[8px] uppercase tracking-wide text-[#a3a3a3]">done</span>
+        <div className="nm-ring" role="img" aria-label={`${donePct}% of chapters done`}>
+          <svg viewBox="0 0 108 108" aria-hidden>
+            <circle
+              cx="54"
+              cy="54"
+              r={R}
+              fill="none"
+              stroke="var(--nm-a)"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeDasharray={`${(donePct / 100) * C} ${C}`}
+              style={{ transition: "stroke-dasharray .6s ease", filter: "drop-shadow(0 0 4px color-mix(in srgb, var(--nm-a) 60%, transparent))" }}
+            />
+          </svg>
+          <div className="nm-ring__txt">
+            <b>{donePct}%</b>
+            <span>Done</span>
           </div>
         </div>
       </div>
 
-      <div className="mt-4 flex items-center gap-2 text-[11px] text-[#a3a3a3]">
+      <div className="nm-sub mt-5 flex flex-wrap items-center gap-2" style={{ letterSpacing: 0 }}>
         <span>{done}/{total} chapters done</span>
-        <span className="text-white/20">·</span>
+        <span aria-hidden>·</span>
         <span>{rev}/{total} revised ({revPct}%)</span>
       </div>
-      <div className="mt-2 h-[4px] w-full overflow-hidden rounded-full bg-white/[0.06]">
-        <div className="h-full rounded-full" style={{ width: `${revPct}%`, background: accentHex, opacity: 0.55 }} />
+      <div className="mt-3">
+        <NmTrack pct={revPct} label="Chapters revised" />
       </div>
 
-      <div className="mt-6 space-y-3">{total === 0 ? empty : rows}</div>
-    </FlatCard>
+      <div className="mt-8 space-y-3">{total === 0 ? empty : rows}</div>
+    </NmCard>
   );
 }

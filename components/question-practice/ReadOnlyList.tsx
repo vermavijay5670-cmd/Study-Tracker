@@ -6,9 +6,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Question } from "@/lib/questionBank";
 
 const DIFFICULTY_COLOR: Record<Question["difficulty"], string> = {
-  easy: "#6FB37A",
-  medium: "#FFD64D",
-  hard: "#E0766B",
+  easy: "#6fe3a0",
+  medium: "#fbbf24",
+  hard: "#ff7a7a",
 };
 
 const TYPE_LABEL: Record<Question["type"], string> = {
@@ -20,7 +20,7 @@ const TYPE_LABEL: Record<Question["type"], string> = {
 
 const PAGE_SIZE = 20;
 // Shared frosted-glass treatment so question text stays readable over the animated grid.
-const GLASS = "backdrop-blur-md bg-white/[0.06] border-white/12 shadow-[0_8px_30px_rgba(0,0,0,0.3)]";
+const GLASS = "nm-qpanel";
 
 interface ReadOnlyListProps {
   questions: Question[];
@@ -62,15 +62,15 @@ export function ReadOnlyList({ questions, accentHex }: ReadOnlyListProps) {
               {q.options.map((opt, oi) => (
                 <li
                   key={oi}
-                  className="rounded-lg border px-3 py-1.5 text-[13px]"
+                  className={soft ? "rounded-lg border px-3 py-1.5 text-[13px]" : "nm-opt px-3.5 py-2 text-[13px]"}
                   style={
                     oi === q.correctIndex
                       ? soft
                         ? { borderColor: "#5fa86a99", background: "#e1f0e0", color: "#2f6b35" }
-                        : { borderColor: "#6FB37A55", background: "#6FB37A12", color: "#A9D8AE" }
+                        : { color: "#b4f5d0", boxShadow: "inset 3px 3px 8px rgba(3,4,7,.5), 0 0 0 1px rgba(111,227,160,.45)" }
                       : soft
                         ? { borderColor: "#cfd7da", background: "#f1f4f5", color: "#5b686e" }
-                        : { borderColor: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.55)" }
+                        : { color: "rgba(255,255,255,0.55)" }
                   }
                 >
                   {opt}
@@ -78,7 +78,7 @@ export function ReadOnlyList({ questions, accentHex }: ReadOnlyListProps) {
               ))}
             </ul>
 
-            <div className={S("mt-3 rounded-lg border border-white/8 bg-black/20 p-3 text-[12px] leading-relaxed text-white/50", soft)}>
+            <div className={S("mt-3 rounded-lg border border-white/8 bg-black/20 p-3 text-[12px] leading-relaxed text-white/50", soft) + (soft ? "" : " nm-expl")}>
               {q.explanation}
             </div>
           </div>

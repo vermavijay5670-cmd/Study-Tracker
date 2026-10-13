@@ -1,13 +1,13 @@
 import { PageShell } from "@/components/ui/PageShell";
 import { PlannerSection } from "@/components/planner/PlannerSection";
-import { SoftBackground } from "@/components/ui/soft/SoftBackground";
+import { DashboardBackground } from "@/components/dashboard/DashboardBackground";
 
 export default function PlannerPage() {
   return (
-    <SoftBackground>
-      <PageShell>
+    <DashboardBackground>
+      <PageShell wide>
         <PlannerSection />
       </PageShell>
-    </SoftBackground>
+    </DashboardBackground>
   );
 }
