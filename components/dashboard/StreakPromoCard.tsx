@@ -44,7 +44,7 @@ export function StreakPromoCard({ currentStreak, bestStreak, totalDone }: Streak
                   {INITIAL[s]}
                 </span>
               ))}
-              <span className="sf-seal" style={{ "--sf-accent": "#e4e9ea", color: "#78868c" } as React.CSSProperties}>
+              <span className="sf-seal" style={{ "--sf-accent": "#d8e3ee", color: "#6b7f93" } as React.CSSProperties}>
                 +{totalDone}
               </span>
             </div>

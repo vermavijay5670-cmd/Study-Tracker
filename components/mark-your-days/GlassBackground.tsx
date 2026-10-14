@@ -7,8 +7,8 @@ import { useTheme } from "@/lib/ThemeContext";
 
 /**
  * Light mode: the slate-glass backdrop (frosted panels need a smooth background, so the
- * kinetic grid isn't used here).
- * Dark mode: the original section background (kinetic grid / matte), unchanged.
+ * the old animated grid is gone).
+ * Dark mode: the matte section background.
  */
 export function GlassBackground({ children }: { children: ReactNode }) {
   const { theme } = useTheme();

@@ -68,7 +68,6 @@
 .nv-bottom .nv-ico svg { width: 20px; height: 20px; }
 .nv-avatar { display: flex; align-items: center; justify-content: center; flex: none; width: calc(var(--nv-circle) - 4px); height: calc(var(--nv-circle) - 4px); border-radius: 50%; background: #fff; color: #0a0a0a; font: 700 15px/1 var(--nv-font); }
 .nv-item.is-on .nv-ico { color: #d8ff5c; }
-@media (max-height: 700px) { .nv-kinetic { display: none; } }
 
 /* mobile top bar */
 .nv-topbar { color: #f2f2f4; font-family: var(--nv-font); background: var(--nv-panel); border-radius: 0 0 26px 26px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 12px 28px rgba(0, 0, 0, 0.4); }

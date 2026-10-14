@@ -33,7 +33,6 @@
   .rl-logo { width: 56px !important; height: 56px !important; }
 }
 @media (min-width: 768px) and (max-height: 700px) {
-  .rl-grid { display: none !important; }
 }
 
 .rl-logo {

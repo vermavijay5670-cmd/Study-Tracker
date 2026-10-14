@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ComponentType, CSSProperties } from "react";
-import { ChevronRight, Grid3x3, Home, LogOut, Moon, Sun, User } from "lucide-react";
+import { ChevronRight, Home, LogOut, Moon, Sun, User } from "lucide-react";
 import "./rail.css";
 
 interface RailItem {
@@ -21,29 +21,23 @@ export function SidebarRail({
   activeHref,
   homeUrl,
   isLight,
-  showGrid,
-  gridOn,
   initial,
   signedIn,
   hidden,
   onExpand,
   onToggleTheme,
-  onToggleGrid,
   onSignOut,
 }: {
   items: RailItem[];
   activeHref: string;
   homeUrl: string;
   isLight: boolean;
-  showGrid: boolean;
-  gridOn: boolean;
   initial: string;
   signedIn: boolean;
   /** True while the full sidebar is showing (the rail is then inert). */
   hidden: boolean;
   onExpand: () => void;
   onToggleTheme: () => void;
-  onToggleGrid: () => void;
   onSignOut: () => void;
 }) {
   const activeIdx = items.findIndex((i) => i.href === activeHref);
@@ -89,18 +83,6 @@ export function SidebarRail({
           >
             <ThemeIcon size={20} strokeWidth={1.6} />
           </button>
-          {showGrid && (
-            <button
-              type="button"
-              className={`rl-icon rl-grid ${gridOn ? "is-on" : ""}`}
-              onClick={onToggleGrid}
-              aria-pressed={gridOn}
-              aria-label="Kinetic grid background"
-              title="Kinetic grid"
-            >
-              <Grid3x3 size={20} strokeWidth={1.6} />
-            </button>
-          )}
           <Link href="/#profile-form" className="rl-avatar" aria-label="Profile" title="Profile">
             {initial ? initial : <User size={20} strokeWidth={1.8} />}
           </Link>

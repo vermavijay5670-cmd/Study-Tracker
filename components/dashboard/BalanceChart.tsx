@@ -76,9 +76,9 @@ export function BalanceChart({ log, startDate, totalHoursLogged, totalDays }: Ba
     ? {
         line: "#5d8838",
         fillTop: "#86ab57",
-        tick: "#78868c",
+        tick: "#6b7f93",
         cursor: "rgba(93,136,56,0.45)",
-        tip: { background: "#f3f6f6", border: "1px solid #cfd7da", borderRadius: 14, fontSize: 12, color: "#27363c", boxShadow: "4px 6px 14px rgba(150,165,176,.45)" },
+        tip: { background: "#e6eef6", border: "1px solid #c1d0df", borderRadius: 14, fontSize: 12, color: "#27363c", boxShadow: "4px 6px 14px rgba(150,165,176,.45)" },
         dotFill: "#fff",
       }
     : {

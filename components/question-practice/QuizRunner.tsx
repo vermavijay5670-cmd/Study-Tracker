@@ -29,7 +29,7 @@ const DARK_C = {
   wrong: { color: "#ffb4b4", boxShadow: "inset 4px 4px 9px rgba(3,4,7,.5), 0 0 0 1px rgba(255,122,122,.5)" } as React.CSSProperties,
 };
 const SOFT_C = {
-  opt: { borderColor: "#cfd7da", background: "#f1f4f5" } as React.CSSProperties,
+  opt: { borderColor: "#c1d0df", background: "#e4edf5" } as React.CSSProperties,
   correct: { borderColor: "#5fa86a99", background: "#e1f0e0", color: "#2f6b35" } as React.CSSProperties,
   wrong: { borderColor: "#e2685f99", background: "#fbe6e3", color: "#b0392e" } as React.CSSProperties,
 };

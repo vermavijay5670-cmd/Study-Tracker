@@ -4,7 +4,6 @@ import { useCallback, useEffect, useId, useRef, useState, useSyncExternalStore }
 import { createPortal } from "react-dom";
 import { Bell, Download, Moon, Sun, Upload, X } from "lucide-react";
 import { useTheme } from "@/lib/ThemeContext";
-import { useKineticGrid } from "@/lib/KineticGridContext";
 import {
   applyImportedState,
   buildExport,
@@ -30,9 +29,8 @@ interface Pending {
   summary: ImportSummary;
 }
 
-export function SettingsDialog({ open, onClose, kineticAvailable }: { open: boolean; onClose: () => void; kineticAvailable: boolean }) {
+export function SettingsDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { theme, setTheme } = useTheme();
-  const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
   const alarmOn = useSyncExternalStore(subscribeAlarm, getSoundEnabled, () => true);
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -171,24 +169,6 @@ export function SettingsDialog({ open, onClose, kineticAvailable }: { open: bool
                   <Moon size={14} strokeWidth={2} /> Dark
                 </button>
               </div>
-            </div>
-            <div className="sd-row">
-              <div>
-                <div className="sd-name">Kinetic grid background</div>
-                <div className="sd-hint">
-                  {kineticAvailable
-                    ? "The animated grid behind dark-mode pages."
-                    : "Applies to dark mode pages (not Today). Not visible on this page right now, but your choice is saved."}
-                </div>
-              </div>
-              <button
-                type="button"
-                role="switch"
-                className="sd-switch"
-                aria-checked={kineticOn}
-                aria-label="Kinetic grid background"
-                onClick={() => setKineticOn(!kineticOn)}
-              />
             </div>
           </section>
 

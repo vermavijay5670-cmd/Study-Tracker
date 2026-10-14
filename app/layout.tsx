@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ServiceWorkerRegister } from "@/components/ui/ServiceWorkerRegister";
-import { KineticGridProvider } from "@/lib/KineticGridContext";
 import { ThemeProvider } from "@/lib/ThemeContext";
 import { SidebarProvider } from "@/lib/SidebarContext";
 import { SettingsHost } from "@/components/ui/settings/SettingsHost";
@@ -68,13 +67,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen antialiased">
         <ServiceWorkerRegister />
         <ThemeProvider>
-          <KineticGridProvider>
             <SidebarProvider>
               {children}
               <SettingsHost />
               <TimerAlarmHost />
             </SidebarProvider>
-          </KineticGridProvider>
         </ThemeProvider>
         <Analytics />
       </body>

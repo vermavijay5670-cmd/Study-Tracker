@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useLayoutEffect, useRef, useState, type ComponentType, type CSSProperties } from "react";
-import { ChevronLeft, ChevronRight, Grid3x3, Home, LogOut, Moon, Settings, Sun, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Home, LogOut, Moon, Settings, Sun, X } from "lucide-react";
 import "./nav.css";
 
 export interface NavItem {
@@ -52,8 +52,6 @@ interface SidebarProps {
   studentName: string;
   targetExam: string;
   signedIn: boolean;
-  showKinetic: boolean;
-  kineticOn: boolean;
   /** "drawer" = the phone menu: always open, with a close button instead of the arrow pill. */
   variant?: "dock" | "drawer";
   onToggleExpanded?: () => void;
@@ -61,7 +59,6 @@ interface SidebarProps {
   onNavigate?: () => void;
   onOpenSettings: () => void;
   onToggleTheme: () => void;
-  onToggleKinetic: () => void;
   onSignOut: () => void;
 }
 
@@ -74,15 +71,12 @@ export function Sidebar({
   studentName,
   targetExam,
   signedIn,
-  showKinetic,
-  kineticOn,
   variant = "dock",
   onToggleExpanded,
   onClose,
   onNavigate,
   onOpenSettings,
   onToggleTheme,
-  onToggleKinetic,
   onSignOut,
 }: SidebarProps) {
   const ref = useRef<HTMLElement>(null);
@@ -203,20 +197,6 @@ export function Sidebar({
             <span className="nv-label">{isLight ? "Dark mode" : "Light mode"}</span>
           </button>
 
-          {showKinetic && (
-            <button
-              type="button"
-              className={`nv-item nv-kinetic ${kineticOn ? "is-on" : ""}`}
-              onClick={onToggleKinetic}
-              aria-pressed={kineticOn}
-              title="Kinetic grid background"
-            >
-              <span className="nv-ico">
-                <Grid3x3 strokeWidth={1.6} />
-              </span>
-              <span className="nv-label">Kinetic Grid</span>
-            </button>
-          )}
 
           <Link href="/#profile-form" className="nv-item" onClick={onNavigate} title={name || "Profile"}>
             <span className="nv-ico">

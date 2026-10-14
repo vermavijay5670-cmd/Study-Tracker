@@ -16,13 +16,13 @@
 .auth-root[data-theme="light"] {
   --a-title: #1e293b;
   --a-strong: #334155;
-  --a-muted: #64748b;
+  --a-muted: #5f7488;
   --a-label: #64748b;
   --a-accent: #6d28d9;
   --a-icon: #94a3b8;
-  --a-neu-bg: #e4e8ef;
-  --a-neu-dark: #c0c8d6;
-  --a-neu-light: #ffffff;
+  --a-neu-bg: #d6e3f0;
+  --a-neu-dark: #b0c2d6;
+  --a-neu-light: #ecf4fb;
   background: var(--a-neu-bg);
 }
 .auth-root[data-theme="dark"] {

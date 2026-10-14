@@ -18,7 +18,6 @@ import {
 import { ThemeToggle } from "./ThemeToggle";
 import { Sidebar, type NavItem } from "./nav/Sidebar";
 import { useTrackerState } from "@/lib/useTrackerState";
-import { useKineticGrid } from "@/lib/KineticGridContext";
 import { useTheme } from "@/lib/ThemeContext";
 import { useSidebar } from "@/lib/SidebarContext";
 import "./nav/nav.css";
@@ -41,13 +40,10 @@ export function PageShell({ children, wide = false }: { children: React.ReactNod
   const pathname = usePathname();
   const router = useRouter();
   const { state, hydrated, user, signOut } = useTrackerState();
-  const { enabled: kineticOn, setEnabled: setKineticOn } = useKineticGrid();
   const { theme, toggleTheme } = useTheme();
   const { expanded, toggle, openSettings } = useSidebar();
   const isLight = theme === "light";
   const [mobileOpen, setMobileOpen] = useState(false);
-  // Kinetic-grid vs matte is a dark-mode-only visual — light mode always uses its own backdrop.
-  const showKinetic = pathname !== "/today" && !isLight;
 
   // Close the mobile drawer whenever the route changes.
   useEffect(() => {
@@ -68,14 +64,11 @@ export function PageShell({ children, wide = false }: { children: React.ReactNod
     studentName: hydrated ? state.studentName : "",
     targetExam: hydrated ? state.targetExam : "",
     signedIn: Boolean(hydrated && user),
-    showKinetic,
-    kineticOn,
     onOpenSettings: () => {
       setMobileOpen(false);
       openSettings();
     },
     onToggleTheme: toggleTheme,
-    onToggleKinetic: () => setKineticOn(!kineticOn),
     onSignOut: handleSignOut,
   };
 

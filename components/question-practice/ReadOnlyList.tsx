@@ -69,7 +69,7 @@ export function ReadOnlyList({ questions, accentHex }: ReadOnlyListProps) {
                         ? { borderColor: "#5fa86a99", background: "#e1f0e0", color: "#2f6b35" }
                         : { color: "#b4f5d0", boxShadow: "inset 3px 3px 8px rgba(3,4,7,.5), 0 0 0 1px rgba(111,227,160,.45)" }
                       : soft
-                        ? { borderColor: "#cfd7da", background: "#f1f4f5", color: "#5b686e" }
+                        ? { borderColor: "#c1d0df", background: "#e4edf5", color: "#5b686e" }
                         : { color: "rgba(255,255,255,0.55)" }
                   }
                 >
