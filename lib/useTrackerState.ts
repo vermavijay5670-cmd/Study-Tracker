@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { CHAPTERS } from "./data";
+import { CHAPTERS, SUBTOPICS } from "./data";
 import { addDays, daysBetween, dateKey, parseKey, todayKey } from "./date-utils";
 import { createSupabaseBrowserClient } from "./supabase/client";
 import type { User } from "@supabase/supabase-js";
-import type { ChapterState, Difficulty, Goal, PracticeKey, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
+import type { ChapterState, ChapterSubtopic, Difficulty, Goal, PracticeKey, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 export const STORAGE_KEY = "neet_tracker_v1";
 const OWNER_KEY = "neet_tracker_owner"; // which account the local cache belongs to
@@ -27,6 +27,7 @@ export function defaultState(): TrackerState {
     planner: {},
     customSubjects: [],
     subtopics: {},
+    subtopicLists: {},
     dailyGoals: {},
     customThoughts: [],
     quizProgress: {},
@@ -57,6 +58,7 @@ export function loadState(): TrackerState {
       planner: parsed.planner ?? {},
       customSubjects: Array.isArray(parsed.customSubjects) ? parsed.customSubjects : [],
       subtopics: parsed.subtopics ?? {},
+      subtopicLists: parsed.subtopicLists ?? {},
       dailyGoals: parsed.dailyGoals ?? {},
       customThoughts: parsed.customThoughts ?? [],
       quizProgress: parsed.quizProgress ?? {},
@@ -74,6 +76,15 @@ export function loadState(): TrackerState {
   } catch {
     return defaultState();
   }
+}
+
+export const MAX_SUBTOPICS = 60;
+export const SUBTOPIC_NAME_MAX = 120;
+
+/** The built-in subtopic list for a chapter (only Biology ships with one). Ids are the list positions, matching saved ticks. */
+function builtInSubtopics(subj: string, cls: 11 | 12, i: number): ChapterSubtopic[] {
+  const base = (SUBTOPICS as Record<string, Record<number, string[][]> | undefined>)[subj]?.[cls]?.[i];
+  return base ? base.map((name, id) => ({ id, name })) : [];
 }
 
 /**
@@ -153,6 +164,7 @@ export function useTrackerState() {
           planner: cloud.planner ?? {},
           customSubjects: Array.isArray(cloud.customSubjects) ? cloud.customSubjects : [],
           subtopics: cloud.subtopics ?? {},
+          subtopicLists: cloud.subtopicLists ?? {},
         };
         if (merged.stopwatchSessionsDate !== todayKey()) {
           merged.stopwatchSessions = 0;
@@ -357,20 +369,82 @@ export function useTrackerState() {
     [setChapterState]
   );
 
+  /** The chapter's subtopics: the person's own list if they've edited it, otherwise the built-in one (Biology) or none. */
+  const getSubtopics = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number): ChapterSubtopic[] => {
+      return state.subtopicLists[`${subj}_${cls}_${chapterIdx}`] ?? builtInSubtopics(subj, cls, chapterIdx);
+    },
+    [state.subtopicLists]
+  );
+
   const isSubtopicDone = useCallback(
-    (subj: Subject, cls: 11 | 12, chapterIdx: number, subIdx: number) => {
-      return Boolean(state.subtopics[`${subj}_${cls}_${chapterIdx}_${subIdx}`]);
+    (subj: string, cls: 11 | 12, chapterIdx: number, subId: number) => {
+      return Boolean(state.subtopics[`${subj}_${cls}_${chapterIdx}_${subId}`]);
     },
     [state.subtopics]
   );
 
-  const toggleSubtopic = useCallback((subj: Subject, cls: 11 | 12, chapterIdx: number, subIdx: number) => {
+  const toggleSubtopic = useCallback((subj: string, cls: 11 | 12, chapterIdx: number, subId: number) => {
     setState((s) => {
-      const key = `${subj}_${cls}_${chapterIdx}_${subIdx}`;
+      const key = `${subj}_${cls}_${chapterIdx}_${subId}`;
       const subtopics = { ...s.subtopics, [key]: !s.subtopics[key] };
       return { ...s, subtopics };
     });
   }, [setState]);
+
+  /** Adds one subtopic per non-empty line (so a pasted list works). Returns an error message or null. */
+  const addSubtopics = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number, raw: string): string | null => {
+      const names = raw
+        .split(/\r?\n/)
+        .map((l) => l.replace(/^\s*(?:\d+[.)]|[-•*])\s*/, "").replace(/\s+/g, " ").trim().slice(0, SUBTOPIC_NAME_MAX))
+        .filter(Boolean);
+      if (names.length === 0) return "Type a subtopic name first.";
+      const key = `${subj}_${cls}_${chapterIdx}`;
+      const current = stateRef.current.subtopicLists[key] ?? builtInSubtopics(subj, cls, chapterIdx);
+      if (current.length + names.length > MAX_SUBTOPICS) return `A chapter can have up to ${MAX_SUBTOPICS} subtopics.`;
+      setState((s) => {
+        const list = s.subtopicLists[key] ?? builtInSubtopics(subj, cls, chapterIdx);
+        let next = list.reduce((m, t) => Math.max(m, t.id), -1) + 1;
+        const added = names.map((name) => ({ id: next++, name }));
+        return { ...s, subtopicLists: { ...s.subtopicLists, [key]: [...list, ...added] } };
+      });
+      return null;
+    },
+    [setState]
+  );
+
+  const deleteSubtopic = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number, subId: number) => {
+      setState((s) => {
+        const key = `${subj}_${cls}_${chapterIdx}`;
+        const list = (s.subtopicLists[key] ?? builtInSubtopics(subj, cls, chapterIdx)).filter((t) => t.id !== subId);
+        const progress = { ...s.subtopics };
+        delete progress[`${key}_${subId}`]; // an id can be reused later, so don't leave a stale tick behind
+        return { ...s, subtopicLists: { ...s.subtopicLists, [key]: list }, subtopics: progress };
+      });
+    },
+    [setState]
+  );
+
+  /** Back to the built-in list (Biology). Ticks on subtopics the person added are removed with them. */
+  const resetSubtopics = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number) => {
+      setState((s) => {
+        const key = `${subj}_${cls}_${chapterIdx}`;
+        const lists = { ...s.subtopicLists };
+        delete lists[key];
+        const builtInIds = new Set(builtInSubtopics(subj, cls, chapterIdx).map((t) => t.id));
+        const progress: Record<string, boolean> = {};
+        for (const [k, v] of Object.entries(s.subtopics)) {
+          if (k.startsWith(`${key}_`) && !builtInIds.has(Number(k.slice(key.length + 1)))) continue;
+          progress[k] = v;
+        }
+        return { ...s, subtopicLists: lists, subtopics: progress };
+      });
+    },
+    [setState]
+  );
 
   // ---- Stopwatch: persisted so it survives navigating to another page ----
   // stopwatchRunningSince anchors the *display* (time since Start) and is only ever
@@ -809,8 +883,12 @@ export function useTrackerState() {
     daysStudied,
     getSubjectStats,
     getRecentActivity,
+    getSubtopics,
     isSubtopicDone,
     toggleSubtopic,
+    addSubtopics,
+    deleteSubtopic,
+    resetSubtopics,
     startStopwatch,
     pauseStopwatch,
     resetStopwatchSessions,

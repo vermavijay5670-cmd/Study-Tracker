@@ -2,7 +2,7 @@
 
 import { NmCard, NmTrack } from "@/components/today/nm/NmUI";
 import { NmChapterRow } from "./NmChapterRow";
-import { CHAPTERS, SUBTOPICS, SUBJECT_NAME } from "@/lib/data";
+import { CHAPTERS, SUBJECT_NAME } from "@/lib/data";
 import type { Subject } from "@/lib/types";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard } from "@/components/ui/soft/SoftUI";
@@ -14,7 +14,7 @@ interface SubjectCardProps {
 }
 
 export function SubjectCard({ subject }: SubjectCardProps) {
-  const { getChapterState, toggleDone, togglePractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubjectStats, isSubtopicDone, toggleSubtopic } =
+  const { getChapterState, toggleDone, togglePractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubjectStats, getSubtopics, isSubtopicDone, toggleSubtopic, addSubtopics, deleteSubtopic, resetSubtopics, state } =
     useTrackerState();
 
   const { theme } = useTheme();
@@ -89,8 +89,7 @@ export function SubjectCard({ subject }: SubjectCardProps) {
               <div className="space-y-3">
                 {CHAPTERS[subject][cls].map((name, i) => {
                   const chState = getChapterState(subject, cls, i);
-                  const subtopics = subject === "bio" ? SUBTOPICS.bio?.[cls]?.[i] : undefined;
-                  return (
+                    return (
                     <SoftChapterRow
                       key={i}
                       index={i}
@@ -99,9 +98,12 @@ export function SubjectCard({ subject }: SubjectCardProps) {
                       state={chState}
                       onTogglePractice={(key) => togglePractice(subject, cls, i, key)}
                       isNext={subject === "chem" && nextKey === `${cls}_${i}`}
-                      subtopics={subtopics}
-                      isSubtopicDone={subtopics ? (subIdx) => isSubtopicDone(subject, cls, i, subIdx) : undefined}
-                      onToggleSubtopic={subtopics ? (subIdx) => toggleSubtopic(subject, cls, i, subIdx) : undefined}
+                      subtopics={getSubtopics(subject, cls, i)}
+                      isSubtopicDone={(id) => isSubtopicDone(subject, cls, i, id)}
+                      onToggleSubtopic={(id) => toggleSubtopic(subject, cls, i, id)}
+                      onAddSubtopics={(raw) => addSubtopics(subject, cls, i, raw)}
+                      onDeleteSubtopic={(id) => deleteSubtopic(subject, cls, i, id)}
+                      onResetSubtopics={state.subtopicLists[`${subject}_${cls}_${i}`] && subject === "bio" ? () => resetSubtopics(subject, cls, i) : undefined}
                       onToggleDone={() => toggleDone(subject, cls, i)}
                       onBumpRevision={() => bumpRevision(subject, cls, i)}
                       onResetRevision={() => resetRevision(subject, cls, i)}
@@ -166,7 +168,6 @@ export function SubjectCard({ subject }: SubjectCardProps) {
             <div className="space-y-3">
               {CHAPTERS[subject][cls].map((name, i) => {
                 const chState = getChapterState(subject, cls, i);
-                const subtopics = subject === "bio" ? SUBTOPICS.bio?.[cls]?.[i] : undefined;
                 return (
                   <NmChapterRow
                     key={i}
@@ -176,9 +177,12 @@ export function SubjectCard({ subject }: SubjectCardProps) {
                     state={chState}
                     onTogglePractice={(key) => togglePractice(subject, cls, i, key)}
                     isNext={subject === "chem" && nextKey === `${cls}_${i}`}
-                    subtopics={subtopics}
-                    isSubtopicDone={subtopics ? (subIdx) => isSubtopicDone(subject, cls, i, subIdx) : undefined}
-                    onToggleSubtopic={subtopics ? (subIdx) => toggleSubtopic(subject, cls, i, subIdx) : undefined}
+                    subtopics={getSubtopics(subject, cls, i)}
+                    isSubtopicDone={(id) => isSubtopicDone(subject, cls, i, id)}
+                    onToggleSubtopic={(id) => toggleSubtopic(subject, cls, i, id)}
+                    onAddSubtopics={(raw) => addSubtopics(subject, cls, i, raw)}
+                    onDeleteSubtopic={(id) => deleteSubtopic(subject, cls, i, id)}
+                    onResetSubtopics={state.subtopicLists[`${subject}_${cls}_${i}`] && subject === "bio" ? () => resetSubtopics(subject, cls, i) : undefined}
                     onToggleDone={() => toggleDone(subject, cls, i)}
                     onBumpRevision={() => bumpRevision(subject, cls, i)}
                     onResetRevision={() => resetRevision(subject, cls, i)}

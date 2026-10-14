@@ -1,6 +1,6 @@
 import { STORAGE_KEY, defaultState } from "./useTrackerState";
 import { todayKey } from "./date-utils";
-import type { ChapterState, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
+import type { ChapterState, ChapterSubtopic, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
 
 /** Marker written into every export so imports can recognise the file. */
 export const EXPORT_APP = "neet-study-tracker";
@@ -29,7 +29,7 @@ export type ImportMode = "replace" | "merge";
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const CHAPTER_RE = /^(?:phy|chem|bio|cs[a-z0-9]{3,14})_(11|12)_\d+$/;
 const CUSTOM_ID_RE = /^cs[a-z0-9]{3,14}$/;
-const SUBTOPIC_RE = /^(phy|chem|bio)_(11|12)_\d+_\d+$/;
+const SUBTOPIC_RE = /^(?:phy|chem|bio|cs[a-z0-9]{3,14})_(11|12)_\d+_\d+$/;
 
 const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
 const str = (v: unknown, max: number, fallback = ""): string => (typeof v === "string" ? v.slice(0, max) : fallback);
@@ -37,6 +37,25 @@ const num = (v: unknown, min: number, max: number, fallback: number): number =>
   typeof v === "number" && Number.isFinite(v) ? Math.min(max, Math.max(min, v)) : fallback;
 
 /** Read the tracker data currently saved on this device (the app's source of truth). */
+function sanitizeSubtopicLists(v: unknown): Record<string, ChapterSubtopic[]> {
+  const out: Record<string, ChapterSubtopic[]> = {};
+  if (!isObj(v)) return out;
+  for (const [k, list] of Object.entries(v).slice(0, 2000)) {
+    if (!CHAPTER_RE.test(k) || !Array.isArray(list)) continue;
+    const ids = new Set<number>();
+    const items: ChapterSubtopic[] = [];
+    for (const t of list.slice(0, 60)) {
+      if (!isObj(t)) continue;
+      const name = str(t.name, 120).trim();
+      if (typeof t.id !== "number" || !Number.isInteger(t.id) || t.id < 0 || t.id > 1_000_000 || ids.has(t.id) || !name) continue;
+      ids.add(t.id);
+      items.push({ id: t.id, name });
+    }
+    out[k] = items;
+  }
+  return out;
+}
+
 function sanitizeCustomSubjects(v: unknown): CustomSubject[] {
   if (!Array.isArray(v)) return [];
   const out: CustomSubject[] = [];
@@ -177,6 +196,7 @@ export function sanitizeState(input: unknown): TrackerState {
     planner,
     customSubjects: sanitizeCustomSubjects(src.customSubjects),
     subtopics,
+    subtopicLists: sanitizeSubtopicLists(src.subtopicLists),
     dailyGoals,
     customThoughts,
     quizProgress,
@@ -316,6 +336,7 @@ export function mergeStates(current: TrackerState, incoming: TrackerState): { st
     log: addMissing(current.log, incoming.log),
     planner: addMissing(current.planner, incoming.planner),
     subtopics: addMissing(current.subtopics, incoming.subtopics),
+    subtopicLists: addMissing(current.subtopicLists, incoming.subtopicLists),
     dailyGoals: addMissing(current.dailyGoals, incoming.dailyGoals, (g) => g.length === 0),
     customThoughts: thoughts,
     quizProgress: addMissing(current.quizProgress, incoming.quizProgress),

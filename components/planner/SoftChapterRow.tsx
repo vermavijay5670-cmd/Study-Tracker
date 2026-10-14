@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronDown, Play } from "lucide-react";
-import type { ChapterState, Difficulty, PracticeKey, PracticeSubject } from "@/lib/types";
+import type { ChapterState, ChapterSubtopic, Difficulty, PracticeKey, PracticeSubject } from "@/lib/types";
 import { getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
+import { SubtopicPanel } from "./SubtopicPanel";
 import { SoftPracticePanel, SoftPracticeToggle } from "./ChapterPractice";
 
 const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
@@ -20,9 +21,13 @@ interface SoftChapterRowProps {
   state: ChapterState;
   onTogglePractice: (key: PracticeKey) => void;
   isNext?: boolean;
-  subtopics?: string[];
-  isSubtopicDone?: (subIdx: number) => boolean;
-  onToggleSubtopic?: (subIdx: number) => void;
+  subtopics: ChapterSubtopic[];
+  isSubtopicDone: (id: number) => boolean;
+  onToggleSubtopic: (id: number) => void;
+  onAddSubtopics: (raw: string) => string | null | void;
+  onDeleteSubtopic: (id: number) => void;
+  /** Set only when the chapter's list was customised and a built-in list exists to go back to. */
+  onResetSubtopics?: () => void;
   onToggleDone: () => void;
   onBumpRevision: () => void;
   onResetRevision: () => void;
@@ -59,6 +64,9 @@ export function SoftChapterRow({
   subtopics,
   isSubtopicDone,
   onToggleSubtopic,
+  onAddSubtopics,
+  onDeleteSubtopic,
+  onResetSubtopics,
   onToggleDone,
   onBumpRevision,
   onResetRevision,
@@ -74,8 +82,7 @@ export function SoftChapterRow({
   const statusLabel = getChapterStatusLabel(state);
   const kind = status === "new" ? "new" : status === "readyToRevise" ? "ready" : "done";
 
-  const hasSubtopics = Boolean(subtopics && subtopics.length > 0 && isSubtopicDone && onToggleSubtopic);
-  const subDone = hasSubtopics ? subtopics!.filter((_, i) => isSubtopicDone!(i)).length : 0;
+  const subDone = subtopics.filter((t) => isSubtopicDone(t.id)).length;
 
   return (
     <motion.div
@@ -138,7 +145,7 @@ export function SoftChapterRow({
             {diff && <span className="sf-dotc" style={{ background: DIFF_DOT[diff] }} />}
             <span className="capitalize">{diff ?? "Difficulty"}</span>
           </button>
-          {hasSubtopics && (
+          {(
             <button
               type="button"
               className="sf-chip"
@@ -146,7 +153,7 @@ export function SoftChapterRow({
               aria-label={subOpen ? "Hide subtopics" : "Show subtopics"}
               onClick={() => setSubOpen((v) => !v)}
             >
-              {subDone}/{subtopics!.length}
+              {subtopics.length > 0 ? `${subDone}/${subtopics.length}` : "+ Topics"}
               <ChevronDown size={13} strokeWidth={2.4} style={{ transform: subOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }} />
             </button>
           )}
@@ -165,7 +172,7 @@ export function SoftChapterRow({
       </div>
 
       <AnimatePresence initial={false}>
-        {hasSubtopics && subOpen && (
+        {subOpen && (
           <motion.div
             key="subs"
             initial={{ height: 0, opacity: 0 }}
@@ -174,23 +181,15 @@ export function SoftChapterRow({
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             style={{ overflow: "hidden" }}
           >
-            <div className="sf-panel grid grid-cols-1 gap-1 sm:grid-cols-2">
-              {subtopics!.map((topic, i) => {
-                const done = isSubtopicDone!(i);
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    aria-pressed={done}
-                    onClick={() => onToggleSubtopic!(i)}
-                    className={`sf-sub-item ${done ? "is-done" : ""}`}
-                  >
-                    <span className="sf-sub-box">{done && <Check size={11} strokeWidth={3.2} />}</span>
-                    <span className="sf-sub-txt truncate">{topic}</span>
-                  </button>
-                );
-              })}
-            </div>
+            <SubtopicPanel
+              px="sf"
+              subtopics={subtopics}
+              isDone={isSubtopicDone}
+              onToggle={onToggleSubtopic}
+              onAdd={onAddSubtopics}
+              onDelete={onDeleteSubtopic}
+              onReset={onResetSubtopics}
+            />
           </motion.div>
         )}
         {practiceOpen && (

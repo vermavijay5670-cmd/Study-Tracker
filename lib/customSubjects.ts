@@ -18,9 +18,9 @@ export const customChapterKey = (subjectId: string, chapterId: number) => `${sub
 
 const clean = (v: string) => v.replace(/\s+/g, " ").trim();
 
-function dropProgress(planner: TrackerState["planner"], keep: (key: string) => boolean) {
-  const out: TrackerState["planner"] = {};
-  for (const [k, v] of Object.entries(planner)) if (keep(k)) out[k] = v;
+function dropProgress<T>(map: Record<string, T>, keep: (key: string) => boolean) {
+  const out: Record<string, T> = {};
+  for (const [k, v] of Object.entries(map)) if (keep(k)) out[k] = v;
   return out;
 }
 
@@ -92,6 +92,8 @@ export function useCustomSubjects() {
         ...s,
         customSubjects: s.customSubjects.filter((c) => c.id !== id),
         planner: dropProgress(s.planner, (k) => !k.startsWith(`${id}_`)),
+        subtopics: dropProgress(s.subtopics, (k) => !k.startsWith(`${id}_`)),
+        subtopicLists: dropProgress(s.subtopicLists, (k) => !k.startsWith(`${id}_`)),
       }));
     },
     [commit]
@@ -143,6 +145,8 @@ export function useCustomSubjects() {
         ...s,
         customSubjects: s.customSubjects.map((c) => (c.id === id ? { ...c, chapters: c.chapters.filter((ch) => ch.id !== chapterId) } : c)),
         planner: dropProgress(s.planner, (k) => k !== customChapterKey(id, chapterId)),
+        subtopics: dropProgress(s.subtopics, (k) => !k.startsWith(`${customChapterKey(id, chapterId)}_`)),
+        subtopicLists: dropProgress(s.subtopicLists, (k) => k !== customChapterKey(id, chapterId)),
       }));
     },
     [commit]

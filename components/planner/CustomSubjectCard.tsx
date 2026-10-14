@@ -21,7 +21,7 @@ interface CustomSubjectCardProps {
 
 /** Planner card for a subject the person added in Settings — same chapter controls as the built-in subjects. */
 export function CustomSubjectCard({ subject }: CustomSubjectCardProps) {
-  const { state, toggleDone, togglePractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote } = useTrackerState();
+  const { state, toggleDone, togglePractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubtopics, isSubtopicDone, toggleSubtopic, addSubtopics, deleteSubtopic } = useTrackerState();
   const { theme } = useTheme();
   const { openSettings } = useSidebar();
 
@@ -47,6 +47,11 @@ export function CustomSubjectCard({ subject }: CustomSubjectCardProps) {
       onResetRevision: () => resetRevision(subject.id, 11, ch.id),
       onCycleDifficulty: () => cycleDifficulty(subject.id, 11, ch.id),
       onSaveNote: (note: string) => setChapterNote(subject.id, 11, ch.id, note),
+      subtopics: getSubtopics(subject.id, 11, ch.id),
+      isSubtopicDone: (id: number) => isSubtopicDone(subject.id, 11, ch.id, id),
+      onToggleSubtopic: (id: number) => toggleSubtopic(subject.id, 11, ch.id, id),
+      onAddSubtopics: (raw: string) => addSubtopics(subject.id, 11, ch.id, raw),
+      onDeleteSubtopic: (id: number) => deleteSubtopic(subject.id, 11, ch.id, id),
     };
     return theme === "light" ? (
       <SoftChapterRow key={ch.id} index={i} name={ch.name} state={st} {...handlers} />

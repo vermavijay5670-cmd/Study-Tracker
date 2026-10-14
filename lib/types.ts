@@ -25,6 +25,12 @@ export interface CustomSubject {
   nextChapterId: number;
 }
 
+/** One subtopic of a chapter. `id` is stable (never reused while the subtopic exists), so deleting others can't shift saved ticks. */
+export interface ChapterSubtopic {
+  id: number;
+  name: string;
+}
+
 export type PracticeSubject = Subject | "custom";
 
 export type PracticeKey = "practiceDone" | "neetAdvDone" | "assignmentsDone";
@@ -50,7 +56,8 @@ export interface TrackerState {
   log: Record<string, number>; // date -> hours
   planner: Record<string, ChapterState>; // "phy_11_0" -> state (custom subjects: "cs1abc_11_<chapterId>")
   customSubjects: CustomSubject[]; // subjects the person added in Settings
-  subtopics: Record<string, boolean>; // "phy_11_0_2" -> done
+  subtopics: Record<string, boolean>; // "phy_11_0_2" -> done (last number = subtopic id)
+  subtopicLists: Record<string, ChapterSubtopic[]>; // chapter key -> the person's own subtopic list (replaces the built-in one)
   dailyGoals: Record<string, Goal[]>; // date -> that day's goal checklist
   customThoughts: string[]; // user-added positive thoughts, added to the daily rotation pool
   quizProgress: Record<string, QuizProgress>; // key: `${subject}_${cls}_${chapterIndex}` -> in-progress quiz state
