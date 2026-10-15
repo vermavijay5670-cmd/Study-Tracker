@@ -87,6 +87,119 @@ function builtInSubtopics(subj: string, cls: 11 | 12, i: number): ChapterSubtopi
   return base ? base.map((name, id) => ({ id, name })) : [];
 }
 
+type Boot = {
+  user: User | null;
+  state: TrackerState;
+  /** True when the loaded state replaced this device's local copy (cloud was newer, or a different account's cache was dropped). */
+  replaced: boolean;
+};
+
+/**
+ * The account + cloud sync only needs to happen once per page load, not on every navigation. Until now every
+ * part of every page (sidebar, section, alarm…) asked Supabase "who is this?" and re-downloaded the saved
+ * data on each section switch, which is why switching felt slow. The result is kept here and reused.
+ */
+let bootResult: Boot | null = null;
+let bootPromise: Promise<Boot> | null = null;
+let authListening = false;
+
+function withTimeout<T>(p: PromiseLike<T>, ms: number): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const t = setTimeout(() => reject(new Error("timeout")), ms);
+    Promise.resolve(p).then(
+      (v) => {
+        clearTimeout(t);
+        resolve(v);
+      },
+      (e) => {
+        clearTimeout(t);
+        reject(e);
+      }
+    );
+  });
+}
+
+function bootstrap(supabase: ReturnType<typeof createSupabaseBrowserClient>): Promise<Boot> {
+  if (bootResult) return Promise.resolve(bootResult);
+
+  if (!authListening) {
+    authListening = true;
+    // Signing in/out (a different account) invalidates what we loaded; token refreshes of the same account don't.
+    supabase.auth.onAuthStateChange((_event, session) => {
+      const id = session?.user?.id ?? null;
+      if (id !== (bootResult?.user?.id ?? null)) {
+        bootResult = null;
+        bootPromise = null;
+      }
+    });
+  }
+
+  if (!bootPromise) {
+    bootPromise = (async (): Promise<Boot> => {
+      let local = loadState();
+      let currentUser: User | null = null;
+      try {
+        // getSession reads the session already stored in the browser (no network round trip, unlike getUser).
+        // Security is not decided here: the database's row-level rules and the server middleware check the real login.
+        const { data } = await withTimeout(supabase.auth.getSession(), 5000);
+        currentUser = data.session?.user ?? null;
+        if (!currentUser) return (bootResult = { user: null, state: local, replaced: false });
+
+        let replaced = false;
+        // the local cache belongs to whoever used this browser last — never let it overwrite a different account
+        try {
+          const owner = window.localStorage.getItem(OWNER_KEY);
+          if (owner && owner !== currentUser.id) {
+            local = defaultState();
+            replaced = true;
+          }
+          window.localStorage.setItem(OWNER_KEY, currentUser.id);
+        } catch {
+          /* ignore */
+        }
+
+        const { data: row } = await withTimeout(supabase.from(TABLE).select("state").eq("user_id", currentUser.id).maybeSingle(), 8000);
+        const cloud = row?.state as Partial<TrackerState> | undefined;
+
+        // cloud wins if it's newer, or if this device has nothing of its own yet (never push an empty local over real cloud data)
+        const hasCloud = cloud && Object.keys(cloud).length > 0;
+        if (hasCloud && ((cloud.lastModified ?? 0) > local.lastModified || local.lastModified === 0)) {
+          const merged: TrackerState = {
+            ...defaultState(),
+            ...cloud,
+            log: cloud.log ?? {},
+            planner: cloud.planner ?? {},
+            customSubjects: Array.isArray(cloud.customSubjects) ? cloud.customSubjects : [],
+            subtopics: cloud.subtopics ?? {},
+            subtopicLists: cloud.subtopicLists ?? {},
+          };
+          if (merged.stopwatchSessionsDate !== todayKey()) {
+            merged.stopwatchSessions = 0;
+            merged.stopwatchSessionMs = 0;
+            merged.stopwatchSessionsDate = todayKey();
+          }
+          try {
+            window.localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+          } catch {
+            /* ignore */
+          }
+          return (bootResult = { user: currentUser, state: merged, replaced: true });
+        }
+
+        // local is newer (or cloud had nothing) — push it up so the cloud row exists/matches
+        void supabase.from(TABLE).upsert({ user_id: currentUser.id, state: local }).then(() => {});
+        return (bootResult = { user: currentUser, state: local, replaced });
+      } catch {
+        // Offline or Supabase unreachable: carry on with the local copy instead of showing "Loading…" forever.
+        // Not cached, so the next page tries the cloud again.
+        bootPromise = null;
+        return { user: currentUser, state: local, replaced: false };
+      }
+    })();
+  }
+  return bootPromise;
+}
+
 /**
  * Change the saved state from outside a hook instance (Settings → Subjects). Writes the local cache,
  * then tells every live hook instance to adopt it; one of them pushes it to the cloud.
@@ -103,9 +216,10 @@ export function mutateStoredState(fn: (s: TrackerState) => TrackerState): Tracke
 }
 
 export function useTrackerState() {
-  const [state, setStateRaw] = useState<TrackerState>(defaultState);
-  const [hydrated, setHydrated] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  // After the first section has loaded, later ones start from the saved copy and are ready immediately (no "Loading…").
+  const [state, setStateRaw] = useState<TrackerState>(() => (bootResult ? loadState() : defaultState()));
+  const [hydrated, setHydrated] = useState(() => bootResult !== null);
+  const [user, setUser] = useState<User | null>(() => bootResult?.user ?? null);
   const supabaseRef = useRef(createSupabaseBrowserClient());
   const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const skipNextPushRef = useRef(false); // true right after we adopt cloud data, so we don't immediately echo it back
@@ -120,71 +234,32 @@ export function useTrackerState() {
     setStateRaw((s) => ({ ...updater(s), lastModified: Date.now() }));
   }, []);
 
-  // 1) Load the local cache instantly (fast, synchronous-feeling), then reconcile with
-  //    the cloud once the user + their cloud row are known. Whichever side has the more
-  //    recent lastModified wins, and we push the winner to the other side to converge.
+  // 1) Show the local copy instantly, then (once per page load) reconcile with the cloud. Whichever side
+  //    has the more recent lastModified wins, and the winner is pushed to the other side to converge.
   useEffect(() => {
-    let local = loadState();
-    setStateRaw(local);
-
-    const supabase = supabaseRef.current;
-    (async () => {
-      const { data: userData } = await supabase.auth.getUser();
-      const currentUser = userData.user ?? null;
-      setUser(currentUser);
-
-      if (!currentUser) {
-        setHydrated(true);
-        return;
-      }
-
-      // the local cache belongs to whoever used this browser last — never let it overwrite a different account
-      try {
-        const owner = window.localStorage.getItem(OWNER_KEY);
-        if (owner && owner !== currentUser.id) {
-          local = defaultState();
-          skipNextPushRef.current = true;
-          setStateRaw(local);
-        }
-        window.localStorage.setItem(OWNER_KEY, currentUser.id);
-      } catch {
-        /* ignore */
-      }
-
-      const { data: row } = await supabase.from(TABLE).select("state").eq("user_id", currentUser.id).maybeSingle();
-      const cloud = row?.state as Partial<TrackerState> | undefined;
-
-      // cloud wins if it's newer, or if this device has nothing of its own yet (never push an empty local over real cloud data)
-      const hasCloud = cloud && Object.keys(cloud).length > 0;
-      if (hasCloud && ((cloud.lastModified ?? 0) > local.lastModified || local.lastModified === 0)) {
-        const merged: TrackerState = {
-          ...defaultState(),
-          ...cloud,
-          log: cloud.log ?? {},
-          planner: cloud.planner ?? {},
-          customSubjects: Array.isArray(cloud.customSubjects) ? cloud.customSubjects : [],
-          subtopics: cloud.subtopics ?? {},
-          subtopicLists: cloud.subtopicLists ?? {},
-        };
-        if (merged.stopwatchSessionsDate !== todayKey()) {
-          merged.stopwatchSessions = 0;
-          merged.stopwatchSessionMs = 0;
-          merged.stopwatchSessionsDate = todayKey();
-        }
-        skipNextPushRef.current = true;
-        setStateRaw(merged);
-        try {
-          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
-        } catch {
-          /* ignore */
-        }
-      } else {
-        // local is newer (or cloud had nothing) — push it up so the cloud row exists/matches
-        await supabase.from(TABLE).upsert({ user_id: currentUser.id, state: local });
-      }
-
+    if (bootResult) {
+      // Already loaded earlier in this visit: just pick up anything newer from storage — no network at all.
+      const local = loadState();
+      if (local.lastModified > stateRef.current.lastModified) setStateRaw(local);
+      setUser(bootResult.user);
       setHydrated(true);
-    })();
+      return;
+    }
+
+    setStateRaw(loadState());
+    let alive = true;
+    bootstrap(supabaseRef.current).then((res) => {
+      if (!alive) return;
+      setUser(res.user);
+      if (res.replaced) {
+        skipNextPushRef.current = true;
+        setStateRaw(res.state);
+      }
+      setHydrated(true);
+    });
+    return () => {
+      alive = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -261,6 +336,8 @@ export function useTrackerState() {
     if (user) {
       await supabaseRef.current.from(TABLE).upsert({ user_id: user.id, state });
     }
+    bootResult = null;
+    bootPromise = null;
     await supabaseRef.current.auth.signOut();
     // don't leave this account's data in the browser for the next person who signs in
     try {

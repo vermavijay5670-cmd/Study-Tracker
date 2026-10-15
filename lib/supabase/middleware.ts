@@ -21,18 +21,26 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  const { data } = await supabase.auth.getUser();
+  // getClaims verifies the login token locally (no round trip to Supabase on every page switch); getUser is the fallback
+  // for projects that still use the older shared-secret signing, where Supabase has to be asked.
+  let signedIn = false;
+  try {
+    const { data: claimsData } = await supabase.auth.getClaims();
+    signedIn = Boolean(claimsData?.claims?.sub);
+  } catch {
+    // Supabase unreachable: treat as signed out rather than failing the whole page request.
+  }
   const path = request.nextUrl.pathname;
   const isPublic = PUBLIC_PATHS.some((p) => (p === "/" ? path === "/" : path === p || path.startsWith(p + "/")));
 
-  if (!data.user && !isPublic) {
+  if (!signedIn && !isPublic) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("next", path);
     return NextResponse.redirect(url);
   }
 
-  if (data.user && (path === "/login" || path === "/signup")) {
+  if (signedIn && (path === "/login" || path === "/signup")) {
     const url = request.nextUrl.clone();
     url.pathname = "/today";
     url.search = "";
