@@ -5,7 +5,7 @@ import { CHAPTERS, SUBTOPICS } from "./data";
 import { addDays, daysBetween, dateKey, parseKey, todayKey } from "./date-utils";
 import { createSupabaseBrowserClient } from "./supabase/client";
 import type { User } from "@supabase/supabase-js";
-import type { ChapterState, ChapterSubtopic, Difficulty, Goal, PracticeKey, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
+import type { ChapterState, ChapterSubtopic, Difficulty, PracticeTag, Goal, PracticeKey, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 export const STORAGE_KEY = "neet_tracker_v1";
 const OWNER_KEY = "neet_tracker_owner"; // which account the local cache belongs to
@@ -28,6 +28,8 @@ export function defaultState(): TrackerState {
     customSubjects: [],
     subtopics: {},
     subtopicLists: {},
+    practiceLists: {},
+    practiceDone: {},
     dailyGoals: {},
     customThoughts: [],
     quizProgress: {},
@@ -59,6 +61,8 @@ export function loadState(): TrackerState {
       customSubjects: Array.isArray(parsed.customSubjects) ? parsed.customSubjects : [],
       subtopics: parsed.subtopics ?? {},
       subtopicLists: parsed.subtopicLists ?? {},
+      practiceLists: parsed.practiceLists ?? {},
+      practiceDone: parsed.practiceDone ?? {},
       dailyGoals: parsed.dailyGoals ?? {},
       customThoughts: parsed.customThoughts ?? [],
       quizProgress: parsed.quizProgress ?? {},
@@ -77,6 +81,37 @@ export function loadState(): TrackerState {
     return defaultState();
   }
 }
+
+export const MAX_PRACTICE_TAGS = 12;
+export const PRACTICE_TAG_MAX = 40;
+const FIRST_OWN_TAG_ID = 10;
+
+/** Built-in tags keep using the three original flags on the chapter, so nothing already ticked is lost. */
+function builtInPractice(subj: string): PracticeTag[] {
+  return subj === "bio"
+    ? [
+        { id: 0, name: "NEET Advance questions" },
+        { id: 1, name: "Assignments" },
+      ]
+    : [{ id: 0, name: "Question practice" }];
+}
+const LEGACY_FIELD = (subj: string, id: number): "practiceDone" | "neetAdvDone" | "assignmentsDone" | null =>
+  subj === "bio" ? (id === 0 ? "neetAdvDone" : id === 1 ? "assignmentsDone" : null) : id === 0 ? "practiceDone" : null;
+
+const sameTags = (a: PracticeTag[], b: PracticeTag[]) => a.length === b.length && a.every((t, i) => t.id === b[i].id && t.name === b[i].name);
+
+/** Planner keys of every chapter in a subject (built-in Physics/Chemistry/Biology, or a custom subject). */
+function chapterKeysOf(s: TrackerState, subj: string): string[] {
+  if (subj === "phy" || subj === "chem" || subj === "bio") {
+    const keys: string[] = [];
+    for (const cls of [11, 12] as const) CHAPTERS[subj][cls].forEach((_, i) => keys.push(`${subj}_${cls}_${i}`));
+    return keys;
+  }
+  return (s.customSubjects.find((c) => c.id === subj)?.chapters ?? []).map((ch) => `${subj}_11_${ch.id}`);
+}
+
+/** Subject id a chapter key belongs to ("phy_11_3" -> "phy"). */
+const subjectOfKey = (key: string) => key.split("_")[0];
 
 export const MAX_SUBTOPICS = 60;
 export const SUBTOPIC_NAME_MAX = 120;
@@ -172,6 +207,8 @@ function bootstrap(supabase: ReturnType<typeof createSupabaseBrowserClient>): Pr
             customSubjects: Array.isArray(cloud.customSubjects) ? cloud.customSubjects : [],
             subtopics: cloud.subtopics ?? {},
             subtopicLists: cloud.subtopicLists ?? {},
+            practiceLists: cloud.practiceLists ?? {},
+            practiceDone: cloud.practiceDone ?? {},
           };
           if (merged.stopwatchSessionsDate !== todayKey()) {
             merged.stopwatchSessions = 0;
@@ -444,6 +481,118 @@ export function useTrackerState() {
       setChapterState(subj, cls, i, { note });
     },
     [setChapterState]
+  );
+
+
+  /** The chapter's Practice tags: the person's own list if they've edited it, otherwise the built-in one. */
+  const getPractice = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number): PracticeTag[] => {
+      return state.practiceLists[`${subj}_${cls}_${chapterIdx}`] ?? builtInPractice(subj);
+    },
+    [state.practiceLists]
+  );
+
+  const isPracticeDone = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number, tagId: number) => {
+      const key = `${subj}_${cls}_${chapterIdx}`;
+      const legacy = tagId < FIRST_OWN_TAG_ID ? LEGACY_FIELD(subj, tagId) : null;
+      return legacy ? Boolean(state.planner[key]?.[legacy]) : Boolean(state.practiceDone[`${key}_${tagId}`]);
+    },
+    [state.planner, state.practiceDone]
+  );
+
+  const togglePracticeTag = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number, tagId: number) => {
+      setState((s) => {
+        const key = `${subj}_${cls}_${chapterIdx}`;
+        const legacy = tagId < FIRST_OWN_TAG_ID ? LEGACY_FIELD(subj, tagId) : null;
+        if (legacy) {
+          const cur = s.planner[key] ?? {};
+          return { ...s, planner: { ...s.planner, [key]: { ...cur, [legacy]: !cur[legacy] } } };
+        }
+        const k = `${key}_${tagId}`;
+        return { ...s, practiceDone: { ...s.practiceDone, [k]: !s.practiceDone[k] } };
+      });
+    },
+    [setState]
+  );
+
+  /** Adds one tag per non-empty line. `all` adds them to every chapter of the subject. Returns an error message or null. */
+  const addPracticeTags = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number, raw: string, all: boolean): string | null => {
+      const names = raw
+        .split(/\r?\n|,/)
+        .map((l) => l.replace(/\s+/g, " ").trim().slice(0, PRACTICE_TAG_MAX))
+        .filter(Boolean);
+      if (names.length === 0) return "Type a tag name first.";
+      const here = `${subj}_${cls}_${chapterIdx}`;
+      const cur = stateRef.current.practiceLists[here] ?? builtInPractice(subj);
+      const fresh = names.filter((n) => !cur.some((t) => t.name.toLowerCase() === n.toLowerCase()));
+      if (!all && fresh.length === 0) return "That tag is already here.";
+      if (!all && cur.length + fresh.length > MAX_PRACTICE_TAGS) return `A chapter can have up to ${MAX_PRACTICE_TAGS} tags.`;
+      setState((s) => {
+        const keys = all ? chapterKeysOf(s, subj) : [here];
+        const lists = { ...s.practiceLists };
+        for (const key of keys) {
+          const list = lists[key] ?? builtInPractice(subj);
+          let next = Math.max(FIRST_OWN_TAG_ID, list.reduce((m, t) => Math.max(m, t.id), -1) + 1);
+          const add: PracticeTag[] = [];
+          for (const n of names) {
+            if (list.some((t) => t.name.toLowerCase() === n.toLowerCase()) || add.some((t) => t.name.toLowerCase() === n.toLowerCase())) continue;
+            if (list.length + add.length >= MAX_PRACTICE_TAGS) break;
+            add.push({ id: next++, name: n });
+          }
+          if (add.length > 0) lists[key] = [...list, ...add];
+          if (lists[key] && sameTags(lists[key], builtInPractice(subjectOfKey(key)))) delete lists[key];
+        }
+        return { ...s, practiceLists: lists };
+      });
+      return null;
+    },
+    [setState]
+  );
+
+  /** Removes a tag (and its tick). `all` removes tags with the same name from every chapter of the subject. */
+  const removePracticeTag = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number, tagId: number, all: boolean) => {
+      setState((s) => {
+        const here = `${subj}_${cls}_${chapterIdx}`;
+        const name = (s.practiceLists[here] ?? builtInPractice(subj)).find((t) => t.id === tagId)?.name.toLowerCase();
+        if (name === undefined) return s;
+        const keys = all ? chapterKeysOf(s, subj) : [here];
+        const lists = { ...s.practiceLists };
+        const done = { ...s.practiceDone };
+        let planner = s.planner;
+        for (const key of keys) {
+          const list = lists[key] ?? builtInPractice(subjectOfKey(key));
+          const hit = list.find((t) => (key === here && !all ? t.id === tagId : t.name.toLowerCase() === name));
+          if (!hit) continue;
+          const remaining = list.filter((t) => t.id !== hit.id);
+          if (sameTags(remaining, builtInPractice(subjectOfKey(key)))) delete lists[key];
+          else lists[key] = remaining;
+          const legacy = hit.id < FIRST_OWN_TAG_ID ? LEGACY_FIELD(subjectOfKey(key), hit.id) : null;
+          if (legacy && planner[key]) planner = { ...planner, [key]: { ...planner[key], [legacy]: false } };
+          delete done[`${key}_${hit.id}`];
+        }
+        return { ...s, practiceLists: lists, practiceDone: done, planner };
+      });
+    },
+    [setState]
+  );
+
+  /** Back to the built-in tags. Ticks on tags the person added are removed with them. */
+  const resetPractice = useCallback(
+    (subj: string, cls: 11 | 12, chapterIdx: number) => {
+      setState((s) => {
+        const key = `${subj}_${cls}_${chapterIdx}`;
+        const lists = { ...s.practiceLists };
+        delete lists[key];
+        const done: Record<string, boolean> = {};
+        for (const [k, v] of Object.entries(s.practiceDone)) if (!k.startsWith(`${key}_`)) done[k] = v;
+        return { ...s, practiceLists: lists, practiceDone: done };
+      });
+    },
+    [setState]
   );
 
   /** The chapter's subtopics: the person's own list if they've edited it, otherwise the built-in one (Biology) or none. */
@@ -960,6 +1109,12 @@ export function useTrackerState() {
     daysStudied,
     getSubjectStats,
     getRecentActivity,
+    getPractice,
+    isPracticeDone,
+    togglePracticeTag,
+    addPracticeTags,
+    removePracticeTag,
+    resetPractice,
     getSubtopics,
     isSubtopicDone,
     toggleSubtopic,

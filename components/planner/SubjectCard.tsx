@@ -2,6 +2,7 @@
 
 import { NmCard, NmTrack } from "@/components/today/nm/NmUI";
 import { NmChapterRow } from "./NmChapterRow";
+import type { PracticeApi } from "./PracticeEditor";
 import { CHAPTERS, SUBJECT_NAME } from "@/lib/data";
 import type { Subject } from "@/lib/types";
 import { useTheme } from "@/lib/ThemeContext";
@@ -14,8 +15,18 @@ interface SubjectCardProps {
 }
 
 export function SubjectCard({ subject }: SubjectCardProps) {
-  const { getChapterState, toggleDone, togglePractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubjectStats, getSubtopics, isSubtopicDone, toggleSubtopic, addSubtopics, deleteSubtopic, resetSubtopics, state } =
+  const { getChapterState, toggleDone, getPractice, isPracticeDone, togglePracticeTag, addPracticeTags, removePracticeTag, resetPractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubjectStats, getSubtopics, isSubtopicDone, toggleSubtopic, addSubtopics, deleteSubtopic, resetSubtopics, state } =
     useTrackerState();
+
+  const practiceFor = (cls: 11 | 12, i: number): PracticeApi => ({
+    tags: getPractice(subject, cls, i),
+    isDone: (id) => isPracticeDone(subject, cls, i, id),
+    onToggle: (id) => togglePracticeTag(subject, cls, i, id),
+    onAdd: (raw, all) => addPracticeTags(subject, cls, i, raw, all),
+    onRemove: (id, all) => removePracticeTag(subject, cls, i, id, all),
+    onReset: state.practiceLists[`${subject}_${cls}_${i}`] ? () => resetPractice(subject, cls, i) : undefined,
+    scopeLabel: SUBJECT_NAME[subject],
+  });
 
   const { theme } = useTheme();
   const { done, rev, total } = getSubjectStats(subject);
@@ -94,9 +105,8 @@ export function SubjectCard({ subject }: SubjectCardProps) {
                       key={i}
                       index={i}
                       name={name}
-                      subject={subject}
                       state={chState}
-                      onTogglePractice={(key) => togglePractice(subject, cls, i, key)}
+                      practice={practiceFor(cls, i)}
                       isNext={subject === "chem" && nextKey === `${cls}_${i}`}
                       subtopics={getSubtopics(subject, cls, i)}
                       isSubtopicDone={(id) => isSubtopicDone(subject, cls, i, id)}
@@ -173,9 +183,8 @@ export function SubjectCard({ subject }: SubjectCardProps) {
                     key={i}
                     index={i}
                     name={name}
-                    subject={subject}
                     state={chState}
-                    onTogglePractice={(key) => togglePractice(subject, cls, i, key)}
+                    practice={practiceFor(cls, i)}
                     isNext={subject === "chem" && nextKey === `${cls}_${i}`}
                     subtopics={getSubtopics(subject, cls, i)}
                     isSubtopicDone={(id) => isSubtopicDone(subject, cls, i, id)}

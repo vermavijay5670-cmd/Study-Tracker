@@ -1,6 +1,6 @@
 import { STORAGE_KEY, defaultState } from "./useTrackerState";
 import { todayKey } from "./date-utils";
-import type { ChapterState, ChapterSubtopic, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
+import type { ChapterState, ChapterSubtopic, PracticeTag, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
 
 /** Marker written into every export so imports can recognise the file. */
 export const EXPORT_APP = "neet-study-tracker";
@@ -37,6 +37,32 @@ const num = (v: unknown, min: number, max: number, fallback: number): number =>
   typeof v === "number" && Number.isFinite(v) ? Math.min(max, Math.max(min, v)) : fallback;
 
 /** Read the tracker data currently saved on this device (the app's source of truth). */
+function pickBooleans(v: unknown, re: RegExp): Record<string, boolean> {
+  const out: Record<string, boolean> = {};
+  if (!isObj(v)) return out;
+  for (const [k, val] of Object.entries(v).slice(0, 20000)) if (re.test(k) && typeof val === "boolean") out[k] = val;
+  return out;
+}
+
+function sanitizePracticeLists(v: unknown): Record<string, PracticeTag[]> {
+  const out: Record<string, PracticeTag[]> = {};
+  if (!isObj(v)) return out;
+  for (const [k, list] of Object.entries(v).slice(0, 2000)) {
+    if (!CHAPTER_RE.test(k) || !Array.isArray(list)) continue;
+    const ids = new Set<number>();
+    const items: PracticeTag[] = [];
+    for (const t of list.slice(0, 12)) {
+      if (!isObj(t)) continue;
+      const name = str(t.name, 40).trim();
+      if (typeof t.id !== "number" || !Number.isInteger(t.id) || t.id < 0 || t.id > 1_000_000 || ids.has(t.id) || !name) continue;
+      ids.add(t.id);
+      items.push({ id: t.id, name });
+    }
+    out[k] = items;
+  }
+  return out;
+}
+
 function sanitizeSubtopicLists(v: unknown): Record<string, ChapterSubtopic[]> {
   const out: Record<string, ChapterSubtopic[]> = {};
   if (!isObj(v)) return out;
@@ -197,6 +223,8 @@ export function sanitizeState(input: unknown): TrackerState {
     customSubjects: sanitizeCustomSubjects(src.customSubjects),
     subtopics,
     subtopicLists: sanitizeSubtopicLists(src.subtopicLists),
+    practiceLists: sanitizePracticeLists(src.practiceLists),
+    practiceDone: pickBooleans(src.practiceDone, SUBTOPIC_RE),
     dailyGoals,
     customThoughts,
     quizProgress,
@@ -337,6 +365,8 @@ export function mergeStates(current: TrackerState, incoming: TrackerState): { st
     planner: addMissing(current.planner, incoming.planner),
     subtopics: addMissing(current.subtopics, incoming.subtopics),
     subtopicLists: addMissing(current.subtopicLists, incoming.subtopicLists),
+    practiceLists: addMissing(current.practiceLists, incoming.practiceLists),
+    practiceDone: addMissing(current.practiceDone, incoming.practiceDone),
     dailyGoals: addMissing(current.dailyGoals, incoming.dailyGoals, (g) => g.length === 0),
     customThoughts: thoughts,
     quizProgress: addMissing(current.quizProgress, incoming.quizProgress),

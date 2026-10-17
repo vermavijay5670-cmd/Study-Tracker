@@ -21,7 +21,7 @@ interface CustomSubjectCardProps {
 
 /** Planner card for a subject the person added in Settings — same chapter controls as the built-in subjects. */
 export function CustomSubjectCard({ subject }: CustomSubjectCardProps) {
-  const { state, toggleDone, togglePractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubtopics, isSubtopicDone, toggleSubtopic, addSubtopics, deleteSubtopic } = useTrackerState();
+  const { state, toggleDone, getPractice, isPracticeDone, togglePracticeTag, addPracticeTags, removePracticeTag, resetPractice, bumpRevision, resetRevision, cycleDifficulty, setChapterNote, getSubtopics, isSubtopicDone, toggleSubtopic, addSubtopics, deleteSubtopic } = useTrackerState();
   const { theme } = useTheme();
   const { openSettings } = useSidebar();
 
@@ -40,8 +40,15 @@ export function CustomSubjectCard({ subject }: CustomSubjectCardProps) {
     const key = customChapterKey(subject.id, ch.id);
     const st = state.planner[key] ?? {};
     const handlers = {
-      subject: "custom" as const,
-      onTogglePractice: (k: Parameters<typeof togglePractice>[3]) => togglePractice(subject.id, 11, ch.id, k),
+      practice: {
+        tags: getPractice(subject.id, 11, ch.id),
+        isDone: (id: number) => isPracticeDone(subject.id, 11, ch.id, id),
+        onToggle: (id: number) => togglePracticeTag(subject.id, 11, ch.id, id),
+        onAdd: (raw: string, all: boolean) => addPracticeTags(subject.id, 11, ch.id, raw, all),
+        onRemove: (id: number, all: boolean) => removePracticeTag(subject.id, 11, ch.id, id, all),
+        onReset: state.practiceLists[key] ? () => resetPractice(subject.id, 11, ch.id) : undefined,
+        scopeLabel: subject.name,
+      },
       onToggleDone: () => toggleDone(subject.id, 11, ch.id),
       onBumpRevision: () => bumpRevision(subject.id, 11, ch.id),
       onResetRevision: () => resetRevision(subject.id, 11, ch.id),

@@ -31,6 +31,12 @@ export interface ChapterSubtopic {
   name: string;
 }
 
+/** One tag in a chapter's Practice dropdown (e.g. "PYQs", "Mock test"). Ids 0-9 are the built-in ones; the person's own start at 10. */
+export interface PracticeTag {
+  id: number;
+  name: string;
+}
+
 export type PracticeSubject = Subject | "custom";
 
 export type PracticeKey = "practiceDone" | "neetAdvDone" | "assignmentsDone";
@@ -57,6 +63,8 @@ export interface TrackerState {
   planner: Record<string, ChapterState>; // "phy_11_0" -> state (custom subjects: "cs1abc_11_<chapterId>")
   customSubjects: CustomSubject[]; // subjects the person added in Settings
   subtopics: Record<string, boolean>; // "phy_11_0_2" -> done (last number = subtopic id)
+  practiceLists: Record<string, PracticeTag[]>; // chapter key -> the person's own Practice tags (replaces the built-in ones)
+  practiceDone: Record<string, boolean>; // `${chapterKey}_${tagId}` -> done, for tags added by the person (id >= 10)
   subtopicLists: Record<string, ChapterSubtopic[]>; // chapter key -> the person's own subtopic list (replaces the built-in one)
   dailyGoals: Record<string, Goal[]>; // date -> that day's goal checklist
   customThoughts: string[]; // user-added positive thoughts, added to the daily rotation pool

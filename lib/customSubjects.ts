@@ -94,6 +94,8 @@ export function useCustomSubjects() {
         planner: dropProgress(s.planner, (k) => !k.startsWith(`${id}_`)),
         subtopics: dropProgress(s.subtopics, (k) => !k.startsWith(`${id}_`)),
         subtopicLists: dropProgress(s.subtopicLists, (k) => !k.startsWith(`${id}_`)),
+        practiceLists: dropProgress(s.practiceLists, (k) => !k.startsWith(`${id}_`)),
+        practiceDone: dropProgress(s.practiceDone, (k) => !k.startsWith(`${id}_`)),
       }));
     },
     [commit]
@@ -147,6 +149,8 @@ export function useCustomSubjects() {
         planner: dropProgress(s.planner, (k) => k !== customChapterKey(id, chapterId)),
         subtopics: dropProgress(s.subtopics, (k) => !k.startsWith(`${customChapterKey(id, chapterId)}_`)),
         subtopicLists: dropProgress(s.subtopicLists, (k) => k !== customChapterKey(id, chapterId)),
+        practiceLists: dropProgress(s.practiceLists, (k) => k !== customChapterKey(id, chapterId)),
+        practiceDone: dropProgress(s.practiceDone, (k) => !k.startsWith(`${customChapterKey(id, chapterId)}_`)),
       }));
     },
     [commit]

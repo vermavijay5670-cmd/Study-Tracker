@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, ChevronDown, Play } from "lucide-react";
-import type { ChapterState, ChapterSubtopic, Difficulty, PracticeKey, PracticeSubject } from "@/lib/types";
+import type { ChapterState, ChapterSubtopic, Difficulty } from "@/lib/types";
 import { getChapterStatus, getChapterStatusLabel } from "./chapterStatus";
 import { SubtopicPanel } from "./SubtopicPanel";
-import { NmPracticePanel, NmPracticeToggle } from "./ChapterPractice";
+import { PracticePanel, PracticeToggle, type PracticeApi } from "./PracticeEditor";
 
 const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
   easy: "#6fe3a0",
@@ -17,9 +17,8 @@ const DIFF_DOT: Record<Exclude<Difficulty, null>, string> = {
 interface NmChapterRowProps {
   index: number;
   name: string;
-  subject: PracticeSubject;
   state: ChapterState;
-  onTogglePractice: (key: PracticeKey) => void;
+  practice: PracticeApi;
   isNext?: boolean;
   subtopics: ChapterSubtopic[];
   isSubtopicDone: (id: number) => boolean;
@@ -57,9 +56,8 @@ function NmNote({ note, onSave }: { note?: string; onSave: (note: string) => voi
 export function NmChapterRow({
   index,
   name,
-  subject,
   state,
-  onTogglePractice,
+  practice,
   isNext = false,
   subtopics,
   isSubtopicDone,
@@ -157,7 +155,7 @@ export function NmChapterRow({
               <ChevronDown size={13} strokeWidth={2.4} style={{ transform: subOpen ? "rotate(180deg)" : "none", transition: "transform .2s" }} />
             </button>
           )}
-          <NmPracticeToggle subject={subject} state={state} open={practiceOpen} onToggle={() => setPracticeOpen((v) => !v)} />
+          <PracticeToggle px="nm" api={practice} open={practiceOpen} onToggle={() => setPracticeOpen((v) => !v)} />
           <button
             type="button"
             className={`nm-chev ${state.note ? "has-note" : ""}`}
@@ -201,7 +199,7 @@ export function NmChapterRow({
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             style={{ overflow: "hidden" }}
           >
-            <NmPracticePanel subject={subject} state={state} onTogglePractice={onTogglePractice} />
+            <PracticePanel px="nm" api={practice} />
           </motion.div>
         )}
         {noteOpen && (
