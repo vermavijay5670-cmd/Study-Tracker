@@ -53,6 +53,13 @@ export interface QuizProgress {
   selections: Record<string, number>; // questionId -> chosen option index
 }
 
+/** A finished quiz for one chapter (key = "phy_11_0"). Kept after the saved-progress entry is cleared, so the chapter can show as completed. */
+export interface QuizDoneRecord {
+  score: number;
+  total: number;
+  at: number; // when it was finished (ms)
+}
+
 export interface TrackerState {
   startDate: string; // YYYY-MM-DD
   examDate: string; // YYYY-MM-DD or ""
@@ -63,6 +70,7 @@ export interface TrackerState {
   planner: Record<string, ChapterState>; // "phy_11_0" -> state (custom subjects: "cs1abc_11_<chapterId>")
   customSubjects: CustomSubject[]; // subjects the person added in Settings
   subtopics: Record<string, boolean>; // "phy_11_0_2" -> done (last number = subtopic id)
+  quizDone: Record<string, QuizDoneRecord>; // chapter key -> last finished quiz
   practiceLists: Record<string, PracticeTag[]>; // chapter key -> the person's own Practice tags (replaces the built-in ones)
   practiceDone: Record<string, boolean>; // `${chapterKey}_${tagId}` -> done, for tags added by the person (id >= 10)
   subtopicLists: Record<string, ChapterSubtopic[]>; // chapter key -> the person's own subtopic list (replaces the built-in one)

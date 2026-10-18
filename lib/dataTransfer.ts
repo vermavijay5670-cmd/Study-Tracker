@@ -1,6 +1,6 @@
 import { STORAGE_KEY, defaultState } from "./useTrackerState";
 import { todayKey } from "./date-utils";
-import type { ChapterState, ChapterSubtopic, PracticeTag, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
+import type { ChapterState, ChapterSubtopic, PracticeTag, QuizDoneRecord, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
 
 /** Marker written into every export so imports can recognise the file. */
 export const EXPORT_APP = "neet-study-tracker";
@@ -37,6 +37,19 @@ const num = (v: unknown, min: number, max: number, fallback: number): number =>
   typeof v === "number" && Number.isFinite(v) ? Math.min(max, Math.max(min, v)) : fallback;
 
 /** Read the tracker data currently saved on this device (the app's source of truth). */
+function sanitizeQuizDone(v: unknown): Record<string, QuizDoneRecord> {
+  const out: Record<string, QuizDoneRecord> = {};
+  if (!isObj(v)) return out;
+  for (const [k, r] of Object.entries(v).slice(0, 500)) {
+    if (!CHAPTER_RE.test(k) || !isObj(r)) continue;
+    const { score, total, at } = r as Record<string, unknown>;
+    if (typeof score !== "number" || typeof total !== "number" || typeof at !== "number") continue;
+    if (!Number.isFinite(score) || !Number.isFinite(total) || total < 1 || total > 100000 || score < 0 || score > total) continue;
+    out[k] = { score: Math.round(score), total: Math.round(total), at };
+  }
+  return out;
+}
+
 function pickBooleans(v: unknown, re: RegExp): Record<string, boolean> {
   const out: Record<string, boolean> = {};
   if (!isObj(v)) return out;
@@ -224,6 +237,7 @@ export function sanitizeState(input: unknown): TrackerState {
     subtopics,
     subtopicLists: sanitizeSubtopicLists(src.subtopicLists),
     practiceLists: sanitizePracticeLists(src.practiceLists),
+    quizDone: sanitizeQuizDone(src.quizDone),
     practiceDone: pickBooleans(src.practiceDone, SUBTOPIC_RE),
     dailyGoals,
     customThoughts,
@@ -366,6 +380,7 @@ export function mergeStates(current: TrackerState, incoming: TrackerState): { st
     subtopics: addMissing(current.subtopics, incoming.subtopics),
     subtopicLists: addMissing(current.subtopicLists, incoming.subtopicLists),
     practiceLists: addMissing(current.practiceLists, incoming.practiceLists),
+    quizDone: addMissing(current.quizDone, incoming.quizDone),
     practiceDone: addMissing(current.practiceDone, incoming.practiceDone),
     dailyGoals: addMissing(current.dailyGoals, incoming.dailyGoals, (g) => g.length === 0),
     customThoughts: thoughts,

@@ -43,6 +43,8 @@ interface QuizRunnerProps {
   savedProgress: QuizProgress | undefined;
   onSaveProgress: (key: string, progress: QuizProgress) => void;
   onClearProgress: (key: string) => void;
+  /** Called once when the last question is passed, so the chapter can be marked completed. */
+  onComplete: (key: string, score: number, total: number) => void;
 }
 
 export function QuizRunner({
@@ -52,6 +54,7 @@ export function QuizRunner({
   savedProgress,
   onSaveProgress,
   onClearProgress,
+  onComplete,
 }: QuizRunnerProps) {
   // savedProgress is guaranteed to reflect real persisted data by the time this
   // component mounts — the parent only renders it after its own hydration completes —
@@ -132,6 +135,7 @@ export function QuizRunner({
   function goNext() {
     if (isLast) {
       setFinished(true);
+      onComplete(progressKey, score, questions.length);
       onClearProgress(progressKey);
     } else {
       const nextIndex = index + 1;

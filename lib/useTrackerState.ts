@@ -5,7 +5,7 @@ import { CHAPTERS, SUBTOPICS } from "./data";
 import { addDays, daysBetween, dateKey, parseKey, todayKey } from "./date-utils";
 import { createSupabaseBrowserClient } from "./supabase/client";
 import type { User } from "@supabase/supabase-js";
-import type { ChapterState, ChapterSubtopic, Difficulty, PracticeTag, Goal, PracticeKey, QuizProgress, Subject, SubjectStats, Streaks, TrackerState } from "./types";
+import type { ChapterState, ChapterSubtopic, Difficulty, PracticeTag, Goal, PracticeKey, QuizProgress, QuizDoneRecord, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 export const STORAGE_KEY = "neet_tracker_v1";
 const OWNER_KEY = "neet_tracker_owner"; // which account the local cache belongs to
@@ -33,6 +33,7 @@ export function defaultState(): TrackerState {
     dailyGoals: {},
     customThoughts: [],
     quizProgress: {},
+    quizDone: {},
     dayMarks: {},
     dayNotes: {},
     stopwatchRunningSince: null,
@@ -66,6 +67,7 @@ export function loadState(): TrackerState {
       dailyGoals: parsed.dailyGoals ?? {},
       customThoughts: parsed.customThoughts ?? [],
       quizProgress: parsed.quizProgress ?? {},
+      quizDone: parsed.quizDone ?? {},
       dayMarks: parsed.dayMarks ?? {},
       dayNotes: parsed.dayNotes ?? {},
     };
@@ -208,6 +210,7 @@ function bootstrap(supabase: ReturnType<typeof createSupabaseBrowserClient>): Pr
             subtopics: cloud.subtopics ?? {},
             subtopicLists: cloud.subtopicLists ?? {},
             practiceLists: cloud.practiceLists ?? {},
+            quizDone: cloud.quizDone ?? {},
             practiceDone: cloud.practiceDone ?? {},
           };
           if (merged.stopwatchSessionsDate !== todayKey()) {
@@ -801,6 +804,15 @@ export function useTrackerState() {
     [setState]
   );
 
+  /** Records that the chapter's quiz was finished, so it shows as completed even though its saved progress is cleared. */
+  const completeQuiz = useCallback(
+    (key: string, score: number, total: number) => {
+      const rec: QuizDoneRecord = { score, total, at: Date.now() };
+      setState((s) => ({ ...s, quizDone: { ...s.quizDone, [key]: rec } }));
+    },
+    [setState]
+  );
+
   const clearQuizProgress = useCallback(
     (key: string) => {
       setState((s) => {
@@ -1138,6 +1150,7 @@ export function useTrackerState() {
     goalStats,
     addCustomThought,
     saveQuizProgress,
+    completeQuiz,
     clearQuizProgress,
     setDayMark,
     clearDayMark,

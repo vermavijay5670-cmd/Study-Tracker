@@ -302,6 +302,52 @@ function ClassFlowchart({
 
 // ---- Step 3: chapter flowchart — vertical spine with a rightward branch arrow into each chapter ----
 
+type QuizStatus = "none" | "started" | "done";
+
+const STATUS_DOT: Record<QuizStatus, { label: string; dark: string; soft: string }> = {
+  none: { label: "Not started", dark: "#ff6b6b", soft: "#e5484d" },
+  started: { label: "In progress", dark: "#fbbf24", soft: "#e0a100" },
+  done: { label: "Completed", dark: "#4ade80", soft: "#2fb344" },
+};
+
+/** Red = no practice started, yellow = started but not finished, green = completed. `status === null` means there are no questions yet. */
+function StatusDot({ status, soft }: { status: QuizStatus | null; soft: boolean }) {
+  if (status === null) {
+    return (
+      <span
+        role="img"
+        aria-label="No questions added yet"
+        title="No questions added yet"
+        className="inline-block h-[10px] w-[10px] flex-shrink-0 rounded-full"
+        style={{ border: `1.5px solid ${soft ? "#9aabbd" : "rgba(255,255,255,0.22)"}` }}
+      />
+    );
+  }
+  const c = soft ? STATUS_DOT[status].soft : STATUS_DOT[status].dark;
+  return (
+    <span
+      role="img"
+      aria-label={STATUS_DOT[status].label}
+      title={STATUS_DOT[status].label}
+      className="inline-block h-[11px] w-[11px] flex-shrink-0 rounded-full"
+      style={{ background: c, boxShadow: soft ? `0 0 0 3px ${c}26` : `0 0 9px ${c}99` }}
+    />
+  );
+}
+
+function StatusLegend({ soft }: { soft: boolean }) {
+  return (
+    <div className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="What the dots mean">
+      {(["none", "started", "done"] as const).map((k) => (
+        <span key={k} className={S("flex items-center gap-2 text-[11.5px] text-white/45", soft)}>
+          <StatusDot status={k} soft={soft} />
+          {STATUS_DOT[k].label}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function ChapterFlowchart({
   subject,
   cls,
@@ -316,18 +362,29 @@ function ChapterFlowchart({
   const soft = useSoft();
   const accentHex = soft ? SOFT_ACCENT : NM_ACCENT;
   const chapters = CHAPTERS[subject][cls];
+  const { state } = useTrackerState();
+  const statusOf = (idx: number): QuizStatus => {
+    const key = `${subject}_${cls}_${idx}`;
+    const pr = state.quizProgress[key];
+    const started = !!pr && (pr.index > 0 || Object.keys(pr.selections).length > 0);
+    return started ? "started" : state.quizDone[key] ? "done" : "none";
+  };
+  const completedCount = chapters.filter((_, idx) => hasChapterQuestions(subject, cls, idx) && statusOf(idx) === "done").length;
   const rawId = useId().replace(/[^a-zA-Z0-9]/g, "");
   const spineFilterId = `spine-${rawId}`;
   const branchFilterId = `branch-${rawId}`;
 
   return (
     <div>
-      <BackBar label={`${SUBJECT_NAME[subject]} — Class ${cls}`} sub={`${chapters.length} chapters`} accentHex={accentHex} onBack={onBack} />
+      <BackBar label={`${SUBJECT_NAME[subject]} — Class ${cls}`} sub={`${chapters.length} chapters · ${completedCount} completed`} accentHex={accentHex} onBack={onBack} />
 
       <div className="relative mx-auto mt-8 max-w-xl">
+        <div className="pl-9">
+          <StatusLegend soft={soft} />
+        </div>
         {/* hand-drawn vertical spine */}
         <svg
-          className="pointer-events-none absolute left-0 top-1 h-[calc(100%-8px)] w-6"
+          className="pointer-events-none absolute bottom-1 left-0 top-[44px] w-6"
           viewBox="0 0 24 100"
           preserveAspectRatio="none"
         >
@@ -386,7 +443,13 @@ function ChapterFlowchart({
                 />
               </svg>
 
+              <StatusDot status={hasChapterQuestions(subject, cls, idx) ? statusOf(idx) : null} soft={soft} />
               <span className={S("flex-1 text-[14px] text-white/85", soft)}>{title}</span>
+              {hasChapterQuestions(subject, cls, idx) && statusOf(idx) === "done" && state.quizDone[`${subject}_${cls}_${idx}`] && (
+                <span className={S("text-[11px] tabular-nums text-white/40", soft)}>
+                  {state.quizDone[`${subject}_${cls}_${idx}`].score}/{state.quizDone[`${subject}_${cls}_${idx}`].total}
+                </span>
+              )}
               {hasChapterQuestions(subject, cls, idx) && (
                 <span
                   className="rounded-full px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide"
@@ -421,7 +484,7 @@ function QuestionBankView({
   const accentHex = soft ? SOFT_ACCENT : NM_ACCENT;
   const title = CHAPTERS[subject][cls][chapterIndex];
 
-  const { state, hydrated, saveQuizProgress, clearQuizProgress } = useTrackerState();
+  const { state, hydrated, saveQuizProgress, completeQuiz, clearQuizProgress } = useTrackerState();
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [mode, setMode] = useState<"quiz" | "read">("quiz");
@@ -471,6 +534,7 @@ function QuestionBankView({
           savedProgress={state.quizProgress[`${subject}_${cls}_${chapterIndex}`]}
           onSaveProgress={saveQuizProgress}
           onClearProgress={clearQuizProgress}
+          onComplete={completeQuiz}
         />
       ) : (
         <ReadOnlyList questions={questions} accentHex={accentHex} />
