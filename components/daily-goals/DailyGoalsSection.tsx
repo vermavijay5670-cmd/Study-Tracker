@@ -25,10 +25,13 @@ export function DailyGoalsSection() {
 
   const today = todayKey();
 
-  // Today plus the next 7 days can be planned; a stale selection (e.g. past midnight) falls back to today.
-  const upcoming = Array.from({ length: 8 }, (_, i) => {
-    const key = dateKey(addDays(new Date(), i));
-    return { key, count: state.dailyGoals[key]?.length ?? 0 };
+  // The 2 days just gone (so a forgotten tick can be made the next day), today, and the next 7 days.
+  // A stale selection (e.g. past midnight) falls back to today.
+  const upcoming = Array.from({ length: 10 }, (_, i) => {
+    const offset = i - 2;
+    const key = dateKey(addDays(new Date(), offset));
+    const list = state.dailyGoals[key] ?? [];
+    return { key, count: list.length, done: list.filter((g) => g.done).length, offset };
   });
   const selectedKey = selectedDay && upcoming.some((d) => d.key === selectedDay) ? selectedDay : today;
   const selectedGoals = state.dailyGoals[selectedKey] ?? [];

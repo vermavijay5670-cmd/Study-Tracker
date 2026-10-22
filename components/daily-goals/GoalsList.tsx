@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Plus, X, AlertTriangle, Check, CalendarPlus } from "lucide-react";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard } from "@/components/ui/soft/SoftUI";
@@ -11,13 +11,17 @@ import type { Goal } from "@/lib/types";
 export interface UpcomingDay {
   key: string;
   count: number;
+  /** How many of this day's goals are done. */
+  done: number;
+  /** Days from today: -2 / -1 are the two days just gone, 0 is today, 1+ are coming up. */
+  offset: number;
 }
 
 interface GoalsListProps {
   /** Goals for the selected day. */
   goals: Goal[];
   selectedKey: string;
-  /** Today followed by the next days that can be planned. */
+  /** The two days before today, today, and the next days that can be planned. */
   upcoming: UpcomingDay[];
   onSelect: (key: string) => void;
   onAdd: (text: string, mandatory: boolean, dates: string[]) => void;
@@ -29,13 +33,13 @@ interface GoalsListProps {
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function chipTop(key: string, index: number): string {
-  return index === 0 ? "Today" : index === 1 ? "Tmrw" : weekdayShort(parseKey(key));
+function chipTop(key: string, offset: number): string {
+  return offset === 0 ? "Today" : offset === 1 ? "Tmrw" : offset === -1 ? "Yest" : weekdayShort(parseKey(key));
 }
-function fullLabel(key: string, index: number): string {
+function fullLabel(key: string, offset: number): string {
   const d = parseKey(key);
   const date = `${WEEKDAYS[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]}`;
-  return index === 0 ? "Today" : index === 1 ? `Tomorrow (${date})` : date;
+  return offset === 0 ? "Today" : offset === 1 ? `Tomorrow (${date})` : offset === -1 ? `Yesterday (${date})` : date;
 }
 
 export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onToggle, onDelete, onToggleMandatory }: GoalsListProps) {
@@ -45,18 +49,40 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
   const [showRepeat, setShowRepeat] = useState(false);
   const [extra, setExtra] = useState<string[]>([]);
 
-  const selIndex = Math.max(0, upcoming.findIndex((d) => d.key === selectedKey));
-  const isToday = selIndex === 0;
+  const selOffset = upcoming.find((d) => d.key === selectedKey)?.offset ?? 0;
+  const isToday = selOffset === 0;
+  const isPast = selOffset < 0;
+  const isFuture = selOffset > 0;
   const doneCount = goals.filter((g) => g.done).length;
-  const heading = selIndex === 0 ? "Today\u2019s goals" : selIndex === 1 ? "Tomorrow\u2019s goals" : `${WEEKDAYS[parseKey(selectedKey).getDay()]}\u2019s goals`;
-  const subline = isToday ? "Add what you want to get done today" : `Planned for ${fullLabel(selectedKey, selIndex)} — tick them off when the day comes`;
+  const heading =
+    selOffset === 0
+      ? "Today\u2019s goals"
+      : selOffset === 1
+      ? "Tomorrow\u2019s goals"
+      : selOffset === -1
+      ? "Yesterday\u2019s goals"
+      : `${WEEKDAYS[parseKey(selectedKey).getDay()]}\u2019s goals`;
+  const subline = isToday
+    ? "Add what you want to get done today"
+    : isPast
+    ? `Forgot to tick something off ${selOffset === -1 ? "yesterday" : `on ${fullLabel(selectedKey, selOffset)}`}? You can still mark it done now`
+    : `Planned for ${fullLabel(selectedKey, selOffset)} — tick them off when the day comes`;
+
+  // keep today's chip in view when the strip scrolls sideways (narrow screens)
+  const stripRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const strip = stripRef.current;
+    const chip = strip?.querySelector<HTMLElement>('[aria-pressed="true"]');
+    if (strip && chip) strip.scrollLeft = chip.offsetLeft - strip.clientWidth / 2 + chip.clientWidth / 2;
+  }, []);
 
   // extra days never include the day that is currently selected
   useEffect(() => {
     setExtra((e) => e.filter((k) => k !== selectedKey));
   }, [selectedKey]);
 
-  const otherDays = upcoming.filter((d) => d.key !== selectedKey);
+  // repeating a goal only makes sense for today and the days ahead, not days that are already over
+  const otherDays = upcoming.filter((d) => d.key !== selectedKey && d.offset >= 0);
   const toggleExtra = (key: string) => setExtra((e) => (e.includes(key) ? e.filter((k) => k !== key) : [...e, key]));
   const targetCount = 1 + extra.length;
 
@@ -72,9 +98,11 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
 
   const placeholder = isToday
     ? "Add a goal for today…"
-    : selIndex === 1
+    : selOffset === 1
     ? "Add a goal for tomorrow…"
-    : `Add a goal for ${fullLabel(selectedKey, selIndex)}…`;
+    : selOffset === -1
+    ? "Add a goal for yesterday…"
+    : `Add a goal for ${fullLabel(selectedKey, selOffset)}…`;
   const addLabel = targetCount > 1 ? `Add to ${targetCount} days` : "Add goal";
 
   /* ------------------------------------------------------------ light (soft) */
@@ -89,29 +117,29 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
           </div>
           {goals.length > 0 && (
             <span className="sf-pill-field" style={{ paddingLeft: 16, paddingRight: 16 }}>
-              {isToday ? `${doneCount}/${goals.length} done` : `${goals.length} planned`}
+              {!isFuture ? `${doneCount}/${goals.length} done` : `${goals.length} planned`}
             </span>
           )}
         </div>
 
-        <div className="sf-strip" role="group" aria-label="Choose a day to plan">
-          {upcoming.map((d, i) => (
+        <div ref={stripRef} className="sf-strip" role="group" aria-label="Choose a day to plan">
+          {upcoming.map((d) => (
             <button
               key={d.key}
               type="button"
-              className="sf-daychip"
+              className={`sf-daychip ${d.offset < 0 ? "is-past" : ""}`}
               aria-pressed={d.key === selectedKey}
-              aria-label={`${fullLabel(d.key, i)}, ${d.count} ${d.count === 1 ? "goal" : "goals"}`}
+              aria-label={`${fullLabel(d.key, d.offset)}, ${d.count} ${d.count === 1 ? "goal" : "goals"}`}
               onClick={() => onSelect(d.key)}
             >
-              <small>{chipTop(d.key, i)}</small>
+              <small>{chipTop(d.key, d.offset)}</small>
               <b>{parseKey(d.key).getDate()}</b>
-              <span className="sf-count">{d.count > 0 ? d.count : "\u00a0"}</span>
+              <span className="sf-count">{d.count > 0 ? (d.offset <= 0 ? `${d.done}/${d.count}` : d.count) : "\u00a0"}</span>
             </button>
           ))}
         </div>
 
-        {isToday && goals.length > 0 && (
+        {!isFuture && goals.length > 0 && (
           <div className="sf-track mb-5" role="progressbar" aria-label="Goals completed today" aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct}>
             <i style={{ width: `${pct}%` }} />
           </div>
@@ -167,7 +195,6 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
             </div>
             <div className="flex flex-wrap gap-2">
               {otherDays.map((d) => {
-                const i = upcoming.findIndex((u) => u.key === d.key);
                 return (
                   <button
                     key={d.key}
@@ -176,7 +203,7 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
                     onClick={() => toggleExtra(d.key)}
                     className={`sf-chip ${extra.includes(d.key) ? "is-on" : ""}`}
                   >
-                    {chipTop(d.key, i)} {parseKey(d.key).getDate()}
+                    {chipTop(d.key, d.offset)} {parseKey(d.key).getDate()}
                   </button>
                 );
               })}
@@ -187,7 +214,7 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
         <div className="mt-5">
           {goals.length === 0 ? (
             <p className="sf-empty sf-inset">
-              {isToday ? "No goals yet — add what you want to get done today." : "Nothing planned for this day yet — add a goal above."}
+              {isToday ? "No goals yet — add what you want to get done today." : isPast ? "Nothing was planned for this day. Add a goal above if you want to log something you did." : "Nothing planned for this day yet — add a goal above."}
             </p>
           ) : (
             <ul className="space-y-3">
@@ -196,10 +223,10 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
                   <button
                     type="button"
                     onClick={() => onToggle(g.id)}
-                    disabled={!isToday}
+                    disabled={isFuture}
                     aria-pressed={g.done}
-                    aria-label={isToday ? (g.done ? "Mark incomplete" : "Mark complete") : "Planned for later — tick it off on the day"}
-                    title={isToday ? undefined : "You can tick this off on the day"}
+                    aria-label={!isFuture ? (g.done ? "Mark incomplete" : "Mark complete") : "Planned for later — tick it off on the day"}
+                    title={!isFuture ? undefined : "You can tick this off on the day"}
                     className="sf-check sf-check--sm"
                     data-kind={g.done ? "done" : "new"}
                   >
@@ -237,27 +264,27 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
           <h2 className="nm-title" style={{ fontSize: 22 }}>{heading}</h2>
           <p className="nm-sub mt-1" style={{ letterSpacing: 0 }}>{subline}</p>
         </div>
-        {goals.length > 0 && <span className="nm-trend is-up">{isToday ? `${doneCount}/${goals.length} done` : `${goals.length} planned`}</span>}
+        {goals.length > 0 && <span className="nm-trend is-up">{!isFuture ? `${doneCount}/${goals.length} done` : `${goals.length} planned`}</span>}
       </div>
 
-      <div className="nm-strip" role="group" aria-label="Choose a day to plan">
-        {upcoming.map((d, i) => (
+      <div ref={stripRef} className="nm-strip" role="group" aria-label="Choose a day to plan">
+        {upcoming.map((d) => (
           <button
             key={d.key}
             type="button"
-            className="nm-daychip"
+            className={`nm-daychip ${d.offset < 0 ? "is-past" : ""}`}
             aria-pressed={d.key === selectedKey}
-            aria-label={`${fullLabel(d.key, i)}, ${d.count} ${d.count === 1 ? "goal" : "goals"}`}
+            aria-label={`${fullLabel(d.key, d.offset)}, ${d.count} ${d.count === 1 ? "goal" : "goals"}`}
             onClick={() => onSelect(d.key)}
           >
-            <small>{chipTop(d.key, i)}</small>
+            <small>{chipTop(d.key, d.offset)}</small>
             <b>{parseKey(d.key).getDate()}</b>
-            <span className="nm-count">{d.count > 0 ? d.count : "\u00a0"}</span>
+            <span className="nm-count">{d.count > 0 ? (d.offset <= 0 ? `${d.done}/${d.count}` : d.count) : "\u00a0"}</span>
           </button>
         ))}
       </div>
 
-      {isToday && goals.length > 0 && (
+      {!isFuture && goals.length > 0 && (
         <div className="mb-5">
           <NmTrack pct={pct} label="Goals completed today" />
         </div>
@@ -301,10 +328,9 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
           </div>
           <div className="flex flex-wrap gap-2">
             {otherDays.map((d) => {
-              const i = upcoming.findIndex((u) => u.key === d.key);
               return (
                 <button key={d.key} type="button" aria-pressed={extra.includes(d.key)} onClick={() => toggleExtra(d.key)} className="nm-chip">
-                  {chipTop(d.key, i)} {parseKey(d.key).getDate()}
+                  {chipTop(d.key, d.offset)} {parseKey(d.key).getDate()}
                 </button>
               );
             })}
@@ -314,7 +340,7 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
 
       <div className="mt-5">
         {goals.length === 0 ? (
-          <p className="nm-empty">{isToday ? "No goals yet — add what you want to get done today." : "Nothing planned for this day yet — add a goal above."}</p>
+          <p className="nm-empty">{isToday ? "No goals yet — add what you want to get done today." : isPast ? "Nothing was planned for this day. Add a goal above if you want to log something you did." : "Nothing planned for this day yet — add a goal above."}</p>
         ) : (
           <ul className="space-y-3">
             {goals.map((g) => (
@@ -322,10 +348,10 @@ export function GoalsList({ goals, selectedKey, upcoming, onSelect, onAdd, onTog
                 <button
                   type="button"
                   onClick={() => onToggle(g.id)}
-                  disabled={!isToday}
+                  disabled={isFuture}
                   aria-pressed={g.done}
-                  aria-label={isToday ? (g.done ? "Mark incomplete" : "Mark complete") : "Planned for later — tick it off on the day"}
-                  title={isToday ? undefined : "You can tick this off on the day"}
+                  aria-label={!isFuture ? (g.done ? "Mark incomplete" : "Mark complete") : "Planned for later — tick it off on the day"}
+                  title={!isFuture ? undefined : "You can tick this off on the day"}
                   className="nm-check nm-check--sm"
                   data-kind={g.done ? "done" : "new"}
                 >
