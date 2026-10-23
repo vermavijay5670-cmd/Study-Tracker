@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, RotateCcw, Check, X, History, ListChecks } from "lucide-react";
+import { BookmarkButton } from "./BookmarkButton";
 import { S, useSoft } from "@/lib/softClass";
 import type { Question } from "@/lib/questionBank";
 import type { QuizProgress } from "@/lib/types";
@@ -45,6 +46,9 @@ interface QuizRunnerProps {
   onClearProgress: (key: string) => void;
   /** Called once when the last question is passed, so the chapter can be marked completed. */
   onComplete: (key: string, score: number, total: number) => void;
+  /** Ids of this chapter's bookmarked questions, and a toggle for one of them. */
+  bookmarks: string[];
+  onToggleBookmark: (questionId: string) => void;
 }
 
 export function QuizRunner({
@@ -55,6 +59,8 @@ export function QuizRunner({
   onSaveProgress,
   onClearProgress,
   onComplete,
+  bookmarks,
+  onToggleBookmark,
 }: QuizRunnerProps) {
   // savedProgress is guaranteed to reflect real persisted data by the time this
   // component mounts — the parent only renders it after its own hydration completes —
@@ -214,6 +220,7 @@ export function QuizRunner({
                 You marked this wrong
               </span>
             )}
+            <BookmarkButton active={bookmarks.includes(rq.id)} onToggle={() => onToggleBookmark(rq.id)} soft={soft} />
           </div>
 
           <p className={S("whitespace-pre-line text-[15px] leading-relaxed text-white/90", soft)}>{rq.question}</p>
@@ -345,6 +352,7 @@ export function QuizRunner({
           >
             {q.difficulty}
           </span>
+          <BookmarkButton active={bookmarks.includes(q.id)} onToggle={() => onToggleBookmark(q.id)} soft={soft} />
         </div>
 
         <p className={S("whitespace-pre-line text-[15px] leading-relaxed text-white/90", soft)}>{q.question}</p>

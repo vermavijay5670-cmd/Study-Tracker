@@ -34,6 +34,7 @@ export function defaultState(): TrackerState {
     customThoughts: [],
     quizProgress: {},
     quizDone: {},
+    bookmarks: {},
     dayMarks: {},
     dayNotes: {},
     stopwatchRunningSince: null,
@@ -68,6 +69,7 @@ export function loadState(): TrackerState {
       customThoughts: parsed.customThoughts ?? [],
       quizProgress: parsed.quizProgress ?? {},
       quizDone: parsed.quizDone ?? {},
+      bookmarks: parsed.bookmarks ?? {},
       dayMarks: parsed.dayMarks ?? {},
       dayNotes: parsed.dayNotes ?? {},
     };
@@ -211,6 +213,7 @@ function bootstrap(supabase: ReturnType<typeof createSupabaseBrowserClient>): Pr
             subtopicLists: cloud.subtopicLists ?? {},
             practiceLists: cloud.practiceLists ?? {},
             quizDone: cloud.quizDone ?? {},
+            bookmarks: cloud.bookmarks ?? {},
             practiceDone: cloud.practiceDone ?? {},
           };
           if (merged.stopwatchSessionsDate !== todayKey()) {
@@ -804,6 +807,21 @@ export function useTrackerState() {
     [setState]
   );
 
+  /** Bookmark / un-bookmark one question of a chapter in Question Practice. */
+  const toggleBookmark = useCallback(
+    (key: string, questionId: string) => {
+      setState((s) => {
+        const list = s.bookmarks[key] ?? [];
+        const next = list.includes(questionId) ? list.filter((id) => id !== questionId) : [...list, questionId];
+        const bookmarks = { ...s.bookmarks };
+        if (next.length > 0) bookmarks[key] = next;
+        else delete bookmarks[key];
+        return { ...s, bookmarks };
+      });
+    },
+    [setState]
+  );
+
   /** Records that the chapter's quiz was finished, so it shows as completed even though its saved progress is cleared. */
   const completeQuiz = useCallback(
     (key: string, score: number, total: number) => {
@@ -1151,6 +1169,7 @@ export function useTrackerState() {
     addCustomThought,
     saveQuizProgress,
     completeQuiz,
+    toggleBookmark,
     clearQuizProgress,
     setDayMark,
     clearDayMark,

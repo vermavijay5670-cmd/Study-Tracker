@@ -37,6 +37,17 @@ const num = (v: unknown, min: number, max: number, fallback: number): number =>
   typeof v === "number" && Number.isFinite(v) ? Math.min(max, Math.max(min, v)) : fallback;
 
 /** Read the tracker data currently saved on this device (the app's source of truth). */
+function sanitizeBookmarks(v: unknown): Record<string, string[]> {
+  const out: Record<string, string[]> = {};
+  if (!isObj(v)) return out;
+  for (const [k, list] of Object.entries(v).slice(0, 500)) {
+    if (!CHAPTER_RE.test(k) || !Array.isArray(list)) continue;
+    const ids = Array.from(new Set(list.filter((x): x is string => typeof x === "string" && x.length > 0 && x.length <= 80))).slice(0, 2000);
+    if (ids.length > 0) out[k] = ids;
+  }
+  return out;
+}
+
 function sanitizeQuizDone(v: unknown): Record<string, QuizDoneRecord> {
   const out: Record<string, QuizDoneRecord> = {};
   if (!isObj(v)) return out;
@@ -238,6 +249,7 @@ export function sanitizeState(input: unknown): TrackerState {
     subtopicLists: sanitizeSubtopicLists(src.subtopicLists),
     practiceLists: sanitizePracticeLists(src.practiceLists),
     quizDone: sanitizeQuizDone(src.quizDone),
+    bookmarks: sanitizeBookmarks(src.bookmarks),
     practiceDone: pickBooleans(src.practiceDone, SUBTOPIC_RE),
     dailyGoals,
     customThoughts,
@@ -381,6 +393,18 @@ export function mergeStates(current: TrackerState, incoming: TrackerState): { st
     subtopicLists: addMissing(current.subtopicLists, incoming.subtopicLists),
     practiceLists: addMissing(current.practiceLists, incoming.practiceLists),
     quizDone: addMissing(current.quizDone, incoming.quizDone),
+    bookmarks: (() => {
+      const merged = { ...current.bookmarks };
+      for (const [k, ids] of Object.entries(incoming.bookmarks)) {
+        const have = new Set(merged[k] ?? []);
+        const extra = ids.filter((id) => !have.has(id));
+        if (extra.length > 0) {
+          merged[k] = [...(merged[k] ?? []), ...extra];
+          added += extra.length;
+        }
+      }
+      return merged;
+    })(),
     practiceDone: addMissing(current.practiceDone, incoming.practiceDone),
     dailyGoals: addMissing(current.dailyGoals, incoming.dailyGoals, (g) => g.length === 0),
     customThoughts: thoughts,

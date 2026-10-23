@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ChevronRight, Atom, Dna, FlaskConical, BookOpen, ListChecks, GraduationCap } from "lucide-react";
+import { ArrowLeft, ChevronRight, Atom, Dna, FlaskConical, BookOpen, ListChecks, GraduationCap, Star } from "lucide-react";
 import { CHAPTERS, SUBJECT_NAME } from "@/lib/data";
 import { getChapterQuestions, hasChapterQuestions, type Question } from "@/lib/questionBank";
 import { useTrackerState } from "@/lib/useTrackerState";
@@ -28,7 +28,7 @@ type View =
   | { step: "grid" }
   | { step: "classes"; subject: Subject }
   | { step: "chapters"; subject: Subject; cls: 11 | 12 }
-  | { step: "questions"; subject: Subject; cls: 11 | 12; chapterIndex: number };
+  | { step: "questions"; subject: Subject; cls: 11 | 12; chapterIndex: number; mode?: "marked" };
 
 export function QuestionPracticeSection() {
   const soft = useSoft();
@@ -90,6 +90,9 @@ export function QuestionPracticeSection() {
               onSelectChapter={(chapterIndex) =>
                 setView({ step: "questions", subject: view.subject, cls: view.cls, chapterIndex })
               }
+              onOpenBookmarks={(chapterIndex) =>
+                setView({ step: "questions", subject: view.subject, cls: view.cls, chapterIndex, mode: "marked" })
+              }
             />
           </motion.div>
         )}
@@ -108,6 +111,7 @@ export function QuestionPracticeSection() {
               subject={view.subject}
               cls={view.cls}
               chapterIndex={view.chapterIndex}
+              initialMode={view.mode}
               onBack={() => setView({ step: "chapters", subject: view.subject, cls: view.cls })}
             />
           </motion.div>
@@ -348,16 +352,37 @@ function StatusLegend({ soft }: { soft: boolean }) {
   );
 }
 
+/** Star on a chapter row: filled amber when the chapter has bookmarked questions; click opens them. */
+function BookmarkChip({ count, title, soft, onOpen }: { count: number; title: string; soft: boolean; onOpen: () => void }) {
+  const on = soft ? "#d9a21b" : "#fbbf24";
+  const has = count > 0;
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={has ? `${count} bookmarked ${count === 1 ? "question" : "questions"} in ${title} — open them` : `No bookmarked questions in ${title} yet`}
+      title={has ? `Bookmarked questions (${count})` : "No bookmarked questions yet"}
+      className="relative z-10 flex flex-shrink-0 items-center gap-1 rounded-full px-2 py-1 text-[11px] font-semibold transition-transform hover:scale-110"
+      style={{ color: has ? on : soft ? "#9aabbd" : "rgba(231,233,239,0.32)" }}
+    >
+      <Star size={16} strokeWidth={1.9} fill={has ? on : "none"} />
+      {has && <span className="tabular-nums">{count}</span>}
+    </button>
+  );
+}
+
 function ChapterFlowchart({
   subject,
   cls,
   onBack,
   onSelectChapter,
+  onOpenBookmarks,
 }: {
   subject: Subject;
   cls: 11 | 12;
   onBack: () => void;
   onSelectChapter: (chapterIndex: number) => void;
+  onOpenBookmarks: (chapterIndex: number) => void;
 }) {
   const soft = useSoft();
   const accentHex = soft ? SOFT_ACCENT : NM_ACCENT;
@@ -403,14 +428,21 @@ function ChapterFlowchart({
 
         <div className="space-y-2.5 pl-9">
           {chapters.map((title, idx) => (
-            <motion.button
+            <motion.div
               key={title}
-              onClick={() => onSelectChapter(idx)}
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.28, ease: EASE, delay: idx * 0.025 }}
-              className={soft ? "sf-qcard sf-pickcard relative flex w-full items-center gap-3 rounded-2xl px-4 py-3.5 text-left" : "nm-qcard relative flex w-full items-center gap-3 px-4 py-3.5 text-left"}
+              className={soft ? "sf-qcard sf-pickcard relative flex w-full items-center gap-3 rounded-2xl px-4 py-3.5" : "nm-qcard relative flex w-full items-center gap-3 px-4 py-3.5"}
             >
+              {/* the whole card opens the chapter; the star below is its own button */}
+              <button
+                type="button"
+                onClick={() => onSelectChapter(idx)}
+                aria-label={`Open ${title}`}
+                className="absolute inset-0 rounded-[inherit] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                style={{ outlineColor: accentHex }}
+              />
               {/* branch arrow reaching from the spine into this row */}
               <svg
                 aria-hidden
@@ -444,7 +476,15 @@ function ChapterFlowchart({
               </svg>
 
               <StatusDot status={hasChapterQuestions(subject, cls, idx) ? statusOf(idx) : null} soft={soft} />
-              <span className={S("flex-1 text-[14px] text-white/85", soft)}>{title}</span>
+              <span className={S("pointer-events-none flex-1 text-[14px] text-white/85", soft)}>{title}</span>
+              {hasChapterQuestions(subject, cls, idx) && (
+                <BookmarkChip
+                  count={state.bookmarks[`${subject}_${cls}_${idx}`]?.length ?? 0}
+                  title={title}
+                  soft={soft}
+                  onOpen={() => onOpenBookmarks(idx)}
+                />
+              )}
               {hasChapterQuestions(subject, cls, idx) && statusOf(idx) === "done" && state.quizDone[`${subject}_${cls}_${idx}`] && (
                 <span className={S("text-[11px] tabular-nums text-white/40", soft)}>
                   {state.quizDone[`${subject}_${cls}_${idx}`].score}/{state.quizDone[`${subject}_${cls}_${idx}`].total}
@@ -459,7 +499,7 @@ function ChapterFlowchart({
                 </span>
               )}
               <ChevronRight size={16} strokeWidth={1.75} className={S("flex-shrink-0 text-white/25", soft)} />
-            </motion.button>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -473,21 +513,27 @@ function QuestionBankView({
   subject,
   cls,
   chapterIndex,
+  initialMode,
   onBack,
 }: {
   subject: Subject;
   cls: 11 | 12;
   chapterIndex: number;
+  /** "marked" opens straight on the bookmarked questions (from the star on the chapter list). */
+  initialMode?: "marked";
   onBack: () => void;
 }) {
   const soft = useSoft();
   const accentHex = soft ? SOFT_ACCENT : NM_ACCENT;
   const title = CHAPTERS[subject][cls][chapterIndex];
 
-  const { state, hydrated, saveQuizProgress, completeQuiz, clearQuizProgress } = useTrackerState();
+  const { state, hydrated, saveQuizProgress, completeQuiz, clearQuizProgress, toggleBookmark } = useTrackerState();
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [mode, setMode] = useState<"quiz" | "read">("quiz");
+  const [mode, setMode] = useState<"quiz" | "read" | "marked">(initialMode ?? "quiz");
+  const chapterKey = `${subject}_${cls}_${chapterIndex}`;
+  const marked = state.bookmarks[chapterKey] ?? [];
+  const markedQuestions = questions.filter((q) => marked.includes(q.id));
 
   useEffect(() => {
     let cancelled = false;
@@ -512,6 +558,7 @@ function QuestionBankView({
           <div className={soft ? "sf-seg" : "nm-seg"}>
             <ModeButton active={mode === "quiz"} onClick={() => setMode("quiz")} icon={GraduationCap} label="Quiz" accentHex={accentHex} />
             <ModeButton active={mode === "read"} onClick={() => setMode("read")} icon={ListChecks} label="Read-only" accentHex={accentHex} />
+            <ModeButton active={mode === "marked"} onClick={() => setMode("marked")} icon={Star} label={`Bookmarked${marked.length > 0 ? ` (${marked.length})` : ""}`} accentHex={accentHex} />
           </div>
         )}
       </div>
@@ -525,6 +572,17 @@ function QuestionBankView({
             The question bank for <span className={S("text-white/75", soft)}>{title}</span> hasn&apos;t been added yet.
           </p>
         </div>
+      ) : mode === "marked" ? (
+        markedQuestions.length === 0 ? (
+          <div className={S("mt-8 flex flex-col items-center rounded-3xl border border-dashed border-white/12 bg-white/[0.02] px-6 py-16 text-center", soft) + (soft ? "" : " nm-dashed")}>
+            <Star size={26} strokeWidth={1.5} className={S("text-white/25", soft)} />
+            <p className={S("mt-4 max-w-sm text-[14px] leading-relaxed text-white/45", soft)}>
+              No bookmarked questions in <span className={S("text-white/75", soft)}>{title}</span> yet. Tap the star on a question while you practise to save it here.
+            </p>
+          </div>
+        ) : (
+          <ReadOnlyList questions={markedQuestions} accentHex={accentHex} bookmarks={marked} onToggleBookmark={(id) => toggleBookmark(chapterKey, id)} />
+        )
       ) : mode === "quiz" ? (
         <QuizRunner
           key={`${subject}-${cls}-${chapterIndex}`}
@@ -535,9 +593,11 @@ function QuestionBankView({
           onSaveProgress={saveQuizProgress}
           onClearProgress={clearQuizProgress}
           onComplete={completeQuiz}
+          bookmarks={marked}
+          onToggleBookmark={(id) => toggleBookmark(chapterKey, id)}
         />
       ) : (
-        <ReadOnlyList questions={questions} accentHex={accentHex} />
+        <ReadOnlyList questions={questions} accentHex={accentHex} bookmarks={marked} onToggleBookmark={(id) => toggleBookmark(chapterKey, id)} />
       )}
     </div>
   );

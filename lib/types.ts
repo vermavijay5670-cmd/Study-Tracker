@@ -70,6 +70,7 @@ export interface TrackerState {
   planner: Record<string, ChapterState>; // "phy_11_0" -> state (custom subjects: "cs1abc_11_<chapterId>")
   customSubjects: CustomSubject[]; // subjects the person added in Settings
   subtopics: Record<string, boolean>; // "phy_11_0_2" -> done (last number = subtopic id)
+  bookmarks: Record<string, string[]>; // chapter key ("phy_11_0") -> ids of bookmarked questions in Question Practice
   quizDone: Record<string, QuizDoneRecord>; // chapter key -> last finished quiz
   practiceLists: Record<string, PracticeTag[]>; // chapter key -> the person's own Practice tags (replaces the built-in ones)
   practiceDone: Record<string, boolean>; // `${chapterKey}_${tagId}` -> done, for tags added by the person (id >= 10)
