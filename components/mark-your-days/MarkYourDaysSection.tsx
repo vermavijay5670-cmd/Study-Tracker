@@ -6,7 +6,7 @@ import { useTrackerState } from "@/lib/useTrackerState";
 import { useTheme } from "@/lib/ThemeContext";
 
 export function MarkYourDaysSection() {
-  const { state, hydrated, setDayMark, clearDayMark, setDayNote, addCustomThought } = useTrackerState();
+  const { state, hydrated, setDayMark, clearDayMark, setDayNote, addCustomThought, addTest, deleteTest, addSyllabusItems, toggleSyllabusItem, deleteSyllabusItem } = useTrackerState();
 
   const { theme } = useTheme();
 
@@ -22,6 +22,12 @@ export function MarkYourDaysSection() {
         onMark={setDayMark}
         onClear={clearDayMark}
         onSaveNote={setDayNote}
+        tests={state.tests}
+        onAddTest={addTest}
+        onDeleteTest={deleteTest}
+        onAddSyllabusItems={addSyllabusItems}
+        onToggleSyllabusItem={toggleSyllabusItem}
+        onDeleteSyllabusItem={deleteSyllabusItem}
       />
       <ThoughtCard customThoughts={state.customThoughts} onAddThought={addCustomThought} />
     </div>

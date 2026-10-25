@@ -1,6 +1,6 @@
 import { STORAGE_KEY, defaultState } from "./useTrackerState";
 import { todayKey } from "./date-utils";
-import type { ChapterState, ChapterSubtopic, PracticeTag, QuizDoneRecord, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
+import type { ChapterState, ChapterSubtopic, TestEvent, PracticeTag, QuizDoneRecord, CustomChapter, CustomSubject, Difficulty, Goal, QuizProgress, TrackerState } from "./types";
 
 /** Marker written into every export so imports can recognise the file. */
 export const EXPORT_APP = "neet-study-tracker";
@@ -37,6 +37,33 @@ const num = (v: unknown, min: number, max: number, fallback: number): number =>
   typeof v === "number" && Number.isFinite(v) ? Math.min(max, Math.max(min, v)) : fallback;
 
 /** Read the tracker data currently saved on this device (the app's source of truth). */
+function sanitizeTests(v: unknown): TestEvent[] {
+  if (!Array.isArray(v)) return [];
+  const out: TestEvent[] = [];
+  const seen = new Set<string>();
+  for (const raw of v.slice(0, 100)) {
+    if (!isObj(raw) || typeof raw.id !== "string" || raw.id.length > 40 || seen.has(raw.id)) continue;
+    if (typeof raw.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(raw.date)) continue;
+    const title = str(raw.title, 80).trim();
+    if (!title) continue;
+    seen.add(raw.id);
+    const ids = new Set<number>();
+    const syllabus: { id: number; text: string; done: boolean }[] = [];
+    if (Array.isArray(raw.syllabus)) {
+      for (const it of raw.syllabus.slice(0, 100)) {
+        if (!isObj(it)) continue;
+        const text = str(it.text, 120).trim();
+        if (typeof it.id !== "number" || !Number.isInteger(it.id) || it.id < 0 || it.id > 1_000_000 || ids.has(it.id) || !text) continue;
+        ids.add(it.id);
+        syllabus.push({ id: it.id, text, done: it.done === true });
+      }
+    }
+    const maxId = syllabus.reduce((m, i) => Math.max(m, i.id), -1);
+    out.push({ id: raw.id, date: raw.date, title, syllabus, nextItemId: Math.max(maxId + 1, typeof raw.nextItemId === "number" && Number.isInteger(raw.nextItemId) ? Math.min(raw.nextItemId, 1_000_001) : 0) });
+  }
+  return out;
+}
+
 function sanitizeBookmarks(v: unknown): Record<string, string[]> {
   const out: Record<string, string[]> = {};
   if (!isObj(v)) return out;
@@ -250,6 +277,7 @@ export function sanitizeState(input: unknown): TrackerState {
     practiceLists: sanitizePracticeLists(src.practiceLists),
     quizDone: sanitizeQuizDone(src.quizDone),
     bookmarks: sanitizeBookmarks(src.bookmarks),
+    tests: sanitizeTests(src.tests),
     practiceDone: pickBooleans(src.practiceDone, SUBTOPIC_RE),
     dailyGoals,
     customThoughts,
@@ -393,6 +421,25 @@ export function mergeStates(current: TrackerState, incoming: TrackerState): { st
     subtopicLists: addMissing(current.subtopicLists, incoming.subtopicLists),
     practiceLists: addMissing(current.practiceLists, incoming.practiceLists),
     quizDone: addMissing(current.quizDone, incoming.quizDone),
+    tests: (() => {
+      const merged = current.tests.map((t) => ({ ...t, syllabus: [...t.syllabus] }));
+      for (const inc of incoming.tests) {
+        const ex = merged.find((t) => t.id === inc.id);
+        if (!ex) {
+          merged.push({ ...inc, syllabus: [...inc.syllabus] });
+          added++;
+          continue;
+        }
+        for (const it of inc.syllabus) {
+          if (!ex.syllabus.some((x) => x.id === it.id)) {
+            ex.syllabus.push(it);
+            ex.nextItemId = Math.max(ex.nextItemId, it.id + 1);
+            added++;
+          }
+        }
+      }
+      return merged;
+    })(),
     bookmarks: (() => {
       const merged = { ...current.bookmarks };
       for (const [k, ids] of Object.entries(incoming.bookmarks)) {

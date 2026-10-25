@@ -60,6 +60,22 @@ export interface QuizDoneRecord {
   at: number; // when it was finished (ms)
 }
 
+/** One topic of a test's syllabus, with a tick for "I've covered this". */
+export interface TestSyllabusItem {
+  id: number;
+  text: string;
+  done: boolean;
+}
+
+/** A test scheduled on a date in Mark Your Days, with the syllabus to cover for it. */
+export interface TestEvent {
+  id: string;
+  date: string; // YYYY-MM-DD
+  title: string;
+  syllabus: TestSyllabusItem[];
+  nextItemId: number;
+}
+
 export interface TrackerState {
   startDate: string; // YYYY-MM-DD
   examDate: string; // YYYY-MM-DD or ""
@@ -70,6 +86,7 @@ export interface TrackerState {
   planner: Record<string, ChapterState>; // "phy_11_0" -> state (custom subjects: "cs1abc_11_<chapterId>")
   customSubjects: CustomSubject[]; // subjects the person added in Settings
   subtopics: Record<string, boolean>; // "phy_11_0_2" -> done (last number = subtopic id)
+  tests: TestEvent[]; // tests scheduled in Mark Your Days
   bookmarks: Record<string, string[]>; // chapter key ("phy_11_0") -> ids of bookmarked questions in Question Practice
   quizDone: Record<string, QuizDoneRecord>; // chapter key -> last finished quiz
   practiceLists: Record<string, PracticeTag[]>; // chapter key -> the person's own Practice tags (replaces the built-in ones)

@@ -2,10 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { CHAPTERS, SUBTOPICS } from "./data";
+import { MAX_SYLLABUS_ITEMS, MAX_TESTS, SYLLABUS_TEXT_MAX, TEST_TITLE_MAX } from "./tests";
 import { addDays, daysBetween, dateKey, parseKey, todayKey } from "./date-utils";
 import { createSupabaseBrowserClient } from "./supabase/client";
 import type { User } from "@supabase/supabase-js";
-import type { ChapterState, ChapterSubtopic, Difficulty, PracticeTag, Goal, PracticeKey, QuizProgress, QuizDoneRecord, Subject, SubjectStats, Streaks, TrackerState } from "./types";
+import type { ChapterState, ChapterSubtopic, TestEvent, Difficulty, PracticeTag, Goal, PracticeKey, QuizProgress, QuizDoneRecord, Subject, SubjectStats, Streaks, TrackerState } from "./types";
 
 export const STORAGE_KEY = "neet_tracker_v1";
 const OWNER_KEY = "neet_tracker_owner"; // which account the local cache belongs to
@@ -35,6 +36,7 @@ export function defaultState(): TrackerState {
     quizProgress: {},
     quizDone: {},
     bookmarks: {},
+    tests: [],
     dayMarks: {},
     dayNotes: {},
     stopwatchRunningSince: null,
@@ -70,6 +72,7 @@ export function loadState(): TrackerState {
       quizProgress: parsed.quizProgress ?? {},
       quizDone: parsed.quizDone ?? {},
       bookmarks: parsed.bookmarks ?? {},
+      tests: Array.isArray(parsed.tests) ? parsed.tests : [],
       dayMarks: parsed.dayMarks ?? {},
       dayNotes: parsed.dayNotes ?? {},
     };
@@ -214,6 +217,7 @@ function bootstrap(supabase: ReturnType<typeof createSupabaseBrowserClient>): Pr
             practiceLists: cloud.practiceLists ?? {},
             quizDone: cloud.quizDone ?? {},
             bookmarks: cloud.bookmarks ?? {},
+            tests: Array.isArray(cloud.tests) ? cloud.tests : [],
             practiceDone: cloud.practiceDone ?? {},
           };
           if (merged.stopwatchSessionsDate !== todayKey()) {
@@ -807,6 +811,68 @@ export function useTrackerState() {
     [setState]
   );
 
+
+  /** Schedules a test on a date. Returns an error message or null. */
+  const addTest = useCallback(
+    (date: string, rawTitle: string): string | null => {
+      const title = rawTitle.replace(/\s+/g, " ").trim().slice(0, TEST_TITLE_MAX);
+      if (!title) return "Give the test a name first.";
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return "Pick a valid date.";
+      if (stateRef.current.tests.length >= MAX_TESTS) return `You can keep up to ${MAX_TESTS} tests.`;
+      setState((s) => ({
+        ...s,
+        tests: [...s.tests, { id: "t" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), date, title, syllabus: [], nextItemId: 0 }],
+      }));
+      return null;
+    },
+    [setState]
+  );
+
+  const deleteTest = useCallback(
+    (id: string) => {
+      setState((s) => ({ ...s, tests: s.tests.filter((t) => t.id !== id) }));
+    },
+    [setState]
+  );
+
+  const editTests = (s: TrackerState, id: string, fn: (t: TestEvent) => TestEvent): TrackerState => ({ ...s, tests: s.tests.map((t) => (t.id === id ? fn(t) : t)) });
+
+  /** Adds one syllabus topic per non-empty line (so a pasted list works). Returns an error message or null. */
+  const addSyllabusItems = useCallback(
+    (id: string, raw: string): string | null => {
+      const texts = raw
+        .split(/\r?\n/)
+        .map((l) => l.replace(/^\s*(?:\d+[.)]|[-•*])\s*/, "").replace(/\s+/g, " ").trim().slice(0, SYLLABUS_TEXT_MAX))
+        .filter(Boolean);
+      if (texts.length === 0) return "Type a topic first.";
+      const test = stateRef.current.tests.find((t) => t.id === id);
+      if (!test) return "That test no longer exists.";
+      if (test.syllabus.length + texts.length > MAX_SYLLABUS_ITEMS) return `A test can have up to ${MAX_SYLLABUS_ITEMS} topics.`;
+      setState((s) =>
+        editTests(s, id, (t) => {
+          let next = t.nextItemId;
+          return { ...t, syllabus: [...t.syllabus, ...texts.map((text) => ({ id: next++, text, done: false }))], nextItemId: next };
+        })
+      );
+      return null;
+    },
+    [setState]
+  );
+
+  const toggleSyllabusItem = useCallback(
+    (id: string, itemId: number) => {
+      setState((s) => editTests(s, id, (t) => ({ ...t, syllabus: t.syllabus.map((i) => (i.id === itemId ? { ...i, done: !i.done } : i)) })));
+    },
+    [setState]
+  );
+
+  const deleteSyllabusItem = useCallback(
+    (id: string, itemId: number) => {
+      setState((s) => editTests(s, id, (t) => ({ ...t, syllabus: t.syllabus.filter((i) => i.id !== itemId) })));
+    },
+    [setState]
+  );
+
   /** Bookmark / un-bookmark one question of a chapter in Question Practice. */
   const toggleBookmark = useCallback(
     (key: string, questionId: string) => {
@@ -1170,6 +1236,11 @@ export function useTrackerState() {
     saveQuizProgress,
     completeQuiz,
     toggleBookmark,
+    addTest,
+    deleteTest,
+    addSyllabusItems,
+    toggleSyllabusItem,
+    deleteSyllabusItem,
     clearQuizProgress,
     setDayMark,
     clearDayMark,

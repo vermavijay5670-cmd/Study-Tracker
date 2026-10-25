@@ -8,6 +8,8 @@ import { useTheme } from "@/lib/ThemeContext";
 import { S } from "@/lib/softClass";
 import { SoftCard } from "@/components/ui/soft/SoftUI";
 import { NmBadge, NmCard, NmRound } from "@/components/today/nm/NmUI";
+import { TestsPanel } from "./TestsPanel";
+import type { TestEvent } from "@/lib/types";
 
 interface DayMarkCalendarProps {
   marks: Record<string, "tick" | "cross">;
@@ -15,9 +17,15 @@ interface DayMarkCalendarProps {
   onMark: (dateKey: string, mark: "tick" | "cross") => void;
   onClear: (dateKey: string) => void;
   onSaveNote: (dateKey: string, note: string) => void;
+  tests: TestEvent[];
+  onAddTest: (date: string, title: string) => string | null;
+  onDeleteTest: (id: string) => void;
+  onAddSyllabusItems: (id: string, raw: string) => string | null;
+  onToggleSyllabusItem: (id: string, itemId: number) => void;
+  onDeleteSyllabusItem: (id: string, itemId: number) => void;
 }
 
-export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: DayMarkCalendarProps) {
+export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote, tests, onAddTest, onDeleteTest, onAddSyllabusItems, onToggleSyllabusItem, onDeleteSyllabusItem }: DayMarkCalendarProps) {
   const { theme } = useTheme();
   const soft = theme === "light";
   const today = new Date();
@@ -91,7 +99,7 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.2 }}
           onClick={(e) => e.stopPropagation()}
-          className={soft ? "relative w-full max-w-[300px] rounded-2xl p-6 text-center sf-card" : "nm-dialog"}
+          className={soft ? "relative max-h-[88vh] w-full max-w-[380px] overflow-y-auto rounded-2xl p-6 text-center sf-card" : "nm-dialog"}
         >
           <button
             onClick={closeDay}
@@ -150,6 +158,19 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
               className={soft ? S("w-full resize-none rounded-xl border border-white/12 bg-black/30 px-3 py-2 text-[12.5px] leading-relaxed text-white/85 outline-none transition-colors placeholder:text-white/30 focus:border-[#6FA8A3]/45", soft) : "nm-note resize-none"}
             />
           </div>
+
+          <div className={soft ? "mt-5 border-t border-white/10 pt-4 text-left" : "nm-rule-top mt-5 pt-4 text-left"}>
+            <TestsPanel
+              px={soft ? "sf" : "nm"}
+              date={openDay}
+              tests={tests}
+              onAddTest={onAddTest}
+              onDeleteTest={onDeleteTest}
+              onAddItems={onAddSyllabusItems}
+              onToggleItem={onToggleSyllabusItem}
+              onDeleteItem={onDeleteSyllabusItem}
+            />
+          </div>
         </motion.div>
       </motion.div>
     )}
@@ -197,12 +218,13 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
               const key = dateKey(new Date(viewYear, viewMonth, day));
               const mark = marks[key];
               const hasNote = Boolean(notes[key]?.trim());
+              const hasTest = tests.some((t) => t.date === key);
               const isToday = key === todaysKey;
               return (
                 <button
                   key={i}
                   onClick={() => setOpenDay(key)}
-                  aria-label={`${key}${mark ? (mark === "tick" ? ", marked good" : ", marked bad") : ""}${hasNote ? ", has a note" : ""}`}
+                  aria-label={`${key}${mark ? (mark === "tick" ? ", marked good" : ", marked bad") : ""}${hasNote ? ", has a note" : ""}${hasTest ? ", has a test" : ""}`}
                   aria-current={isToday ? "date" : undefined}
                   className={`sf-day ${isToday ? "is-today" : ""} ${mark === "tick" ? "is-tick" : ""} ${mark === "cross" ? "is-cross" : ""}`}
                 >
@@ -214,6 +236,7 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
                     day
                   )}
                   {hasNote && <span aria-hidden className="sf-day__note" />}
+                  {hasTest && <span aria-hidden className="sf-day__test" data-past={key < todaysKey} />}
                 </button>
               );
             })}
@@ -264,17 +287,19 @@ export function DayMarkCalendar({ marks, notes, onMark, onClear, onSaveNote }: D
             const key = dateKey(new Date(viewYear, viewMonth, day));
             const mark = marks[key];
             const hasNote = Boolean(notes[key]?.trim());
+            const hasTest = tests.some((t) => t.date === key);
             const isToday = key === todaysKey;
             return (
               <button
                 key={i}
                 onClick={() => setOpenDay(key)}
-                aria-label={`${key}${mark ? (mark === "tick" ? ", marked good" : ", marked bad") : ""}${hasNote ? ", has a note" : ""}`}
+                aria-label={`${key}${mark ? (mark === "tick" ? ", marked good" : ", marked bad") : ""}${hasNote ? ", has a note" : ""}${hasTest ? ", has a test" : ""}`}
                 aria-current={isToday ? "date" : undefined}
                 className={`nm-day ${isToday ? "is-today" : ""} ${mark === "tick" ? "is-tick" : ""} ${mark === "cross" ? "is-cross" : ""}`}
               >
                 {mark === "tick" ? <Check size={20} strokeWidth={2.6} /> : mark === "cross" ? <X size={20} strokeWidth={2.6} /> : day}
                 {hasNote && <span aria-hidden className="nm-day__note" />}
+                {hasTest && <span aria-hidden className="nm-day__test" data-past={key < todaysKey} />}
               </button>
             );
           })}
