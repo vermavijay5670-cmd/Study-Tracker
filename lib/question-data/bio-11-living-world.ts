@@ -760,295 +760,295 @@ const questions: Question[] = [
   {
     "id": "livingworld-55",
     "type": "mcq",
-    "question": "A store house of collected plant specimens that are dried, pressed, preserved on sheets, and arranged according to an accepted system of classification is called:",
+    "question": "Which of the following taxonomic categories is correctly arranged in ascending order of rank (lowest to highest) for plants?",
     "options": [
-      "Herbarium",
-      "Museum",
-      "Zoological park",
-      "Botanical garden"
+      "Species → Family → Genus → Order → Class → Division → Kingdom",
+      "Genus → Species → Family → Order → Division → Class → Kingdom",
+      "Species → Genus → Order → Family → Class → Division → Kingdom",
+      "Species → Genus → Family → Order → Class → Division → Kingdom"
     ],
-    "correctIndex": 0,
-    "explanation": "A herbarium is a storehouse of collected plant specimens that have been dried, pressed, and preserved on sheets, arranged systematically according to an accepted classification system, serving as a reference for taxonomic study.",
+    "correctIndex": 3,
+    "explanation": "The ascending hierarchy is Species, Genus, Family, Order, Class, Division (Phylum in animals), Kingdom. NTA frequently tests this sequence, usually with two adjacent ranks swapped.",
     "difficulty": "easy"
   },
   {
     "id": "livingworld-56",
     "type": "mcq",
-    "question": "In a herbarium sheet, the information generally NOT provided on the label includes:",
+    "question": "In the names Felis and Felidae, Felis represents a ______ while Felidae represents a ______.",
     "options": [
-      "Market price of the plant",
-      "Family of the plant",
-      "Date and place of collection",
-      "Collector's name"
+      "Genus; Family",
+      "Family; Order",
+      "Species; Genus",
+      "Order; Class"
     ],
     "correctIndex": 0,
-    "explanation": "A herbarium sheet label typically provides the date and place of collection, the collector's name, and the family of the plant, but does not include commercial information such as market price.",
+    "explanation": "Felis (cat genus) is a genus; Felidae is the family comprising genera like Felis and Panthera. Family names in animals end in -idae.",
     "difficulty": "medium"
   },
   {
     "id": "livingworld-57",
     "type": "mcq",
-    "question": "Herbarium sheets serve as a quick referral system in taxonomic studies mainly because:",
+    "question": "In animal nomenclature, the suffix used for family names is:",
     "options": [
-      "They do not require any labelling",
-      "They are cheaper than living plants",
-      "Specimens act as a voucher/reference for future taxonomic verification",
-      "They can replace botanical gardens"
+      "-aceae",
+      "-ales",
+      "-idae",
+      "-ae"
     ],
     "correctIndex": 2,
-    "explanation": "Herbarium specimens serve as authentic voucher or reference material that taxonomists can consult and verify against in future studies, which is what makes herbaria a quick and reliable referral system.",
-    "difficulty": "hard"
+    "explanation": "ICZN uses -idae for animal families (e.g., Felidae, Canidae), whereas ICN uses -aceae for plant families (e.g., Solanaceae, Poaceae).",
+    "difficulty": "medium"
   },
   {
     "id": "livingworld-58",
     "type": "mcq",
-    "question": "Places where living plants are grown for reference and identification purposes are called:",
+    "question": "Which of the following suffixes is used for plant families according to ICN?",
     "options": [
-      "Herbaria",
-      "Zoological parks",
-      "Botanical gardens",
-      "Museums"
+      "-idae",
+      "-aceae",
+      "-ales",
+      "-ata"
     ],
-    "correctIndex": 2,
-    "explanation": "Botanical gardens are places where living plants are cultivated for reference and identification purposes, with specimens labelled to indicate their scientific names and families.",
-    "difficulty": "easy"
+    "correctIndex": 1,
+    "explanation": "Plant family names end in -aceae (Solanaceae, Fabaceae, Liliaceae); order names end in -ales (Polemoniales, Sapindales).",
+    "difficulty": "medium"
   },
   {
     "id": "livingworld-59",
     "type": "mcq",
-    "question": "The Indian Botanical Garden, one of the largest of its kind, is located at:",
+    "question": "Which of the following scientific names of wheat is written correctly according to the rules of nomenclature?",
     "options": [
-      "Howrah (Kolkata)",
-      "Bengaluru",
-      "Lucknow",
-      "Dehradun"
+      "Triticum Aestivum",
+      "triticum aestivum",
+      "Triticum aestivum",
+      "TRITICUM AESTIVUM"
     ],
-    "correctIndex": 0,
-    "explanation": "The Indian Botanical Garden, one of the largest botanical gardens of its kind, is located at Howrah, near Kolkata.",
+    "correctIndex": 2,
+    "explanation": "The genus name begins with a capital letter and the specific epithet with a small letter; both are italicised in print (or underlined separately if handwritten).",
     "difficulty": "medium"
   },
   {
     "id": "livingworld-60",
     "type": "mcq",
-    "question": "Besides growing plants for reference, botanical gardens have plants labelled with their:",
+    "question": "The citation of the author's name after the species epithet, e.g., Mangifera indica Linn., indicates:",
     "options": [
-      "Age only",
-      "Colour of flowers only",
-      "Market value",
-      "Scientific/family names"
+      "The person who first described the species",
+      "The collector of the specimen",
+      "The person who purchased the plant",
+      "The botanist who first cultivated it"
     ],
-    "correctIndex": 3,
-    "explanation": "In addition to being grown for study and reference, plants in botanical gardens are labelled with their scientific (botanical) and family names, which aids identification.",
-    "difficulty": "easy"
+    "correctIndex": 0,
+    "explanation": "The name of the author who first described the species is written in abbreviated form after the specific epithet (Linn. = Linnaeus). This is the 'author citation' rule of nomenclature.",
+    "difficulty": "medium"
   },
   {
     "id": "livingworld-61",
     "type": "mcq",
-    "question": "Plant and animal specimens preserved in preservative solutions for study and reference are usually kept in a:",
+    "question": "Which one of the following is an example of the same genus but different species?",
     "options": [
-      "Manual",
-      "Herbarium",
-      "Botanical garden",
-      "Museum"
+      "Panthera leo and Felis domestica",
+      "Homo sapiens and Pan troglodytes",
+      "Canis lupus and Felis catus",
+      "Solanum tuberosum and Solanum nigrum"
     ],
     "correctIndex": 3,
-    "explanation": "A museum houses plant and animal specimens preserved in preservative solutions, such as formalin, for study and reference by researchers and students.",
+    "explanation": "Solanum tuberosum (potato) and Solanum nigrum (black nightshade) share the genus Solanum. The others belong to different genera.",
     "difficulty": "easy"
   },
   {
     "id": "livingworld-62",
     "type": "mcq",
-    "question": "Insects, being generally small, are preserved in museums by:",
+    "question": "Potato, tomato and brinjal belong to different species but the same family. This family is:",
     "options": [
-      "Freeze-drying only",
-      "Pinning them in insect boxes",
-      "Keeping them in preservative jars only",
-      "Taxidermy"
+      "Convolvulaceae",
+      "Solanaceae",
+      "Fabaceae",
+      "Poaceae"
     ],
     "correctIndex": 1,
-    "explanation": "Since insects are generally small, they are commonly preserved in museums by pinning them in specially designed insect boxes, which allows their features to be examined without decay.",
-    "difficulty": "medium"
+    "explanation": "Potato (Solanum tuberosum), tomato (Solanum lycopersicum) and brinjal (Solanum melongena) belong to genus Solanum, family Solanaceae. NTA often builds questions on this example.",
+    "difficulty": "easy"
   },
   {
     "id": "livingworld-63",
     "type": "mcq",
-    "question": "Larger animals like birds and mammals are often preserved in museums as:",
+    "question": "Which of the following pairs of organisms belong to the same order but different families?",
     "options": [
-      "Slides",
-      "Pressed sheets",
-      "Liquid cultures",
-      "Stuffed specimens (taxidermy)"
+      "Cat and dog (Carnivora)",
+      "Cat and lion",
+      "Wheat and rice",
+      "Lion and tiger"
     ],
-    "correctIndex": 3,
-    "explanation": "Larger animals such as birds and mammals are typically preserved in museums as stuffed specimens using the technique of taxidermy, which maintains their external form for display and study.",
+    "correctIndex": 0,
+    "explanation": "Cat (Felidae) and dog (Canidae) are different families grouped in the order Carnivora. Lion and tiger are the same genus; wheat and rice are both Poaceae.",
     "difficulty": "medium"
   },
   {
     "id": "livingworld-64",
     "type": "mcq",
-    "question": "Skeletons of animals in museums are generally kept as:",
+    "question": "The taxonomic category 'order' is an assemblage of related:",
     "options": [
-      "Pressed specimens",
-      "Specimens in preservative solution",
-      "Stained slides only",
-      "Dry specimens"
+      "Species",
+      "Genera",
+      "Families",
+      "Classes"
     ],
-    "correctIndex": 3,
-    "explanation": "Animal skeletons in museums are generally preserved and displayed as dry specimens, distinct from soft-tissue specimens which require preservative solutions.",
-    "difficulty": "medium"
+    "correctIndex": 2,
+    "explanation": "An order is a group of related families (e.g., Felidae + Canidae = Carnivora). Genus groups species; family groups genera; class groups orders.",
+    "difficulty": "easy"
   },
   {
     "id": "livingworld-65",
     "type": "mcq",
-    "question": "Places where wild animals are kept in protected environments for study of their food habits and behaviour are called:",
+    "question": "Which of the following is NOT a correctly matched pair of organism and its class?",
     "options": [
-      "Herbaria",
-      "Zoological parks",
-      "Botanical gardens",
-      "Museums"
+      "Man – Mammalia",
+      "Rat – Aves",
+      "Cockroach – Insecta",
+      "Frog – Amphibia"
     ],
     "correctIndex": 1,
-    "explanation": "Zoological parks (zoos) are places where wild animals are kept in protected, captive environments, allowing study of their food habits and behaviour.",
-    "difficulty": "easy"
+    "explanation": "Rat belongs to class Mammalia, not Aves. Man, cockroach and frog are correctly matched.",
+    "difficulty": "medium"
   },
   {
     "id": "livingworld-66",
     "type": "mcq",
-    "question": "A taxonomic aid used for identification of plants and animals, based on similarities and dissimilarities, is called a:",
+    "question": "The term 'taxon' refers to:",
     "options": [
-      "Key",
-      "Catalogue",
-      "Manual",
-      "Flora"
+      "Only the species level",
+      "Only the family level",
+      "A collection of preserved specimens",
+      "A taxonomic group of any rank"
     ],
-    "correctIndex": 0,
-    "explanation": "A taxonomic key is an aid used for the identification of plants and animals, constructed on the basis of similarities and dissimilarities among organisms.",
+    "correctIndex": 3,
+    "explanation": "A taxon is a taxonomic group of any rank, such as species, genus, family or order.",
     "difficulty": "easy"
   },
   {
     "id": "livingworld-67",
     "type": "mcq",
-    "question": "Taxonomic keys are generally based on:",
+    "question": "The scientific names of mango, wheat and man are Mangifera indica, Triticum aestivum and Homo sapiens respectively. Which statement is correct?",
     "options": [
-      "Contrasting characters usually arranged in pairs called couplets",
-      "Random unrelated characters",
-      "A single character only",
-      "Only molecular data"
+      "Mangifera, Triticum and Homo are genera, and indica, aestivum and sapiens are specific epithets",
+      "Indica, aestivum and sapiens are generic names",
+      "Mangifera, Triticum and Homo are specific epithets",
+      "All six words represent species"
     ],
     "correctIndex": 0,
-    "explanation": "Taxonomic keys are generally based on a series of contrasting characters, usually arranged in pairs called couplets, that guide identification of an organism step by step.",
-    "difficulty": "medium"
+    "explanation": "In a binomial, the first word is the genus (capitalised) and the second is the species epithet (lower case).",
+    "difficulty": "easy"
   },
   {
     "id": "livingworld-68",
     "type": "mcq",
-    "question": "Each statement in a taxonomic key is called a:",
+    "question": "Systema Naturae, which laid the foundation of modern classification and binomial nomenclature, was written by:",
     "options": [
-      "Clade",
-      "Couplet",
-      "Node",
-      "Lead"
+      "Ernst Mayr",
+      "Aristotle",
+      "Carolus Linnaeus",
+      "Whittaker"
     ],
-    "correctIndex": 3,
-    "explanation": "Each statement within a couplet of a taxonomic key is called a lead; every couplet has two contrasting leads, of which only one applies to the organism being identified.",
-    "difficulty": "hard"
+    "correctIndex": 2,
+    "explanation": "Carolus Linnaeus authored Systema Naturae and introduced binomial nomenclature. Ernst Mayr is associated with the biological species concept.",
+    "difficulty": "easy"
   },
   {
     "id": "livingworld-69",
     "type": "mcq",
-    "question": "A key having two contrasting alternatives at each step, of which only one is applicable, is called a:",
+    "question": "Which of the following is the lowest taxonomic category that is a real, biologically defined unit?",
     "options": [
-      "Dichotomous key",
-      "Flora",
-      "Catalogue",
-      "Monograph"
+      "Genus",
+      "Species",
+      "Variety",
+      "Family"
     ],
-    "correctIndex": 0,
-    "explanation": "A key having two contrasting alternatives at each step, of which only one applies at a time, leading through successive couplets until identification is achieved, is called a dichotomous key.",
+    "correctIndex": 1,
+    "explanation": "Species is the basic unit of classification, defined by the ability to interbreed and produce fertile offspring. Higher categories are artificial constructs of convenience.",
     "difficulty": "medium"
   },
   {
     "id": "livingworld-70",
     "type": "mcq",
-    "question": "Separate taxonomic keys are required for each:",
+    "question": "Which one of the following is a correct statement about taxonomic hierarchy?",
     "options": [
-      "Season",
-      "Country",
-      "Individual organism",
-      "Taxonomic category, e.g. family, genus, species"
+      "Higher the category, greater the number of common characters",
+      "Genus has more common characters than species",
+      "Class has more common characters than order",
+      "Lower the category, greater the number of common characters"
     ],
     "correctIndex": 3,
-    "explanation": "Separate taxonomic keys are needed for each distinct taxonomic category — such as family, genus, or species — since the diagnostic characters used to distinguish members differ between ranks.",
+    "explanation": "As we move down the hierarchy, the number of shared characters increases; species share the maximum number of characters, kingdom the minimum.",
     "difficulty": "medium"
   },
   {
     "id": "livingworld-71",
     "type": "mcq",
-    "question": "A publication containing the actual account of habitat and distribution of plants of a given area is called:",
+    "question": "In which of the following are the organisms placed in the correct hierarchical sequence from higher to lower category?",
     "options": [
-      "Monograph",
-      "Flora",
-      "Herbarium",
-      "Manual"
+      "Order → Family → Genus → Species",
+      "Family → Order → Genus → Species",
+      "Genus → Family → Order → Species",
+      "Species → Genus → Family → Order"
     ],
-    "correctIndex": 1,
-    "explanation": "A Flora is a publication that provides the actual account of the habitat and distribution of plants found in a particular geographical area.",
-    "difficulty": "medium"
+    "correctIndex": 0,
+    "explanation": "Higher to lower: Kingdom, Phylum/Division, Class, Order, Family, Genus, Species.",
+    "difficulty": "easy"
   },
   {
     "id": "livingworld-72",
     "type": "mcq",
-    "question": "A publication useful in identifying the names of species found in a particular area is called a:",
+    "question": "Biodiversity refers to:",
     "options": [
-      "Monograph",
-      "Catalogue",
-      "Flora",
-      "Manual"
+      "Number of species in a single ecosystem only",
+      "Variety of living organisms present on earth at all levels",
+      "Total number of individuals of one species",
+      "Only the plants of a region"
     ],
-    "correctIndex": 3,
-    "explanation": "A Manual is a publication useful for identifying the names of species present in a particular area, serving as a practical field reference guide.",
-    "difficulty": "medium"
+    "correctIndex": 1,
+    "explanation": "Biodiversity is the sum total of variety of life on earth, at the genetic, species and ecosystem levels.",
+    "difficulty": "easy"
   },
   {
     "id": "livingworld-73",
     "type": "mcq",
-    "question": "A publication that provides information on any one taxon in detail is called a:",
+    "question": "Which of the following sets of characters would be used in modern systematics but was not used by classical taxonomy alone?",
     "options": [
-      "Catalogue",
-      "Monograph",
-      "Manual",
-      "Key"
+      "External morphology only",
+      "Colour of flowers only",
+      "Chemical constituents and evolutionary relationships",
+      "Number of limbs only"
     ],
-    "correctIndex": 1,
-    "explanation": "A Monograph is a publication that provides comprehensive, detailed information on any one particular taxon.",
+    "correctIndex": 2,
+    "explanation": "Systematics includes evolutionary relationships among organisms, using cytology, biochemistry and molecular data in addition to morphology.",
     "difficulty": "medium"
   },
   {
     "id": "livingworld-74",
     "type": "mcq",
-    "question": "A record providing detailed information such as date and place of collection of specimens in a collection is called a:",
+    "question": "The biological species concept is based on:",
     "options": [
-      "Key",
-      "Monograph",
-      "Flora",
-      "Catalogue"
+      "Morphological similarity only",
+      "Geographical distribution",
+      "Chromosomal number only",
+      "Reproductive isolation"
     ],
     "correctIndex": 3,
-    "explanation": "A Catalogue is a record that provides detailed information, such as the date and place of collection, for specimens held in a collection.",
+    "explanation": "Mayr's biological species concept defines species as groups of interbreeding natural populations reproductively isolated from other such groups.",
     "difficulty": "medium"
   },
   {
     "id": "livingworld-75",
     "type": "mcq",
-    "question": "Which of the following is NOT a taxonomic aid?",
+    "question": "The scientific name of the common housefly is Musca domestica. Which of the following is the correct taxonomic category of Musca?",
     "options": [
-      "Botanical garden",
-      "Periodic table",
-      "Herbarium",
-      "Museum"
+      "Order",
+      "Genus",
+      "Family",
+      "Species"
     ],
     "correctIndex": 1,
-    "explanation": "Herbarium, botanical garden, and museum are all recognised taxonomic aids used in the identification and study of organisms, whereas the periodic table is a chemistry tool unrelated to taxonomy.",
+    "explanation": "In Musca domestica, Musca is the genus and domestica the specific epithet. Housefly belongs to family Muscidae and order Diptera.",
     "difficulty": "easy"
   },
   {
