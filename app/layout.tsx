@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/lib/ThemeContext";
 import { SidebarProvider } from "@/lib/SidebarContext";
 import { SettingsHost } from "@/components/ui/settings/SettingsHost";
 import { TimerAlarmHost } from "@/components/ui/TimerAlarmHost";
-import { TestReminderHost } from "@/components/tests/TestReminderHost";
+import { TopRightDock } from "@/components/ui/TopRightDock";
 
 const SITE_URL = "https://study-tracker-green-nine.vercel.app";
 
@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
               <SettingsHost />
               <TimerAlarmHost />
-              <TestReminderHost />
+              <TopRightDock />
             </SidebarProvider>
         </ThemeProvider>
         <Analytics />

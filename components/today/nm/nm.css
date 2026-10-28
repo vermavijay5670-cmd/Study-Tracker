@@ -375,12 +375,12 @@
 .nm-tbody { margin-top: 8px; padding: 0 2px; }
 .nm-xbtn--on { color: #ff7a7a; background: rgba(255, 122, 122, 0.12); }
 
-.nm-tchip { position: fixed; top: 8px; right: 14px; z-index: 60; display: flex; max-width: min(300px, calc(100vw - 100px)); align-items: center; gap: 8px; padding: 8px 14px; border: 0; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 12px; color: var(--nm-text); background: linear-gradient(145deg, #2a2c34, #22242a); box-shadow: 6px 6px 14px var(--nm-shadow), -3px -3px 9px var(--nm-hi), 0 0 0 1px color-mix(in srgb, var(--nm-a) 28%, transparent); }
+.nm-tchip { display: flex; max-width: min(280px, calc(100vw - 220px)); align-items: center; gap: 8px; padding: 8px 14px; border: 0; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 12px; color: var(--nm-text); background: linear-gradient(145deg, #2a2c34, #22242a); box-shadow: 6px 6px 14px var(--nm-shadow), -3px -3px 9px var(--nm-hi), 0 0 0 1px color-mix(in srgb, var(--nm-a) 28%, transparent); }
 .nm-tchip svg { flex: none; color: var(--nm-a); }
 .nm-tchip__txt { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
 .nm-tchip b { flex: none; font-weight: 700; color: var(--nm-a); }
 .nm-tchip[data-urgent="true"] { --nm-a: #fbbf24; box-shadow: 6px 6px 14px var(--nm-shadow), -3px -3px 9px var(--nm-hi), 0 0 14px rgba(251, 191, 36, 0.28), 0 0 0 1px rgba(251, 191, 36, 0.5); }
-@media (max-width: 640px) { .nm-tchip__txt { display: none; } .nm-tchip { right: 8px; } }
+@media (max-width: 640px) { .nm-tchip__txt { display: none; } }
 
 .nm-tscrim { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(3, 4, 7, 0.55); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
 .nm-tpop { position: relative; width: 100%; max-width: 430px; max-height: 90vh; overflow-y: auto; padding: 28px; border-radius: 30px; color: var(--nm-text); background: linear-gradient(145deg, #2a2c34, #1f2127); box-shadow: 18px 18px 40px rgba(3, 4, 7, 0.7), -6px -6px 18px rgba(255, 255, 255, 0.03), 0 0 0 1px color-mix(in srgb, var(--nm-a) 20%, transparent); }
@@ -400,3 +400,16 @@
 .nm-tlist__more { padding: 4px 10px; font-size: 12px; color: var(--nm-mute); }
 .nm-tpop__link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: 13px; font-weight: 600; text-decoration: none; color: var(--nm-a); }
 .nm-tpop__link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ───────── top-right dock: next-test chip + stopwatch toggle ───────── */
+.td-dock { position: fixed; top: 8px; right: 14px; z-index: 60; display: flex; align-items: center; gap: 8px; }
+@media (max-width: 640px) { .td-dock { right: 8px; gap: 6px; } }
+.nm-swbtn { display: flex; align-items: center; gap: 8px; padding: 5px 14px 5px 5px; border: 0; border-radius: 999px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--nm-text); background: linear-gradient(145deg, #2a2c34, #22242a); box-shadow: 6px 6px 14px var(--nm-shadow), -3px -3px 9px var(--nm-hi); transition: box-shadow 0.2s ease; }
+.nm-swbtn:active { box-shadow: inset 3px 3px 8px var(--nm-shadow), inset -2px -2px 6px var(--nm-hi); }
+.nm-swbtn__ico { display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; border-radius: 50%; color: #06302f; background: #1cf2e6; box-shadow: 0 0 12px rgba(28, 242, 230, 0.4); }
+.nm-swbtn__txt { min-width: 44px; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.nm-swbtn[data-running="true"] .nm-swbtn__ico { color: #fff; background: #ff5a5f; box-shadow: 0 0 12px rgba(255, 90, 95, 0.45); }
+.nm-swbtn[data-running="true"] .nm-swbtn__txt { color: #1cf2e6; }
+.nm-swbtn[data-running="true"] { animation: nm-swpulse 2.4s ease-in-out infinite; }
+@keyframes nm-swpulse { 50% { box-shadow: 6px 6px 14px var(--nm-shadow), -3px -3px 9px var(--nm-hi), 0 0 16px rgba(28, 242, 230, 0.28); } }
+@media (prefers-reduced-motion: reduce) { .nm-swbtn[data-running="true"] { animation: none; } }

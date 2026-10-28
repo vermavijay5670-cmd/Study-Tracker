@@ -106,7 +106,7 @@ export function TestReminderHost() {
   const rel = relativeLabel(days);
 
   return (
-    <div className={soft ? undefined : "nm-vars nm-acc-teal"}>
+    <div className={soft ? undefined : "nm-vars nm-acc-teal"} style={{ display: "contents" }}>
       <motion.button
         ref={chipRef}
         type="button"

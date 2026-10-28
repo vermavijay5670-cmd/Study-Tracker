@@ -990,6 +990,8 @@ export function useTrackerState() {
         parsed.stopwatchLastFlushAt = now;
         parsed.lastModified = now;
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+        // let the other open parts of the app (e.g. the top-right stopwatch toggle) pick up the flushed time
+        window.dispatchEvent(new CustomEvent(STATE_EVENT, { detail: { from: "external", state: { ...defaultState(), ...parsed }, needsPush: false } }));
       }
     } catch {
       /* best-effort — a missed flush just means a few seconds of unlogged time */
