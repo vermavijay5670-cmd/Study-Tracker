@@ -453,3 +453,14 @@ a:active > .sf-logo-badge { transform: translateY(1px); box-shadow: var(--sf-ins
 .sf-swbtn__txt { min-width: 44px; font-variant-numeric: tabular-nums; }
 .sf-swbtn[data-running="true"] .sf-swbtn__ico { background: linear-gradient(180deg, #ec8f86, #d1584d); box-shadow: 0 3px 8px rgba(209, 88, 77, .35); }
 .sf-swbtn[data-running="true"] .sf-swbtn__txt { color: #4a7a2c; }
+
+/* ───────── "Thought of the day" popup (light) ───────── */
+.sf-thscrim { position: fixed; inset: 0; z-index: 95; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(91, 104, 110, .32); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.sf-thpop { position: relative; width: 100%; max-width: 480px; padding: 34px 32px 24px; border-radius: 30px; color: var(--sf-text); }
+.sf-thpop__close { position: absolute; top: 14px; right: 14px; }
+.sf-thpop__cap { display: flex; align-items: center; gap: 8px; padding-right: 40px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #5d8838; }
+.sf-thpop__quote { margin: 22px 0 0; font-size: clamp(21px, 3vw, 26px); font-weight: 500; font-style: italic; line-height: 1.5; color: #243648; }
+.sf-thpop__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 12px; margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(108, 133, 162, .25); }
+.sf-thpop__again { display: inline-flex; align-items: center; gap: 7px; padding: 0; border: 0; cursor: pointer; font-family: var(--sf-font); font-size: 12.5px; font-weight: 800; color: #5d8838; background: none; }
+.sf-thpop__again:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sf-thpop__hint { font-size: 11px; font-weight: 600; color: #6b7f93; }

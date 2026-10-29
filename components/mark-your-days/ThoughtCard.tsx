@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Quote, Shuffle, Plus } from "lucide-react";
 import { todayKey } from "@/lib/date-utils";
-import { getThoughtOfTheDay, getRandomThought } from "@/lib/thoughts";
+import { getThoughtOfTheDay, getRandomThought, SHARED_THOUGHT_KEY, THOUGHT_EVENT } from "@/lib/thoughts";
 import { HighlightedText } from "./HighlightedText";
 import { useTheme } from "@/lib/ThemeContext";
 import { SoftCard } from "@/components/ui/soft/SoftUI";
@@ -18,6 +18,22 @@ export function ThoughtCard({ customThoughts, onAddThought }: ThoughtCardProps) 
   const { theme } = useTheme();
   const dailyThought = useMemo(() => getThoughtOfTheDay(todayKey(), customThoughts), [customThoughts]);
   const [shown, setShown] = useState(dailyThought);
+
+  // the thought popup (shown when the page opened) may have been shuffled — keep the card in step with it
+  useEffect(() => {
+    try {
+      const t = window.sessionStorage.getItem(SHARED_THOUGHT_KEY);
+      if (t) setShown(t);
+    } catch {
+      /* ignore */
+    }
+    const onThought = (e: Event) => {
+      const t = (e as CustomEvent<string>).detail;
+      if (typeof t === "string" && t) setShown(t);
+    };
+    window.addEventListener(THOUGHT_EVENT, onThought);
+    return () => window.removeEventListener(THOUGHT_EVENT, onThought);
+  }, []);
   const [showAdd, setShowAdd] = useState(false);
   const [draft, setDraft] = useState("");
 

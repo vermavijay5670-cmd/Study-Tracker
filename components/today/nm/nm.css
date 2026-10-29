@@ -413,3 +413,14 @@
 .nm-swbtn[data-running="true"] { animation: nm-swpulse 2.4s ease-in-out infinite; }
 @keyframes nm-swpulse { 50% { box-shadow: 6px 6px 14px var(--nm-shadow), -3px -3px 9px var(--nm-hi), 0 0 16px rgba(28, 242, 230, 0.28); } }
 @media (prefers-reduced-motion: reduce) { .nm-swbtn[data-running="true"] { animation: none; } }
+
+/* ───────── "Thought of the day" popup (dark) ───────── */
+.nm-thscrim { position: fixed; inset: 0; z-index: 95; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(3, 4, 7, 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.nm-thpop { position: relative; width: 100%; max-width: 480px; padding: 34px 32px 24px; border-radius: 32px; color: var(--nm-text); background: linear-gradient(145deg, #2a2c34, #1f2127); box-shadow: 18px 18px 40px rgba(3, 4, 7, 0.7), -6px -6px 18px rgba(255, 255, 255, 0.03), 0 0 0 1px color-mix(in srgb, var(--nm-a) 20%, transparent); }
+.nm-thpop__close { position: absolute; top: 14px; right: 14px; }
+.nm-thpop__cap { display: flex; align-items: center; gap: 8px; padding-right: 40px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nm-a); }
+.nm-thpop__quote { margin: 22px 0 0; font-size: clamp(21px, 3vw, 26px); font-weight: 300; font-style: italic; line-height: 1.5; color: var(--nm-text); }
+.nm-thpop__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 12px; margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.nm-thpop__again { display: inline-flex; align-items: center; gap: 7px; padding: 0; border: 0; cursor: pointer; font-family: inherit; font-size: 12.5px; font-weight: 600; color: var(--nm-a); background: none; }
+.nm-thpop__again:hover { text-decoration: underline; text-underline-offset: 3px; }
+.nm-thpop__hint { font-size: 11px; color: var(--nm-mute); }

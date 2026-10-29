@@ -201,3 +201,8 @@ export function getRandomThought(customThoughts: string[], exclude?: string): st
   }
   return pick;
 }
+
+/** sessionStorage key: the thought the popup is showing, so the Mark Your Days card shows the same one. */
+export const SHARED_THOUGHT_KEY = "st_thought_now";
+/** Fired on window when the popup shows or changes its thought (detail = the thought text). */
+export const THOUGHT_EVENT = "st-thought";
