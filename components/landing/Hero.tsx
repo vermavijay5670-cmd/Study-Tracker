@@ -117,7 +117,7 @@ export function Hero() {
             </Link>
             <span className="flex items-center gap-1.5 text-[13px] text-white/40">
               <ShieldCheck size={13} strokeWidth={1.75} />
-              Free, no sign-up — your data stays on your device
+              Free, sign-up — your data stays on your device
             </span>
           </div>
         </motion.div>

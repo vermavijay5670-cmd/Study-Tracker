@@ -23,7 +23,7 @@ export function CTASection() {
           Ready to actually stick with a study plan?
         </h2>
         <p className="mx-auto mt-3 max-w-[420px] text-[14.5px] text-white/45">
-          It&apos;s free, it works offline, and there&apos;s nothing to sign up for.
+          It&apos;s free, sign up to continue.
         </p>
         <Link
           href="/today"
