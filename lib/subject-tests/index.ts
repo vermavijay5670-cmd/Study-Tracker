@@ -33,7 +33,9 @@ const PAPERS: Record<TestSubjectId, Loader[]> = {
     // () => import("./papers/physics-test-1").then((m) => m.default),
   ],
   "physical-chemistry": [],
-  "inorganic-chemistry": [],
+  "inorganic-chemistry": [
+    () => import("./papers/inorganic-test-1").then((m) => m.default),
+  ],
   "organic-chemistry": [],
   botany: [],
   zoology: [],
