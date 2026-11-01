@@ -11,6 +11,7 @@ import {
   ListChecks,
   Target,
   CalendarCheck,
+  ClipboardCheck,
   LogOut,
   Menu,
   Home,
@@ -31,6 +32,7 @@ const NAV: NavItem[] = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard, color: "#3b82f6", inkLight: "#1d4ed8", inkDark: "#7db2ff" },
   { href: "/daily-goals", label: "Daily Goals", icon: Target, color: "#ec4899", inkLight: "#be185d", inkDark: "#ff7ab8" },
   { href: "/mark-your-days", label: "Mark Your Days", icon: CalendarCheck, color: "#14b8a6", inkLight: "#0f766e", inkDark: "#4fe3d1" },
+  { href: "/tests", label: "Test", icon: ClipboardCheck, color: "#6366f1", inkLight: "#4338ca", inkDark: "#a5b4fc" },
 ];
 
 const HOME_URL = "https://neetstudy-tracker.lovable.app/";

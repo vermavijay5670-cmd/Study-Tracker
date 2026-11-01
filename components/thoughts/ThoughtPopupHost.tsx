@@ -9,9 +9,8 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useTrackerState } from "@/lib/useTrackerState";
 import { useTheme } from "@/lib/ThemeContext";
 import { todayKey } from "@/lib/date-utils";
+import { isAppRoute } from "@/lib/appRoutes";
 import { SHARED_THOUGHT_KEY, THOUGHT_EVENT, getRandomThought, getThoughtOfTheDay } from "@/lib/thoughts";
-
-const HIDDEN_ON = ["/login", "/signup", "/forgot-password", "/auth/set-password", "/auth/reset-password", "/auth/callback"];
 
 /** True once the popup has been shown in this page load. A page refresh resets it (module state), so it shows again. */
 let shownThisLoad = false;
@@ -65,7 +64,7 @@ export function ThoughtPopupHost() {
 
   // Open once per page load, on the first app page where there is a signed-in session.
   useEffect(() => {
-    if (shownThisLoad || !hydrated || HIDDEN_ON.includes(pathname)) return;
+    if (shownThisLoad || !hydrated || !isAppRoute(pathname)) return;
     let cancelled = false;
     createSupabaseBrowserClient()
       .auth.getSession()
@@ -148,7 +147,7 @@ export function ThoughtPopupHost() {
   return (
     <div className={soft ? undefined : "nm-vars nm-acc-teal"} style={{ display: "contents" }}>
       <AnimatePresence custom={fly} onExitComplete={arrived}>
-        {open && (
+        {open && isAppRoute(pathname) && (
           <motion.div
             key="thought-scrim"
             className={`${px}-thscrim`}
