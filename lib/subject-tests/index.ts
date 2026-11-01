@@ -1,18 +1,17 @@
 /**
  * Subject-wise test registry.
  *
- * Each subject holds its list of tests. Question files (JS/TS format) will be added
- * under this folder later and registered here.
+ * To add a test paper: create a file in ./papers (copy ./papers/TEMPLATE.example.ts), then add one
+ * line for it under the right subject in PAPERS below. Papers load lazily, only when a subject is opened.
  */
+import type { TestPaper, TestSubjectId } from "./types";
 
-export type TestSubjectId = "physics" | "physical-chemistry" | "inorganic-chemistry" | "organic-chemistry" | "botany" | "zoology";
+export type { TestSubjectId } from "./types";
 
 export interface TestSubject {
   id: TestSubjectId;
   name: string;
-  /** Short line shown on the subject card. */
   blurb: string;
-  /** Accent colour (dark theme / light theme). */
   accentDark: string;
   accentLight: string;
 }
@@ -26,7 +25,24 @@ export const TEST_SUBJECTS: TestSubject[] = [
   { id: "zoology", name: "Zoology", blurb: "Animal biology and human physiology tests.", accentDark: "#fbbf24", accentLight: "#b45309" },
 ];
 
-/** Number of tests available per subject. Updated as test files are added. */
-export function testCount(_id: TestSubjectId): number {
-  return 0;
+type Loader = () => Promise<TestPaper>;
+
+// Order here = order of Test 1, Test 2, ... in the list.
+const PAPERS: Record<TestSubjectId, Loader[]> = {
+  physics: [
+    // () => import("./papers/physics-test-1").then((m) => m.default),
+  ],
+  "physical-chemistry": [],
+  "inorganic-chemistry": [],
+  "organic-chemistry": [],
+  botany: [],
+  zoology: [],
+};
+
+export function testCount(id: TestSubjectId): number {
+  return PAPERS[id].length;
+}
+
+export async function loadPapers(id: TestSubjectId): Promise<TestPaper[]> {
+  return Promise.all(PAPERS[id].map((load) => load()));
 }
