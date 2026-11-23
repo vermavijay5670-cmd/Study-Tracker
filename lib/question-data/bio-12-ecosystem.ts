@@ -508,20 +508,6 @@ const questions: Question[] = [
   {
     "id": "ecosystem-37",
     "type": "mcq",
-    "question": "Among the world's major ecosystem types, which is generally regarded as having among the highest net primary productivity per unit area?",
-    "options": [
-      "Desert",
-      "Open ocean",
-      "Arctic tundra",
-      "Tropical rainforest"
-    ],
-    "correctIndex": 3,
-    "explanation": "Among major ecosystem types, tropical rainforests are generally regarded as having among the highest net primary productivity per unit area.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-38",
-    "type": "mcq",
     "question": "Primary productivity is generally expressed in units of:",
     "options": [
       "Kilograms alone, with no reference to area or time",
@@ -534,7 +520,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-39",
+    "id": "ecosystem-38",
     "type": "mcq",
     "question": "The process by which decomposers break down complex organic matter present in detritus into simpler inorganic substances is called:",
     "options": [
@@ -548,7 +534,7 @@ const questions: Question[] = [
     "difficulty": "easy"
   },
   {
-    "id": "ecosystem-40",
+    "id": "ecosystem-39",
     "type": "mcq",
     "question": "Decomposition occurs mainly on:",
     "options": [
@@ -562,7 +548,7 @@ const questions: Question[] = [
     "difficulty": "easy"
   },
   {
-    "id": "ecosystem-41",
+    "id": "ecosystem-40",
     "type": "mcq",
     "question": "The first step in decomposition, in which detritivores such as earthworms break detritus down into smaller particles, is called:",
     "options": [
@@ -576,7 +562,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-42",
+    "id": "ecosystem-41",
     "type": "mcq",
     "question": "The process by which water-soluble inorganic nutrients from detritus move down into the soil horizon and get precipitated as unavailable salts is called:",
     "options": [
@@ -590,7 +576,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-43",
+    "id": "ecosystem-42",
     "type": "mcq",
     "question": "The step in decomposition in which bacterial and fungal enzymes degrade detritus into simpler inorganic substances is called:",
     "options": [
@@ -604,7 +590,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-44",
+    "id": "ecosystem-43",
     "type": "mcq",
     "question": "Humification, a process occurring during decomposition, leads to the accumulation of a dark-coloured, amorphous substance called:",
     "options": [
@@ -618,7 +604,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-45",
+    "id": "ecosystem-44",
     "type": "mcq",
     "question": "Which of the following statements about humus is correct?",
     "options": [
@@ -632,7 +618,7 @@ const questions: Question[] = [
     "difficulty": "hard"
   },
   {
-    "id": "ecosystem-46",
+    "id": "ecosystem-45",
     "type": "mcq",
     "question": "The release of inorganic nutrients such as CO2, water, and other minerals from humus, through the action of certain microbial enzymes, is called:",
     "options": [
@@ -646,7 +632,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-47",
+    "id": "ecosystem-46",
     "type": "mcq",
     "question": "The unidirectional flow of energy through the various trophic levels of an ecosystem obeys the:",
     "options": [
@@ -660,7 +646,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-48",
+    "id": "ecosystem-47",
     "type": "mcq",
     "question": "According to Lindeman's 'Ten Percent Law' of energy transfer, at each successive trophic level, approximately what percentage of the energy present is transferred to the next trophic level?",
     "options": [
@@ -674,7 +660,7 @@ const questions: Question[] = [
     "difficulty": "easy"
   },
   {
-    "id": "ecosystem-49",
+    "id": "ecosystem-48",
     "type": "mcq",
     "question": "According to the ten percent law, the remaining approximately 90% of the energy present at any given trophic level is:",
     "options": [
@@ -688,7 +674,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-50",
+    "id": "ecosystem-49",
     "type": "mcq",
     "question": "All ecosystems on earth are ultimately dependent on an influx of solar energy, which is first captured by:",
     "options": [
@@ -702,21 +688,7 @@ const questions: Question[] = [
     "difficulty": "easy"
   },
   {
-    "id": "ecosystem-51",
-    "type": "mcq",
-    "question": "Of the total solar radiation incident on a green plant, the proportion that is actually captured and fixed by photosynthesis as net primary productivity is:",
-    "options": [
-      "Almost 100%",
-      "Approximately 50%",
-      "A very small fraction, typically well under 1% of incident photosynthetically active radiation",
-      "Approximately 90%"
-    ],
-    "correctIndex": 2,
-    "explanation": "Of the total solar radiation incident on a green plant, only a very small fraction — typically well under 1% of incident PAR — is actually fixed as net primary productivity.",
-    "difficulty": "hard"
-  },
-  {
-    "id": "ecosystem-52",
+    "id": "ecosystem-50",
     "type": "mcq",
     "question": "Only the visible component of solar radiation used by plants for photosynthesis is termed 'PAR', which stands for:",
     "options": [
@@ -730,7 +702,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-53",
+    "id": "ecosystem-51",
     "type": "mcq",
     "question": "Energy flow through an ecosystem is described as unidirectional mainly because:",
     "options": [
@@ -744,7 +716,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-54",
+    "id": "ecosystem-52",
     "type": "mcq",
     "question": "The restriction of a food chain to typically only four or five trophic levels, as explained by the ten percent law, results from the fact that:",
     "options": [
@@ -758,273 +730,7 @@ const questions: Question[] = [
     "difficulty": "medium"
   },
   {
-    "id": "ecosystem-55",
-    "type": "mcq",
-    "question": "The cyclic movement of nutrient elements through the biotic and abiotic components of an ecosystem is termed a:",
-    "options": [
-      "Trophic transfer",
-      "Biogeochemical cycle",
-      "Ecological pyramid",
-      "Productivity index"
-    ],
-    "correctIndex": 1,
-    "explanation": "The cyclic movement of nutrient elements through the biotic and abiotic components of an ecosystem is called a biogeochemical cycle.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "ecosystem-56",
-    "type": "mcq",
-    "question": "Biogeochemical cycles are broadly classified into gaseous cycles (reservoir in the atmosphere/ocean) and sedimentary cycles (reservoir in the earth's crust). The carbon cycle is an example of a:",
-    "options": [
-      "Sedimentary cycle",
-      "Hydrological cycle",
-      "Gaseous cycle",
-      "Neither type of cycle"
-    ],
-    "correctIndex": 2,
-    "explanation": "The carbon cycle is an example of a gaseous cycle, with its reservoir in the atmosphere and ocean.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-57",
-    "type": "mcq",
-    "question": "The major atmospheric reservoir pool of carbon exists primarily in the form of:",
-    "options": [
-      "Solid carbonate rocks",
-      "Methane gas exclusively",
-      "Carbon dioxide (CO2) gas",
-      "Carbon monoxide gas"
-    ],
-    "correctIndex": 2,
-    "explanation": "The major atmospheric reservoir pool of carbon exists primarily as carbon dioxide (CO2) gas.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "ecosystem-58",
-    "type": "mcq",
-    "question": "Photosynthesis carried out by producers is the primary process through which atmospheric carbon dioxide is:",
-    "options": [
-      "Lost permanently as heat",
-      "Released back into the atmosphere",
-      "Converted directly into carbonate rocks",
-      "Fixed into organic compounds within living tissue"
-    ],
-    "correctIndex": 3,
-    "explanation": "Photosynthesis by producers is the primary process through which atmospheric carbon dioxide is fixed into organic compounds in living tissue.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "ecosystem-59",
-    "type": "mcq",
-    "question": "Fixed carbon is returned to the atmosphere as CO2 through respiration of living organisms and decomposition of dead matter, and also significantly through:",
-    "options": [
-      "The formation of humus alone",
-      "Absorption exclusively by sedimentary rocks",
-      "Photosynthesis itself",
-      "The combustion of wood and fossil fuels"
-    ],
-    "correctIndex": 3,
-    "explanation": "Fixed carbon returns to the atmosphere as CO2 through respiration and decomposition, and significantly through the combustion of wood and fossil fuels.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-60",
-    "type": "mcq",
-    "question": "Compared to the atmosphere, the world's oceans hold approximately how much more dissolved carbon dioxide?",
-    "options": [
-      "Nearly 50 times more",
-      "About 1,000 times more",
-      "About half as much",
-      "Roughly the same amount"
-    ],
-    "correctIndex": 0,
-    "explanation": "The world's oceans hold nearly 50 times more dissolved carbon dioxide than the atmosphere.",
-    "difficulty": "hard"
-  },
-  {
-    "id": "ecosystem-61",
-    "type": "mcq",
-    "question": "Human activities, particularly the widespread burning of fossil fuels for industry and transport, have significantly increased:",
-    "options": [
-      "Atmospheric nitrogen levels",
-      "Atmospheric oxygen levels",
-      "Atmospheric carbon dioxide levels, contributing to global warming",
-      "The thickness of the stratospheric ozone layer"
-    ],
-    "correctIndex": 2,
-    "explanation": "Human activities, particularly burning of fossil fuels, have significantly increased atmospheric carbon dioxide levels, contributing to global warming.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-62",
-    "type": "mcq",
-    "question": "Unlike the carbon cycle, the phosphorus cycle is classified as a:",
-    "options": [
-      "Hydrological cycle",
-      "Gaseous cycle",
-      "Combined gaseous-sedimentary cycle",
-      "Sedimentary cycle"
-    ],
-    "correctIndex": 3,
-    "explanation": "Unlike the carbon cycle, the phosphorus cycle is classified as a sedimentary cycle.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-63",
-    "type": "mcq",
-    "question": "The main natural reservoir of phosphorus in the phosphorus cycle is:",
-    "options": [
-      "The atmosphere",
-      "Living organisms",
-      "The ocean surface layer",
-      "Phosphorus-bearing rocks in the earth's crust"
-    ],
-    "correctIndex": 3,
-    "explanation": "The main natural reservoir of phosphorus is phosphorus-bearing rocks in the earth's crust.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-64",
-    "type": "mcq",
-    "question": "Phosphorus is released from its main reservoir primarily through the process of:",
-    "options": [
-      "Respiration",
-      "Weathering of phosphorus-containing rocks",
-      "Combustion of biomass",
-      "Photosynthesis"
-    ],
-    "correctIndex": 1,
-    "explanation": "Phosphorus is released from its main rock reservoir primarily through weathering of phosphorus-containing rocks.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-65",
-    "type": "mcq",
-    "question": "In living organisms, phosphorus is a key structural constituent of which of the following?",
-    "options": [
-      "Nucleic acids, phospholipids, and ATP",
-      "Only structural proteins",
-      "Only carbohydrates",
-      "Only vitamins"
-    ],
-    "correctIndex": 0,
-    "explanation": "In living organisms, phosphorus is a key structural constituent of nucleic acids, phospholipids, and ATP.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-66",
-    "type": "mcq",
-    "question": "Unlike the carbon cycle, the phosphorus cycle lacks a significant:",
-    "options": [
-      "Role in the structure of living organisms",
-      "Reservoir in rocks",
-      "Atmospheric or gaseous phase",
-      "Sedimentary component"
-    ],
-    "correctIndex": 2,
-    "explanation": "Unlike the carbon cycle, the phosphorus cycle lacks a significant atmospheric or gaseous phase.",
-    "difficulty": "hard"
-  },
-  {
-    "id": "ecosystem-67",
-    "type": "mcq",
-    "question": "In many aquatic ecosystems, phosphate (PO4^3-) commonly acts as:",
-    "options": [
-      "The major limiting nutrient controlling primary productivity",
-      "An abundant, non-limiting nutrient",
-      "A biologically unavailable, inert compound",
-      "A toxic pollutant with no biological role"
-    ],
-    "correctIndex": 0,
-    "explanation": "In many aquatic ecosystems, phosphate commonly acts as the major limiting nutrient controlling primary productivity.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-68",
-    "type": "mcq",
-    "question": "Ecosystem services — the direct and indirect benefits humans derive from healthy, functioning ecosystems — include all of the following EXCEPT:",
-    "options": [
-      "Prevention of soil erosion",
-      "Pollination of crops",
-      "Purification of air and water",
-      "A global increase in habitat destruction"
-    ],
-    "correctIndex": 3,
-    "explanation": "A global increase in habitat destruction is a harmful outcome, not an ecosystem service that healthy ecosystems provide.",
-    "difficulty": "easy"
-  },
-  {
-    "id": "ecosystem-69",
-    "type": "mcq",
-    "question": "According to an estimate by economist Robert Costanza and colleagues, the total monetary value of ecosystem services provided globally by the biosphere each year is roughly:",
-    "options": [
-      "Impossible to estimate in monetary terms",
-      "33 trillion US dollars",
-      "33 billion US dollars",
-      "33 million US dollars"
-    ],
-    "correctIndex": 1,
-    "explanation": "Robert Costanza and colleagues estimated the total monetary value of global ecosystem services at roughly 33 trillion US dollars per year.",
-    "difficulty": "hard"
-  },
-  {
-    "id": "ecosystem-70",
-    "type": "mcq",
-    "question": "Which of the following ecosystem services is provided directly by forests through processes like evapotranspiration and canopy cover?",
-    "options": [
-      "Regulation of local and regional climate",
-      "Production of fossil fuels",
-      "Formation of phosphate-bearing rocks",
-      "None of these"
-    ],
-    "correctIndex": 0,
-    "explanation": "Forests directly provide the ecosystem service of regulating local and regional climate through processes like evapotranspiration and canopy cover.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-71",
-    "type": "mcq",
-    "question": "Wetland ecosystems are particularly valued for providing the ecosystem service of:",
-    "options": [
-      "Fossil fuel production",
-      "Maintenance of the stratospheric ozone layer",
-      "Flood control and water purification",
-      "Reduction of soil fertility"
-    ],
-    "correctIndex": 2,
-    "explanation": "Wetland ecosystems are particularly valued for the ecosystem service of flood control and water purification.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-72",
-    "type": "mcq",
-    "question": "The overall stability and productivity of an ecosystem generally depend on maintaining a balance among:",
-    "options": [
-      "Zero decomposer activity throughout the system",
-      "All its biotic and abiotic components, including proper energy flow and nutrient cycling",
-      "A single dominant species only",
-      "Complete isolation from any external energy input"
-    ],
-    "correctIndex": 1,
-    "explanation": "The overall stability and productivity of an ecosystem depends on maintaining a balance among all its biotic and abiotic components, including proper energy flow and nutrient cycling.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-73",
-    "type": "mcq",
-    "question": "Which pair correctly matches a type of biogeochemical cycle with its category?",
-    "options": [
-      "Gaseous cycle — Phosphorus; Sedimentary cycle — Carbon",
-      "Gaseous cycle — Carbon; Sedimentary cycle — Phosphorus",
-      "Both carbon and phosphorus cycles are classified as gaseous",
-      "Gaseous cycle — Sulphur only, with no other cycles existing"
-    ],
-    "correctIndex": 1,
-    "explanation": "The carbon cycle is a gaseous cycle, while the phosphorus cycle is a sedimentary cycle.",
-    "difficulty": "medium"
-  },
-  {
-    "id": "ecosystem-74",
+    "id": "ecosystem-53",
     "type": "mcq",
     "question": "Assertion: In a pond ecosystem, the pyramid of biomass is typically inverted.\nReason: The producers (phytoplankton) in a pond have a short individual lifespan and small standing biomass but reproduce very rapidly, so at any given instant the standing biomass of producers is less than that of consumers.\nChoose the correct option:",
     "options": [
@@ -1038,7 +744,7 @@ const questions: Question[] = [
     "difficulty": "hard"
   },
   {
-    "id": "ecosystem-75",
+    "id": "ecosystem-54",
     "type": "mcq",
     "question": "Assertion: The detritus food chain generally plays a more important role in energy flow within terrestrial ecosystems than the grazing food chain.\nReason: In most terrestrial ecosystems, a very large proportion of net primary production is not consumed directly by herbivores but instead enters the detritus pathway as dead organic matter.\nChoose the correct option:",
     "options": [
@@ -1052,7 +758,7 @@ const questions: Question[] = [
     "difficulty": "hard"
   },
   {
-    "id": "ecosystem-76",
+    "id": "ecosystem-55",
     "type": "mcq",
     "question": "Which of the following correctly ranks trophic levels from base to apex in a typical grazing food chain?",
     "options": [
@@ -1066,7 +772,7 @@ const questions: Question[] = [
     "difficulty": "easy"
   },
   {
-    "id": "ecosystem-77",
+    "id": "ecosystem-56",
     "type": "mcq",
     "question": "Which of the following is a completely artificial (man-made) ecosystem often used to illustrate basic ecological principles?",
     "options": [
@@ -1080,7 +786,7 @@ const questions: Question[] = [
     "difficulty": "easy"
   },
   {
-    "id": "ecosystem-78",
+    "id": "ecosystem-57",
     "type": "mcq",
     "question": "The overall structure of an ecosystem — encompassing the number and kinds of species present, their spatial arrangement/stratification, and the prevailing range of climatic conditions — together constitutes its:",
     "options": [
@@ -1092,6 +798,300 @@ const questions: Question[] = [
     "correctIndex": 0,
     "explanation": "The number and kinds of species present, their spatial arrangement/stratification, and prevailing climatic conditions together constitute an ecosystem's structural and compositional features.",
     "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-58",
+    "type": "mcq",
+    "question": "Which of the following forms the main autotrophic component of a pond ecosystem?",
+    "options": [
+      "Zooplankton and small fishes",
+      "Fungi, bacteria and flagellates",
+      "Phytoplankton, algae and submerged or floating plants",
+      "Free-swimming and bottom-dwelling fishes"
+    ],
+    "correctIndex": 2,
+    "explanation": "In a pond, the producers are phytoplankton, algae and floating, submerged and marginal plants; they capture solar energy and fix it as organic matter.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-59",
+    "type": "mcq",
+    "question": "Which of the following act as the decomposers in a pond ecosystem?",
+    "options": [
+      "Phytoplankton and algae",
+      "Fungi, bacteria and flagellates",
+      "Zooplankton",
+      "Free-swimming fishes"
+    ],
+    "correctIndex": 1,
+    "explanation": "The decomposers of a pond are fungi, bacteria and flagellates, which break down dead remains and release inorganic nutrients.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-60",
+    "type": "mcq",
+    "question": "Decomposition of detritus is slowest when it is rich in:",
+    "options": [
+      "Nitrogen and water-soluble substances like sugars",
+      "Simple carbohydrates and amino acids",
+      "Water-soluble inorganic nutrients",
+      "Lignin and chitin"
+    ],
+    "correctIndex": 3,
+    "explanation": "Decomposition is slower if detritus is rich in lignin and chitin, and quicker if it is rich in nitrogen and water-soluble substances such as sugars.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-61",
+    "type": "mcq",
+    "question": "Which set of conditions favours a faster rate of decomposition?",
+    "options": [
+      "Low temperature and anaerobic conditions",
+      "Dry soil and freezing temperature",
+      "Warm and moist conditions with plenty of oxygen",
+      "Waterlogged, oxygen-poor soil"
+    ],
+    "correctIndex": 2,
+    "explanation": "Warm and moist environments promote decomposition; low temperature and anaerobiosis inhibit it and lead to build-up of organic matter.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-62",
+    "type": "mcq",
+    "question": "Which of the following gives the correct sequence of the processes of decomposition?",
+    "options": [
+      "Fragmentation → Leaching → Catabolism → Humification → Mineralisation",
+      "Leaching → Fragmentation → Humification → Catabolism → Mineralisation",
+      "Fragmentation → Catabolism → Leaching → Mineralisation → Humification",
+      "Catabolism → Fragmentation → Leaching → Mineralisation → Humification"
+    ],
+    "correctIndex": 0,
+    "explanation": "Detritus is first fragmented by detritivores, then soluble nutrients leach down, bacterial and fungal enzymes cause catabolism, and finally humification and mineralisation occur in the soil.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-63",
+    "type": "mcq",
+    "question": "The annual net primary productivity of the whole biosphere is approximately:",
+    "options": [
+      "55 billion tons (dry weight) of organic matter",
+      "170 billion tons (dry weight) of organic matter",
+      "17 billion tons (dry weight) of organic matter",
+      "1,700 billion tons (dry weight) of organic matter"
+    ],
+    "correctIndex": 1,
+    "explanation": "NCERT gives the annual NPP of the whole biosphere as about 170 billion tons (dry weight) of organic matter.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-64",
+    "type": "mcq",
+    "question": "Oceans occupy nearly 70 per cent of the Earth's surface, but their share of the biosphere's annual net primary productivity is only about:",
+    "options": [
+      "115 billion tons (dry weight) of organic matter",
+      "170 billion tons (dry weight) of organic matter",
+      "55 billion tons (dry weight) of organic matter",
+      "5.5 billion tons (dry weight) of organic matter"
+    ],
+    "correctIndex": 2,
+    "explanation": "Despite their large area, the oceans' annual NPP is only about 55 billion tons out of the biosphere's approximately 170 billion tons.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "ecosystem-65",
+    "type": "mcq",
+    "question": "Of the incident solar radiation, less than 50 per cent is photosynthetically active radiation (PAR). Of this PAR, plants capture only about:",
+    "options": [
+      "25–40 per cent",
+      "60–75 per cent",
+      "Nearly 90 per cent",
+      "2–10 per cent"
+    ],
+    "correctIndex": 3,
+    "explanation": "Less than 50% of incident solar radiation is PAR, and plants capture only 2–10% of this PAR, which sustains the entire living world.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-66",
+    "type": "mcq",
+    "question": "If the producers of a grassland ecosystem fix 20,000 kJ of energy, how much energy will be available to the secondary consumers according to the ten percent law?",
+    "options": [
+      "2,000 kJ",
+      "200 kJ",
+      "20 kJ",
+      "18,000 kJ"
+    ],
+    "correctIndex": 1,
+    "explanation": "Producers (20,000 kJ) → primary consumers (2,000 kJ) → secondary consumers (200 kJ), as only about 10% is passed on at each step.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-67",
+    "type": "mcq",
+    "question": "In an ecosystem, the gross primary productivity is 1,500 g m⁻² yr⁻¹ and respiratory losses of the producers are 600 g m⁻² yr⁻¹. The net primary productivity is:",
+    "options": [
+      "2,100 g m⁻² yr⁻¹",
+      "600 g m⁻² yr⁻¹",
+      "900 g m⁻² yr⁻¹",
+      "1,500 g m⁻² yr⁻¹"
+    ],
+    "correctIndex": 2,
+    "explanation": "NPP = GPP − R = 1,500 − 600 = 900 g m⁻² yr⁻¹.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-68",
+    "type": "mcq",
+    "question": "Which one of the following statements about ecological pyramids is INCORRECT?",
+    "options": [
+      "The pyramid of energy can be inverted in some aquatic ecosystems such as a pond",
+      "The pyramid of numbers can be inverted in a tree ecosystem",
+      "The pyramid of biomass is generally inverted in the sea",
+      "Pyramids of number and biomass do not accommodate a species that occupies more than one trophic level"
+    ],
+    "correctIndex": 0,
+    "explanation": "The pyramid of energy is always upright because energy is lost at every trophic level; the other statements are correct.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-69",
+    "type": "mcq",
+    "question": "A sparrow that feeds on seeds and fruits and also on insects and worms occupies which trophic levels?",
+    "options": [
+      "Producer only",
+      "Decomposer only",
+      "Tertiary consumer only",
+      "Primary consumer and secondary consumer"
+    ],
+    "correctIndex": 3,
+    "explanation": "A sparrow is a primary consumer when it eats seeds and fruits, and a secondary consumer when it eats insects and worms, so one species can occupy more than one trophic level.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-70",
+    "type": "mcq",
+    "question": "Which of the following is an example of a detritus food chain?",
+    "options": [
+      "Grass → grasshopper → frog → snake",
+      "Phytoplankton → zooplankton → small fish → large fish",
+      "Dead leaves → earthworm → frog → snake",
+      "Grass → deer → tiger"
+    ],
+    "correctIndex": 2,
+    "explanation": "A detritus food chain begins with dead organic matter (detritus), while the others begin with living producers and are grazing food chains.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-71",
+    "type": "mcq",
+    "question": "Decomposers meet their energy and nutrient requirements by:",
+    "options": [
+      "Capturing solar energy with chlorophyll",
+      "Secreting digestive enzymes onto dead organic matter and absorbing the simple products",
+      "Preying on living herbivores",
+      "Engulfing whole dead animals into internal digestive cavities"
+    ],
+    "correctIndex": 1,
+    "explanation": "Decomposers (saprotrophs) secrete enzymes that break dead and waste material into simple inorganic substances, which they then absorb.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-72",
+    "type": "mcq",
+    "question": "Which statement about the link between the grazing food chain (GFC) and the detritus food chain (DFC) is correct?",
+    "options": [
+      "The two chains are completely independent of each other",
+      "The GFC starts with dead organic matter just like the DFC",
+      "Some organisms of the DFC are prey to animals of the GFC",
+      "Detritus never serves as food for any animal of the GFC"
+    ],
+    "correctIndex": 2,
+    "explanation": "The two chains are connected because some DFC organisms are eaten by GFC animals, and some animals such as crows and cockroaches are omnivores.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-73",
+    "type": "mcq",
+    "question": "In the vertical stratification of a forest, which plants occupy the second layer from the top?",
+    "options": [
+      "Trees",
+      "Shrubs",
+      "Herbs and grasses",
+      "Mosses and lichens only"
+    ],
+    "correctIndex": 1,
+    "explanation": "Trees occupy the top stratum, shrubs the second layer, and herbs and grasses the bottom layers of a forest.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-74",
+    "type": "mcq",
+    "question": "Which of the following ecosystems does NOT depend on solar energy as its primary source of energy?",
+    "options": [
+      "Pond ecosystem",
+      "Tropical forest ecosystem",
+      "Crop-field ecosystem",
+      "Deep-sea hydrothermal ecosystem"
+    ],
+    "correctIndex": 3,
+    "explanation": "The Sun is the only source of energy for all ecosystems on Earth except the deep-sea hydrothermal ecosystem.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-75",
+    "type": "mcq",
+    "question": "Assertion: Fragmentation of detritus by earthworms speeds up decomposition.\nReason: Fragmentation increases the surface area of detritus available for microbial action.\nChoose the correct option:",
+    "options": [
+      "Both assertion and reason are true, and the reason correctly explains the assertion",
+      "Both assertion and reason are true, but the reason does not explain the assertion",
+      "The assertion is true, but the reason is false",
+      "The assertion is false, but the reason is true"
+    ],
+    "correctIndex": 0,
+    "explanation": "Detritivores break detritus into smaller particles, increasing surface area for bacterial and fungal enzymes, so the reason correctly explains the assertion.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-76",
+    "type": "mcq",
+    "question": "Humus serves as a reservoir of nutrients mainly because it is:",
+    "options": [
+      "Rapidly mineralised by detritivores within a few days",
+      "Insoluble in water and completely free of organic matter",
+      "Colloidal in nature and decomposes extremely slowly",
+      "Formed only by the leaching of soluble salts"
+    ],
+    "correctIndex": 2,
+    "explanation": "Humus is dark, amorphous and colloidal, and resists microbial action, so it releases nutrients slowly and acts as a nutrient reservoir.",
+    "difficulty": "medium"
+  },
+  {
+    "id": "ecosystem-77",
+    "type": "mcq",
+    "question": "Which of the following is a primary consumer in a pond ecosystem?",
+    "options": [
+      "Phytoplankton and algae",
+      "Zooplankton",
+      "Fungi, bacteria and flagellates",
+      "Submerged and floating aquatic plants"
+    ],
+    "correctIndex": 1,
+    "explanation": "Zooplankton feed on phytoplankton and are the primary consumers of a pond; producers are the plants and algae.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "ecosystem-78",
+    "type": "mcq",
+    "question": "Which of the following pairs of a decomposition step and its feature is INCORRECTLY matched?",
+    "options": [
+      "Fragmentation — breakdown of detritus into smaller particles by detritivores",
+      "Leaching — downward movement of water-soluble nutrients into the soil horizon",
+      "Catabolism — enzymatic degradation of detritus by bacteria and fungi",
+      "Humification — release of CO₂, water and inorganic nutrients from humus"
+    ],
+    "correctIndex": 3,
+    "explanation": "Humification is the formation of dark, amorphous humus; the release of CO₂, water and inorganic nutrients from humus is mineralisation.",
+    "difficulty": "hard"
   }
 ];
 
