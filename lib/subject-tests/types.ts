@@ -1,4 +1,4 @@
-export type TestSubjectId = "physics" | "physical-chemistry" | "inorganic-chemistry" | "organic-chemistry" | "biology" | "botany" | "zoology";
+export type TestSubjectId = "physics" | "physical-chemistry" | "inorganic-chemistry" | "organic-chemistry" | "botany" | "zoology";
 
 /** One MCQ. Same shape as the Question Practice questions, with `type` and `difficulty` optional. */
 export interface TestQuestion {
