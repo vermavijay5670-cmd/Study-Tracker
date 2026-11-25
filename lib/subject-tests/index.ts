@@ -44,8 +44,11 @@ const PAPERS: Record<TestSubjectId, Loader[]> = {
     () => import("./papers/botany-test-1").then((m) => m.default),
     () => import("./papers/botany-test-2").then((m) => m.default),
     () => import("./papers/botany-test-3").then((m) => m.default),
+    () => import("./papers/botany-test-4").then((m) => m.default),
   ],
-  zoology: [],
+  zoology: [
+    () => import("./papers/zoology-test-1").then((m) => m.default),
+  ],
 };
 
 export function testCount(id: TestSubjectId): number {
