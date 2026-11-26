@@ -48,6 +48,8 @@ const PAPERS: Record<TestSubjectId, Loader[]> = {
   ],
   zoology: [
     () => import("./papers/zoology-test-1").then((m) => m.default),
+    () => import("./papers/zoology-test-2").then((m) => m.default),
+    () => import("./papers/zoology-test-3").then((m) => m.default),
   ],
 };
 
