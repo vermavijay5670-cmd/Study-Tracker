@@ -39,7 +39,9 @@ const PAPERS: Record<TestSubjectId, Loader[]> = {
     () => import("./papers/inorganic-test-3").then((m) => m.default),
     () => import("./papers/inorganic-test-4").then((m) => m.default),
   ],
-  "organic-chemistry": [],
+  "organic-chemistry": [
+    () => import("./papers/organic-test-1").then((m) => m.default),
+  ],
   botany: [
     () => import("./papers/botany-test-1").then((m) => m.default),
     () => import("./papers/botany-test-2").then((m) => m.default),
@@ -50,6 +52,7 @@ const PAPERS: Record<TestSubjectId, Loader[]> = {
     () => import("./papers/zoology-test-1").then((m) => m.default),
     () => import("./papers/zoology-test-2").then((m) => m.default),
     () => import("./papers/zoology-test-3").then((m) => m.default),
+    () => import("./papers/zoology-test-4").then((m) => m.default),
   ],
 };
 
