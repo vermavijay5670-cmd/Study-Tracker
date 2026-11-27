@@ -51,6 +51,57 @@ export function defaultState(): TrackerState {
   };
 }
 
+/**
+ * A saved timestamp is only trustworthy if it isn't in the future. An absurdly large value (for
+ * example one forced in by hand during a manual recovery) would otherwise beat every real edit
+ * forever: the cloud copy would "win" on every page load and silently overwrite this device's data.
+ * Untrusted timestamps count as 0, i.e. "unknown age" — they lose to any real edit.
+ */
+export function trustedTime(ts: unknown): number {
+  const n = typeof ts === "number" && Number.isFinite(ts) ? ts : 0;
+  return n < 0 || n > Date.now() + 24 * 3_600_000 ? 0 : n;
+}
+
+const BACKUP_PREFIX = "neet_tracker_backup_";
+const MAX_BACKUPS = 3;
+
+function backupKeys(): string[] {
+  try {
+    return Object.keys(window.localStorage).filter((k) => k.startsWith(BACKUP_PREFIX)).sort();
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Before this device's copy is replaced by the cloud's, keep it (the 3 newest are kept). An
+ * overwrite is the one way data has ever been lost here, so never make one irreversible.
+ */
+function stashLocalBackup() {
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw || raw.length < 1500) return; // an empty/default copy isn't worth keeping
+    const keys = backupKeys();
+    const newest = keys[keys.length - 1];
+    if (newest && window.localStorage.getItem(newest) === raw) return;
+    window.localStorage.setItem(BACKUP_PREFIX + Date.now(), raw);
+    for (const k of backupKeys().slice(0, -MAX_BACKUPS)) window.localStorage.removeItem(k);
+  } catch {
+    /* storage full or unavailable — skip */
+  }
+}
+
+/** Backups belong to the account that made them, so they go whenever that account's data does. */
+function clearLocalBackups() {
+  for (const k of backupKeys()) {
+    try {
+      window.localStorage.removeItem(k);
+    } catch {
+      /* ignore */
+    }
+  }
+}
+
 export function loadState(): TrackerState {
   if (typeof window === "undefined") return defaultState();
   try {
@@ -75,6 +126,7 @@ export function loadState(): TrackerState {
       tests: Array.isArray(parsed.tests) ? parsed.tests : [],
       dayMarks: parsed.dayMarks ?? {},
       dayNotes: parsed.dayNotes ?? {},
+      lastModified: trustedTime(parsed.lastModified),
     };
     // Stopwatch session count/timer are per-day — start fresh if this is a new day
     // (including for users whose stored data predates this field entirely).
@@ -194,6 +246,7 @@ function bootstrap(supabase: ReturnType<typeof createSupabaseBrowserClient>): Pr
           if (owner && owner !== currentUser.id) {
             local = defaultState();
             replaced = true;
+            clearLocalBackups();
           }
           window.localStorage.setItem(OWNER_KEY, currentUser.id);
         } catch {
@@ -205,10 +258,12 @@ function bootstrap(supabase: ReturnType<typeof createSupabaseBrowserClient>): Pr
 
         // cloud wins if it's newer, or if this device has nothing of its own yet (never push an empty local over real cloud data)
         const hasCloud = cloud && Object.keys(cloud).length > 0;
-        if (hasCloud && ((cloud.lastModified ?? 0) > local.lastModified || local.lastModified === 0)) {
+        const cloudTime = trustedTime(cloud?.lastModified);
+        if (hasCloud && (cloudTime > local.lastModified || local.lastModified === 0)) {
           const merged: TrackerState = {
             ...defaultState(),
             ...cloud,
+            lastModified: cloudTime,
             log: cloud.log ?? {},
             planner: cloud.planner ?? {},
             customSubjects: Array.isArray(cloud.customSubjects) ? cloud.customSubjects : [],
@@ -225,6 +280,7 @@ function bootstrap(supabase: ReturnType<typeof createSupabaseBrowserClient>): Pr
             merged.stopwatchSessionMs = 0;
             merged.stopwatchSessionsDate = todayKey();
           }
+          stashLocalBackup();
           try {
             window.localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
           } catch {
@@ -320,9 +376,10 @@ export function useTrackerState() {
   // newer copy so a change made in one place (e.g. adding a subject in Settings) shows up everywhere
   // and an out-of-date instance can never write its old copy back over it.
   useEffect(() => {
-    const adopt = (incoming: TrackerState, push: boolean) => {
+    const adopt = (raw: TrackerState, push: boolean) => {
       if (!hydratedRef.current) return;
-      if ((incoming.lastModified ?? 0) <= stateRef.current.lastModified) return;
+      const incoming = { ...raw, lastModified: trustedTime(raw.lastModified) };
+      if (incoming.lastModified <= stateRef.current.lastModified) return;
       adoptedRef.current = incoming;
       skipNextPushRef.current = !push;
       setStateRaw(incoming);
@@ -393,6 +450,7 @@ export function useTrackerState() {
     } catch {
       /* ignore */
     }
+    clearLocalBackups();
   }, [user, state]);
 
   const setDailyGoalHours = useCallback((hours: number) => {
