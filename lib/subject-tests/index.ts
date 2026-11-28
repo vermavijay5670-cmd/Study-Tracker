@@ -41,6 +41,9 @@ const PAPERS: Record<TestSubjectId, Loader[]> = {
   ],
   "organic-chemistry": [
     () => import("./papers/organic-test-1").then((m) => m.default),
+    () => import("./papers/organic-test-2").then((m) => m.default),
+    () => import("./papers/organic-test-3").then((m) => m.default),
+    () => import("./papers/organic-test-4").then((m) => m.default),
   ],
   botany: [
     () => import("./papers/botany-test-1").then((m) => m.default),
